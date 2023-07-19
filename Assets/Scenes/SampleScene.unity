@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 618355650}
   - component: {fileID: 618355649}
   - component: {fileID: 618355648}
-  - component: {fileID: 618355647}
+  - component: {fileID: 618355652}
   m_Layer: 0
   m_Name: PatrolTest
   m_TagString: Untagged
@@ -399,25 +399,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &618355647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618355646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9a7d8ce9fd748140b2cead6792080f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_waypoints:
-  - {fileID: 423669451}
-  - {fileID: 713143732}
-  - {fileID: 1743241698}
-  - {fileID: 681750669}
-  - {fileID: 366265542}
-  - {fileID: 1760869374}
 --- !u!65 &618355648
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -496,6 +477,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &618355652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618355646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0329546cf50a5a3488cb52aa717ddf6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_waypoints:
+  - {fileID: 423669451}
+  - {fileID: 713143732}
+  - {fileID: 1743241698}
+  - {fileID: 681750669}
+  - {fileID: 366265542}
+  - {fileID: 1760869374}
 --- !u!1 &681750668
 GameObject:
   m_ObjectHideFlags: 0
