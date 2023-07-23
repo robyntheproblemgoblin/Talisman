@@ -28,6 +28,13 @@ float GetLightIntensity(float3 color)
     return max(color.r, max(color.g, color.b));
 }
 
+void GetWeights_float(float4 distances, float4 sphereRadii, out float4 Weights)
+{
+    half4 weights = half4(distances < sphereRadii);
+    weights.yzw = saturate(weights.yzw - weights.xyz);    
+    Weights = weights;
+}
+
 #ifndef SHADERGRAPH_PREVIEW
 // This function gets additional light data and calculates realtime shadows
 Light GetAdditionalLightForToon(int pixelLightIndex, float3 worldPosition)
