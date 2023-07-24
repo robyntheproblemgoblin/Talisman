@@ -1,17 +1,27 @@
+using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
 
-public class EnemyBT : BehaviourTree.Tree
+public class EnemyBT : BehaviourTree.BehaviourTree
 {
     public Transform[] m_waypoints;
 
     public static float m_speed = 2;
 
-    public static float fovRange = 6f;
+    public static float m_fovRange = 6f;
 
     protected override Node SetupTree() 
     {
-        Node root = new TaskPatrol(transform, m_waypoints);
+        Node root = new Selector(new List<Node>
+        {
+            new Sequence(new List<Node>
+            {
+                new CheckEnemyInFOVRange(transform),
+                new TaskGoToTarget(transform),
+            }),
+            new TaskPatrol(transform, m_waypoints),
+        });
+
         return root;
     }
 }
