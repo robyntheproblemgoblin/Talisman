@@ -10,16 +10,17 @@ public class ToonShaderLightSettings : MonoBehaviour
 	Light[] otherLights;
 
 	void OnEnable()
-	{
+	{		
 		mainLight = GetComponent<Light>();
-		
+		otherLights = FindObjectsOfType<Light>();			
+		otherLights.ToList().Remove(mainLight);
+			
 	}
 	
 	void Update ()
 	{
 		Shader.SetGlobalVector("_ToonLightDirection", -transform.forward);
 		Shader.SetGlobalColor("_ToonLightColor", mainLight.color);
-        Shader.SetGlobalFloat("_ToonLightIntensity", mainLight.intensity);
-		
+        Shader.SetGlobalFloat("_ToonLightIntensity", mainLight.intensity);		
 	}
 }
