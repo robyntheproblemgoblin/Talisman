@@ -3,7 +3,7 @@
 
 void CalculateMainLight_float(float3 WorldPos, out float3 Direction, out float3 Color, out half DistanceAtten, out half ShadowAtten)
 {
-#ifdef SHADERGRAPH_PREVIEW
+#if(SHADERGRAPH_PREVIEW)
     Direction = half3(0.5, 0.5, 0);
     Color = 1;
     DistanceAtten = 1;
@@ -26,13 +26,6 @@ void CalculateMainLight_float(float3 WorldPos, out float3 Direction, out float3 
 float GetLightIntensity(float3 color)
 {
     return max(color.r, max(color.g, color.b));
-}
-
-void GetWeights_float(float4 distances, float4 sphereRadii, out float4 Weights)
-{
-    half4 weights = half4(distances < sphereRadii);
-    weights.yzw = saturate(weights.yzw - weights.xyz);    
-    Weights = weights;
 }
 
 #ifndef SHADERGRAPH_PREVIEW

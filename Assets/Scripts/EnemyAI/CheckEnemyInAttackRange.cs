@@ -10,7 +10,7 @@ public class CheckEnemyInAttackRange : Node
     public CheckEnemyInAttackRange(Transform transform)
     {
         m_transform = transform;
-        m_animator = transform.GetComponent<Animator>();
+       // m_animator = transform.GetComponent<Animator>();
     }
 
     public override NodeState Evaluate()
@@ -23,9 +23,8 @@ public class CheckEnemyInAttackRange : Node
         }
 
         Transform target = (Transform)t;
-        if(Vector3.Distance(m_transform.position, target.position) < = EnemyBT.m_attackRange)
-        {
-
-        }
+       
+        m_state = NodeState.FAILURE;
+        return m_state;
     }
 }
