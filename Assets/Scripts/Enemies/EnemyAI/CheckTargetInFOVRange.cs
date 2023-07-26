@@ -1,15 +1,15 @@
 using BehaviourTree;
 using UnityEngine;
 
-public class CheckEnemyInFOVRange : Node
+public class CheckTargetInFOVRange : Node
 {
     Transform m_transform;
 
-    private static int m_enemyLayerMask = 1 << 6;    
+    static int m_enemyLayerMask = 1 << 6;    
 
     //private Animator m_animator;
 
-    public CheckEnemyInFOVRange(Transform transform)
+    public CheckTargetInFOVRange(Transform transform)
     {
         m_transform = transform;
         //m_animator = transform.GetComponent<Animator>();

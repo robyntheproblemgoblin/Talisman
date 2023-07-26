@@ -11,7 +11,7 @@ public class TaskPatrol : Node
     int m_currentWaypoint;
     float m_waitTime = 1f;
     float m_waitCounter = 0f;
-    bool m_waiting = false;
+    bool m_waiting = false;    
 
     public TaskPatrol(Transform transform, Transform[] waypoints)
     {

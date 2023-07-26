@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
 
-public class CheckEnemyInAttackRange : Node
+public class CheckTargetInAttackRange : Node
 {
-    private Transform m_transform;
-    //private Animator m_animator;
+    Transform m_transform;
+    //Animator m_animator;
 
-    public CheckEnemyInAttackRange(Transform transform)
+    public CheckTargetInAttackRange(Transform transform)
     {
         m_transform = transform;
        // m_animator = transform.GetComponent<Animator>();
@@ -23,6 +23,15 @@ public class CheckEnemyInAttackRange : Node
         }
 
         Transform target = (Transform)t;
+        if(Vector3.Distance(m_transform.position, target.position) <= EnemyBT.m_attackRange)
+        {
+           // m_animator.SetBool("Attacking", true);
+           // m_animator.SetBool("Walking", false);
+
+
+            m_state = NodeState.SUCCESS;
+            return m_state;
+        }
        
         m_state = NodeState.FAILURE;
         return m_state;

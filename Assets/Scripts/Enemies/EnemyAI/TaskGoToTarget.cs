@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TaskGoToTarget : Node
 {
-    private Transform m_transform;
+    Transform m_transform;
     public TaskGoToTarget(Transform transform)
     {
         m_transform = transform;
@@ -17,7 +17,7 @@ public class TaskGoToTarget : Node
             m_transform.position = Vector3.MoveTowards(
                 m_transform.position, 
                 target.position,
-                EnemyBT.m_speed * Time.deltaTime);
+                MeleeBT.m_speed * Time.deltaTime);
             m_transform.LookAt(target.position);
         }
 

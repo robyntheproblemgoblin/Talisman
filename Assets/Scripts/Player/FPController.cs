@@ -1,14 +1,13 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class FPController : MonoBehaviour
-{
-    public GameObject m_ground;
+{   
+    FPControls m_inputControl;
 
+    #region Movement
     CameraControls m_camera;
     public float m_cameraSensitivity = 10;
-    FPControls m_inputControl;
     Vector3 m_moveDirection = Vector3.zero;
     float m_gravity = 9.81f;
     public float m_walkSpeed = 5;
@@ -16,8 +15,36 @@ public class FPController : MonoBehaviour
     bool m_canMove = true;
     public float m_jumpSpeed = 5;
     CharacterController m_characterController;
+    #endregion
 
-    void Start()
+    #region Health
+    // Loss is in Chunks (Visually chunks)
+    #endregion
+
+    #region Heal
+    // Tick while button held (Visually Ticks)
+    #endregion
+
+    #region Mana
+    // Comes in chunks from the pool (Visually ticks)
+    #endregion
+
+    #region ManaAttack
+    // Loss in Ticks until trigger release (Visually ticks)
+    public bool m_chargeType = true;
+    bool m_manaAttackActive = false;
+    #endregion
+
+    #region MeleeAttack
+    #endregion
+
+    #region Block
+    #endregion
+
+    #region Parry
+    #endregion
+
+    void Awake()
     {
         m_camera = FindObjectOfType<CameraControls>();
         m_camera.SetupCamera(this.gameObject, m_cameraSensitivity);
@@ -26,6 +53,14 @@ public class FPController : MonoBehaviour
         m_characterController = GetComponent<CharacterController>();
     }
 
+    void OnEnable()
+    {
+        m_inputControl.Player_Map.ManaAttack.started += ManaAttack;
+    }
+    void OnDisable()
+    {
+        m_inputControl.Player_Map.ManaAttack.canceled -= ManaAttack;
+    }
     void FixedUpdate()
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -53,10 +88,14 @@ public class FPController : MonoBehaviour
         m_characterController.Move(m_moveDirection * Time.deltaTime);
 
     }
-
     void LateUpdate()
     {
         m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>());
     }
-
+    int test;
+    void ManaAttack(InputAction.CallbackContext obj)
+    {
+        test++;
+        Debug.Log(test);
+    }
 }
