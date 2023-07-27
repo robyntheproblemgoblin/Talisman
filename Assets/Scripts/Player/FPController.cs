@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,9 +32,15 @@ public class FPController : MonoBehaviour
     #endregion
 
     #region ManaAttack
+
+    TalismanStateEnum m_talismanState;
+
     // Loss in Ticks until trigger release (Visually ticks)
     public bool m_chargeType = true;
-    bool m_manaAttackActive = false;
+    bool m_manaAttackCharging = false;
+    public float m_damageChargePerTick = 0.1f;
+    float finalDamage = 0.0f;
+
     #endregion
 
     #region MeleeAttack
@@ -44,23 +52,17 @@ public class FPController : MonoBehaviour
     #region Parry
     #endregion
 
-    void Awake()
+    void Start()
     {
         m_camera = FindObjectOfType<CameraControls>();
         m_camera.SetupCamera(this.gameObject, m_cameraSensitivity);
         m_inputControl = new FPControls();
         m_inputControl.Player_Map.Enable();
         m_characterController = GetComponent<CharacterController>();
+        m_inputControl.Player_Map.ManaAttack.performed += _ => m_talismanState = TalismanStateEnum.STATE_CHARGING;        
+        m_inputControl.Player_Map.ManaAttack.canceled += _ => m_talismanState = TalismanStateEnum.STATE_FIRING;
     }
-
-    void OnEnable()
-    {
-        m_inputControl.Player_Map.ManaAttack.started += ManaAttack;
-    }
-    void OnDisable()
-    {
-        m_inputControl.Player_Map.ManaAttack.canceled -= ManaAttack;
-    }
+    
     void FixedUpdate()
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -92,10 +94,79 @@ public class FPController : MonoBehaviour
     {
         m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>());
     }
-    int test;
-    void ManaAttack(InputAction.CallbackContext obj)
+    
+      void Update()
     {
-        test++;
-        Debug.Log(test);
+        if(m_talismanState == TalismanStateEnum.STATE_CHARGING)
+        {
+            finalDamage += m_damageChargePerTick;            
+        }
+        
+    }
+}
+
+enum TalismanStateEnum
+{
+    STATE_FIRING,
+    STATE_CHARGING,
+    STATE_IDLE
+}
+
+abstract class TalismanState
+{
+    abstract public void StartState();
+    abstract public void Update();
+    abstract public void StopState();
+}
+
+class FiringState : TalismanState
+{
+    public override void StartState()
+    {
+
+    }
+
+    public override void Update()
+    {
+
+    }
+
+    public override void StopState()
+    {
+
+    }
+}
+class ChargingState : TalismanState
+{
+    public override void StartState()
+    {
+
+    }
+
+    public override void Update()
+    {
+
+    }
+
+    public override void StopState()
+    {
+
+    }
+}
+class IdleState : TalismanState
+{
+    public override void StartState()
+    {
+
+    }
+
+    public override void Update()
+    {
+
+    }
+
+    public override void StopState()
+    {
+
     }
 }
