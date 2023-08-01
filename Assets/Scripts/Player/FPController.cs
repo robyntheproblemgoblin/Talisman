@@ -19,6 +19,10 @@ public class FPController : MonoBehaviour
     CharacterController m_characterController;
     #endregion
 
+    #region Animation
+    Animator m_animator;
+    #endregion
+
     #region Health
     // Loss is in Chunks (Visually chunks)
     #endregion
@@ -33,14 +37,15 @@ public class FPController : MonoBehaviour
 
     #region ManaAttack
 
-    TalismanStateEnum m_talismanState;
+    TalismanState m_talismanState;
+    ChargingState m_charging;
+    FiringState m_firing;
+    IdleState m_idle;
 
     // Loss in Ticks until trigger release (Visually ticks)
     public bool m_chargeType = true;
     bool m_manaAttackCharging = false;
     public float m_damageChargePerTick = 0.1f;
-    float finalDamage = 0.0f;
-
     #endregion
 
     #region MeleeAttack
@@ -59,10 +64,17 @@ public class FPController : MonoBehaviour
         m_inputControl = new FPControls();
         m_inputControl.Player_Map.Enable();
         m_characterController = GetComponent<CharacterController>();
-        m_inputControl.Player_Map.ManaAttack.performed += _ => m_talismanState = TalismanStateEnum.STATE_CHARGING;        
-        m_inputControl.Player_Map.ManaAttack.canceled += _ => m_talismanState = TalismanStateEnum.STATE_FIRING;
+        m_talismanState = m_idle;
+        m_inputControl.Player_Map.ManaAttack.performed += StartCharging;                
+        m_inputControl.Player_Map.ManaAttack.canceled += _ => m_talismanState = m_firing;
     }
     
+    void StartCharging(InputAction.CallbackContext t)
+    {
+        m_talismanState = m_charging;
+        m_talismanState.StartState();
+    }
+
     void FixedUpdate()
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -97,11 +109,7 @@ public class FPController : MonoBehaviour
     
       void Update()
     {
-        if(m_talismanState == TalismanStateEnum.STATE_CHARGING)
-        {
-            finalDamage += m_damageChargePerTick;            
-        }
-        
+      
     }
 }
 
@@ -130,7 +138,6 @@ class FiringState : TalismanState
     {
 
     }
-
     public override void StopState()
     {
 
@@ -138,9 +145,11 @@ class FiringState : TalismanState
 }
 class ChargingState : TalismanState
 {
+        float finalDamage = 0.0f;
     public override void StartState()
     {
-
+        //Start the animation
+        finalDamage = 0.0f;
     }
 
     public override void Update()
