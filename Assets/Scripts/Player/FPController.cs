@@ -1,7 +1,6 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 public class FPController : MonoBehaviour
 {
@@ -9,19 +8,21 @@ public class FPController : MonoBehaviour
     #region Movement
     CameraControls m_camera;
     public float m_cameraSensitivity = 10;
-    Vector3 m_moveDirection = Vector3.zero;
+    public Vector3 m_moveDirection = Vector3.zero;
     float m_gravity = 9.81f;
     public float m_walkSpeed = 5;
     public float m_runSpeed = 5;
     bool m_canMove = true;
     public float m_jumpSpeed = 5;
     CharacterController m_characterController;
+    public float m_smoothTime;
+    public Vector3 MoveDampVelocity;
+    // Coyote time
+    // Jump Buffer
     #endregion
 
     #region Animation
     Animator m_animator;
-    public LineRenderer m_lineRenderer;
-    public ParticleSystem m_particles;
     #endregion
 
     #region Health
@@ -43,8 +44,12 @@ public class FPController : MonoBehaviour
     FiringState m_firing;
     IdleState m_idle;
 
+    public ParticleSystem m_fireMana;
+    public ParticleSystem m_chargeMana;
+
     // Loss in Ticks until trigger release (Visually ticks)    
     public float m_damageChargePerTick = 0.1f;
+    public float m_maxSize = 2;
     public GameObject projectile;
     Transform m_talisman;
     #endregion
@@ -62,15 +67,22 @@ public class FPController : MonoBehaviour
     {
         m_camera = FindObjectOfType<CameraControls>();
         m_camera.SetupCamera(this.gameObject, m_cameraSensitivity);
+        m_animator = GetComponentInChildren<Animator>();
         m_inputControl = new FPControls();
         m_inputControl.Player_Map.Enable();
         m_characterController = GetComponent<CharacterController>();
-        m_idle = new IdleState(m_animator, m_lineRenderer, m_particles);
-        m_charging = new ChargingState(m_animator, m_lineRenderer, m_particles);
-        m_firing = new FiringState(m_animator, m_lineRenderer, m_particles);
+        m_idle = new IdleState(m_animator, m_chargeMana);
+        m_charging = new ChargingState(m_animator, m_chargeMana);
+        m_firing = new FiringState(m_animator, m_chargeMana, m_maxSize);
         m_inputControl.Player_Map.ManaAttack.performed += StartCharging;
         m_inputControl.Player_Map.ManaAttack.canceled += StartFiring;
+        m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
         m_talismanState = m_idle;
+    }
+    private void MeleeAttack(InputAction.CallbackContext obj)
+    {
+        int randomNumber = Random.Range(1, 4);
+        m_animator.SetTrigger("Attack" + randomNumber);
     }
 
     void StartCharging(InputAction.CallbackContext t)
@@ -96,14 +108,20 @@ public class FPController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector2 PlayerInput = m_inputControl.Player_Map.Movement.ReadValue<Vector2>();
+        if(PlayerInput.magnitude > 1f)
+        {
+            PlayerInput.Normalize();
+        }
+
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-        Vector2 move = m_inputControl.Player_Map.Movement.ReadValue<Vector2>();
-        bool isRunning = m_inputControl.Player_Map.Sprint.enabled;
-        float speedX = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * move.y : 0;
-        float speedY = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * move.x : 0;
+        
+        bool isRunning = m_inputControl.Player_Map.Sprint.inProgress;
+        float speedX = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * PlayerInput.y : 0;
+        float speedY = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * PlayerInput.x : 0;
         float yDirection = m_moveDirection.y;
-        m_moveDirection = (forward * speedX) + (right * speedY);
+        m_moveDirection = Vector3.SmoothDamp(m_moveDirection,(forward * speedX) + (right * speedY), ref MoveDampVelocity, m_smoothTime);
 
         if (m_inputControl.Player_Map.Jump.IsPressed() && m_characterController.isGrounded)
         {
@@ -118,7 +136,11 @@ public class FPController : MonoBehaviour
         {
             m_moveDirection.y -= m_gravity * Time.deltaTime;
         }
+
+
         m_characterController.Move(m_moveDirection * Time.deltaTime);
+        m_animator.SetFloat("Forward", m_moveDirection.x);
+        m_animator.SetFloat("Sideways", m_moveDirection.z);
 
     }
     void LateUpdate()
@@ -133,8 +155,7 @@ public class FPController : MonoBehaviour
 
 class TalismanState
 {
-    public Animator m_animator;
-    public LineRenderer m_lineRenderer;
+    public Animator m_animator;    
     public ParticleSystem m_particles;
     public virtual void StartState(float startValue) { }
     public virtual void Update() { }
@@ -148,80 +169,64 @@ class FiringState : TalismanState
     float m_damageTime;
     bool m_beam;
     float m_manaBoltSpeed = 30.0f;
+    float m_maxSize = 2;
+    float m_minSize = 1;
 
 
-    public FiringState(Animator anim, LineRenderer lr, ParticleSystem ps)
+    public FiringState(Animator anim, ParticleSystem ps, float max)
     {
-        m_animator = anim;
-        m_lineRenderer = lr;
+        m_animator = anim;     
         m_particles = ps;
         m_camera = Camera.main;
+        m_maxSize = max;
     }
     public override void StartState(float startValue)
-    {
-        m_lineRenderer.enabled = true;
+    {        
         m_particles.Play();
         m_damageTime = startValue;
-        m_beam = startValue >= 0.5f ? true : false;
     }
 
     public override void Update()
     {
-        if (m_beam)
+        Ray camRay = m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        Vector3 destination;
+        if (Physics.Raycast(camRay, out hit))
         {
-            if (m_damageTime > 0)
-            {
-                Ray camRay = m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-                RaycastHit hit;
-
-                if (Physics.Raycast(camRay, out hit))
-                {
-                    m_lineRenderer.SetPosition(1, m_lineRenderer.transform.InverseTransformPoint(hit.point));
-                }
-                else
-                {
-                    m_lineRenderer.SetPosition(1, m_lineRenderer.transform.InverseTransformPoint(camRay.GetPoint(50)));
-                }
-                m_damageTime -= Time.deltaTime;
-            }
-            else
-            {
-                MonoBehaviour.FindObjectOfType<FPController>().StartIdle();
-            }
+            destination = hit.point;
         }
-        else 
+        else
         {
-            Ray camRay = m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            RaycastHit hit;
-            Vector3 destination;
-            if (Physics.Raycast(camRay, out hit))
-            {
-                destination = hit.point;                
-            }
-            else
-            {
-                destination = camRay.GetPoint(50);                
-            }
-            var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<FPController>().projectile, m_particles.transform.position, Quaternion.identity) as GameObject;
-            manaBolt.GetComponent<Rigidbody>().velocity = (destination - m_particles.transform.position).normalized * m_manaBoltSpeed;
-                MonoBehaviour.FindObjectOfType<FPController>().StartIdle();
+            destination = camRay.GetPoint(50);
         }
+        var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<FPController>().projectile, m_particles.transform.position + m_particles.transform.forward, Quaternion.identity) as GameObject;
+        if(m_damageTime > m_minSize)
+        {
+            manaBolt.GetComponent<SphereCollider>().radius *= (m_damageTime <= m_maxSize ? m_damageTime : m_maxSize);
+            var main = manaBolt.GetComponentInChildren<ParticleSystem>().main;
+            main.startSize = m_damageTime;
+        }       
+        manaBolt.GetComponent<Rigidbody>().velocity = (destination - m_particles.transform.position).normalized * m_manaBoltSpeed;
+        MonoBehaviour.FindObjectOfType<FPController>().StartIdle();
+    }
+    public override void StopState()
+    {
+        m_animator.SetBool("LeftAttacking", false);
     }
 }
 class ChargingState : TalismanState
 {
     public float chargeTime = 0.0f;
-    public ChargingState(Animator anim, LineRenderer lr, ParticleSystem ps)
+    public ChargingState(Animator anim, ParticleSystem ps)
     {
-        m_animator = anim;
-        m_lineRenderer = lr;
+        m_animator = anim;        
         m_particles = ps;
     }
     public override void StartState(float startValue)
     {
         chargeTime = 0.0f;
-        m_particles.Play();
-        m_lineRenderer.enabled = false;
+        m_animator.SetBool("LeftAttacking", true);
+        m_particles.Play();        
     }
 
     public override void Update()
@@ -233,15 +238,13 @@ class ChargingState : TalismanState
 }
 class IdleState : TalismanState
 {
-    public IdleState(Animator anim, LineRenderer lr, ParticleSystem ps)
+    public IdleState(Animator anim, ParticleSystem ps)
     {
-        m_animator = anim;
-        m_lineRenderer = lr;
+        m_animator = anim;        
         m_particles = ps;
     }
     public override void StartState(float startValue)
     {
-        m_particles.Stop();
-        m_lineRenderer.enabled = false;
+        m_particles.Stop();        
     }
 }
