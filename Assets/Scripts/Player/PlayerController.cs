@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 
-public class FPController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     FPControls m_inputControl;
     #region Movement
@@ -15,8 +15,8 @@ public class FPController : MonoBehaviour
     bool m_canMove = true;
     public float m_jumpSpeed = 5;
     CharacterController m_characterController;
-    public float m_smoothTime;
-    public Vector3 MoveDampVelocity;
+    public float m_smoothTime = 0.3f;
+    public Vector2 MoveDampVelocity;
     // Coyote time
     // Jump Buffer
     #endregion
@@ -108,20 +108,14 @@ public class FPController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 PlayerInput = m_inputControl.Player_Map.Movement.ReadValue<Vector2>();
-        if(PlayerInput.magnitude > 1f)
-        {
-            PlayerInput.Normalize();
-        }
-
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-        
-        bool isRunning = m_inputControl.Player_Map.Sprint.inProgress;
-        float speedX = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * PlayerInput.y : 0;
-        float speedY = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * PlayerInput.x : 0;
+        Vector2 move = m_inputControl.Player_Map.Movement.ReadValue<Vector2>();
+        bool isRunning = m_inputControl.Player_Map.Sprint.IsInProgress();
+        float speedX = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * move.y : 0;
+        float speedY = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * move.x : 0;
         float yDirection = m_moveDirection.y;
-        m_moveDirection = Vector3.SmoothDamp(m_moveDirection,(forward * speedX) + (right * speedY), ref MoveDampVelocity, m_smoothTime);
+        m_moveDirection = (forward * speedX) + (right * speedY);
 
         if (m_inputControl.Player_Map.Jump.IsPressed() && m_characterController.isGrounded)
         {
@@ -137,11 +131,8 @@ public class FPController : MonoBehaviour
             m_moveDirection.y -= m_gravity * Time.deltaTime;
         }
 
-
+        UpdateLeanAnimation(speedX, speedY);
         m_characterController.Move(m_moveDirection * Time.deltaTime);
-        m_animator.SetFloat("Forward", m_moveDirection.x);
-        m_animator.SetFloat("Sideways", m_moveDirection.z);
-
     }
     void LateUpdate()
     {
@@ -150,6 +141,15 @@ public class FPController : MonoBehaviour
     void Update()
     {
         m_talismanState.Update();
+    }
+
+    void UpdateLeanAnimation(float speedX, float speedY) 
+    {
+        Vector2 animSpeed = new Vector2(m_animator.GetFloat("Forward"), m_animator.GetFloat("Sideways"));
+        animSpeed = Vector2.SmoothDamp(animSpeed, new Vector2(speedX, speedY), ref MoveDampVelocity, m_smoothTime);
+
+        m_animator.SetFloat("Forward", animSpeed.x);
+        m_animator.SetFloat("Sideways", animSpeed.y);
     }
 }
 
@@ -164,8 +164,7 @@ class TalismanState
 
 class FiringState : TalismanState
 {
-    Camera m_camera;
-    Vector3 m_destination;
+    Camera m_camera;    
     float m_damageTime;
     bool m_beam;
     float m_manaBoltSpeed = 30.0f;
@@ -199,7 +198,7 @@ class FiringState : TalismanState
         {
             destination = camRay.GetPoint(50);
         }
-        var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<FPController>().projectile, m_particles.transform.position + m_particles.transform.forward, Quaternion.identity) as GameObject;
+        var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<PlayerController>().projectile, m_particles.transform.position + m_particles.transform.forward, Quaternion.identity) as GameObject;
         if(m_damageTime > m_minSize)
         {
             manaBolt.GetComponent<SphereCollider>().radius *= (m_damageTime <= m_maxSize ? m_damageTime : m_maxSize);
@@ -207,7 +206,7 @@ class FiringState : TalismanState
             main.startSize = m_damageTime;
         }       
         manaBolt.GetComponent<Rigidbody>().velocity = (destination - m_particles.transform.position).normalized * m_manaBoltSpeed;
-        MonoBehaviour.FindObjectOfType<FPController>().StartIdle();
+        MonoBehaviour.FindObjectOfType<PlayerController>().StartIdle();
     }
     public override void StopState()
     {

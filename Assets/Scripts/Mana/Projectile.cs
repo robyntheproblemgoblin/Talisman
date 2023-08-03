@@ -14,6 +14,11 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if(enemy != null)
+        {
+            enemy.TakeHit();
+        }
     }
     void Update()
     {
