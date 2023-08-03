@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.ManaAttack.performed += StartCharging;
         m_inputControl.Player_Map.ManaAttack.canceled += StartFiring;
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
+        m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_talismanState = m_idle;
     }
     private void MeleeAttack(InputAction.CallbackContext obj)
@@ -104,6 +105,22 @@ public class PlayerController : MonoBehaviour
         m_talismanState.StopState();
         m_talismanState = m_idle;
         m_talismanState.StartState(0);
+    }
+
+    void SwapStyle(InputAction.CallbackContext t)
+    {
+        m_charging.m_beam = !m_charging.m_beam;
+        m_firing.m_beam = !m_firing.m_beam;
+        if(m_charging.m_beam)
+        {
+            m_charging.m_particles = m_chargeMana;
+            m_firing.m_particles = m_chargeMana;
+        }
+        else
+        {
+            m_charging.m_particles = m_fireMana;
+            m_firing.m_particles = m_fireMana;
+        }
     }
 
     void FixedUpdate()
@@ -143,7 +160,7 @@ public class PlayerController : MonoBehaviour
         m_talismanState.Update();
     }
 
-    void UpdateLeanAnimation(float speedX, float speedY) 
+    void UpdateLeanAnimation(float speedX, float speedY)
     {
         Vector2 animSpeed = new Vector2(m_animator.GetFloat("Forward"), m_animator.GetFloat("Sideways"));
         animSpeed = Vector2.SmoothDamp(animSpeed, new Vector2(speedX, speedY), ref MoveDampVelocity, m_smoothTime);
@@ -155,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
 class TalismanState
 {
-    public Animator m_animator;    
+    public Animator m_animator;
     public ParticleSystem m_particles;
     public virtual void StartState(float startValue) { }
     public virtual void Update() { }
@@ -164,9 +181,9 @@ class TalismanState
 
 class FiringState : TalismanState
 {
-    Camera m_camera;    
+    Camera m_camera;
     float m_damageTime;
-    bool m_beam;
+    public bool m_beam = true;
     float m_manaBoltSpeed = 30.0f;
     float m_maxSize = 2;
     float m_minSize = 1;
@@ -174,38 +191,44 @@ class FiringState : TalismanState
 
     public FiringState(Animator anim, ParticleSystem ps, float max)
     {
-        m_animator = anim;     
+        m_animator = anim;
         m_particles = ps;
         m_camera = Camera.main;
         m_maxSize = max;
     }
     public override void StartState(float startValue)
-    {        
-        m_particles.Play();
+    {
+        if (m_beam)
+            m_particles.Play();
+        else
+            m_particles.Stop();
         m_damageTime = startValue;
     }
 
     public override void Update()
     {
-        Ray camRay = m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
-        Vector3 destination;
-        if (Physics.Raycast(camRay, out hit))
+        if (m_beam)
         {
-            destination = hit.point;
+            Ray camRay = m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+            Vector3 destination;
+            if (Physics.Raycast(camRay, out hit))
+            {
+                destination = hit.point;
+            }
+            else
+            {
+                destination = camRay.GetPoint(50);
+            }
+            var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<PlayerController>().projectile, m_particles.transform.position + m_particles.transform.forward, Quaternion.identity) as GameObject;
+            if (m_damageTime > m_minSize)
+            {
+                manaBolt.GetComponent<SphereCollider>().radius *= (m_damageTime <= m_maxSize ? m_damageTime : m_maxSize);
+                var main = manaBolt.GetComponentInChildren<ParticleSystem>().main;
+                main.startSize = m_damageTime;
+            }
+            manaBolt.GetComponent<Rigidbody>().velocity = (destination - m_particles.transform.position).normalized * m_manaBoltSpeed;
         }
-        else
-        {
-            destination = camRay.GetPoint(50);
-        }
-        var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<PlayerController>().projectile, m_particles.transform.position + m_particles.transform.forward, Quaternion.identity) as GameObject;
-        if(m_damageTime > m_minSize)
-        {
-            manaBolt.GetComponent<SphereCollider>().radius *= (m_damageTime <= m_maxSize ? m_damageTime : m_maxSize);
-            var main = manaBolt.GetComponentInChildren<ParticleSystem>().main;
-            main.startSize = m_damageTime;
-        }       
-        manaBolt.GetComponent<Rigidbody>().velocity = (destination - m_particles.transform.position).normalized * m_manaBoltSpeed;
         MonoBehaviour.FindObjectOfType<PlayerController>().StartIdle();
     }
     public override void StopState()
@@ -215,35 +238,56 @@ class FiringState : TalismanState
 }
 class ChargingState : TalismanState
 {
+    public bool m_beam = true;
     public float chargeTime = 0.0f;
+    Camera m_camera;
     public ChargingState(Animator anim, ParticleSystem ps)
     {
-        m_animator = anim;        
+        m_animator = anim;
         m_particles = ps;
+        m_camera = Camera.main;
     }
     public override void StartState(float startValue)
     {
         chargeTime = 0.0f;
         m_animator.SetBool("LeftAttacking", true);
-        m_particles.Play();        
+        m_particles.Play();
     }
 
     public override void Update()
     {
-        chargeTime += Time.deltaTime;
+        if (m_beam)
+        {
+            chargeTime += Time.deltaTime;
+        }
+        else
+        {
+            Ray camRay = m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+            Vector3 destination;
+            if (Physics.Raycast(camRay, out hit))
+            {
+                destination = hit.point;
+            }
+            else
+            {
+                destination = camRay.GetPoint(50);
+            }
+
+        }
     }
 
-    // StopState goes into the end of then charge anim
+    // StopState goes into the end of then charge anim?
 }
 class IdleState : TalismanState
 {
     public IdleState(Animator anim, ParticleSystem ps)
     {
-        m_animator = anim;        
+        m_animator = anim;
         m_particles = ps;
     }
     public override void StartState(float startValue)
     {
-        m_particles.Stop();        
+        m_particles.Stop();
     }
 }
