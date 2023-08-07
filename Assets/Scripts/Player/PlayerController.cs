@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     #region Health
     // Loss is in Chunks (Visually chunks)
+    public float m_health;
     #endregion
 
     #region Heal
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
         
         if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
         {
-            Enemy enemy = hit.transform.gameObject.GetComponent<Enemy>();
+            EnemyBT enemy = hit.transform.gameObject.GetComponent<EnemyBT>();
             if (enemy != null)
             {
                 Debug.Log("Melee hit");

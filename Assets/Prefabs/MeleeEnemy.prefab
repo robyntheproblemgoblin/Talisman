@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6498568527094993880}
-  - component: {fileID: 3868996605135972755}
+  - component: {fileID: 1983455685561485270}
+  - component: {fileID: 1937608249113141071}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: MeleeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3868996605135972755
+--- !u!114 &1983455685561485270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +43,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 8881904336182996317}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41ef6b75444426443a31b24833f6b126, type: 3}
+  m_Script: {fileID: 11500000, guid: 0329546cf50a5a3488cb52aa717ddf6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_waypoints: []
+  m_startingHP: 30
+  m_currentHP: 0
+--- !u!136 &1937608249113141071
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8881904336182996317}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 3.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.8, z: 0}
 --- !u!1001 &4254927771871188618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,10 +70,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6498568527094993880}
     m_Modifications:
-    - target: {fileID: 1815930165877440126, guid: 6efec39fc6f263b4b9c8eddfb05e17be, type: 3}
-      propertyPath: isAttacking
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4942848635437579967, guid: 6efec39fc6f263b4b9c8eddfb05e17be, type: 3}
       propertyPath: m_Name
       value: SpearmanRootMotion

@@ -1855,7 +1855,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5752035749486109701}
   - component: {fileID: 1815930165877440127}
-  - component: {fileID: 1815930165877440126}
   m_Layer: 0
   m_Name: SpearmanRootMotion
   m_TagString: Untagged
@@ -1902,30 +1901,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1815930165877440126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4942848635437579967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 321d5682ddf9d264a920f95c6590d6fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  spearmanAnimator: {fileID: 1815930165877440127}
-  attackingParticles: {fileID: 5213461329142909894}
-  turnSpeed: 3
-  attackTurnSpeed: 6
-  spearman: {fileID: 4942848635437579967}
-  playerObject: {fileID: 0}
-  isAttacking: 0
-  canTurnAttack: 0
-  attackStateSwapDelay: 1.5
-  minAttackDelay: 1.5
-  maxAttackDelay: 6
 --- !u!1 &5080546051908508681
 GameObject:
   m_ObjectHideFlags: 0

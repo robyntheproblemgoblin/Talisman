@@ -4,7 +4,7 @@ using BehaviourTree;
 public class TaskAttack : Node
 {
     Transform m_lastTarget;
-    Enemy m_enemy;
+    PlayerController m_player;
     float m_attackTime = 1f;
     float m_attackCounter = 0f;
     //Animator m_animator;    
@@ -19,14 +19,14 @@ public class TaskAttack : Node
         Transform target = (Transform)GetData("target");
         if (target != m_lastTarget)
         {
-            m_enemy = target.GetComponent<Enemy>();
+            m_player = target.GetComponent<PlayerController>();
             m_lastTarget = target;
         }
 
         m_attackCounter += Time.deltaTime;
         if (m_attackCounter >= m_attackTime)
         {
-            bool playerIsDead = m_enemy.TakeHit();
+            bool playerIsDead = m_player.m_health <= 0;
             Debug.Log("Attack");
             if (playerIsDead)
             {

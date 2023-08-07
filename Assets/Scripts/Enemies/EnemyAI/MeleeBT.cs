@@ -14,8 +14,10 @@ public class MeleeBT : EnemyBT
                 new TaskGoToTarget(transform),
             }),
             new TaskPatrol(transform, m_waypoints),
-        });
 
+    });
+
+        m_currentHP = m_startingHP;
         return root;
     }
 }

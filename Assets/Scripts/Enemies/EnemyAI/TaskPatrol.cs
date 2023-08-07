@@ -31,7 +31,7 @@ public class TaskPatrol : Node
                 //m_animator.SetBool("Walking", true);
             }
         }
-        else
+        else if(m_waypoints.Length > 0)
         {
             Transform wp = m_waypoints[m_currentWaypoint];
 
