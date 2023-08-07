@@ -71,6 +71,24 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MeleeAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""66acf2e2-ed1a-4975-a711-970b7ef327b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapManaStyle"",
+                    ""type"": ""Button"",
+                    ""id"": ""69d26a49-be75-4478-83b6-ed7e7d2463b1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +190,28 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""action"": ""ManaAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc5b219c-f62e-4142-aa8c-b393b6ee1d6f"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MeleeAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0de3cd77-8b66-4735-9595-2f180e972bfa"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapManaStyle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +225,8 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         m_Player_Map_Jump = m_Player_Map.FindAction("Jump", throwIfNotFound: true);
         m_Player_Map_Sprint = m_Player_Map.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Map_ManaAttack = m_Player_Map.FindAction("ManaAttack", throwIfNotFound: true);
+        m_Player_Map_MeleeAttack = m_Player_Map.FindAction("MeleeAttack", throwIfNotFound: true);
+        m_Player_Map_SwapManaStyle = m_Player_Map.FindAction("SwapManaStyle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,6 +291,8 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Map_Jump;
     private readonly InputAction m_Player_Map_Sprint;
     private readonly InputAction m_Player_Map_ManaAttack;
+    private readonly InputAction m_Player_Map_MeleeAttack;
+    private readonly InputAction m_Player_Map_SwapManaStyle;
     public struct Player_MapActions
     {
         private @FPControls m_Wrapper;
@@ -258,6 +302,8 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Map_Jump;
         public InputAction @Sprint => m_Wrapper.m_Player_Map_Sprint;
         public InputAction @ManaAttack => m_Wrapper.m_Player_Map_ManaAttack;
+        public InputAction @MeleeAttack => m_Wrapper.m_Player_Map_MeleeAttack;
+        public InputAction @SwapManaStyle => m_Wrapper.m_Player_Map_SwapManaStyle;
         public InputActionMap Get() { return m_Wrapper.m_Player_Map; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -282,6 +328,12 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @ManaAttack.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnManaAttack;
                 @ManaAttack.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnManaAttack;
                 @ManaAttack.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnManaAttack;
+                @MeleeAttack.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnMeleeAttack;
+                @MeleeAttack.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnMeleeAttack;
+                @MeleeAttack.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnMeleeAttack;
+                @SwapManaStyle.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
+                @SwapManaStyle.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
+                @SwapManaStyle.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
             }
             m_Wrapper.m_Player_MapActionsCallbackInterface = instance;
             if (instance != null)
@@ -301,6 +353,12 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @ManaAttack.started += instance.OnManaAttack;
                 @ManaAttack.performed += instance.OnManaAttack;
                 @ManaAttack.canceled += instance.OnManaAttack;
+                @MeleeAttack.started += instance.OnMeleeAttack;
+                @MeleeAttack.performed += instance.OnMeleeAttack;
+                @MeleeAttack.canceled += instance.OnMeleeAttack;
+                @SwapManaStyle.started += instance.OnSwapManaStyle;
+                @SwapManaStyle.performed += instance.OnSwapManaStyle;
+                @SwapManaStyle.canceled += instance.OnSwapManaStyle;
             }
         }
     }
@@ -312,5 +370,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnManaAttack(InputAction.CallbackContext context);
+        void OnMeleeAttack(InputAction.CallbackContext context);
+        void OnSwapManaStyle(InputAction.CallbackContext context);
     }
 }

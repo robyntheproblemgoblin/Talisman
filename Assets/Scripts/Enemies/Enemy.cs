@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
         m_hp -= 10;
         bool isDead = m_hp <= 0;
         if (isDead) Die();
+        Debug.Log("Hit");
         return isDead;
     }
 
