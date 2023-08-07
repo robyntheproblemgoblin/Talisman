@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region MeleeAttack
+    public float m_meleeAttackDistance;
     #endregion
 
     #region Block
@@ -83,6 +84,20 @@ public class PlayerController : MonoBehaviour
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
         int randomNumber = Random.Range(1, 4);
+        Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        
+        if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
+        {
+            Enemy enemy = hit.transform.gameObject.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                Debug.Log("Melee hit");
+                enemy.TakeHit();
+            }
+        }
+
+        
         m_animator.SetTrigger("Attack" + randomNumber);
     }
 
