@@ -98,6 +98,24 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Swap1"",
+                    ""type"": ""Button"",
+                    ""id"": ""cbcbccb3-e4dc-473c-b8e4-1c8ada46d8fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d133420-a1d6-4ac1-970b-82656c351e5f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -232,6 +250,28 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""action"": ""Swap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e525a0a2-7ac8-42a1-95b3-6ee65960a563"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""448c7454-0b8f-468b-b785-19e009358d65"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -248,6 +288,8 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         m_Player_Map_MeleeAttack = m_Player_Map.FindAction("MeleeAttack", throwIfNotFound: true);
         m_Player_Map_SwapManaStyle = m_Player_Map.FindAction("SwapManaStyle", throwIfNotFound: true);
         m_Player_Map_Swap = m_Player_Map.FindAction("Swap", throwIfNotFound: true);
+        m_Player_Map_Swap1 = m_Player_Map.FindAction("Swap1", throwIfNotFound: true);
+        m_Player_Map_Interact = m_Player_Map.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -315,6 +357,8 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Map_MeleeAttack;
     private readonly InputAction m_Player_Map_SwapManaStyle;
     private readonly InputAction m_Player_Map_Swap;
+    private readonly InputAction m_Player_Map_Swap1;
+    private readonly InputAction m_Player_Map_Interact;
     public struct Player_MapActions
     {
         private @FPControls m_Wrapper;
@@ -327,6 +371,8 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         public InputAction @MeleeAttack => m_Wrapper.m_Player_Map_MeleeAttack;
         public InputAction @SwapManaStyle => m_Wrapper.m_Player_Map_SwapManaStyle;
         public InputAction @Swap => m_Wrapper.m_Player_Map_Swap;
+        public InputAction @Swap1 => m_Wrapper.m_Player_Map_Swap1;
+        public InputAction @Interact => m_Wrapper.m_Player_Map_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player_Map; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -360,6 +406,12 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @Swap.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap;
                 @Swap.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap;
                 @Swap.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap;
+                @Swap1.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap1;
+                @Swap1.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap1;
+                @Swap1.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap1;
+                @Interact.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_Player_MapActionsCallbackInterface = instance;
             if (instance != null)
@@ -388,6 +440,12 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @Swap.started += instance.OnSwap;
                 @Swap.performed += instance.OnSwap;
                 @Swap.canceled += instance.OnSwap;
+                @Swap1.started += instance.OnSwap1;
+                @Swap1.performed += instance.OnSwap1;
+                @Swap1.canceled += instance.OnSwap1;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -402,5 +460,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         void OnMeleeAttack(InputAction.CallbackContext context);
         void OnSwapManaStyle(InputAction.CallbackContext context);
         void OnSwap(InputAction.CallbackContext context);
+        void OnSwap1(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.XR;
 public class PlayerController : MonoBehaviour
 {
     public Camera beautyCorner;
+    public Camera playerCamera;
     public Light m_light;
     public Light m_light1;
     FPControls m_inputControl;
@@ -85,6 +86,8 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_talismanState = m_idle;
         m_inputControl.Player_Map.Swap.performed += SwapScenes;
+        m_inputControl.Player_Map.Swap1.performed += SwapLights;
+        m_inputControl.Player_Map.Interact.performed += CheckPuzzle;
     }
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
@@ -106,6 +109,25 @@ public class PlayerController : MonoBehaviour
         m_animator.SetTrigger("Attack" + randomNumber);
     }
 
+    private void CheckPuzzle(InputAction.CallbackContext obj)
+    {
+        int randomNumber = Random.Range(1, 4);
+        Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
+        {
+            Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
+            if (puzzle != null)
+            {
+                Debug.Log("Puzzle Turn");
+                puzzle.RotatePuzzle();
+            }
+        }
+
+
+    }
+
     void StartCharging(InputAction.CallbackContext t)
     {
         m_talismanState.StopState();
@@ -114,10 +136,15 @@ public class PlayerController : MonoBehaviour
     }
     void SwapScenes(InputAction.CallbackContext t)
     {
-        Camera.main.gameObject.SetActive(!Camera.main.gameObject.active);
-        beautyCorner.gameObject.SetActive(!beautyCorner.gameObject.active);
-        m_light.gameObject.SetActive(!m_light.gameObject.active);
-        m_light1.gameObject.SetActive(!m_light1.gameObject.active);
+        playerCamera.gameObject.SetActive(!playerCamera.gameObject.activeSelf);
+        beautyCorner.gameObject.SetActive(!beautyCorner.gameObject.activeSelf);
+        m_light.gameObject.SetActive(!m_light.gameObject.activeSelf);
+        m_light1.gameObject.SetActive(!m_light1.gameObject.activeSelf);
+    }
+    void SwapLights(InputAction.CallbackContext t)
+    {        
+        m_light.gameObject.SetActive(!m_light.gameObject.activeSelf);
+        m_light1.gameObject.SetActive(!m_light1.gameObject.activeSelf);
     }
 
     void StartFiring(InputAction.CallbackContext t)
