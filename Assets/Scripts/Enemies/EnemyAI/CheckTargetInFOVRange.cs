@@ -13,7 +13,7 @@ public class CheckTargetInFOVRange : Node
     public CheckTargetInFOVRange(Transform transform)
     {
         m_transform = transform;
-        m_agent = transform.GetComponent<NavMeshAgent>();
+        m_agent = transform.GetComponent<NavMeshAgent>();        
     }
 
     public override NodeState Evaluate()

@@ -9,7 +9,7 @@ public class EnemyBT : MonoBehaviour
 
     public Transform[] m_waypoints;
 
-    public static float m_speed = 2;
+    public static float m_speed = 2.5f;
 
     public static float m_fovRange = 10f;
 
