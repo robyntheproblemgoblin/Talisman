@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class RandomAttackAnim : MonoBehaviour
 {
 
     FPControls m_inputControl;
-    PlayerController fpController;
+
     public Animator characterAnimator;
     public Animator enemyAnimator;
     public ParticleSystem flamesLeft;
@@ -20,14 +21,36 @@ public class RandomAttackAnim : MonoBehaviour
     {
         m_inputControl = new FPControls();        
         m_inputControl.Player_Map.Enable();;
-        fpController = FindObjectOfType<PlayerController>();
+
     }
 
 
 
     void Update()
     {
-      
+//        if (m_inputControl.Player_Map.Attack.WasPressedThisFrame())
+        {
+            Attack();
+            Debug.Log("Attacked");
+        }
+
+   //     if (m_inputControl.Player_Map.AttackLeft.WasPressedThisFrame())
+        {
+            LeftAttack();
+            Debug.Log("LeftAttack");
+        }
+      //  else if (m_inputControl.Player_Map.AttackLeft.WasReleasedThisFrame())
+        {
+            characterAnimator.SetBool("LeftAttacking", false);
+            flamesLeft.Stop();
+        }
+
+
+
+     //   characterAnimator.SetFloat("Forward", fpController.speedX);
+      //  characterAnimator.SetFloat("Sideways", fpController.speedY);
+
+
     }
 
 
