@@ -14,9 +14,10 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        EnemyBT enemy = collision.gameObject.GetComponent<EnemyBT>();
         if(enemy != null)
         {
+            Debug.Log("Working");
             enemy.TakeHit();
         }
     }

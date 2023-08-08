@@ -4942,12 +4942,13 @@ MonoBehaviour:
   m_jumpSpeed: 5
   m_smoothTime: 0.3
   MoveDampVelocity: {x: 0, y: 0}
+  m_health: 0
   m_fireMana: {fileID: 1743973470880345288}
   m_chargeMana: {fileID: 7352067184341792404}
   m_damageChargePerTick: 0.1
   m_maxSize: 2
   projectile: {fileID: 9086220017073451869, guid: 8a86b0cb8aefef744a8a2037d3995233, type: 3}
-  m_meleeAttackDistance: 0
+  m_meleeAttackDistance: 1.5
 --- !u!143 &4550429233502577667
 CharacterController:
   m_ObjectHideFlags: 0
