@@ -35,7 +35,10 @@ public class EnemyBT : MonoBehaviour
         m_animator = transform.gameObject.GetComponent<Animator>();
         m_animator.applyRootMotion = true;
         m_agent = transform.gameObject.GetComponent<NavMeshAgent>();
-        m_agent.SetDestination(m_waypoints[0].position);
+        if(m_waypoints.Length > 0  )
+        {
+            m_agent.SetDestination(m_waypoints[0].position);
+        }
         m_agent.updatePosition = false;
         m_agent.updateRotation = true;
         m_root = SetupTree();        

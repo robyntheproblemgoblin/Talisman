@@ -4,6 +4,9 @@ using UnityEngine.InputSystem.XR;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera beautyCorner;
+    public Light m_light;
+    public Light m_light1;
     FPControls m_inputControl;
     #region Movement
     CameraControls m_camera;
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
         m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_talismanState = m_idle;
+        m_inputControl.Player_Map.Swap.performed += SwapScenes;
     }
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
@@ -107,6 +111,13 @@ public class PlayerController : MonoBehaviour
         m_talismanState.StopState();
         m_talismanState = m_charging;
         m_talismanState.StartState(0);
+    }
+    void SwapScenes(InputAction.CallbackContext t)
+    {
+        Camera.main.gameObject.SetActive(!Camera.main.gameObject.active);
+        beautyCorner.gameObject.SetActive(!beautyCorner.gameObject.active);
+        m_light.gameObject.SetActive(!m_light.gameObject.active);
+        m_light1.gameObject.SetActive(!m_light1.gameObject.active);
     }
 
     void StartFiring(InputAction.CallbackContext t)

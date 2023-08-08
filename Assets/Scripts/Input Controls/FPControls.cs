@@ -89,6 +89,15 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Swap"",
+                    ""type"": ""Button"",
+                    ""id"": ""efa2db99-7463-4c4b-b283-25c5ee96e0fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,17 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""action"": ""SwapManaStyle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ed89b1f-7f5b-448c-91ba-4fbaab490d17"",
+                    ""path"": ""<Keyboard>/rightAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +247,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         m_Player_Map_ManaAttack = m_Player_Map.FindAction("ManaAttack", throwIfNotFound: true);
         m_Player_Map_MeleeAttack = m_Player_Map.FindAction("MeleeAttack", throwIfNotFound: true);
         m_Player_Map_SwapManaStyle = m_Player_Map.FindAction("SwapManaStyle", throwIfNotFound: true);
+        m_Player_Map_Swap = m_Player_Map.FindAction("Swap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +314,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Map_ManaAttack;
     private readonly InputAction m_Player_Map_MeleeAttack;
     private readonly InputAction m_Player_Map_SwapManaStyle;
+    private readonly InputAction m_Player_Map_Swap;
     public struct Player_MapActions
     {
         private @FPControls m_Wrapper;
@@ -304,6 +326,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         public InputAction @ManaAttack => m_Wrapper.m_Player_Map_ManaAttack;
         public InputAction @MeleeAttack => m_Wrapper.m_Player_Map_MeleeAttack;
         public InputAction @SwapManaStyle => m_Wrapper.m_Player_Map_SwapManaStyle;
+        public InputAction @Swap => m_Wrapper.m_Player_Map_Swap;
         public InputActionMap Get() { return m_Wrapper.m_Player_Map; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -334,6 +357,9 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @SwapManaStyle.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
                 @SwapManaStyle.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
                 @SwapManaStyle.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
+                @Swap.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap;
+                @Swap.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap;
+                @Swap.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap;
             }
             m_Wrapper.m_Player_MapActionsCallbackInterface = instance;
             if (instance != null)
@@ -359,6 +385,9 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @SwapManaStyle.started += instance.OnSwapManaStyle;
                 @SwapManaStyle.performed += instance.OnSwapManaStyle;
                 @SwapManaStyle.canceled += instance.OnSwapManaStyle;
+                @Swap.started += instance.OnSwap;
+                @Swap.performed += instance.OnSwap;
+                @Swap.canceled += instance.OnSwap;
             }
         }
     }
@@ -372,5 +401,6 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         void OnManaAttack(InputAction.CallbackContext context);
         void OnMeleeAttack(InputAction.CallbackContext context);
         void OnSwapManaStyle(InputAction.CallbackContext context);
+        void OnSwap(InputAction.CallbackContext context);
     }
 }
