@@ -4899,7 +4899,7 @@ GameObject:
   - component: {fileID: 4550429233502577677}
   - component: {fileID: 4550429233502577679}
   - component: {fileID: 4550429233502577667}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4935,6 +4935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b17ee34a8bedae468a7b5e8de364472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beautyCorner: {fileID: 0}
+  playerCamera: {fileID: 0}
+  m_light: {fileID: 0}
+  m_light1: {fileID: 0}
   m_cameraSensitivity: 30
   m_moveDirection: {x: 0, y: 0, z: 0}
   m_walkSpeed: 5
@@ -4942,12 +4946,13 @@ MonoBehaviour:
   m_jumpSpeed: 5
   m_smoothTime: 0.3
   MoveDampVelocity: {x: 0, y: 0}
+  m_health: 0
   m_fireMana: {fileID: 1743973470880345288}
   m_chargeMana: {fileID: 7352067184341792404}
   m_damageChargePerTick: 0.1
   m_maxSize: 2
   projectile: {fileID: 9086220017073451869, guid: 8a86b0cb8aefef744a8a2037d3995233, type: 3}
-  m_meleeAttackDistance: 0
+  m_meleeAttackDistance: 1.5
 --- !u!143 &4550429233502577667
 CharacterController:
   m_ObjectHideFlags: 0
