@@ -65,8 +65,7 @@ public class EnemyBT : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        Vector3 rootPosition = m_animator.rootPosition;
-        rootPosition = m_agent.nextPosition;
+        Vector3 rootPosition = m_agent.nextPosition;
         transform.position = rootPosition;
         m_agent.nextPosition = rootPosition;
     }
