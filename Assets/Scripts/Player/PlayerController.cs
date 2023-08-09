@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public Camera beautyCorner;
     public Camera playerCamera;
     public Light m_light;
-    public Light m_light1;
+
     FPControls m_inputControl;
     #region Movement
     CameraControls m_camera;
@@ -139,12 +139,11 @@ public class PlayerController : MonoBehaviour
         playerCamera.gameObject.SetActive(!playerCamera.gameObject.activeSelf);
         beautyCorner.gameObject.SetActive(!beautyCorner.gameObject.activeSelf);
         m_light.gameObject.SetActive(!m_light.gameObject.activeSelf);
-        m_light1.gameObject.SetActive(!m_light1.gameObject.activeSelf);
+    
     }
     void SwapLights(InputAction.CallbackContext t)
     {        
-        m_light.gameObject.SetActive(!m_light.gameObject.activeSelf);
-        m_light1.gameObject.SetActive(!m_light1.gameObject.activeSelf);
+        m_light.gameObject.SetActive(!m_light.gameObject.activeSelf);       
     }
 
     void StartFiring(InputAction.CallbackContext t)
