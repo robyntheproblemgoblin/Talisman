@@ -65,7 +65,8 @@ public class EnemyBT : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        Vector3 rootPosition = m_agent.nextPosition;
+        Vector3 rootPosition = m_animator.rootPosition;
+        rootPosition.y = m_agent.nextPosition.y;
         transform.position = rootPosition;
         m_agent.nextPosition = rootPosition;
     }
@@ -119,11 +120,11 @@ public class EnemyBT : MonoBehaviour
 
         m_lookAt.lookAtTargetPosition = m_agent.steeringTarget + transform.forward;
 
-        //float deltaMagnitude = worldDeltaPosition.magnitude;
-        //if (deltaMagnitude > Agent.radius / 2)
-        //{
-        //    transform.position = Vector3.Lerp(Animator.rootPosition, Agent.nextPosition, smooth);
-        //}
+        float deltaMagnitude = worldDeltaPosition.magnitude;
+        if (deltaMagnitude > m_agent.radius / 2)
+        {
+            transform.position = Vector3.Lerp(m_animator.rootPosition, m_agent.nextPosition, smooth);
+        }
 
     }
 }
