@@ -11,7 +11,7 @@ public class TaskPatrol : Node
     Animator anim;
 
     int m_currentWaypoint;
-    float m_waitTime = 1f;
+    float m_waitTime = 2f;
     float m_waitCounter = 0f;
     bool m_waiting = false;
 
@@ -41,8 +41,9 @@ public class TaskPatrol : Node
             {
                 Transform wp = m_waypoints[m_currentWaypoint];
 
-                if (Vector3.Distance(anim.transform.position, wp.position) <= 0.1f)
+                if (Vector3.Distance(m_agent.nextPosition, wp.position) <= 1f)
                 {
+                    m_agent.isStopped = true;
                     Debug.Log("NextPos");
                     m_waitCounter = 0f;
                     m_waiting = true;

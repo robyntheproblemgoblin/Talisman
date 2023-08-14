@@ -11,7 +11,6 @@ namespace BehaviourTree
         public override NodeState Evaluate()
         {
             bool anyChildIsRunning = false;
-
             foreach (Node node in m_children)
             {
                 switch (node.Evaluate())
@@ -29,7 +28,6 @@ namespace BehaviourTree
                         return m_state;
                 }
             }
-
             m_state = anyChildIsRunning ? NodeState.RUNNING : NodeState.SUCCESS;
             return m_state;
         }

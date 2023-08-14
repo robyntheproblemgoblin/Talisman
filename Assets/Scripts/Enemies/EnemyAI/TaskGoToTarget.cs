@@ -14,16 +14,21 @@ public class TaskGoToTarget : Node
     {
         Transform target = (Transform)GetData("target");
 
-        if(Vector3.Distance(m_transform.position, target.position) > EnemyBT.m_attackRange)
+        if(Vector3.Distance(m_transform.position, target.position + Vector3.down) > EnemyBT.m_attackRange)
         {
             m_transform.position = Vector3.MoveTowards(
                 m_transform.position, 
-                target.position,
-                MeleeBT.m_speed * Time.deltaTime);
-            m_transform.LookAt(target.position);            
-                    }
+                EnemyBuffer(target.position + Vector3.down),
+                EnemyBT.m_speed * Time.deltaTime);
+            m_transform.LookAt(target.position + Vector3.down);            
+        }
 
         m_state = NodeState.RUNNING;
         return m_state;
+    }
+    Vector3 EnemyBuffer(Vector3 pos)
+    {
+        Vector3 direction = (m_transform.position - pos).normalized;
+        return pos + (direction * EnemyBT.m_attackRange * 5);
     }
 }

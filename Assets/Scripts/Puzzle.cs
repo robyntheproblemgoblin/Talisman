@@ -33,12 +33,12 @@ public class Puzzle : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (rotate)
         {            
             transform.RotateAround(transform.position, Vector3.up, 120 * Time.deltaTime);
-            if (Quaternion.Angle(transform.rotation, targetRotation) <= 0.01f)
+            if (Quaternion.Angle(transform.rotation, targetRotation) <= 1f)
             {
                 transform.rotation = Quaternion.Euler(0, nextY, 0);
                 nextY += 120;

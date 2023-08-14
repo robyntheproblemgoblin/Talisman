@@ -43,7 +43,9 @@ public class CheckTargetInAttackRange : Node
             else if(time <= 2.5f)
             {
                 m_animator.SetBool("AttackB", false);
-            }          
+            }
+            m_state = NodeState.FAILURE;
+            return m_state;
         }
        
         m_state = NodeState.FAILURE;
