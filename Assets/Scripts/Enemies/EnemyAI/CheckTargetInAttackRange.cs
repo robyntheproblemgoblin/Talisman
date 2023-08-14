@@ -44,7 +44,7 @@ public class CheckTargetInAttackRange : Node
             {
                 m_animator.SetBool("AttackB", false);
             }
-            m_state = NodeState.SUCCESS;
+            m_state = NodeState.FAILURE;
             return m_state;
         }
        

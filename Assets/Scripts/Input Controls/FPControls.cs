@@ -177,7 +177,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e9407284-bb96-4a22-afa0-40e3e9444500"",
-                    ""path"": ""<Mouse>/position"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
