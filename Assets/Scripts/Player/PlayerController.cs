@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     #region Health
     // Loss is in Chunks (Visually chunks)
     public float m_health;
+    public bool m_canBeHit;
     #endregion
 
     #region Heal
@@ -89,12 +90,19 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.Swap1.performed += SwapLights;
         m_inputControl.Player_Map.Interact.performed += CheckPuzzle;
     }
+
+    public void TakeDamage()
+    {
+        m_canBeHit = false;
+        m_health -= 10;
+    }
+
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
         int randomNumber = Random.Range(1, 4);
         Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
-        
+
         if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
         {
             EnemyBT enemy = hit.transform.gameObject.GetComponent<EnemyBT>();
@@ -105,7 +113,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        
+
         m_animator.SetTrigger("Attack" + randomNumber);
     }
 
@@ -139,11 +147,11 @@ public class PlayerController : MonoBehaviour
         playerCamera.gameObject.SetActive(!playerCamera.gameObject.activeSelf);
         beautyCorner.gameObject.SetActive(!beautyCorner.gameObject.activeSelf);
         m_light.gameObject.SetActive(!m_light.gameObject.activeSelf);
-    
+
     }
     void SwapLights(InputAction.CallbackContext t)
-    {        
-        m_light.gameObject.SetActive(!m_light.gameObject.activeSelf);       
+    {
+        m_light.gameObject.SetActive(!m_light.gameObject.activeSelf);
     }
 
     void StartFiring(InputAction.CallbackContext t)
@@ -164,7 +172,7 @@ public class PlayerController : MonoBehaviour
     {
         m_charging.m_beam = !m_charging.m_beam;
         m_firing.m_beam = !m_firing.m_beam;
-        if(m_charging.m_beam)
+        if (m_charging.m_beam)
         {
             m_charging.m_particles = m_chargeMana;
             m_firing.m_particles = m_chargeMana;
