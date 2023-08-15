@@ -18,12 +18,12 @@ public class CheckTargetInAttackRange : Node
     public override NodeState Evaluate()
     {
         object t = GetData("target");
-        if(t == null)
+        if (t == null)
         {
             m_state = NodeState.FAILURE;
             return m_state;
         }
-
+        var player = MonoBehaviour.FindObjectOfType<PlayerController>();
         Transform target = (Transform)t;
         if (Vector3.Distance(m_transform.position, target.position) <= EnemyBT.m_attackRange && canAttack)
         {
@@ -33,21 +33,26 @@ public class CheckTargetInAttackRange : Node
             m_state = NodeState.SUCCESS;
             return m_state;
         }
-        else if(!canAttack)
+        else if (!canAttack)
         {
             time -= Time.deltaTime;
-            if(time <= 0)
+            if (time <= 0)
             {
                 canAttack = true;
-            }  
-            else if(time <= 2.5f)
+                player.m_canBeHit = true;
+            }
+            else if (time <= 2.5f)
             {
                 m_animator.SetBool("AttackB", false);
+                if (player.m_canBeHit)
+                {
+                    player.TakeDamage();
+                }
             }
             m_state = NodeState.FAILURE;
             return m_state;
         }
-       
+
         m_state = NodeState.FAILURE;
         return m_state;
     }

@@ -61,7 +61,7 @@ public class EnemyBT : MonoBehaviour
             new TaskPatrol(transform, m_waypoints, m_agent),
         });
         return root;
-    }    
+    }
 
     private void OnAnimatorMove()
     {
