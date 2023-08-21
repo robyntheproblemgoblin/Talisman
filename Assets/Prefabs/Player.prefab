@@ -437,14 +437,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439311862387578694}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.229, y: -0.142, z: 0.485}
+  m_LocalRotation: {x: 0.8474195, y: -0.14731638, z: 0.120299354, w: -0.49568766}
+  m_LocalPosition: {x: 0.000113, y: 0.001266, z: -0.000118}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 5859682556975132747}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 9203390619541638839}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -53.578, y: 143.887, z: -141.582}
 --- !u!198 &7682027787357394336
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -518,7 +518,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -5321,6 +5321,7 @@ Transform:
   - {fileID: 9046495765941083045}
   - {fileID: 2837234188258495968}
   - {fileID: 6960489225857142336}
+  - {fileID: 781608517416595006}
   m_Father: {fileID: 1217172628230764628}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6717,7 +6718,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5859682556975132747}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6258736020136332432
 ParticleSystem:
@@ -11513,7 +11514,7 @@ GameObject:
   - component: {fileID: 4030178515731363422}
   - component: {fileID: 8787778063925695042}
   m_Layer: 0
-  m_Name: FirstPersonTestSword
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11535,7 +11536,6 @@ Transform:
   - {fileID: 3305944971875836117}
   - {fileID: 8745818543344783542}
   - {fileID: 2151447508318061506}
-  - {fileID: 781608517416595006}
   - {fileID: 6258736020136332438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -11622,6 +11622,7 @@ MonoBehaviour:
   m_maxSize: 2
   projectile: {fileID: 9086220017073451869, guid: 8a86b0cb8aefef744a8a2037d3995233, type: 3}
   m_meleeAttackDistance: 1.5
+  m_swordCollider: {fileID: 0}
 --- !u!136 &8787778063925695042
 CapsuleCollider:
   m_ObjectHideFlags: 0

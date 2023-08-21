@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
     #region MeleeAttack
     public float m_meleeAttackDistance;
+    public Collider m_swordCollider;
     #endregion
 
     #region Block
@@ -94,26 +95,41 @@ public class PlayerController : MonoBehaviour
     {
         m_canBeHit = false;
         m_health -= 10;
+        Debug.Log(m_health);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.layer == 7)
+        {
+            TakeDamage();
+        }
     }
 
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
         int randomNumber = Random.Range(1, 4);
-     /*   Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
+        m_swordCollider.enabled = true;
+        /*   Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+           RaycastHit hit;
 
-        if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
-        {
-            EnemyBT enemy = hit.transform.gameObject.GetComponent<EnemyBT>();
-            if (enemy != null)
-            {
-                Debug.Log("Melee hit");
-                enemy.TakeHit();
-            }
-        }
-*/
-
+           if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
+           {
+               EnemyBT enemy = hit.transform.gameObject.GetComponent<EnemyBT>();
+               if (enemy != null)
+               {
+                   Debug.Log("Melee hit");
+                   enemy.TakeHit();
+               }
+           }
+   */
+        Invoke("DUMBTHINGNEEDTOCHANGE", 2.0f);
         m_animator.SetTrigger("Attack" + randomNumber);
+    }
+
+    void DUMBTHINGNEEDTOCHANGE()
+    {
+        m_swordCollider.enabled = false;
     }
 
     private void CheckPuzzle(InputAction.CallbackContext obj)
