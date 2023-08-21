@@ -10,7 +10,6 @@ public class ManaCircle : MonoBehaviour
     ParticleSystem[] m_particles;
     CapsuleCollider m_collider;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_particles = GetComponentsInChildren<ParticleSystem>();

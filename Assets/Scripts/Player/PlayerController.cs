@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 m_moveDirection = Vector3.zero;
     float m_gravity = 9.81f;
     public float m_walkSpeed = 5;
-    public float m_runSpeed = 5;
+    public float m_runSpeed = 8;
     bool m_canMove = true;
     public float m_jumpSpeed = 5;
     CharacterController m_characterController;
@@ -100,7 +99,7 @@ public class PlayerController : MonoBehaviour
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
         int randomNumber = Random.Range(1, 4);
-        Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+     /*   Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
@@ -112,7 +111,7 @@ public class PlayerController : MonoBehaviour
                 enemy.TakeHit();
             }
         }
-
+*/
 
         m_animator.SetTrigger("Attack" + randomNumber);
     }

@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Puzzle : MonoBehaviour
@@ -31,8 +29,6 @@ public class Puzzle : MonoBehaviour
             rotate = true;
         }
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (rotate)
@@ -70,7 +66,6 @@ public class Puzzle : MonoBehaviour
             }
         }
     }
-
 }
 
 public enum Chosen

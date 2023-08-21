@@ -5,12 +5,10 @@ public class TaskAttack : Node
 {    
     PlayerController m_player;
     float m_attackTime = 1f;
-    float m_attackCounter = 0f;
-    Animator m_animator;    
+    float m_attackCounter = 0f;    
 
     public TaskAttack(Transform transform)
-    {
-        m_animator = transform.GetComponent<Animator>();
+    {        
         m_player = MonoBehaviour.FindObjectOfType<PlayerController>();
     }
 
@@ -30,8 +28,7 @@ public class TaskAttack : Node
             Debug.Log("Attack");
             if (playerIsDead)
             {
-                ClearData("target");
-                // m_animator.SetBool("Won", true);
+                ClearData("target");                
             }
             else
             {

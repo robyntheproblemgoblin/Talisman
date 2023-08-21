@@ -48,7 +48,7 @@ public class EnemyBT : MonoBehaviour
     {        
         Node root = new Selector(new List<Node>
         {
-            new Sequence(new List<Node>
+          /*  new Sequence(new List<Node>
             {
                 new CheckTargetInAttackRange(transform),
                 new TaskGoToTarget(transform),
@@ -57,7 +57,7 @@ public class EnemyBT : MonoBehaviour
             {
                 new CheckTargetInFOVRange(transform),
                 new TaskGoToTarget(transform),
-            }),
+            }),*/
             new TaskPatrol(transform, m_waypoints, m_agent),
         });
         return root;
@@ -77,6 +77,16 @@ public class EnemyBT : MonoBehaviour
         bool isDead = m_currentHP <= 0;
         if (isDead) Die();
         return isDead;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision");
+        if(collision.gameObject.layer == LayerMask.GetMask("Melee"))
+        {
+        Debug.Log("Axe");
+            TakeHit();
+        }
     }
 
     private void Die()

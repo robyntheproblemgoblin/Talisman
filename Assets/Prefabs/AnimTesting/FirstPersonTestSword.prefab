@@ -11615,6 +11615,7 @@ MonoBehaviour:
   m_smoothTime: 0.3
   MoveDampVelocity: {x: 0, y: 0}
   m_health: 0
+  m_canBeHit: 0
   m_fireMana: {fileID: 6258736020136332432}
   m_chargeMana: {fileID: 7682027787357394336}
   m_damageChargePerTick: 0.1
@@ -11897,7 +11898,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4610143280253574502, guid: db3f383c55c11a441b45042bb67d41f3, type: 3}
+  - {fileID: 2100000, guid: e2b3bd177ef67d444afbd20777a91760, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12037,7 +12038,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8243980396678913872, guid: db3f383c55c11a441b45042bb67d41f3, type: 3}
+  - {fileID: 2100000, guid: 8a1a5316d203cbc4fb209435c5f02fba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

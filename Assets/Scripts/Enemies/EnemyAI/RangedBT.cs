@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 using BehaviourTree;
 
 public class RangedBT : EnemyBT
@@ -15,8 +14,6 @@ public class RangedBT : EnemyBT
             }),
             new TaskPatrol(transform, m_waypoints, m_agent),
         });
-
-
         return root;
     }
 }

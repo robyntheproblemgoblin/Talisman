@@ -3,8 +3,7 @@ using BehaviourTree;
 using UnityEngine.AI;
 
 public class TaskPatrol : Node
-{
-    Transform m_transform;
+{    
     Transform[] m_waypoints;
 
     NavMeshAgent m_agent;
@@ -17,7 +16,6 @@ public class TaskPatrol : Node
 
     public TaskPatrol(Transform transform, Transform[] waypoints, NavMeshAgent agent)
     {
-        m_transform = transform;
         m_waypoints = waypoints;
         m_agent = agent;
         anim = agent.gameObject.GetComponent<Animator>();
