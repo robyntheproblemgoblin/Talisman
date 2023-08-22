@@ -39,22 +39,22 @@ public class EnemyBT : MonoBehaviour
         m_animator = transform.gameObject.GetComponent<Animator>();
         m_animator.applyRootMotion = true;
         m_agent = transform.gameObject.GetComponent<NavMeshAgent>();
-        if(m_waypoints.Length > 0  )
+        if (m_waypoints.Length > 0)
         {
             m_agent.SetDestination(m_waypoints[0].position);
         }
         m_agent.updatePosition = false;
         m_agent.updateRotation = true;
-        m_root = SetupTree();        
+        m_root = SetupTree();
         m_playerAttackLayer = (int)Mathf.Log(LayerMask.GetMask("Melee"), 2);
         m_playerController = FindObjectOfType<PlayerController>();
     }
 
     protected virtual Node SetupTree()
-    {        
+    {
         Node root = new Selector(new List<Node>
         {
-            new Sequence(new List<Node>
+           /* new Sequence(new List<Node>
             {
                 new CheckTargetInAttackRange(transform),
                 new TaskGoToTarget(transform),
@@ -63,7 +63,7 @@ public class EnemyBT : MonoBehaviour
             {
                 new CheckTargetInFOVRange(transform),
                 new TaskGoToTarget(transform),
-            }),
+            }),*/
             new TaskPatrol(transform, m_waypoints, m_agent),
         });
         return root;
@@ -84,16 +84,24 @@ public class EnemyBT : MonoBehaviour
         if (isDead) Die();
         return isDead;
     }
-    
-   private void OnCollisionEnter(Collision collision)
-    {      
-        if(collision.collider.gameObject.layer == m_playerAttackLayer)
-        {        
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.layer == m_playerAttackLayer)
+        {
             TakeHit();
-        } 
+        }
         else
-        {            
+        {
             Debug.Log(m_playerAttackLayer);
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {      
+        if (other.gameObject.layer == m_playerAttackLayer)
+        {
+            TakeHit();
         }
     }
 
@@ -132,7 +140,7 @@ public class EnemyBT : MonoBehaviour
 
         bool shouldMove = m_velocity.magnitude > 0.5f && m_agent.remainingDistance > m_agent.stoppingDistance;
 
-        
+
         m_animator.SetBool("Idle", !shouldMove);
         m_animator.SetFloat("MovementSpeed", m_velocity.magnitude);
 

@@ -1,12 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public Camera beautyCorner;
-    public Camera playerCamera;
-    public Light m_light;
-
     FPControls m_inputControl;
     #region Movement
     CameraControls m_camera;
@@ -32,6 +29,8 @@ public class PlayerController : MonoBehaviour
     // Loss is in Chunks (Visually chunks)
     public float m_health;
     public bool m_canBeHit;
+    public float m_hitBuffer;
+    Dictionary<string, bool> m_enemiesHaveHit = new Dictionary<string, bool>();
     #endregion
 
     #region Heal
@@ -43,8 +42,9 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region ManaAttack
+    // Loss in Ticks until trigger release (Visually ticks)     
 
-    TalismanState m_talismanState;
+    RangedAttackState m_talismanState;
     ChargingState m_charging;
     FiringState m_firing;
     IdleState m_idle;
@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem m_fireMana;
     public ParticleSystem m_chargeMana;
 
-    // Loss in Ticks until trigger release (Visually ticks)    
     public float m_damageChargePerTick = 0.1f;
     public float m_maxSize = 2;
     public GameObject projectile;
@@ -64,10 +63,11 @@ public class PlayerController : MonoBehaviour
     public Collider m_swordCollider;
     #endregion
 
-    #region Block
-    #endregion
-
-    #region Parry
+    #region BlockAndParry
+    bool m_isBlocking = false;
+    float m_blockPressedTime;
+    public float m_parryTime;
+    public float m_blockingReset;
     #endregion
 
     void Start()
@@ -75,20 +75,32 @@ public class PlayerController : MonoBehaviour
         m_camera = FindObjectOfType<CameraControls>();
         m_camera.SetupCamera(this.gameObject, m_cameraSensitivity);
         m_animator = GetComponentInChildren<Animator>();
+        m_characterController = GetComponent<CharacterController>();
         m_inputControl = new FPControls();
         m_inputControl.Player_Map.Enable();
-        m_characterController = GetComponent<CharacterController>();
         m_idle = new IdleState(m_animator, m_chargeMana);
         m_charging = new ChargingState(m_animator, m_chargeMana);
         m_firing = new FiringState(m_animator, m_chargeMana, m_maxSize);
+        m_talismanState = m_idle;
         m_inputControl.Player_Map.ManaAttack.performed += StartCharging;
         m_inputControl.Player_Map.ManaAttack.canceled += StartFiring;
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
         m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
-        m_talismanState = m_idle;
-        m_inputControl.Player_Map.Swap.performed += SwapScenes;
-        m_inputControl.Player_Map.Swap1.performed += SwapLights;
         m_inputControl.Player_Map.Interact.performed += CheckPuzzle;
+        m_inputControl.Player_Map.BlockParry.performed += BlockParry;
+    }
+
+    private void BlockParry(InputAction.CallbackContext obj)
+    {
+        m_isBlocking = true;
+        m_blockPressedTime = Time.realtimeSinceStartup;
+        Invoke("StopBlock", m_blockingReset);
+    }
+
+    private void StopBlock() 
+    {        
+        if(m_isBlocking)
+        m_isBlocking = false;
     }
 
     public void TakeDamage()
@@ -96,38 +108,66 @@ public class PlayerController : MonoBehaviour
         m_canBeHit = false;
         m_health -= 10;
         Debug.Log(m_health);
+        Invoke("CanBeHit", 5);
+    }
+
+    private void CanBeHit()
+    {
+        if (!m_canBeHit) 
+        {
+            m_canBeHit=true;
+        }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if(hit.gameObject.layer == 7)
         {
-            TakeDamage();
+            if(m_isBlocking)
+            {
+
+            }
+            else if(m_canBeHit)
+            {
+                TakeDamage();
+            }
         }
+    }
+
+    void SetData(string key, bool value)
+    {
+        m_enemiesHaveHit[key] = value;
+    }
+
+    bool HitAlready(string key)
+    {        
+        if (m_enemiesHaveHit.ContainsKey(key))
+        {
+            return true;
+        }        
+        return false;
+    }
+
+    bool ClearData(string key)
+    {
+        bool cleared = false;
+        if (m_enemiesHaveHit.ContainsKey(key))
+        {
+            m_enemiesHaveHit.Remove(key);
+            return true;
+        }      
+        return cleared;
     }
 
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
         int randomNumber = Random.Range(1, 4);
-        m_swordCollider.enabled = true;
-        /*   Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-           RaycastHit hit;
-
-           if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
-           {
-               EnemyBT enemy = hit.transform.gameObject.GetComponent<EnemyBT>();
-               if (enemy != null)
-               {
-                   Debug.Log("Melee hit");
-                   enemy.TakeHit();
-               }
-           }
-   */
-        Invoke("DUMBTHINGNEEDTOCHANGE", 2.0f);
+        m_swordCollider.enabled = true;        
+        Invoke("ResetCollider", 2.0f);
         m_animator.SetTrigger("Attack" + randomNumber);
     }
 
-    void DUMBTHINGNEEDTOCHANGE()
+    void ResetCollider()
     {
         m_swordCollider.enabled = false;
     }
@@ -147,8 +187,6 @@ public class PlayerController : MonoBehaviour
                 puzzle.RotatePuzzle();
             }
         }
-
-
     }
 
     void StartCharging(InputAction.CallbackContext t)
@@ -157,18 +195,7 @@ public class PlayerController : MonoBehaviour
         m_talismanState = m_charging;
         m_talismanState.StartState(0);
     }
-    void SwapScenes(InputAction.CallbackContext t)
-    {
-        playerCamera.gameObject.SetActive(!playerCamera.gameObject.activeSelf);
-        beautyCorner.gameObject.SetActive(!beautyCorner.gameObject.activeSelf);
-        m_light.gameObject.SetActive(!m_light.gameObject.activeSelf);
-
-    }
-    void SwapLights(InputAction.CallbackContext t)
-    {
-        m_light.gameObject.SetActive(!m_light.gameObject.activeSelf);
-    }
-
+   
     void StartFiring(InputAction.CallbackContext t)
     {
         m_talismanState.StopState();
@@ -246,124 +273,4 @@ public class PlayerController : MonoBehaviour
     }
 }
 
-class TalismanState
-{
-    public Animator m_animator;
-    public ParticleSystem m_particles;
-    public virtual void StartState(float startValue) { }
-    public virtual void Update() { }
-    public virtual void StopState() { }
-}
 
-class FiringState : TalismanState
-{
-    Camera m_camera;
-    float m_damageTime;
-    public bool m_beam = true;
-    float m_manaBoltSpeed = 30.0f;
-    float m_maxSize = 2;
-    float m_minSize = 1;
-
-
-    public FiringState(Animator anim, ParticleSystem ps, float max)
-    {
-        m_animator = anim;
-        m_particles = ps;
-        m_camera = Camera.main;
-        m_maxSize = max;
-    }
-    public override void StartState(float startValue)
-    {
-        if (m_beam)
-            m_particles.Play();
-        else
-            m_particles.Stop();
-        m_damageTime = startValue;
-    }
-
-    public override void Update()
-    {
-        if (m_beam)
-        {
-            Ray camRay = m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            RaycastHit hit;
-            Vector3 destination;
-            if (Physics.Raycast(camRay, out hit))
-            {
-                destination = hit.point;
-            }
-            else
-            {
-                destination = camRay.GetPoint(50);
-            }
-            var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<PlayerController>().projectile, m_particles.transform.position + m_particles.transform.forward, Quaternion.identity) as GameObject;
-            if (m_damageTime > m_minSize)
-            {
-                manaBolt.GetComponent<SphereCollider>().radius *= (m_damageTime <= m_maxSize ? m_damageTime : m_maxSize);
-                var main = manaBolt.GetComponentInChildren<ParticleSystem>().main;
-                main.startSize = m_damageTime;
-            }
-            manaBolt.GetComponent<Rigidbody>().velocity = (destination - m_particles.transform.position).normalized * m_manaBoltSpeed;
-        }
-        MonoBehaviour.FindObjectOfType<PlayerController>().StartIdle();
-    }
-    public override void StopState()
-    {
-        m_animator.SetBool("LeftAttacking", false);
-    }
-}
-class ChargingState : TalismanState
-{
-    public bool m_beam = true;
-    public float chargeTime = 0.0f;
-    Camera m_camera;
-    public ChargingState(Animator anim, ParticleSystem ps)
-    {
-        m_animator = anim;
-        m_particles = ps;
-        m_camera = Camera.main;
-    }
-    public override void StartState(float startValue)
-    {
-        chargeTime = 0.0f;
-        m_animator.SetBool("LeftAttacking", true);
-        m_particles.Play();
-    }
-
-    public override void Update()
-    {
-        if (m_beam)
-        {
-            chargeTime += Time.deltaTime;
-        }
-        else
-        {
-            Ray camRay = m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            RaycastHit hit;
-            Vector3 destination;
-            if (Physics.Raycast(camRay, out hit))
-            {
-                destination = hit.point;
-            }
-            else
-            {
-                destination = camRay.GetPoint(50);
-            }
-
-        }
-    }
-
-    // StopState goes into the end of then charge anim?
-}
-class IdleState : TalismanState
-{
-    public IdleState(Animator anim, ParticleSystem ps)
-    {
-        m_animator = anim;
-        m_particles = ps;
-    }
-    public override void StartState(float startValue)
-    {
-        m_particles.Stop();
-    }
-}
