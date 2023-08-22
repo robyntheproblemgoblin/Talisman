@@ -123,11 +123,7 @@ public class PlayerController : MonoBehaviour
     {
         if(hit.gameObject.layer == 7)
         {
-            if(m_isBlocking)
-            {
-
-            }
-            else if(m_canBeHit)
+            if(m_canBeHit)
             {
                 TakeDamage();
             }
