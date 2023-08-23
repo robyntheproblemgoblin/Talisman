@@ -33,6 +33,8 @@ public class EnemyBT : MonoBehaviour
     Vector2 m_velocity;
     Vector2 m_smoothDeltaPosition;
 
+    public float m_damage = 5;
+
     void Start()
     {
         m_currentHP = m_startingHP;
@@ -102,6 +104,10 @@ public class EnemyBT : MonoBehaviour
         if (other.gameObject.layer == m_playerAttackLayer)
         {
             TakeHit();
+        }
+        else
+        {
+            Debug.Log(m_playerAttackLayer);
         }
     }
 

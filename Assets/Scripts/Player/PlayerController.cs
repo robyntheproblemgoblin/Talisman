@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     FPControls m_inputControl;
-    #region Movement
+    #region Movement Fields
     CameraControls m_camera;
     public float m_cameraSensitivity = 10;
     public Vector3 m_moveDirection = Vector3.zero;
@@ -21,27 +21,24 @@ public class PlayerController : MonoBehaviour
     // Jump Buffer
     #endregion
 
-    #region Animation
+    #region Animation Fields
     Animator m_animator;
     #endregion
 
-    #region Health
+    #region Health Fields
     // Loss is in Chunks (Visually chunks)
     public float m_health;
     public bool m_canBeHit;
     public float m_hitBuffer;
-    Dictionary<string, bool> m_enemiesHaveHit = new Dictionary<string, bool>();
+    //List<string> m_enemiesHaveHit = new List<string>();
+    Dictionary<string, float> m_enemiesHaveHit = new Dictionary<string, float>();
     #endregion
 
-    #region Heal
-    // Tick while button held (Visually Ticks)
-    #endregion
-
-    #region Mana
+    #region Mana Fields
     // Comes in chunks from the pool (Visually ticks)
     #endregion
 
-    #region ManaAttack
+    #region Mana Attack Fields
     // Loss in Ticks until trigger release (Visually ticks)     
 
     RangedAttackState m_talismanState;
@@ -58,18 +55,19 @@ public class PlayerController : MonoBehaviour
     Transform m_talisman;
     #endregion
 
-    #region MeleeAttack
+    #region Melee Attack Fields
     public float m_meleeAttackDistance;
     public Collider m_swordCollider;
     #endregion
 
-    #region BlockAndParry
+    #region Block Parry Fields
     bool m_isBlocking = false;
     float m_blockPressedTime;
     public float m_parryTime;
     public float m_blockingReset;
     #endregion
 
+    #region Unity Methods
     void Start()
     {
         m_camera = FindObjectOfType<CameraControls>();
@@ -82,143 +80,28 @@ public class PlayerController : MonoBehaviour
         m_charging = new ChargingState(m_animator, m_chargeMana);
         m_firing = new FiringState(m_animator, m_chargeMana, m_maxSize);
         m_talismanState = m_idle;
+        m_inputControl.Player_Map.Heal.performed += StartHealing;
+        //m_inputControl.Player_Map.Heal.canceled += StopHealing;
         m_inputControl.Player_Map.ManaAttack.performed += StartCharging;
         m_inputControl.Player_Map.ManaAttack.canceled += StartFiring;
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
         m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
-        m_inputControl.Player_Map.Interact.performed += CheckPuzzle;
+        m_inputControl.Player_Map.Interact.performed += Interact;
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
     }
 
-    private void BlockParry(InputAction.CallbackContext obj)
-    {
-        m_isBlocking = true;
-        m_blockPressedTime = Time.realtimeSinceStartup;
-        Invoke("StopBlock", m_blockingReset);
-    }
-
-    private void StopBlock() 
-    {        
-        if(m_isBlocking)
-        m_isBlocking = false;
-    }
-
-    public void TakeDamage()
-    {
-        m_canBeHit = false;
-        m_health -= 10;
-        Debug.Log(m_health);
-        Invoke("CanBeHit", 5);
-    }
-
-    private void CanBeHit()
-    {
-        if (!m_canBeHit) 
-        {
-            m_canBeHit=true;
-        }
-    }
+   
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.gameObject.layer == 7)
+        if (hit.gameObject.layer == 8)
         {
-            if(m_canBeHit)
+            EnemyBT e = hit.gameObject.GetComponentInParent<EnemyBT>();
+            if (!HitAlready(hit.gameObject.name))
             {
-                TakeDamage();
+                SetData(hit.gameObject.name, 5);
+                TakeDamage(e.m_damage);
             }
-        }
-    }
-
-    void SetData(string key, bool value)
-    {
-        m_enemiesHaveHit[key] = value;
-    }
-
-    bool HitAlready(string key)
-    {        
-        if (m_enemiesHaveHit.ContainsKey(key))
-        {
-            return true;
-        }        
-        return false;
-    }
-
-    bool ClearData(string key)
-    {
-        bool cleared = false;
-        if (m_enemiesHaveHit.ContainsKey(key))
-        {
-            m_enemiesHaveHit.Remove(key);
-            return true;
-        }      
-        return cleared;
-    }
-
-    private void MeleeAttack(InputAction.CallbackContext obj)
-    {
-        int randomNumber = Random.Range(1, 4);
-        m_swordCollider.enabled = true;        
-        Invoke("ResetCollider", 2.0f);
-        m_animator.SetTrigger("Attack" + randomNumber);
-    }
-
-    void ResetCollider()
-    {
-        m_swordCollider.enabled = false;
-    }
-
-    private void CheckPuzzle(InputAction.CallbackContext obj)
-    {
-        int randomNumber = Random.Range(1, 4);
-        Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
-
-        if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
-        {
-            Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
-            if (puzzle != null)
-            {
-                Debug.Log("Puzzle Turn");
-                puzzle.RotatePuzzle();
-            }
-        }
-    }
-
-    void StartCharging(InputAction.CallbackContext t)
-    {
-        m_talismanState.StopState();
-        m_talismanState = m_charging;
-        m_talismanState.StartState(0);
-    }
-   
-    void StartFiring(InputAction.CallbackContext t)
-    {
-        m_talismanState.StopState();
-        m_talismanState = m_firing;
-        m_talismanState.StartState(m_charging.chargeTime);
-    }
-
-    public void StartIdle()
-    {
-        m_talismanState.StopState();
-        m_talismanState = m_idle;
-        m_talismanState.StartState(0);
-    }
-
-    void SwapStyle(InputAction.CallbackContext t)
-    {
-        m_charging.m_beam = !m_charging.m_beam;
-        m_firing.m_beam = !m_firing.m_beam;
-        if (m_charging.m_beam)
-        {
-            m_charging.m_particles = m_chargeMana;
-            m_firing.m_particles = m_chargeMana;
-        }
-        else
-        {
-            m_charging.m_particles = m_fireMana;
-            m_firing.m_particles = m_fireMana;
         }
     }
 
@@ -257,8 +140,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         m_talismanState.Update();
+        UpdateDictionary();
     }
+    #endregion
 
+    #region Animation Methods
     void UpdateLeanAnimation(float speedX, float speedY)
     {
         Vector2 animSpeed = new Vector2(m_animator.GetFloat("Forward"), m_animator.GetFloat("Sideways"));
@@ -267,6 +153,152 @@ public class PlayerController : MonoBehaviour
         m_animator.SetFloat("Forward", animSpeed.x);
         m_animator.SetFloat("Sideways", animSpeed.y);
     }
+    #endregion
+
+    #region Health Methods
+    public void TakeDamage(float damage)
+    {
+        m_health -= damage;
+        Debug.Log(m_health);
+    }
+
+    void SetData(string key, float value)
+    {
+        m_enemiesHaveHit[key] = value;
+    }
+
+    bool HitAlready(string key)
+    {
+        if (m_enemiesHaveHit.ContainsKey(key))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    void UpdateDictionary()
+    {
+        List<string> list = new List<string>();
+        Dictionary<string, float> dict = new Dictionary<string, float>();
+        foreach (KeyValuePair<string, float> kvp in m_enemiesHaveHit)
+        {
+            dict[kvp.Key] = kvp.Value - Time.deltaTime;
+            if (dict[kvp.Key] <= 0)
+            {
+                list.Add(kvp.Key);
+            }
+        }
+        m_enemiesHaveHit = dict;
+        ClearData(list);
+    }
+
+    void ClearData(List<string> keys)
+    {
+        for (int i = 0; i < keys.Count; i++)
+        {
+            ClearSingleData(keys[i]);
+        }
+    }
+
+    void ClearSingleData(string key)
+    {
+        if (m_enemiesHaveHit.ContainsKey(key))
+        {
+            m_enemiesHaveHit.Remove(key);
+        }
+    }
+
+    private void StartHealing(InputAction.CallbackContext obj)
+    {
+        m_talismanState.StopState();
+        m_talismanState = m_charging;
+        m_talismanState.StartState(0);
+    }
+    #endregion
+
+    #region Mana Attack Methods
+    void StartCharging(InputAction.CallbackContext t)
+    {
+        m_talismanState.StopState();
+        m_talismanState = m_charging;
+        m_talismanState.StartState(0);
+    }
+
+    void StartFiring(InputAction.CallbackContext t)
+    {
+        m_talismanState.StopState();
+        m_talismanState = m_firing;
+        m_talismanState.StartState(m_charging.chargeTime);
+    }
+
+    public void StartIdle()
+    {
+        m_talismanState.StopState();
+        m_talismanState = m_idle;
+        m_talismanState.StartState(0);
+    }
+
+    void SwapStyle(InputAction.CallbackContext t)
+    {
+        m_charging.m_beam = !m_charging.m_beam;
+        m_firing.m_beam = !m_firing.m_beam;
+        if (m_charging.m_beam)
+        {
+            m_charging.m_particles = m_chargeMana;
+            m_firing.m_particles = m_chargeMana;
+        }
+        else
+        {
+            m_charging.m_particles = m_fireMana;
+            m_firing.m_particles = m_fireMana;
+        }
+    }
+    #endregion
+
+    #region Melee Attack Methods
+
+    private void MeleeAttack(InputAction.CallbackContext obj)
+    {
+        int randomNumber = Random.Range(1, 4);
+        m_swordCollider.enabled = true;
+        Invoke("ResetCollider", 2.0f);
+        m_animator.SetTrigger("Attack" + randomNumber);
+    }
+
+    void ResetCollider()
+    {
+        m_swordCollider.enabled = false;
+    }
+    #endregion
+
+    #region Block Parry Methods
+    private void BlockParry(InputAction.CallbackContext obj)
+    {
+        m_isBlocking = true;
+        m_blockPressedTime = Time.realtimeSinceStartup;
+        Invoke("StopBlock", m_blockingReset);
+    }
+
+    private void StopBlock()
+    {
+        if (m_isBlocking)
+            m_isBlocking = false;
+    }
+
+    #endregion
+
+    private void Interact(InputAction.CallbackContext obj)
+    {
+        Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
+        {
+            Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
+            if (puzzle != null)
+            {
+                puzzle.PuzzleInteraction();
+            }
+        }
+    }
 }
-
-
