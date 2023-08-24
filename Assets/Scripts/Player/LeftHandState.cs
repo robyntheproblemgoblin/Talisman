@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RangedAttackState
+public class LeftHandState
 {
     public Animator m_animator;
     public ParticleSystem m_particles;

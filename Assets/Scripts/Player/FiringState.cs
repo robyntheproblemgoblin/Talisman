@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FiringState : RangedAttackState
+public class FiringState : LeftHandState
 {
     Camera m_camera;
     float m_damageTime;

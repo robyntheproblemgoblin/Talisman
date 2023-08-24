@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HealingState : RangedAttackState
+public class HealingState : LeftHandState
 {   
     PlayerController m_player;
     public HealingState(Animator anim, ParticleSystem ps, PlayerController player)
@@ -17,6 +17,12 @@ public class HealingState : RangedAttackState
 
     public override void Update()
     {
-        m_player.m_health += m_player.m_healRate * Time.deltaTime;
+        m_player.Heal();
+    }
+
+    public override void StopState()
+    {
+        m_particles.Stop();
+        m_animator.SetBool("LeftAttacking", false);
     }
 }

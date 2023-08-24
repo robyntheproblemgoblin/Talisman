@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChargingState : RangedAttackState
+public class ChargingState : LeftHandState
 {
     public bool m_beam = true;
     public float chargeTime = 0.0f;

@@ -29,8 +29,15 @@ public class PlayerController : MonoBehaviour
 
     #region Health Fields
     // Loss is in Chunks (Visually chunks)
-    public float m_health;
+    [Space(10)]
+    [Header("Player Health")]
+    [Space(5)]
+    public float m_health;    
+    float m_currentHealth;
     public float m_healRate;
+    [Space(10)]
+    [Header("Particles")]
+    [Space(5)]
     public ParticleSystem m_healParticles;
     HealingState m_healing; 
     Dictionary<string, float> m_enemiesHaveHit = new Dictionary<string, float>();
@@ -43,7 +50,7 @@ public class PlayerController : MonoBehaviour
     #region Mana Attack Fields
     // Loss in Ticks until trigger release (Visually ticks)     
 
-    RangedAttackState m_talismanState;
+    LeftHandState m_talismanState;
     ChargingState m_charging;
     FiringState m_firing;
     IdleState m_idle;
@@ -74,15 +81,17 @@ public class PlayerController : MonoBehaviour
     {
         m_camera = FindObjectOfType<CameraControls>();
         m_camera.SetupCamera(this.gameObject, m_cameraSensitivity);
-        m_animator = GetComponentInChildren<Animator>();
         m_characterController = GetComponent<CharacterController>();
         m_inputControl = new FPControls();
         m_inputControl.Player_Map.Enable();
+
+        m_animator = GetComponentInChildren<Animator>();
         m_idle = new IdleState(m_animator, m_chargeMana);
         m_charging = new ChargingState(m_animator, m_chargeMana);
         m_firing = new FiringState(m_animator, m_chargeMana, m_maxSize);
         m_healing = new HealingState(m_animator, m_healParticles, this);
         m_talismanState = m_idle;
+
         m_inputControl.Player_Map.Heal.performed += StartHealing;
         m_inputControl.Player_Map.Heal.canceled += StopHealing;
         m_inputControl.Player_Map.ManaAttack.performed += StartCharging;
@@ -91,6 +100,8 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_inputControl.Player_Map.Interact.performed += Interact;
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
+
+        m_currentHealth = m_health;
     }
 
    
@@ -161,8 +172,8 @@ public class PlayerController : MonoBehaviour
     #region Health Methods
     public void TakeDamage(float damage)
     {
-        m_health -= damage;
-        Debug.Log(m_health);
+        m_currentHealth -= damage;
+        Debug.Log(m_currentHealth);
     }
 
     void RegisterEnemyHit(string key, float value)
@@ -220,8 +231,20 @@ public class PlayerController : MonoBehaviour
     private void StopHealing(InputAction.CallbackContext obj)
     {
         m_talismanState.StopState();
-        m_talismanState = m_healing;
+        m_talismanState = m_idle;
         m_talismanState.StartState(0);
+    }
+
+    public void Heal()
+    {
+        if(m_currentHealth > m_health)
+        {
+            m_currentHealth = m_health;
+        }
+        else if(m_currentHealth < m_health)
+        {
+            m_currentHealth += m_healRate * Time.deltaTime;
+        }
     }
 
     #endregion

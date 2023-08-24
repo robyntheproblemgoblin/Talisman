@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IdleState : RangedAttackState
+public class IdleState : LeftHandState
 {
     public IdleState(Animator anim, ParticleSystem ps)
     {
