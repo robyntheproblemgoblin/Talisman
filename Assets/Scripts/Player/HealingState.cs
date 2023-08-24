@@ -1,12 +1,13 @@
 using UnityEngine;
 
 public class HealingState : RangedAttackState
-{        
-    
-    public HealingState(Animator anim, ParticleSystem ps)
+{   
+    PlayerController m_player;
+    public HealingState(Animator anim, ParticleSystem ps, PlayerController player)
     {
         m_animator = anim;
         m_particles = ps; 
+        m_player = player;
     }
     public override void StartState(float startValue)
     {       
@@ -16,6 +17,6 @@ public class HealingState : RangedAttackState
 
     public override void Update()
     {
-        
+        m_player.m_health += m_player.m_healRate * Time.deltaTime;
     }
 }

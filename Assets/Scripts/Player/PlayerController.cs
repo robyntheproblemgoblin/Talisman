@@ -7,16 +7,18 @@ public class PlayerController : MonoBehaviour
     FPControls m_inputControl;
     #region Movement Fields
     CameraControls m_camera;
+    [Header("Camera and Movement")]
+    [Space(5)]
     public float m_cameraSensitivity = 10;
-    public Vector3 m_moveDirection = Vector3.zero;
+    Vector3 m_moveDirection = Vector3.zero;
     float m_gravity = 9.81f;
     public float m_walkSpeed = 5;
     public float m_runSpeed = 8;
     bool m_canMove = true;
     public float m_jumpSpeed = 5;
     CharacterController m_characterController;
-    public float m_smoothTime = 0.3f;
-    public Vector2 MoveDampVelocity;
+    float m_smoothTime = 0.3f;
+    Vector2 MoveDampVelocity;
     // Coyote time
     // Jump Buffer
     #endregion
@@ -28,9 +30,9 @@ public class PlayerController : MonoBehaviour
     #region Health Fields
     // Loss is in Chunks (Visually chunks)
     public float m_health;
-    public bool m_canBeHit;
-    public float m_hitBuffer;
-    //List<string> m_enemiesHaveHit = new List<string>();
+    public float m_healRate;
+    public ParticleSystem m_healParticles;
+    HealingState m_healing; 
     Dictionary<string, float> m_enemiesHaveHit = new Dictionary<string, float>();
     #endregion
 
@@ -79,9 +81,10 @@ public class PlayerController : MonoBehaviour
         m_idle = new IdleState(m_animator, m_chargeMana);
         m_charging = new ChargingState(m_animator, m_chargeMana);
         m_firing = new FiringState(m_animator, m_chargeMana, m_maxSize);
+        m_healing = new HealingState(m_animator, m_healParticles, this);
         m_talismanState = m_idle;
         m_inputControl.Player_Map.Heal.performed += StartHealing;
-        //m_inputControl.Player_Map.Heal.canceled += StopHealing;
+        m_inputControl.Player_Map.Heal.canceled += StopHealing;
         m_inputControl.Player_Map.ManaAttack.performed += StartCharging;
         m_inputControl.Player_Map.ManaAttack.canceled += StartFiring;
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
@@ -99,7 +102,7 @@ public class PlayerController : MonoBehaviour
             EnemyBT e = hit.gameObject.GetComponentInParent<EnemyBT>();
             if (!HitAlready(hit.gameObject.name))
             {
-                SetData(hit.gameObject.name, 5);
+                RegisterEnemyHit(hit.gameObject.name, 5);
                 TakeDamage(e.m_damage);
             }
         }
@@ -162,7 +165,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(m_health);
     }
 
-    void SetData(string key, float value)
+    void RegisterEnemyHit(string key, float value)
     {
         m_enemiesHaveHit[key] = value;
     }
@@ -211,9 +214,16 @@ public class PlayerController : MonoBehaviour
     private void StartHealing(InputAction.CallbackContext obj)
     {
         m_talismanState.StopState();
-        m_talismanState = m_charging;
+        m_talismanState = m_healing;
         m_talismanState.StartState(0);
     }
+    private void StopHealing(InputAction.CallbackContext obj)
+    {
+        m_talismanState.StopState();
+        m_talismanState = m_healing;
+        m_talismanState.StartState(0);
+    }
+
     #endregion
 
     #region Mana Attack Methods

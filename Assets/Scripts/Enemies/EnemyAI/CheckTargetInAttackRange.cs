@@ -37,8 +37,7 @@ public class CheckTargetInAttackRange : Node
             time -= Time.deltaTime;
             if (time <= 0)
             {
-                canAttack = true;
-                player.m_canBeHit = true;
+                canAttack = true;                
             }
             else if (time <= 2.5f)
             {
