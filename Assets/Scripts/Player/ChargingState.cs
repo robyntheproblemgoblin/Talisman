@@ -2,42 +2,26 @@ using UnityEngine;
 
 public class ChargingState : LeftHandState
 {
-    public bool m_beam = true;
-    public float chargeTime = 0.0f;
-    Camera m_camera;
+    public bool m_isProjectile = true;
+    public float m_chargeTime = 0.0f;
+    
     public ChargingState(Animator anim, ParticleSystem ps)
     {
         m_animator = anim;
-        m_particles = ps;
-        m_camera = Camera.main;
+        m_particles = ps;        
     }
     public override void StartState(float startValue)
     {
-        chargeTime = 0.0f;
+        m_chargeTime = 0.0f;
         m_animator.SetBool("LeftAttacking", true);
         m_particles.Play();
     }
 
     public override void Update()
     {
-        if (m_beam)
+        if (m_isProjectile)
         {
-            chargeTime += Time.deltaTime;
-        }
-        else
-        {
-            Ray camRay = m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            RaycastHit hit;
-            Vector3 destination;
-            if (Physics.Raycast(camRay, out hit))
-            {
-                destination = hit.point;
-            }
-            else
-            {
-                destination = camRay.GetPoint(50);
-            }
-
-        }
+            m_chargeTime += Time.deltaTime;
+        }        
     }
 }

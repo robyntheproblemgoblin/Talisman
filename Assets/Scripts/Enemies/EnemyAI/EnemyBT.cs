@@ -15,13 +15,14 @@ public class EnemyBT : MonoBehaviour
 
     public static float m_attackRange = 4f;
 
-    int m_playerAttackLayer;
+    int m_playerFlameLayer;
+    int m_playerSwordLayer;
     PlayerController m_playerController;
 
     [SerializeField]
-    protected int m_startingHP = 30;
+    protected float m_startingHP = 30;
     [HideInInspector]
-    public int m_currentHP;
+    public float m_currentHP;
 
     Animator m_animator;
     protected NavMeshAgent m_agent;
@@ -48,7 +49,8 @@ public class EnemyBT : MonoBehaviour
         m_agent.updatePosition = false;
         m_agent.updateRotation = true;
         m_root = SetupTree();
-        m_playerAttackLayer = (int)Mathf.Log(LayerMask.GetMask("Melee"), 2);
+        m_playerFlameLayer = (int)Mathf.Log(LayerMask.GetMask("Flame"), 2);
+        m_playerSwordLayer = (int)Mathf.Log(LayerMask.GetMask("Sword"), 2);
         m_playerController = FindObjectOfType<PlayerController>();
     }
 
@@ -79,9 +81,9 @@ public class EnemyBT : MonoBehaviour
         m_agent.nextPosition = rootPosition;
     }
 
-    public bool TakeHit()
+    public bool TakeHit(float damage)
     {
-        m_currentHP -= 10;
+        m_currentHP -= damage;
         bool isDead = m_currentHP <= 0;
         if (isDead) Die();
         return isDead;
@@ -89,25 +91,21 @@ public class EnemyBT : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.layer == m_playerAttackLayer)
+        if (collision.collider.gameObject.layer == m_playerSwordLayer)
         {
-            TakeHit();
-        }
-        else
-        {
-            Debug.Log(m_playerAttackLayer);
-        }
+            TakeHit(m_playerController.m_meleeDamage);
+        }        
     }
 
     private void OnParticleCollision(GameObject other)
     {      
-        if (other.gameObject.layer == m_playerAttackLayer)
+        if (other.gameObject.layer == m_playerFlameLayer)
         {
-            TakeHit();
+            TakeHit(m_playerController.m_flameDamage);
         }
         else
         {
-            Debug.Log(m_playerAttackLayer);
+            Debug.Log(m_playerFlameLayer);
         }
     }
 

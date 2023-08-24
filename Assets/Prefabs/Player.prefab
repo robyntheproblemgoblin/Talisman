@@ -281,10 +281,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 0
-  m_Radius: 0.001
-  m_Height: 0.005
+  m_Radius: 0.0013
+  m_Height: 0.009
   m_Direction: 1
-  m_Center: {x: 0, y: 0.0025, z: 0.0015}
+  m_Center: {x: 0, y: 0.0045, z: 0.003}
 --- !u!1 &1104879802362230543
 GameObject:
   m_ObjectHideFlags: 0
@@ -6732,7 +6732,7 @@ GameObject:
   - component: {fileID: 6258736020136332438}
   - component: {fileID: 6258736020136332432}
   - component: {fileID: 6258736020136332433}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11643,15 +11643,17 @@ MonoBehaviour:
   m_health: 30
   m_healRate: 10
   m_healParticles: {fileID: 8103675979774834533}
+  m_mana: 20
   m_fireMana: {fileID: 6258736020136332432}
-  m_chargeMana: {fileID: 7682027787357394336}
-  m_damageChargePerTick: 0.1
-  m_maxSize: 2
+  m_projectileMana: {fileID: 7682027787357394336}
   projectile: {fileID: 9086220017073451869, guid: 8a86b0cb8aefef744a8a2037d3995233, type: 3}
-  m_meleeAttackDistance: 1.5
+  m_flameDamage: 0.1
+  m_maxProjectileSize: 2
   m_swordCollider: {fileID: 1569695065}
+  m_meleeDamage: 0
   m_parryTime: 1
-  m_blockingReset: 5
+  m_blockingResetTime: 3
+  m_interactionDistance: 5
 --- !u!136 &8787778063925695042
 CapsuleCollider:
   m_ObjectHideFlags: 0

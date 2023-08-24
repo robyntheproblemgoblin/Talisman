@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,53 +28,66 @@ public class PlayerController : MonoBehaviour
     Animator m_animator;
     #endregion
 
-    #region Health Fields
-    // Loss is in Chunks (Visually chunks)
+    #region Health Fields    
     [Space(10)]
     [Header("Player Health")]
     [Space(5)]
     public float m_health;    
     float m_currentHealth;
     public float m_healRate;
-    [Space(10)]
-    [Header("Particles")]
-    [Space(5)]
     public ParticleSystem m_healParticles;
     HealingState m_healing; 
     Dictionary<string, float> m_enemiesHaveHit = new Dictionary<string, float>();
     #endregion
 
-    #region Mana Fields
-    // Comes in chunks from the pool (Visually ticks)
+    #region Mana Fields    
+    [Space(10)]
+    [Header("Player Mana")]
+    [Space(5)]
+    public float m_mana;
+    float m_currentMana;
     #endregion
 
     #region Mana Attack Fields
-    // Loss in Ticks until trigger release (Visually ticks)     
-
     LeftHandState m_talismanState;
     ChargingState m_charging;
     FiringState m_firing;
     IdleState m_idle;
 
+    [Space(10)]
+    [Header("Mana Attacks")]
+    [Space(5)]
     public ParticleSystem m_fireMana;
-    public ParticleSystem m_chargeMana;
-
-    public float m_damageChargePerTick = 0.1f;
-    public float m_maxSize = 2;
+    public ParticleSystem m_projectileMana;
     public GameObject projectile;
+    public float m_flameDamage = 0.1f;    
+    public float m_maxProjectileSize = 2;
     Transform m_talisman;
     #endregion
 
     #region Melee Attack Fields
-    public float m_meleeAttackDistance;
+    [Space(10)]
+    [Header("Melee Attack")]
+    [Space(5)]
     public Collider m_swordCollider;
+    public float m_meleeDamage;
     #endregion
 
     #region Block Parry Fields
     bool m_isBlocking = false;
     float m_blockPressedTime;
+    [Space(10)]
+    [Header("Blocking and Parrying")]
+    [Space(5)]
     public float m_parryTime;
-    public float m_blockingReset;
+    public float m_blockingResetTime;
+    #endregion
+
+    #region Interaction Fields
+    [Space(10)]
+    [Header("Interactions")]
+    [Space(5)]
+    public float m_interactionDistance;
     #endregion
 
     #region Unity Methods
@@ -86,9 +100,9 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.Enable();
 
         m_animator = GetComponentInChildren<Animator>();
-        m_idle = new IdleState(m_animator, m_chargeMana);
-        m_charging = new ChargingState(m_animator, m_chargeMana);
-        m_firing = new FiringState(m_animator, m_chargeMana, m_maxSize);
+        m_idle = new IdleState(m_animator, m_projectileMana);
+        m_charging = new ChargingState(m_animator, m_projectileMana);
+        m_firing = new FiringState(m_animator, m_projectileMana, m_maxProjectileSize);
         m_healing = new HealingState(m_animator, m_healParticles, this);
         m_talismanState = m_idle;
 
@@ -102,9 +116,8 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
 
         m_currentHealth = m_health;
-    }
-
-   
+        m_currentMana = m_mana;
+    }   
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -237,13 +250,18 @@ public class PlayerController : MonoBehaviour
 
     public void Heal()
     {
-        if(m_currentHealth > m_health)
+        if (m_currentHealth > m_health)
         {
             m_currentHealth = m_health;
         }
-        else if(m_currentHealth < m_health)
+        else if (m_currentHealth < m_health && m_currentMana > 0)
         {
+            m_currentMana -= m_healRate * Time.deltaTime;
             m_currentHealth += m_healRate * Time.deltaTime;
+        }
+        else if(m_currentMana < 0)
+        {
+            m_currentMana = 0;
         }
     }
 
@@ -261,7 +279,7 @@ public class PlayerController : MonoBehaviour
     {
         m_talismanState.StopState();
         m_talismanState = m_firing;
-        m_talismanState.StartState(m_charging.chargeTime);
+        m_talismanState.StartState(m_charging.m_chargeTime);
     }
 
     public void StartIdle()
@@ -273,12 +291,12 @@ public class PlayerController : MonoBehaviour
 
     void SwapStyle(InputAction.CallbackContext t)
     {
-        m_charging.m_beam = !m_charging.m_beam;
+        m_charging.m_isProjectile = !m_charging.m_isProjectile;
         m_firing.m_beam = !m_firing.m_beam;
-        if (m_charging.m_beam)
+        if (m_charging.m_isProjectile)
         {
-            m_charging.m_particles = m_chargeMana;
-            m_firing.m_particles = m_chargeMana;
+            m_charging.m_particles = m_projectileMana;
+            m_firing.m_particles = m_projectileMana;
         }
         else
         {
@@ -309,7 +327,7 @@ public class PlayerController : MonoBehaviour
     {
         m_isBlocking = true;
         m_blockPressedTime = Time.realtimeSinceStartup;
-        Invoke("StopBlock", m_blockingReset);
+        Invoke("StopBlock", m_blockingResetTime);
     }
 
     private void StopBlock()
@@ -320,12 +338,13 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region Interaction Methods
     private void Interact(InputAction.CallbackContext obj)
     {
         Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
-        if (Physics.Raycast(camRay, out hit, m_meleeAttackDistance))
+        if (Physics.Raycast(camRay, out hit, m_interactionDistance))
         {
             Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
             if (puzzle != null)
@@ -334,4 +353,5 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    #endregion
 }
