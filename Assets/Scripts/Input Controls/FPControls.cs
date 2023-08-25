@@ -91,27 +91,27 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Swap"",
-                    ""type"": ""Button"",
-                    ""id"": ""efa2db99-7463-4c4b-b283-25c5ee96e0fd"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Swap1"",
-                    ""type"": ""Button"",
-                    ""id"": ""cbcbccb3-e4dc-473c-b8e4-1c8ada46d8fd"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""3d133420-a1d6-4ac1-970b-82656c351e5f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""2779a2f4-66c2-4b73-8f70-d93908023761"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BlockParry"",
+                    ""type"": ""Button"",
+                    ""id"": ""4cfd631b-72f5-49db-8055-806f4b8d2907"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -176,6 +176,17 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""454c8e70-0bad-4c5f-86e6-2885f93de3ed"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e9407284-bb96-4a22-afa0-40e3e9444500"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -187,8 +198,30 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""049c50bc-e2c8-4972-b45b-7e2c6a0541fc"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""bcf249d4-73c1-4ccc-a27a-bec6c84abe7f"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b6fda8d-8d18-4d61-8791-700f09fca1c3"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -210,7 +243,18 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6a5ab479-8630-4a59-b7b7-a55e3c3cc158"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ManaAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f798b046-50c8-4b43-928a-c39d98e368fc"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -221,7 +265,18 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dc5b219c-f62e-4142-aa8c-b393b6ee1d6f"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MeleeAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf962a77-85ac-40f7-8195-ef67c43d64b1"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -242,19 +297,19 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6ed89b1f-7f5b-448c-91ba-4fbaab490d17"",
-                    ""path"": ""<Keyboard>/rightAlt"",
+                    ""id"": ""f1184d60-6de8-47bd-9a2d-9fe9b8415d73"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap"",
+                    ""action"": ""SwapManaStyle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""e525a0a2-7ac8-42a1-95b3-6ee65960a563"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -264,12 +319,56 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""448c7454-0b8f-468b-b785-19e009358d65"",
-                    ""path"": ""<Keyboard>/b"",
+                    ""id"": ""2ccb05e0-e119-4115-b432-fea92b9765c2"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap1"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c01d3fc-4a68-4cfd-8711-0c9bb4e8138f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""552d6ccb-c821-47c5-bb92-3ca5da581b4f"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6727718a-cd28-457c-af3f-81e06bdc31a8"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BlockParry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""463d5db2-a390-4f65-8062-20512880e1af"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BlockParry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -287,9 +386,9 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         m_Player_Map_ManaAttack = m_Player_Map.FindAction("ManaAttack", throwIfNotFound: true);
         m_Player_Map_MeleeAttack = m_Player_Map.FindAction("MeleeAttack", throwIfNotFound: true);
         m_Player_Map_SwapManaStyle = m_Player_Map.FindAction("SwapManaStyle", throwIfNotFound: true);
-        m_Player_Map_Swap = m_Player_Map.FindAction("Swap", throwIfNotFound: true);
-        m_Player_Map_Swap1 = m_Player_Map.FindAction("Swap1", throwIfNotFound: true);
         m_Player_Map_Interact = m_Player_Map.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Map_Heal = m_Player_Map.FindAction("Heal", throwIfNotFound: true);
+        m_Player_Map_BlockParry = m_Player_Map.FindAction("BlockParry", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -356,9 +455,9 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Map_ManaAttack;
     private readonly InputAction m_Player_Map_MeleeAttack;
     private readonly InputAction m_Player_Map_SwapManaStyle;
-    private readonly InputAction m_Player_Map_Swap;
-    private readonly InputAction m_Player_Map_Swap1;
     private readonly InputAction m_Player_Map_Interact;
+    private readonly InputAction m_Player_Map_Heal;
+    private readonly InputAction m_Player_Map_BlockParry;
     public struct Player_MapActions
     {
         private @FPControls m_Wrapper;
@@ -370,9 +469,9 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         public InputAction @ManaAttack => m_Wrapper.m_Player_Map_ManaAttack;
         public InputAction @MeleeAttack => m_Wrapper.m_Player_Map_MeleeAttack;
         public InputAction @SwapManaStyle => m_Wrapper.m_Player_Map_SwapManaStyle;
-        public InputAction @Swap => m_Wrapper.m_Player_Map_Swap;
-        public InputAction @Swap1 => m_Wrapper.m_Player_Map_Swap1;
         public InputAction @Interact => m_Wrapper.m_Player_Map_Interact;
+        public InputAction @Heal => m_Wrapper.m_Player_Map_Heal;
+        public InputAction @BlockParry => m_Wrapper.m_Player_Map_BlockParry;
         public InputActionMap Get() { return m_Wrapper.m_Player_Map; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -403,15 +502,15 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @SwapManaStyle.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
                 @SwapManaStyle.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
                 @SwapManaStyle.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
-                @Swap.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap;
-                @Swap.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap;
-                @Swap.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap;
-                @Swap1.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap1;
-                @Swap1.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap1;
-                @Swap1.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwap1;
                 @Interact.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnInteract;
+                @Heal.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnHeal;
+                @Heal.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnHeal;
+                @Heal.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnHeal;
+                @BlockParry.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBlockParry;
+                @BlockParry.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBlockParry;
+                @BlockParry.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBlockParry;
             }
             m_Wrapper.m_Player_MapActionsCallbackInterface = instance;
             if (instance != null)
@@ -437,15 +536,15 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @SwapManaStyle.started += instance.OnSwapManaStyle;
                 @SwapManaStyle.performed += instance.OnSwapManaStyle;
                 @SwapManaStyle.canceled += instance.OnSwapManaStyle;
-                @Swap.started += instance.OnSwap;
-                @Swap.performed += instance.OnSwap;
-                @Swap.canceled += instance.OnSwap;
-                @Swap1.started += instance.OnSwap1;
-                @Swap1.performed += instance.OnSwap1;
-                @Swap1.canceled += instance.OnSwap1;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Heal.started += instance.OnHeal;
+                @Heal.performed += instance.OnHeal;
+                @Heal.canceled += instance.OnHeal;
+                @BlockParry.started += instance.OnBlockParry;
+                @BlockParry.performed += instance.OnBlockParry;
+                @BlockParry.canceled += instance.OnBlockParry;
             }
         }
     }
@@ -459,8 +558,8 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         void OnManaAttack(InputAction.CallbackContext context);
         void OnMeleeAttack(InputAction.CallbackContext context);
         void OnSwapManaStyle(InputAction.CallbackContext context);
-        void OnSwap(InputAction.CallbackContext context);
-        void OnSwap1(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
+        void OnBlockParry(InputAction.CallbackContext context);
     }
 }

@@ -20,7 +20,7 @@ public class Puzzle : MonoBehaviour
         nextY = transform.rotation.eulerAngles.y + 120;
         door.puzzleList.Add(this);
     }
-    public void RotatePuzzle()
+    public void PuzzleInteraction()
     {
         if (!unlocked && !rotate)
         {

@@ -37,16 +37,11 @@ public class CheckTargetInAttackRange : Node
             time -= Time.deltaTime;
             if (time <= 0)
             {
-                canAttack = true;
-                player.m_canBeHit = true;
+                canAttack = true;                
             }
             else if (time <= 2.5f)
             {
-                m_animator.SetBool("AttackB", false);
-                if (player.m_canBeHit)
-                {
-                    player.TakeDamage();
-                }
+                m_animator.SetBool("AttackB", false);                
             }
             m_state = NodeState.FAILURE;
             return m_state;

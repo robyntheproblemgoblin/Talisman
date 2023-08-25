@@ -15,10 +15,12 @@ public class EnemyBT : MonoBehaviour
 
     public static float m_attackRange = 4f;
 
-    [SerializeField]
-    protected int m_startingHP = 30;
-    [HideInInspector]
-    public int m_currentHP;
+    int m_playerFlameLayer;
+    int m_playerSwordLayer;
+    PlayerController m_playerController;
+        
+    public float m_startingHP = 30;
+    public float m_currentHP;
 
     Animator m_animator;
     protected NavMeshAgent m_agent;
@@ -29,26 +31,32 @@ public class EnemyBT : MonoBehaviour
 
     Vector2 m_velocity;
     Vector2 m_smoothDeltaPosition;
+
+    public float m_damage = 5;
+
     void Start()
     {
         m_currentHP = m_startingHP;
         m_animator = transform.gameObject.GetComponent<Animator>();
         m_animator.applyRootMotion = true;
         m_agent = transform.gameObject.GetComponent<NavMeshAgent>();
-        if(m_waypoints.Length > 0  )
+        if (m_waypoints.Length > 0)
         {
             m_agent.SetDestination(m_waypoints[0].position);
         }
         m_agent.updatePosition = false;
         m_agent.updateRotation = true;
-        m_root = SetupTree();        
+        m_root = SetupTree();
+        m_playerFlameLayer = (int)Mathf.Log(LayerMask.GetMask("Flame"), 2);
+        m_playerSwordLayer = (int)Mathf.Log(LayerMask.GetMask("Sword"), 2);
+        m_playerController = FindObjectOfType<PlayerController>();
     }
 
     protected virtual Node SetupTree()
-    {        
+    {
         Node root = new Selector(new List<Node>
         {
-          /*  new Sequence(new List<Node>
+           /* new Sequence(new List<Node>
             {
                 new CheckTargetInAttackRange(transform),
                 new TaskGoToTarget(transform),
@@ -71,9 +79,9 @@ public class EnemyBT : MonoBehaviour
         m_agent.nextPosition = rootPosition;
     }
 
-    public bool TakeHit()
+    public bool TakeHit(float damage)
     {
-        m_currentHP -= 10;
+        m_currentHP -= damage;
         bool isDead = m_currentHP <= 0;
         if (isDead) Die();
         return isDead;
@@ -81,11 +89,21 @@ public class EnemyBT : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision");
-        if(collision.gameObject.layer == LayerMask.GetMask("Melee"))
+        if (collision.collider.gameObject.layer == m_playerSwordLayer)
         {
-        Debug.Log("Axe");
-            TakeHit();
+            TakeHit(m_playerController.m_meleeDamage);
+        }        
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {      
+        if (other.gameObject.layer == m_playerFlameLayer)
+        {
+            TakeHit(m_playerController.m_flameDamage);
+        }
+        else
+        {
+            Debug.Log(m_playerFlameLayer);
         }
     }
 
@@ -124,7 +142,7 @@ public class EnemyBT : MonoBehaviour
 
         bool shouldMove = m_velocity.magnitude > 0.5f && m_agent.remainingDistance > m_agent.stoppingDistance;
 
-        
+
         m_animator.SetBool("Idle", !shouldMove);
         m_animator.SetFloat("MovementSpeed", m_velocity.magnitude);
 
