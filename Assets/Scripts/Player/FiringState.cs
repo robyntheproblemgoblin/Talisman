@@ -3,32 +3,32 @@ using UnityEngine;
 public class FiringState : LeftHandState
 {
     Camera m_camera;
-    float m_damageTime;
-    public bool m_beam = true;
+    float m_damage;
+    public bool m_isProjectile = true;
     float m_manaBoltSpeed = 30.0f;
-    float m_maxSize = 2;
     float m_minSize = 1;
+    Transform m_projectileSpawn;
 
 
-    public FiringState(Animator anim, ParticleSystem ps, float max)
+    public FiringState(Animator anim, ParticleSystem ps, Transform t)
     {
         m_animator = anim;
         m_particles = ps;
         m_camera = Camera.main;
-        m_maxSize = max;
+        m_projectileSpawn = t;
     }
-    public override void StartState(float startValue)
+    public override void StartState(float damage)
     {
-        if (m_beam)
+        if (m_isProjectile)
             m_particles.Play();
         else
             m_particles.Stop();
-        m_damageTime = startValue;
+        m_damage = damage;
     }
 
     public override void Update()
     {
-        if (m_beam)
+        if (m_isProjectile && m_damage != 0)
         {
             Ray camRay = m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
@@ -41,15 +41,17 @@ public class FiringState : LeftHandState
             {
                 destination = camRay.GetPoint(50);
             }
-            var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<PlayerController>().projectile, m_particles.transform.position + m_particles.transform.forward, Quaternion.identity) as GameObject;
-            if (m_damageTime > m_minSize)
+            var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<PlayerController>().projectile, m_projectileSpawn.position + m_projectileSpawn.forward, Quaternion.identity) as GameObject;
+            Projectile p = manaBolt.GetComponent<Projectile>();
+            p.m_damage = m_damage;
+            if (m_damage > m_minSize)
             {
-                manaBolt.GetComponent<SphereCollider>().radius *= (m_damageTime <= m_maxSize ? m_damageTime : m_maxSize);
                 var main = manaBolt.GetComponentInChildren<ParticleSystem>().main;
-                main.startSize = m_damageTime;
+                main.startSize = m_damage;
             }
-            manaBolt.GetComponent<Rigidbody>().velocity = (destination - m_particles.transform.position).normalized * m_manaBoltSpeed;
+            manaBolt.GetComponent<Rigidbody>().velocity = (destination - m_projectileSpawn.position).normalized * m_manaBoltSpeed;
         }
+
         MonoBehaviour.FindObjectOfType<PlayerController>().StartIdle();
     }
     public override void StopState()

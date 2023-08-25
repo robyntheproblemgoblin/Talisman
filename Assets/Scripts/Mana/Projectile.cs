@@ -4,7 +4,7 @@ public class Projectile : MonoBehaviour
 {
     public float m_lifeTime = 5;
     float m_startTime;
-    public float m_damage;
+    public float m_damage;    
 
     void Start()
     {

@@ -5777,6 +5777,37 @@ Transform:
   m_Father: {fileID: 90789256480169085}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2838680215868376790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115986646205182058}
+  m_Layer: 0
+  m_Name: ProjectileSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1115986646205182058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838680215868376790}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.2335, y: -0.1306, z: 0.425}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5859682556975132747}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2900353029978507261
 GameObject:
   m_ObjectHideFlags: 0
@@ -10398,7 +10429,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10506,7 +10537,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 256
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -11569,6 +11600,7 @@ Transform:
   - {fileID: 3305944971875836117}
   - {fileID: 8745818543344783542}
   - {fileID: 2151447508318061506}
+  - {fileID: 1115986646205182058}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11641,16 +11673,23 @@ MonoBehaviour:
   m_runSpeed: 10
   m_jumpSpeed: 5
   m_health: 30
-  m_healRate: 10
+  m_healRate: 1
   m_healParticles: {fileID: 8103675979774834533}
-  m_mana: 20
+  m_maxMana: 30
+  m_startMana: 30
+  m_manaHealCost: 1
+  m_currentMana: 0
   m_fireMana: {fileID: 6258736020136332432}
   m_projectileMana: {fileID: 7682027787357394336}
   projectile: {fileID: 9086220017073451869, guid: 8a86b0cb8aefef744a8a2037d3995233, type: 3}
-  m_flameDamage: 0.1
-  m_maxProjectileSize: 2
+  m_flameDamage: 1
+  m_flameCost: 1
+  m_minProjectileCost: 1
+  m_projectileManaCost: 1
+  m_projectileDamage: 1
+  m_talisman: {fileID: 1115986646205182058}
   m_swordCollider: {fileID: 1569695065}
-  m_meleeDamage: 0
+  m_meleeDamage: 5
   m_parryTime: 1
   m_blockingResetTime: 3
   m_interactionDistance: 5

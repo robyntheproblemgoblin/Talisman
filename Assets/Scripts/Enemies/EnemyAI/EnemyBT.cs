@@ -18,10 +18,8 @@ public class EnemyBT : MonoBehaviour
     int m_playerFlameLayer;
     int m_playerSwordLayer;
     PlayerController m_playerController;
-
-    [SerializeField]
-    protected float m_startingHP = 30;
-    [HideInInspector]
+        
+    public float m_startingHP = 30;
     public float m_currentHP;
 
     Animator m_animator;

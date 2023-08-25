@@ -44,8 +44,10 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     [Header("Player Mana")]
     [Space(5)]
-    public float m_mana;
-    float m_currentMana;
+    public float m_maxMana;
+    public float m_startMana;
+    public float m_manaHealCost;    
+    public float m_currentMana;
     #endregion
 
     #region Mana Attack Fields
@@ -60,9 +62,12 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem m_fireMana;
     public ParticleSystem m_projectileMana;
     public GameObject projectile;
-    public float m_flameDamage = 0.1f;    
-    public float m_maxProjectileSize = 2;
-    Transform m_talisman;
+    public float m_flameDamage = 0.1f;
+    public float m_flameCost = 1;
+    public float m_minProjectileCost = 1;
+    public float m_projectileManaCost = 1;
+    public float m_projectileDamage = 1;
+    public Transform m_talisman;
     #endregion
 
     #region Melee Attack Fields
@@ -101,8 +106,8 @@ public class PlayerController : MonoBehaviour
 
         m_animator = GetComponentInChildren<Animator>();
         m_idle = new IdleState(m_animator, m_projectileMana);
-        m_charging = new ChargingState(m_animator, m_projectileMana);
-        m_firing = new FiringState(m_animator, m_projectileMana, m_maxProjectileSize);
+        m_charging = new ChargingState(m_animator, m_projectileMana, this);
+        m_firing = new FiringState(m_animator, m_projectileMana, m_talisman);
         m_healing = new HealingState(m_animator, m_healParticles, this);
         m_talismanState = m_idle;
 
@@ -116,7 +121,7 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
 
         m_currentHealth = m_health;
-        m_currentMana = m_mana;
+        m_currentMana = m_startMana;
     }   
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -256,12 +261,33 @@ public class PlayerController : MonoBehaviour
         }
         else if (m_currentHealth < m_health && m_currentMana > 0)
         {
-            m_currentMana -= m_healRate * Time.deltaTime;
+            m_currentMana -= m_manaHealCost * Time.deltaTime;
             m_currentHealth += m_healRate * Time.deltaTime;
         }
         else if(m_currentMana < 0)
         {
             m_currentMana = 0;
+        }
+    }
+
+    #endregion
+
+    #region Mana Methods
+    public bool SpendMana(float mana)
+    {
+        if(m_currentMana <= 0 || m_currentMana - mana <= 0)
+        {
+            m_currentMana = 0;
+            return false;
+        }
+        else
+        {
+            m_currentMana -= mana;
+            if (m_currentMana <= 0)
+            {
+                m_currentMana = 0;
+            }
+            return true;
         }
     }
 
@@ -292,7 +318,7 @@ public class PlayerController : MonoBehaviour
     void SwapStyle(InputAction.CallbackContext t)
     {
         m_charging.m_isProjectile = !m_charging.m_isProjectile;
-        m_firing.m_beam = !m_firing.m_beam;
+        m_firing.m_isProjectile = !m_firing.m_isProjectile;
         if (m_charging.m_isProjectile)
         {
             m_charging.m_particles = m_projectileMana;
