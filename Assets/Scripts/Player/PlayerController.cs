@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviour
             Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
             if (puzzle != null)
             {
-                puzzle.PuzzleInteraction();
+                puzzle.RotatePuzzle();
             }
         }
     }

@@ -6,11 +6,11 @@ public class Door : MonoBehaviour
     public List<Puzzle> puzzleList;
     bool unlocked;
 
-    public void Unlock()
+    public void CheckState()
     {
         foreach (Puzzle p in puzzleList)
         {
-            if (p.unlocked == false)
+            if (p.m_unlocked == false)
             {
                 return;
             }
