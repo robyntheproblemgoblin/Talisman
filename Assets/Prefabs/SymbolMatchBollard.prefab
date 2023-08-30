@@ -401,8 +401,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9041602116691806197}
-  - component: {fileID: 8721606350310886841}
   - component: {fileID: 5058166720517189280}
+  - component: {fileID: 6965167159452088192}
   m_Layer: 0
   m_Name: SymbolMatchBollard
   m_TagString: Untagged
@@ -429,24 +429,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8721606350310886841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9041602116691806196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad7aa8f93ed476e4ea16a1c5e6a4ea7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightMaterial: {fileID: 2100000, guid: 1fccd35da486cd14aaf25ef7b9b594c7, type: 2}
-  lightNotice: {fileID: 0}
-  current: 0
-  end: 0
-  unlocked: 0
-  door: {fileID: 0}
 --- !u!208 &5058166720517189280
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -463,3 +445,22 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &6965167159452088192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9041602116691806196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522b20084f8ac6f4395b99884ba655ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_unlocked: 0
+  m_door: {fileID: 0}
+  m_current: 0
+  m_end: 0
+  m_lockRotationOnSolve: 1
+  m_lightMaterial: {fileID: 0}
+  m_lightNotice: {fileID: 0}

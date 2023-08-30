@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Puzzle : MonoBehaviour
 {
@@ -13,15 +11,38 @@ public class Puzzle : MonoBehaviour
     protected int m_rotations = 0;
     [HideInInspector]
     public bool m_unlocked = false;
-    public Door m_door;    
+    [HideInInspector]
+    public Door m_door;
+
+    [HideInInspector]
+    public bool m_updateMana = false;
+
+    // Set the first face and the last face
+    [Space(5), Header("Starting and End Symbols"), Space(5)]
+    public Positions m_input;
+    public Positions m_output;    
 
     private void Start()
     {
         m_nextY = transform.rotation.eulerAngles.y + 120;
-        m_door.puzzleList.Add(this);
     }
    
-    public void RotatePuzzle()
+    private void FixedUpdate()
+    {
+        if (m_rotate)
+        {
+            transform.Rotate(0, 120 * Time.deltaTime ,0);
+            if (Quaternion.Angle(transform.rotation, m_targetRotation) <= 1f)
+            {
+                transform.rotation = Quaternion.Euler(0, m_nextY, 0);
+                m_nextY += 120;
+                m_rotate = false;               
+                UpdatePositions();
+            }
+        }
+    }
+
+    public virtual void RotatePuzzle()
     {
         m_targetRotation = Quaternion.Euler(0, m_nextY, 0);
         m_rotations++;
@@ -33,26 +54,11 @@ public class Puzzle : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    public virtual void UpdateMana()
     {
-        if (m_rotate)
-        {
-            transform.RotateAround(transform.position, Vector3.up, 120 * Time.deltaTime);
-            if (Quaternion.Angle(transform.rotation, m_targetRotation) <= 1f)
-            {
-                transform.rotation = Quaternion.Euler(0, m_nextY, 0);
-                m_nextY += 120;
-                m_rotate = false;
-                if (m_rotations == 3)
-                {
-                    m_rotations = 0;
-                    m_nextY -= 360;
-                    transform.rotation = Quaternion.Euler(0, m_nextY, 0);
-                }
-                UpdatePositions();
-            }
-        }
+
     }
+
 }
 
 public enum Positions
