@@ -16,6 +16,12 @@ public class Puzzle : MonoBehaviour
 
     [HideInInspector]
     public bool m_updateMana = false;
+    [HideInInspector]
+    public float m_manaValue = 0f;
+    [HideInInspector]
+    public Puzzle m_inputObject;
+    [HideInInspector]
+    public Puzzle m_secondInputObject;
 
     // Set the first face and the last face
     [Space(5), Header("Starting and End Symbols"), Space(5)]
@@ -49,16 +55,9 @@ public class Puzzle : MonoBehaviour
         m_rotate = true;
     }
 
-    public virtual void UpdatePositions()
-    {
+    public virtual void UpdatePositions() { }
 
-    }
-
-    public virtual void UpdateMana()
-    {
-
-    }
-
+    public virtual void UpdateMana() { }
 }
 
 public enum Positions

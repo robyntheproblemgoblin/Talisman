@@ -7,27 +7,34 @@ public class RotateCircularMana : Puzzle
 {
     [Space(5), Header("Type of visual"), Space(5)]
     public bool m_isThreeWay;
-    public bool m_twoOutputs;
+    public bool m_twoInputs;
     public bool m_isLeftBent;
-   
+
     [Space(5), Header("Speed Mana flows"), Space(5)]
     public float m_speed = 1.0f;
-
-    float m_manaValue;
 
     [Space(5), Header("Connected Objects"), Space(5)]
     public Puzzle m_leftObject;
     public Puzzle m_rightObject;
 
-    Puzzle m_inputObject;
-
     private void Start()
     {
-        if(m_isThreeWay)
+        var right = (RotateCircularMana)m_rightObject;
+        var left = (RotateCircularMana)m_leftObject;
+        if (right != null && right.m_twoInputs)
         {
-            //Turn on all mesh visuals
+            right.m_inputObject = this;
         }
-        else if(m_isLeftBent)
+        if (left != null && left.m_twoInputs)
+        {
+            left.m_secondInputObject = this;
+        }
+
+        if (m_isThreeWay)
+        {
+            //Turn on all mesh visuals           
+        }
+        else if (m_isLeftBent)
         {
             if (m_input == Positions.ONE)
             {
@@ -45,7 +52,7 @@ public class RotateCircularMana : Puzzle
                 m_output = Positions.ONE;
             }
             else
-            {                
+            {
                 m_output = m_input + 1;
             }
         }
@@ -53,7 +60,7 @@ public class RotateCircularMana : Puzzle
 
     private void Update()
     {
-        if(m_updateMana)
+        if (m_updateMana)
         {
             UpdateMana();
         }
@@ -83,7 +90,7 @@ public class RotateCircularMana : Puzzle
     {
         m_manaValue += Time.deltaTime * m_speed;
         //Update material
-        if(m_manaValue > 1.0f)
+        if (m_manaValue > 1.0f)
         {
             m_manaValue = 1.0f;
             m_updateMana = false;
@@ -94,22 +101,45 @@ public class RotateCircularMana : Puzzle
 
     void StartNextSeuquence()
     {
-        if(m_isThreeWay)
+        if (m_isThreeWay)
         {
-            if(m_twoOutputs)
+            if (m_twoInputs)
             {
+                if (m_inputObject.m_manaValue >= 1.0f && m_secondInputObject.m_manaValue >= 1.0f)
+                {
+                    m_leftObject.m_updateMana = true;
+                }
+                else
+                {
+                    //Activate futz graphic
+                }
 
             }
             else
             {
-
+                if (m_leftObject.m_input == Positions.ONE || m_leftObject.m_output == Positions.ONE)
+                {
+                    m_leftObject.m_updateMana = true;
+                }
+                else
+                {
+                    //Activate futz graphic
+                }
+                if (m_rightObject.m_input == Positions.ONE || m_rightObject.m_output == Positions.ONE)
+                {
+                    m_rightObject.m_updateMana = true;
+                }
+                else
+                {
+                    //Activate futz graphic
+                }
             }
         }
-        else if(m_input == Positions.ONE)
+        else if (m_input == Positions.ONE)
         {
-            if(m_isLeftBent)
+            if (m_isLeftBent)
             {
-                if(m_leftObject.m_input == Positions.ONE || m_leftObject.m_output == Positions.ONE)
+                if (m_leftObject.m_input == Positions.ONE || m_leftObject.m_output == Positions.ONE)
                 {
                     m_leftObject.m_updateMana = true;
                 }
