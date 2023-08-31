@@ -12,10 +12,21 @@ public class RotateCircularMana : Puzzle
 
     [Space(5), Header("Speed Mana flows"), Space(5)]
     public float m_speed = 1.0f;
+    public float m_rewindSpeed = 1.0f;
 
     [Space(5), Header("Connected Objects"), Space(5)]
     public Puzzle m_leftObject;
     public Puzzle m_rightObject;
+
+    // DELETE THESE TESTING PURPOSES
+    public Material m_grey;
+    public Material m_black;
+    public Material m_white;
+
+    public MeshRenderer m_one;
+    public MeshRenderer m_two;
+    public MeshRenderer m_three;
+    // STOP DELETE
 
     private void Start()
     {
@@ -35,7 +46,7 @@ public class RotateCircularMana : Puzzle
             //Turn on all mesh visuals           
         }
         else if (m_isLeftBent)
-        {
+        {            
             if (m_input == Positions.ONE)
             {
                 m_output = Positions.THREE;
@@ -88,18 +99,40 @@ public class RotateCircularMana : Puzzle
 
     public override void UpdateMana()
     {
-        m_manaValue += Time.deltaTime * m_speed;
-        //Update material
-        if (m_manaValue > 1.0f)
+        if (m_rewindMana)
         {
-            m_manaValue = 1.0f;
-            m_updateMana = false;
+            m_manaValue += Time.deltaTime * m_speed;
             //Update material
-            StartNextSeuquence();
+            if (m_manaValue < 0.0f)
+            {
+                m_manaValue = 0.0f;
+                m_updateMana = false;
+                //Update material
+                if (m_inputObject != null)
+                {
+                    m_inputObject.RewindPuzzle();
+                }
+                if (m_secondInputObject != null)
+                {
+                    m_secondInputObject.RewindPuzzle();
+                }
+            }
+        }
+        else
+        {
+            m_manaValue += Time.deltaTime * m_speed;
+            //Update material
+            if (m_manaValue > 1.0f)
+            {
+                m_manaValue = 1.0f;
+                m_updateMana = false;
+                //Update material
+                StartNextSequence();
+            }
         }
     }
 
-    void StartNextSeuquence()
+    void StartNextSequence()
     {
         if (m_isThreeWay)
         {
@@ -186,5 +219,17 @@ public class RotateCircularMana : Puzzle
             }
         }
 
+    }
+
+    public override void RewindPuzzle()
+    {
+        if (m_rewindMana)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 }

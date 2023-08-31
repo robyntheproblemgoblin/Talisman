@@ -17,16 +17,20 @@ public class Puzzle : MonoBehaviour
     [HideInInspector]
     public bool m_updateMana = false;
     [HideInInspector]
-    public float m_manaValue = 0f;
-    [HideInInspector]
-    public Puzzle m_inputObject;
-    [HideInInspector]
-    public Puzzle m_secondInputObject;
+    public  float m_manaValue = 0f;
+
+    protected Puzzle m_inputObject;
+    protected Puzzle m_secondInputObject;
 
     // Set the first face and the last face
     [Space(5), Header("Starting and End Symbols"), Space(5)]
     public Positions m_input;
-    public Positions m_output;    
+    public Positions m_output;
+
+    [HideInInspector]
+    public bool m_rewindHere;
+    [HideInInspector]
+    protected bool m_rewindMana;
 
     private void Start()
     {
@@ -58,6 +62,25 @@ public class Puzzle : MonoBehaviour
     public virtual void UpdatePositions() { }
 
     public virtual void UpdateMana() { }
+
+    public virtual void FailedPuzzle() 
+    {
+        m_rewindHere = true;
+        
+        if(m_inputObject != null)
+        {
+            m_inputObject.FailedPuzzle();
+        }
+        if(m_secondInputObject != null)
+        {
+            m_secondInputObject.FailedPuzzle();
+        }
+    }
+
+    public virtual void RewindPuzzle()
+    {
+     
+    }
 }
 
 public enum Positions
