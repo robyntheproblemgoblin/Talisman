@@ -68,7 +68,6 @@ public class Puzzle : MonoBehaviour
         m_rewindHere = true;
         if (m_inputObject != null)
         {
-            Debug.Log("F " + gameObject.name);
             m_inputObject.FailedPuzzle();
         }
         if (m_secondInputObject != null)

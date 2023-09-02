@@ -139,13 +139,8 @@ public class RotateCircularMana : Puzzle
                 //STOP DELETE
                 if (m_inputObject != null)
                 {
-                    Debug.Log("Does this hit?");
                     m_inputObject.RewindPuzzle();
-                }
-                else
-                {
-                    Debug.Log("Input fail");
-                }
+                }               
                 if (m_secondInputObject != null)
                 {
                     m_secondInputObject.RewindPuzzle();
@@ -288,12 +283,9 @@ public class RotateCircularMana : Puzzle
     }
 
     public override void RewindPuzzle()
-    {
-        Debug.Log("Circle Rewind called");
+    {        
         if (!m_rewindMana)
-        {
-            Debug.Log("Circle Fail");
-
+        {            
             if (m_isThreeWay)
             {
 

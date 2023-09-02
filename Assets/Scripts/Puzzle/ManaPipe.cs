@@ -75,19 +75,30 @@ public class ManaPipe : Puzzle
         {
             m_leftObject.m_updateMana = true;
         }
+        else
+        {
+            FailedPuzzle();
+            var lever = (Lever)m_inputObject;
+            if(lever != null)
+            {
+                FailedPuzzle();
+            }
+        }
     }
 
     public override void RewindPuzzle()
     {
         if (!m_rewindMana)
         {
-            Debug.Log("Pipe Sent Fail");
-
-            m_leftObject.RewindPuzzle();
-        }
-        else
-        {
-            m_updateMana = true;
-        }
+            if (m_leftObject != null && m_leftObject.m_rewindHere)
+            {
+                m_leftObject.RewindPuzzle();
+            }
+            else
+            {
+                m_rewindMana = true;
+                m_updateMana = true;
+            }
+        }       
     }
 }

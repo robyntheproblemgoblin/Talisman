@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Lever : Puzzle
@@ -17,7 +18,7 @@ public class Lever : Puzzle
 
     private void Start()
     {
-       m_connectedPuzzle.SetInputObject(this);
+        m_connectedPuzzle.SetInputObject(this);
         base.Start();
     }
 
@@ -32,10 +33,8 @@ public class Lever : Puzzle
         {
             float step = m_leverSpeed * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, m_offAngle), step);
-            if(transform.rotation.eulerAngles.z == m_offAngle)
-            {
-                m_canBeInteracted = true;
-            }
+
+
         }
     }
 
@@ -45,14 +44,14 @@ public class Lever : Puzzle
         {
             UpdateMana();
         }
-    }  
+    }
 
     public override void RotatePuzzle()
     {
         if (m_canBeInteracted)
         {
             m_canBeInteracted = false;
-            m_isOn = !m_isOn;
+            m_isOn = true;
             m_connectedPuzzle.m_updateMana = true;
         }
     }
@@ -62,26 +61,18 @@ public class Lever : Puzzle
         if (!m_rewindHere)
         {
             m_rewindHere = true;
-            Debug.Log("First Fail");
         }
         else
-        {   
+        {
             m_connectedPuzzle.RewindPuzzle();
-            Debug.Log("Lever Fail");
         }
     }
 
     public override void RewindPuzzle()
     {
-        if (m_rewindMana)
-        {
-            m_isOn = !m_isOn;
-            m_rewindMana = false;
-        }
-        else
-        {
-            m_updateMana = true;
-            m_rewindMana = true;
-        }
+        Debug.Log("Fucken constant flick");
+        m_isOn = false;
+        m_rewindHere = false;
+        m_canBeInteracted = true;
     }
 }
