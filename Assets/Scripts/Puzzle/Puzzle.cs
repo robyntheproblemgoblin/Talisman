@@ -17,7 +17,7 @@ public class Puzzle : MonoBehaviour
     [HideInInspector]
     public bool m_updateMana = false;
     [HideInInspector]
-    public  float m_manaValue = 0f;
+    public float m_manaValue = 0f;
 
     protected Puzzle m_inputObject;
     protected Puzzle m_secondInputObject;
@@ -28,25 +28,25 @@ public class Puzzle : MonoBehaviour
     public Positions m_output;
 
     [HideInInspector]
-    public bool m_rewindHere;
+    public bool m_rewindHere = false;
     [HideInInspector]
     protected bool m_rewindMana;
 
-    private void Start()
+    public void Start()
     {
         m_nextY = transform.rotation.eulerAngles.y + 120;
     }
-   
+
     private void FixedUpdate()
     {
         if (m_rotate)
         {
-            transform.Rotate(0, 120 * Time.deltaTime ,0);
-            if (Quaternion.Angle(transform.rotation, m_targetRotation) <= 1f)
+            transform.Rotate(0, 120 * Time.deltaTime, 0);
+            if (Quaternion.Angle(transform.rotation, m_targetRotation) <= 5f)
             {
                 transform.rotation = Quaternion.Euler(0, m_nextY, 0);
                 m_nextY += 120;
-                m_rotate = false;               
+                m_rotate = false;
                 UpdatePositions();
             }
         }
@@ -63,15 +63,15 @@ public class Puzzle : MonoBehaviour
 
     public virtual void UpdateMana() { }
 
-    public virtual void FailedPuzzle() 
+    public virtual void FailedPuzzle()
     {
         m_rewindHere = true;
-        
-        if(m_inputObject != null)
+        if (m_inputObject != null)
         {
+            Debug.Log("F " + gameObject.name);
             m_inputObject.FailedPuzzle();
         }
-        if(m_secondInputObject != null)
+        if (m_secondInputObject != null)
         {
             m_secondInputObject.FailedPuzzle();
         }
@@ -79,7 +79,17 @@ public class Puzzle : MonoBehaviour
 
     public virtual void RewindPuzzle()
     {
-     
+
+    }
+
+    public void SetInputObject(Puzzle p)
+    {
+        m_inputObject = p;
+    }
+
+    public void SetSecondInputObject(Puzzle p)
+    {
+        m_secondInputObject = p;
     }
 }
 

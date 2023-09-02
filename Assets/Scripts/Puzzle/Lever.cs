@@ -15,6 +15,12 @@ public class Lever : Puzzle
     public Puzzle m_connectedPuzzle;
     bool m_canBeInteracted = true;
 
+    private void Start()
+    {
+       m_connectedPuzzle.SetInputObject(this);
+        base.Start();
+    }
+
     private void FixedUpdate()
     {
         if (m_isOn && transform.rotation.eulerAngles.z != m_onAngle)
@@ -26,6 +32,10 @@ public class Lever : Puzzle
         {
             float step = m_leverSpeed * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, m_offAngle), step);
+            if(transform.rotation.eulerAngles.z == m_offAngle)
+            {
+                m_canBeInteracted = true;
+            }
         }
     }
 
@@ -35,35 +45,7 @@ public class Lever : Puzzle
         {
             UpdateMana();
         }
-    }
-    public override void UpdateMana()
-    {
-        if (m_rewindMana)
-        {
-            m_manaValue += Time.deltaTime * m_manaSpeed;
-            //Update material
-            if (m_manaValue < 0.0f)
-            {
-                m_manaValue = 0.0f;
-                m_updateMana = false;
-                //Update material    
-                m_canBeInteracted = true;
-            }
-        }
-        else
-        {
-            m_manaValue += Time.deltaTime * m_manaSpeed;
-            //Update material
-            if (m_manaValue > 1.0f)
-            {
-                m_manaValue = 1.0f;
-                m_updateMana = false;
-                //Update material
-                m_connectedPuzzle.m_updateMana = true;
-            }
-        }
-    }
-
+    }  
 
     public override void RotatePuzzle()
     {
@@ -71,6 +53,7 @@ public class Lever : Puzzle
         {
             m_canBeInteracted = false;
             m_isOn = !m_isOn;
+            m_connectedPuzzle.m_updateMana = true;
         }
     }
 
@@ -79,10 +62,12 @@ public class Lever : Puzzle
         if (!m_rewindHere)
         {
             m_rewindHere = true;
+            Debug.Log("First Fail");
         }
         else
-        {
+        {   
             m_connectedPuzzle.RewindPuzzle();
+            Debug.Log("Lever Fail");
         }
     }
 
@@ -91,9 +76,11 @@ public class Lever : Puzzle
         if (m_rewindMana)
         {
             m_isOn = !m_isOn;
+            m_rewindMana = false;
         }
         else
         {
+            m_updateMana = true;
             m_rewindMana = true;
         }
     }
