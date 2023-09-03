@@ -60,17 +60,17 @@ public class Lever : Puzzle
     {
         if (!m_rewindHere)
         {
-            m_rewindHere = true;
+            m_rewindHere = true;            
         }
         else
         {
-            m_connectedPuzzle.RewindPuzzle();
+            m_connectedPuzzle.RewindPuzzle();            
         }
     }
 
     public override void RewindPuzzle()
     {
-        Debug.Log("Fucken constant flick");
+        Debug.Log(" is Rewinding");
         m_isOn = false;
         m_rewindHere = false;
         m_canBeInteracted = true;

@@ -15,8 +15,8 @@ public class RotateCircularMana : Puzzle
     public float m_rewindSpeed = 1.0f;
 
     [Space(5), Header("Connected Objects"), Space(5)]
-    public Puzzle m_leftObject;
-    public Puzzle m_rightObject;
+    public Puzzle m_outputLeftObject;
+    public Puzzle m_outputRightObject;
 
     // DELETE THESE TESTING PURPOSES
     public Material m_grey;
@@ -29,30 +29,35 @@ public class RotateCircularMana : Puzzle
 
     MeshRenderer m_in;
     MeshRenderer m_out;
+    MeshRenderer m_third;
     // STOP DELETE
 
     private new void Start()
     {
-        if (m_rightObject != null)
+        if (m_outputRightObject != null)
         {
-            m_rightObject.SetInputObject(this);
+            m_outputRightObject.SetInputObject(this);
         }
-        if (m_leftObject != null)
+        if (m_outputLeftObject != null)
         {
-            var left = (RotateCircularMana)m_leftObject;
+            var left = (RotateCircularMana)m_outputLeftObject;
             if (left.m_twoInputs)
             {
                 left.SetSecondInputObject(this);
             }
             else
             {
-                m_leftObject.SetInputObject(this);
+                m_outputLeftObject.SetInputObject(this);
             }
         }
 
         if (m_isThreeWay)
         {
             //Turn on all mesh visuals           
+            m_one.material = m_black;
+            m_two.material = m_black;
+            m_three.material = m_black;
+            m_isLeftBent = false;
         }
         else if (m_isLeftBent)
         {
@@ -90,6 +95,23 @@ public class RotateCircularMana : Puzzle
         { m_out = m_two; }
         else
         { m_out = m_three; }
+
+        if (m_isThreeWay)
+        {
+            if (m_in == m_one && m_out == m_two || m_in == m_two && m_out == m_one)
+            {
+                m_third = m_three;
+            }
+            else if (m_in == m_three && m_out == m_one || m_in == m_one && m_out == m_three)
+            {
+                m_third = m_two;
+            }
+            else
+            {
+                m_third = m_one;
+            }
+            m_third.material = m_black;
+        }
         // STOP DELETE
     }
 
@@ -136,12 +158,16 @@ public class RotateCircularMana : Puzzle
                 //DELETE THIS
                 m_in.material = m_black;
                 m_out.material = m_black;
+                if (m_isThreeWay)
+                {
+                    m_third.material = m_black;
+                }
                 //STOP DELETE
-                if (m_inputObject != null)
+                if (m_inputObject != null && m_inputObject.m_manaValue >= 1.0f && m_inputObject.m_rewindHere)
                 {
                     m_inputObject.RewindPuzzle();
-                }               
-                if (m_secondInputObject != null)
+                }
+                if (m_secondInputObject != null && m_secondInputObject.m_manaValue >= 1.0f && m_secondInputObject.m_rewindHere)
                 {
                     m_secondInputObject.RewindPuzzle();
                 }
@@ -154,6 +180,10 @@ public class RotateCircularMana : Puzzle
             //DELETE THIS
             m_in.material = m_white;
             m_out.material = m_white;
+            if (m_isThreeWay)
+            {
+                m_third.material = m_white;
+            }
             //STOP DELETE
             if (m_manaValue > 1.0f)
             {
@@ -171,15 +201,16 @@ public class RotateCircularMana : Puzzle
         {
             if (m_twoInputs)
             {
-                if (m_inputObject.m_manaValue >= 1.0f && m_secondInputObject.m_manaValue >= 1.0f)
+                if ((m_inputObject.m_manaValue >= 1.0f && (m_inputObject.m_input == Positions.TWO || m_inputObject.m_output == Positions.TWO))
+                    && (m_secondInputObject.m_manaValue >= 1.0f && (m_inputObject.m_input == Positions.THREE || m_secondInputObject.m_output == Positions.THREE)))
                 {
-                    if (m_leftObject == null)
+                    if (m_outputLeftObject == null)
                     {
                         FailedPuzzle();
                     }
                     else
                     {
-                        m_leftObject.m_updateMana = true;
+                        m_outputLeftObject.m_updateMana = true;
                     }
                 }
                 else
@@ -190,18 +221,18 @@ public class RotateCircularMana : Puzzle
             }
             else
             {
-                if (m_leftObject != null && (m_leftObject.m_input == Positions.ONE || m_leftObject.m_output == Positions.ONE))
+                if (m_outputLeftObject != null && (m_outputLeftObject.m_input == Positions.ONE || m_outputLeftObject.m_output == Positions.ONE))
                 {
-                    m_leftObject.m_updateMana = true;
+                    m_outputLeftObject.m_updateMana = true;
                 }
                 else
                 {
                     //Activate futz graphic
                     FailedPuzzle();
                 }
-                if (m_rightObject != null && (m_rightObject.m_input == Positions.ONE || m_rightObject.m_output == Positions.ONE))
+                if (m_outputRightObject != null && (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE))
                 {
-                    m_rightObject.m_updateMana = true;
+                    m_outputRightObject.m_updateMana = true;
                 }
                 else
                 {
@@ -214,12 +245,12 @@ public class RotateCircularMana : Puzzle
         {
             if (m_isLeftBent)
             {
-                if (m_leftObject != null && (m_leftObject.m_input == Positions.ONE || m_leftObject.m_output == Positions.ONE))
+                if (m_outputLeftObject != null && (m_outputLeftObject.m_input == Positions.ONE || m_outputLeftObject.m_output == Positions.ONE))
                 {
-                    m_leftObject.m_updateMana = true;
-                    if (m_rightObject != null)
+                    m_outputLeftObject.m_updateMana = true;
+                    if (m_outputRightObject != null)
                     {
-                        m_rightObject.FailedPuzzle();
+                        m_outputRightObject.FailedPuzzle();
                     }
                 }
                 else
@@ -230,12 +261,12 @@ public class RotateCircularMana : Puzzle
             }
             else
             {
-                if (m_rightObject != null && (m_rightObject.m_input == Positions.ONE || m_rightObject.m_output == Positions.ONE))
+                if (m_outputRightObject != null && (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE))
                 {
-                    m_rightObject.m_updateMana = true;
-                    if (m_leftObject != null)
+                    m_outputRightObject.m_updateMana = true;
+                    if (m_outputLeftObject != null)
                     {
-                        m_leftObject.FailedPuzzle();
+                        m_outputLeftObject.FailedPuzzle();
                     }
                 }
                 else
@@ -249,12 +280,12 @@ public class RotateCircularMana : Puzzle
         {
             if (m_isLeftBent)
             {
-                if (m_rightObject != null && (m_rightObject.m_input == Positions.ONE || m_rightObject.m_output == Positions.ONE))
+                if (m_outputRightObject != null && (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE))
                 {
-                    m_rightObject.m_updateMana = true;
-                    if (m_leftObject != null)
+                    m_outputRightObject.m_updateMana = true;
+                    if (m_outputLeftObject != null)
                     {
-                        m_leftObject.FailedPuzzle();
+                        m_outputLeftObject.FailedPuzzle();
                     }
                 }
                 else
@@ -265,12 +296,12 @@ public class RotateCircularMana : Puzzle
             }
             else
             {
-                if (m_leftObject != null && (m_leftObject.m_input == Positions.ONE || m_leftObject.m_output == Positions.ONE))
+                if (m_outputLeftObject != null && (m_outputLeftObject.m_input == Positions.ONE || m_outputLeftObject.m_output == Positions.ONE))
                 {
-                    m_leftObject.m_updateMana = true;
-                    if (m_rightObject != null)
+                    m_outputLeftObject.m_updateMana = true;
+                    if (m_outputRightObject != null)
                     {
-                        m_rightObject.FailedPuzzle();
+                        m_outputRightObject.FailedPuzzle();
                     }
                 }
                 else
@@ -282,21 +313,37 @@ public class RotateCircularMana : Puzzle
         }
     }
 
+    public override void FailedPuzzle()
+    {
+        if (m_twoInputs)
+        {
+            m_rewindHere = true;
+            if (m_inputObject != null && !m_inputObject.m_rewindHere)
+            {
+                m_inputObject.FailedPuzzle();
+            }
+            if (m_secondInputObject != null && !m_secondInputObject.m_rewindHere)
+            {
+                m_secondInputObject.FailedPuzzle();
+            }
+        }
+        else
+        {
+            base.FailedPuzzle();
+        }
+    }
+
     public override void RewindPuzzle()
-    {        
+    {
         if (!m_rewindMana)
-        {            
+        {
             if (m_isThreeWay)
             {
-
-            }
-            else if (m_input == Positions.ONE)
-            {
-                if (m_isLeftBent)
+                if (m_twoInputs)
                 {
-                    if (m_leftObject != null && m_leftObject.m_rewindHere)
+                    if (m_outputLeftObject != null && m_outputLeftObject.m_rewindHere)
                     {
-                        m_leftObject.RewindPuzzle();
+                        m_outputLeftObject.RewindPuzzle();
                     }
                     else
                     {
@@ -307,9 +354,46 @@ public class RotateCircularMana : Puzzle
                 }
                 else
                 {
-                    if (m_rightObject != null && m_rightObject.m_rewindHere)
+                    if (m_outputLeftObject != null && m_outputLeftObject.m_rewindHere)
                     {
-                        m_rightObject.RewindPuzzle();
+                        m_outputLeftObject.RewindPuzzle();
+                    }
+                    if (m_outputRightObject != null && m_outputRightObject.m_rewindHere)
+                    {
+                        m_outputRightObject.RewindPuzzle();
+                    }
+                    if (!m_outputLeftObject.m_rewindHere && !m_outputRightObject.m_rewindHere)
+                    {
+
+                        m_rewindHere = false;
+
+                        m_rewindMana = true;
+                        m_updateMana = true;
+                    }
+                }
+            }
+            else if (m_input == Positions.ONE)
+            {
+                if (m_isLeftBent)
+                {
+                    if (m_outputLeftObject != null && m_outputLeftObject.m_rewindHere)
+                    {
+                        Debug.Log(gameObject.name + " is the fucker");
+                        m_outputLeftObject.RewindPuzzle();
+                    }
+                    else
+                    {
+                        m_rewindHere = false;
+                        m_rewindMana = true;
+                        m_updateMana = true;
+                    }
+                }
+                else
+                {
+                    if (m_outputRightObject != null && m_outputRightObject.m_rewindHere)
+                    {
+                        Debug.Log(gameObject.name + " is the fucker");
+                        m_outputRightObject.RewindPuzzle();
                     }
                     else
                     {
@@ -323,9 +407,10 @@ public class RotateCircularMana : Puzzle
             {
                 if (m_isLeftBent)
                 {
-                    if (m_rightObject != null && m_rightObject.m_rewindHere)
+                    if (m_outputRightObject != null && m_outputRightObject.m_rewindHere)
                     {
-                        m_rightObject.RewindPuzzle();
+                        Debug.Log(gameObject.name + " is the fucker");
+                        m_outputRightObject.RewindPuzzle();
                     }
                     else
                     {
@@ -336,9 +421,10 @@ public class RotateCircularMana : Puzzle
                 }
                 else
                 {
-                    if (m_leftObject != null && m_leftObject.m_rewindHere)
+                    if (m_outputLeftObject != null && m_outputLeftObject.m_rewindHere)
                     {
-                        m_leftObject.RewindPuzzle();
+                        Debug.Log(gameObject.name + " is the fucker");
+                        m_outputLeftObject.RewindPuzzle();
                     }
                     else
                     {

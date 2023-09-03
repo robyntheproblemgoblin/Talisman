@@ -16,7 +16,7 @@ public class Puzzle : MonoBehaviour
 
     [HideInInspector]
     public bool m_updateMana = false;
-    [HideInInspector]
+    //[HideInInspector]
     public float m_manaValue = 0f;
 
     protected Puzzle m_inputObject;
@@ -27,10 +27,12 @@ public class Puzzle : MonoBehaviour
     public Positions m_input;
     public Positions m_output;
 
-    [HideInInspector]
+    
     public bool m_rewindHere = false;
-    [HideInInspector]
+    [SerializeField]
     protected bool m_rewindMana;
+    
+    public bool m_doubleRewind = false;
 
     public void Start()
     {
@@ -65,15 +67,11 @@ public class Puzzle : MonoBehaviour
 
     public virtual void FailedPuzzle()
     {
-        m_rewindHere = true;
+        m_rewindHere = true;        
         if (m_inputObject != null)
         {
             m_inputObject.FailedPuzzle();
-        }
-        if (m_secondInputObject != null)
-        {
-            m_secondInputObject.FailedPuzzle();
-        }
+        }       
     }
 
     public virtual void RewindPuzzle()

@@ -9,7 +9,7 @@ public class ManaPipe : Puzzle
     public float m_rewindSpeed = 1.0f;
 
     [Space(5), Header("Connected Objects"), Space(5)]
-    public Puzzle m_leftObject;
+    public Puzzle m_outputObject;
 
     public Material m_black;
     public Material m_white;
@@ -19,7 +19,7 @@ public class ManaPipe : Puzzle
     private new void Start()
     {
         m_pipe = GetComponent<MeshRenderer>();
-        m_leftObject.SetInputObject(this);
+        m_outputObject.SetInputObject(this);
     }
 
     private void Update()
@@ -71,9 +71,9 @@ public class ManaPipe : Puzzle
     }
     void StartNextSequence()
     {
-        if (m_leftObject.m_input == Positions.ONE || m_leftObject.m_output == Positions.ONE)
+        if (m_outputObject.m_input == Positions.ONE || m_outputObject.m_output == Positions.ONE)
         {
-            m_leftObject.m_updateMana = true;
+            m_outputObject.m_updateMana = true;
         }
         else
         {
@@ -90,12 +90,14 @@ public class ManaPipe : Puzzle
     {
         if (!m_rewindMana)
         {
-            if (m_leftObject != null && m_leftObject.m_rewindHere)
+            if (m_outputObject != null && m_outputObject.m_rewindHere)
             {
-                m_leftObject.RewindPuzzle();
+                m_outputObject.RewindPuzzle();
             }
             else
             {
+            Debug.Log(gameObject.name + " is Rewinding");
+                m_rewindHere = false;
                 m_rewindMana = true;
                 m_updateMana = true;
             }
