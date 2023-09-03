@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5374499047528616015}
   - component: {fileID: 5374499047528616008}
   - component: {fileID: 5374499047528616009}
+  - component: {fileID: 5437763285109156826}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5374499047528616011}
-  m_LocalRotation: {x: 0, y: 0, z: -0.29237175, w: 0.9563048}
+  m_LocalRotation: {x: 0, y: 0, z: -0.21643952, w: 0.97629607}
   m_LocalPosition: {x: 0, y: 0.1, z: -0}
   m_LocalScale: {x: 0.1, y: 1.4, z: 0.10000002}
   m_ConstrainProportionsScale: 0
@@ -98,6 +99,33 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &5437763285109156826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374499047528616011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91b4e3842e7d8441b429672504ca7a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_unlocked: 0
+  m_door: {fileID: 0}
+  m_updateMana: 0
+  m_manaValue: 0
+  m_input: 0
+  m_output: 0
+  m_rewindHere: 0
+  m_rewindMana: 0
+  m_doubleRewind: 0
+  m_isOn: 0
+  m_onAngle: 25
+  m_offAngle: -25
+  m_leverSpeed: 10
+  m_manaSpeed: 10
+  m_connectedPuzzle: {fileID: 0}
 --- !u!1 &5374499047949200860
 GameObject:
   m_ObjectHideFlags: 0

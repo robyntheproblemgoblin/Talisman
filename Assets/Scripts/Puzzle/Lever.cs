@@ -60,10 +60,12 @@ public class Lever : Puzzle
     {
         if (!m_rewindHere)
         {
+            Debug.Log("First Lever Fail");
             m_rewindHere = true;            
         }
         else
         {
+            Debug.Log("Second Lever Fail");
             m_connectedPuzzle.RewindPuzzle();            
         }
     }

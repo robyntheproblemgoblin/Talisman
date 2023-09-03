@@ -40,10 +40,17 @@ public class RotateCircularMana : Puzzle
         }
         if (m_outputLeftObject != null)
         {
-            var left = (RotateCircularMana)m_outputLeftObject;
-            if (left.m_twoInputs)
+            if (m_outputLeftObject is RotateCircularMana)
             {
-                left.SetSecondInputObject(this);
+                var left = (RotateCircularMana)m_outputLeftObject;
+                if (left.m_twoInputs)
+                {
+                    left.SetSecondInputObject(this);
+                }
+                else
+                {
+                    left.SetInputObject(this);
+                }
             }
             else
             {
@@ -378,7 +385,7 @@ public class RotateCircularMana : Puzzle
                 {
                     if (m_outputLeftObject != null && m_outputLeftObject.m_rewindHere)
                     {
-                        Debug.Log(gameObject.name + " is the fucker");
+                        Debug.Log(gameObject.name + " is sending rewind to it's left and is left bent");
                         m_outputLeftObject.RewindPuzzle();
                     }
                     else
@@ -392,7 +399,7 @@ public class RotateCircularMana : Puzzle
                 {
                     if (m_outputRightObject != null && m_outputRightObject.m_rewindHere)
                     {
-                        Debug.Log(gameObject.name + " is the fucker");
+                        Debug.Log(gameObject.name + " is sending rewind to it's right");
                         m_outputRightObject.RewindPuzzle();
                     }
                     else
@@ -409,7 +416,7 @@ public class RotateCircularMana : Puzzle
                 {
                     if (m_outputRightObject != null && m_outputRightObject.m_rewindHere)
                     {
-                        Debug.Log(gameObject.name + " is the fucker");
+                        Debug.Log(gameObject.name + " is sending to the right and is left bent");
                         m_outputRightObject.RewindPuzzle();
                     }
                     else
@@ -423,7 +430,7 @@ public class RotateCircularMana : Puzzle
                 {
                     if (m_outputLeftObject != null && m_outputLeftObject.m_rewindHere)
                     {
-                        Debug.Log(gameObject.name + " is the fucker");
+                        Debug.Log(gameObject.name + " is sending to the left");
                         m_outputLeftObject.RewindPuzzle();
                     }
                     else

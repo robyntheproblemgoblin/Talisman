@@ -69,9 +69,13 @@ public class Puzzle : MonoBehaviour
     {
         m_rewindHere = true;        
         if (m_inputObject != null)
-        {
+        {            
             m_inputObject.FailedPuzzle();
-        }       
+        }
+        else
+        {
+            Debug.Log(gameObject.name + " isn't getting an input");
+        }
     }
 
     public virtual void RewindPuzzle()
