@@ -65,6 +65,7 @@ public class Lever : Puzzle
                 m_canBeInteracted = false;
                 m_isOn = true;
                 m_connectedPuzzle.m_updateMana = true;
+                m_connectedPuzzle.StopRotation();
             }
             else
             {

@@ -9,7 +9,10 @@ public class ManaPipe : Puzzle
     public float m_rewindSpeed = 1.0f;
 
     [Space(5), Header("Connected Objects"), Space(5)]
-    public Puzzle m_outputObject;
+    public Puzzle m_outputLeftObject;
+    public Puzzle m_outputRightObject;
+
+    public bool m_twoOutputs;
 
     public Material m_black;
     public Material m_white;
@@ -19,9 +22,13 @@ public class ManaPipe : Puzzle
     private new void Start()
     {
         m_pipe = GetComponent<MeshRenderer>();
-        if (m_outputObject != null)
+        if (m_outputLeftObject != null)
         {
-            m_outputObject.SetInputObject(this);
+            m_outputLeftObject.SetInputObject(this);
+        }
+        if (m_outputRightObject != null)
+        {
+            m_outputRightObject.SetInputObject(this);
         }
     }
 
@@ -31,7 +38,7 @@ public class ManaPipe : Puzzle
         {
             UpdateMana();
         }
-    }    
+    }
 
     public override void UpdateMana()
     {
@@ -72,45 +79,81 @@ public class ManaPipe : Puzzle
     }
     void StartNextSequence()
     {
-        if (m_outputObject != null)
+        if (m_outputLeftObject != null)
         {
-            if (m_outputObject.m_input == Positions.ONE || m_outputObject.m_output == Positions.ONE)
+            if (m_outputLeftObject.m_input == Positions.ONE || m_outputLeftObject.m_output == Positions.ONE)
             {
-                m_outputObject.m_updateMana = true;
+                m_outputLeftObject.m_updateMana = true;
+            }
+        }
+        if (m_outputRightObject != null)
+        {
+            if (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE)
+            {
+                m_outputRightObject.m_updateMana = true;
             }
         }
         else
         {
-          // Activate futz graphic
+            // Activate futz graphic
         }
     }
 
     public override void RotatePuzzle()
     {
-       
+
+    }
+
+    public override void StopRotation()
+    {
+        if (m_outputLeftObject != null)
+        {
+            m_outputLeftObject.StopRotation();
+        }
+        if (m_outputRightObject != null)
+        {
+            m_outputRightObject.StopRotation();
+        }
     }
 
     public override void RewindPuzzle()
     {
         if (!m_rewindMana)
         {
-            if (m_outputObject != null && m_outputObject.m_manaValue > 0)
+            if (m_twoOutputs)
             {
-                m_outputObject.RewindPuzzle();
+                if (m_outputLeftObject != null && m_outputLeftObject.m_manaValue <= 0 &&
+                          m_outputRightObject != null && m_outputRightObject.m_manaValue <= 0)
+                {
+                    m_rewindMana = true;
+                    m_updateMana = true;
+                }
+                else
+                {
+                    if (m_outputLeftObject != null && m_outputLeftObject.m_manaValue > 0)
+                    {
+                        m_outputLeftObject.RewindPuzzle();
+                    }
+                    if (m_outputRightObject != null && m_outputRightObject.m_manaValue > 0)
+                    {
+                        m_outputRightObject.RewindPuzzle();
+                    }
+                }
+            }
+            else if (m_outputLeftObject != null && m_outputLeftObject.m_manaValue > 0)
+            {
+                m_outputLeftObject.RewindPuzzle();
             }
             else
-            {         
-                m_rewindHere = false;
+            {
                 m_rewindMana = true;
                 m_updateMana = true;
             }
         }
         else
-        {            
-            m_rewindHere = false;
+        {
             m_rewindMana = true;
             m_updateMana = true;
         }
-
     }
 }

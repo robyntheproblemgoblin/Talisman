@@ -25,14 +25,12 @@ public class Puzzle : MonoBehaviour
     // Set the first face and the last face
     [Space(5), Header("Starting and End Symbols"), Space(5)]
     public Positions m_input;
-    public Positions m_output;
-
+    public Positions m_output;    
     
-    public bool m_rewindHere = false;
     [SerializeField]
     protected bool m_rewindMana;
-    
-    public bool m_doubleRewind = false;
+
+    protected bool m_canInteract = true;
 
     public void Start()
     {
@@ -56,19 +54,21 @@ public class Puzzle : MonoBehaviour
 
     public virtual void RotatePuzzle()
     {
-        m_targetRotation = Quaternion.Euler(0, m_nextY, 0);
-        m_rotations++;
-        m_rotate = true;
+        if (m_canInteract)
+        {
+            m_targetRotation = Quaternion.Euler(0, m_nextY, 0);
+            m_rotations++;
+            m_rotate = true;
+        }
     }
+
+    public virtual void StopRotation() { }
 
     public virtual void UpdatePositions() { }
 
     public virtual void UpdateMana() { }
 
-    public virtual void RewindPuzzle()
-    {
-
-    }
+    public virtual void RewindPuzzle() { }
 
     public void SetInputObject(Puzzle p)
     {
