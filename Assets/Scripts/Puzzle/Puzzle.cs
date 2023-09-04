@@ -79,6 +79,7 @@ public class Puzzle : MonoBehaviour
     {
         m_secondInputObject = p;
     }
+  
 }
 
 public enum Positions

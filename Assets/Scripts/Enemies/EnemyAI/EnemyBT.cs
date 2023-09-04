@@ -33,6 +33,7 @@ public class EnemyBT : MonoBehaviour
     Vector2 m_smoothDeltaPosition;
 
     public float m_damage = 5;
+    public bool m_isStatue = true;
 
     void Start()
     {
@@ -56,7 +57,8 @@ public class EnemyBT : MonoBehaviour
     {
         Node root = new Selector(new List<Node>
         {
-           /* new Sequence(new List<Node>
+            new StatueMode(transform, this),
+            new Sequence(new List<Node>
             {
                 new CheckTargetInAttackRange(transform),
                 new TaskGoToTarget(transform),
@@ -65,7 +67,7 @@ public class EnemyBT : MonoBehaviour
             {
                 new CheckTargetInFOVRange(transform),
                 new TaskGoToTarget(transform),
-            }),*/
+            }),
             new TaskPatrol(transform, m_waypoints, m_agent),
         });
         return root;
