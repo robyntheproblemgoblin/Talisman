@@ -213,18 +213,13 @@ public class RotateCircularMana : Puzzle
                 {
                     if (m_outputLeftObject == null)
                     {
-                        FailedPuzzle();
+                        
                     }
                     else
                     {
                         m_outputLeftObject.m_updateMana = true;
                     }
-                }
-                else
-                {
-                    //Activate futz graphic
-                    FailedPuzzle();
-                }
+                }                
             }
             else
             {
@@ -235,7 +230,6 @@ public class RotateCircularMana : Puzzle
                 else
                 {
                     //Activate futz graphic
-                    FailedPuzzle();
                 }
                 if (m_outputRightObject != null && (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE))
                 {
@@ -243,8 +237,7 @@ public class RotateCircularMana : Puzzle
                 }
                 else
                 {
-                    //Activate futz graphic
-                    FailedPuzzle();
+                    //Activate futz graphic                    
                 }
             }
         }
@@ -254,32 +247,22 @@ public class RotateCircularMana : Puzzle
             {
                 if (m_outputLeftObject != null && (m_outputLeftObject.m_input == Positions.ONE || m_outputLeftObject.m_output == Positions.ONE))
                 {
-                    m_outputLeftObject.m_updateMana = true;
-                    if (m_outputRightObject != null)
-                    {
-                        m_outputRightObject.FailedPuzzle();
-                    }
+                    m_outputLeftObject.m_updateMana = true;                    
                 }
                 else
                 {
                     //Activate futz graphic
-                    FailedPuzzle();
                 }
             }
             else
             {
                 if (m_outputRightObject != null && (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE))
                 {
-                    m_outputRightObject.m_updateMana = true;
-                    if (m_outputLeftObject != null)
-                    {
-                        m_outputLeftObject.FailedPuzzle();
-                    }
+                    m_outputRightObject.m_updateMana = true;                    
                 }
                 else
                 {
-                    //Activate futz graphic
-                    FailedPuzzle();
+                    //Activate futz graphic                    
                 }
             }
         }
@@ -288,17 +271,12 @@ public class RotateCircularMana : Puzzle
             if (m_isLeftBent)
             {
                 if (m_outputRightObject != null && (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE))
-                {
-                    m_outputRightObject.m_updateMana = true;
-                    if (m_outputLeftObject != null)
-                    {
-                        m_outputLeftObject.FailedPuzzle();
-                    }
+                {                    
+                    m_outputRightObject.m_updateMana = true;                   
                 }
                 else
                 {
-                    //Activate futz graphic
-                    FailedPuzzle();
+                    //Activate futz graphic                    
                 }
             }
             else
@@ -306,39 +284,14 @@ public class RotateCircularMana : Puzzle
                 if (m_outputLeftObject != null && (m_outputLeftObject.m_input == Positions.ONE || m_outputLeftObject.m_output == Positions.ONE))
                 {
                     m_outputLeftObject.m_updateMana = true;
-                    if (m_outputRightObject != null)
-                    {
-                        m_outputRightObject.FailedPuzzle();
-                    }
                 }
                 else
                 {
-                    //Activate futz graphic
-                    FailedPuzzle();
+                    //Activate futz graphic                    
                 }
             }
         }
-    }
-
-    public override void FailedPuzzle()
-    {
-        if (m_twoInputs)
-        {
-            m_rewindHere = true;
-            if (m_inputObject != null && !m_inputObject.m_rewindHere)
-            {
-                m_inputObject.FailedPuzzle();
-            }
-            if (m_secondInputObject != null && !m_secondInputObject.m_rewindHere)
-            {
-                m_secondInputObject.FailedPuzzle();
-            }
-        }
-        else
-        {
-            base.FailedPuzzle();
-        }
-    }
+    }    
 
     public override void RewindPuzzle()
     {
