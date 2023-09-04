@@ -14,7 +14,7 @@ public class Lever : Puzzle
     public float m_manaSpeed = 10;
 
     public Puzzle m_connectedPuzzle;
-    bool m_canBeInteracted = true;
+    public bool m_canBeInteracted = true;
 
     private void Start()
     {
@@ -24,19 +24,29 @@ public class Lever : Puzzle
 
     private void FixedUpdate()
     {
-        if (m_isOn && transform.rotation.eulerAngles.z != m_onAngle)
+        if (m_isOn && Quaternion.Angle(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, m_onAngle)) >= 1)
         {
             float step = m_leverSpeed * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, m_onAngle), step);
         }
-        else if (!m_isOn && transform.rotation.eulerAngles.z != m_offAngle)
-        {
+        else if (m_isOn == false && Quaternion.Angle(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, m_offAngle)) >= 1)
+        {            
             float step = m_leverSpeed * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, m_offAngle), step);
-
-
+        }
+        if (!m_canBeInteracted)
+        {
+            if (m_isOn && Quaternion.Angle(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, m_onAngle)) < 1)
+            {
+                m_canBeInteracted = true;
+            }
+            else if (!m_isOn && Quaternion.Angle(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, m_offAngle)) < 1)
+            {
+                m_canBeInteracted = true;
+            }
         }
     }
+
 
     private void Update()
     {
@@ -50,31 +60,18 @@ public class Lever : Puzzle
     {
         if (m_canBeInteracted)
         {
-            m_canBeInteracted = false;
-            m_isOn = true;
-            m_connectedPuzzle.m_updateMana = true;
+            if (!m_isOn)
+            {
+                m_canBeInteracted = false;
+                m_isOn = true;
+                m_connectedPuzzle.m_updateMana = true;
+            }
+            else
+            {
+                m_canBeInteracted = false;
+                m_isOn = false;
+                m_connectedPuzzle.RewindPuzzle();
+            }
         }
-    }
-
-    public override void FailedPuzzle()
-    {
-        if (!m_rewindHere)
-        {
-            Debug.Log("First Lever Fail");
-            m_rewindHere = true;            
-        }
-        else
-        {
-            Debug.Log("Second Lever Fail");
-            m_connectedPuzzle.RewindPuzzle();            
-        }
-    }
-
-    public override void RewindPuzzle()
-    {
-        Debug.Log(" is Rewinding");
-        m_isOn = false;
-        m_rewindHere = false;
-        m_canBeInteracted = true;
     }
 }

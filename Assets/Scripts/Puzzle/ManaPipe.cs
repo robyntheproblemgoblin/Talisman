@@ -31,9 +31,7 @@ public class ManaPipe : Puzzle
         {
             UpdateMana();
         }
-    }
-
-    public override void RotatePuzzle() { }
+    }    
 
     public override void UpdateMana()
     {
@@ -50,7 +48,7 @@ public class ManaPipe : Puzzle
                 //DELETE THIS
                 m_pipe.material = m_black;
                 //STOP DELETE
-                if (m_inputObject != null)
+                if (m_inputObject != null && !(m_inputObject is Lever))
                 {
                     m_inputObject.RewindPuzzle();
                 }
@@ -83,19 +81,20 @@ public class ManaPipe : Puzzle
         }
         else
         {
-            FailedPuzzle();
-            if (m_inputObject is Lever)
-            {
-                FailedPuzzle();
-            }
+          // Activate futz graphic
         }
+    }
+
+    public override void RotatePuzzle()
+    {
+       
     }
 
     public override void RewindPuzzle()
     {
         if (!m_rewindMana)
         {
-            if (m_outputObject != null && m_outputObject.m_rewindHere)
+            if (m_outputObject != null && m_outputObject.m_manaValue > 0)
             {
                 m_outputObject.RewindPuzzle();
             }
