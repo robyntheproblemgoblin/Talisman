@@ -71,6 +71,7 @@ public class Lever : Puzzle
             {
                 m_canBeInteracted = false;
                 m_isOn = false;
+                m_connectedPuzzle.StopRotation();
                 m_connectedPuzzle.RewindPuzzle();
             }
         }

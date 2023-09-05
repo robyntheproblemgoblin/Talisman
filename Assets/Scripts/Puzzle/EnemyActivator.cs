@@ -9,7 +9,7 @@ public class EnemyActivator : Puzzle
     // Start is called before the first frame update
     void Start()
     {
-        m_enemy = GetComponentInChildren<EnemyBT>();        
+       
     }
 
     // Update is called once per frame

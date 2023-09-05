@@ -29,7 +29,9 @@ public class RotateCircularMana : Puzzle
 
     string m_shaderIn;
     string m_shaderOut;
-    string m_shaderInOut;    
+    string m_shaderInOut;
+
+    bool m_flipMana;
 
     private new void Start()
     {
@@ -87,67 +89,62 @@ public class RotateCircularMana : Puzzle
         //DELETE Sort THIS
         List<Material> materials = new List<Material>();
         materials.Add(m_one.material);
-        
 
-        if (m_input == Positions.ONE)
-        {
-            m_in = m_one;
-            m_in.materials = materials.ToArray();
-            m_shaderIn = "_ManaChannel1";
-        }
-        else if (m_input == Positions.TWO)
-        {
-            m_in = m_two;
-            m_in.materials = materials.ToArray();
-            m_shaderIn = "_ManaChannel2";
-        }
-        else
-        {
-            m_in = m_three;
-            m_in.materials = materials.ToArray();
-            m_shaderIn = "_ManaChannel3";
-        }
-        if (m_output == Positions.ONE)
-        {
-            m_out = m_one;
-            m_out.materials = materials.ToArray();
-            m_shaderOut = "_ManaChannel1";
-        }
-        else if (m_output == Positions.TWO)
-        {
-            m_out = m_two;
-            m_out.materials = materials.ToArray();
-            m_shaderOut = "_ManaChannel2";
-        }
-        else
-        {
-            m_out = m_three;
-            m_out.materials = materials.ToArray();
-            m_shaderOut = "_ManaChannel3";
-        }
-        m_in.enabled = true;
-        m_out.enabled = true;
+
         if (m_isThreeWay)
         {
-            if (m_in == m_one && m_out == m_two || m_in == m_two && m_out == m_one)
+            m_in = m_one;
+            m_out = m_two;
+            m_inOut = m_three;
+            m_in.materials = materials.ToArray();
+            m_inOut.materials = materials.ToArray();
+            m_out.materials = materials.ToArray();
+            m_shaderIn = "_ManaChannel1";
+            m_shaderOut = "_ManaChannel2";
+            m_shaderInOut = "_ManaChannel3";
+            m_inOut.enabled = true;
+        }
+        else
+        {
+            if (m_input == Positions.ONE)
             {
-                m_inOut = m_three;
-                m_shaderInOut = "_ManaChannel3";
+                m_in = m_one;
+                m_in.materials = materials.ToArray();
+                m_shaderIn = "_ManaChannel1";
             }
-            else if (m_in == m_three && m_out == m_one || m_in == m_one && m_out == m_three)
+            else if (m_input == Positions.TWO)
             {
-                m_inOut = m_two;
-                m_shaderInOut = "_ManaChannel2";
+                m_in = m_two;
+                m_in.materials = materials.ToArray();
+                m_shaderIn = "_ManaChannel2";
             }
             else
             {
-                m_inOut = m_one;
-                m_shaderInOut = "_ManaChannel1";
+                m_in = m_three;
+                m_in.materials = materials.ToArray();
+                m_shaderIn = "_ManaChannel3";
             }
-            m_inOut.materials = materials.ToArray();
-            m_inOut.enabled = true;
+            if (m_output == Positions.ONE)
+            {
+                m_out = m_one;
+                m_out.materials = materials.ToArray();
+                m_shaderOut = "_ManaChannel1";
+            }
+            else if (m_output == Positions.TWO)
+            {
+                m_out = m_two;
+                m_out.materials = materials.ToArray();
+                m_shaderOut = "_ManaChannel2";
+            }
+            else
+            {
+                m_out = m_three;
+                m_out.materials = materials.ToArray();
+                m_shaderOut = "_ManaChannel3";
+            }
         }
-
+        m_in.enabled = true;
+        m_out.enabled = true;
     }
 
     private void Update()
@@ -161,12 +158,14 @@ public class RotateCircularMana : Puzzle
     public override void RotatePuzzle()
     {
         if (!m_isThreeWay)
-        base.RotatePuzzle();
+        {
+            base.RotatePuzzle();
+        }
     }
 
     public override void StopRotation()
     {
-        m_canInteract = false;
+        m_canInteract = !m_canInteract;
         if (m_isThreeWay)
         {
             if (m_twoInputs)
@@ -231,6 +230,7 @@ public class RotateCircularMana : Puzzle
             if (m_input == Positions.ONE)
             {
                 m_input = Positions.THREE;
+                m_flipMana = true;
             }
             else
             {
@@ -239,6 +239,7 @@ public class RotateCircularMana : Puzzle
             if (m_output == Positions.ONE)
             {
                 m_output = Positions.THREE;
+                m_flipMana = false;
             }
             else
             {
@@ -251,21 +252,20 @@ public class RotateCircularMana : Puzzle
     {
         if (m_rewindMana)
         {
-            m_manaValue -= Time.deltaTime * m_speed;            
-            //Update material
-            //DELETE THIS
+            m_manaValue -= Time.deltaTime * m_speed;
+
             if (m_isThreeWay)
             {
                 if (m_twoInputs)
                 {
                     if (m_manaValue > 0.5f)
                     {
-                        m_out.material.SetFloat(m_shaderOut, math.remap(0.5f, 1f, 1f, 0f, m_manaValue));
+                        m_inOut.material.SetFloat(m_shaderInOut, math.remap(0.5f, 1f, 1f, 0f, m_manaValue));
                     }
                     else
                     {
                         m_in.material.SetFloat(m_shaderIn, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
-                        m_inOut.material.SetFloat(m_shaderInOut, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
+                        m_out.material.SetFloat(m_shaderOut, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
                     }
                 }
                 else
@@ -284,16 +284,30 @@ public class RotateCircularMana : Puzzle
             }
             else
             {
-                if (m_manaValue > 0.5f)
+                if (m_flipMana)
                 {
-                    m_out.material.SetFloat(m_shaderOut, math.remap(0.5f, 1f, 1f, 0f, m_manaValue));
+                    if (m_manaValue > 0.5f)
+                    {
+                        m_in.material.SetFloat(m_shaderIn, math.remap(0.5f, 1f, 1f, 0f, m_manaValue));
+                    }
+                    else
+                    {
+                        m_out.material.SetFloat(m_shaderOut, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
+                    }
                 }
                 else
                 {
-                    m_in.material.SetFloat(m_shaderIn, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
+                    if (m_manaValue > 0.5f)
+                    {
+                        m_out.material.SetFloat(m_shaderOut, math.remap(0.5f, 1f, 1f, 0f, m_manaValue));
+                    }
+                    else
+                    {
+                        m_in.material.SetFloat(m_shaderIn, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
+                    }
                 }
             }
-            //STOP DELETE
+
             if (m_manaValue < 0.0f)
             {
                 m_manaValue = 0.0f;
@@ -313,15 +327,12 @@ public class RotateCircularMana : Puzzle
                 {
                     m_secondInputObject.RewindPuzzle();
                 }
-                m_canInteract = true;
             }
         }
         else
         {
             m_manaValue += Time.deltaTime * m_speed;
-            //Update material
-            //DELETE THIS
-            
+
             if (m_isThreeWay)
             {
                 if (m_twoInputs)
@@ -329,11 +340,11 @@ public class RotateCircularMana : Puzzle
                     if (m_manaValue < 0.5f)
                     {
                         m_in.material.SetFloat(m_shaderIn, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
+                        m_out.material.SetFloat(m_shaderOut, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
                     }
                     else
                     {
-                        m_inOut.material.SetFloat(m_shaderInOut, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
-                        m_out.material.SetFloat(m_shaderOut, math.remap(0.5f, 1f, 1f, 0f, m_manaValue));
+                        m_inOut.material.SetFloat(m_shaderInOut, math.remap(0.5f, 1f, 1f, 0f, m_manaValue));
                     }
                 }
                 else
@@ -352,16 +363,31 @@ public class RotateCircularMana : Puzzle
             }
             else
             {
-                if (m_manaValue < 0.5f)
+                if (m_flipMana)
                 {
-                    m_in.material.SetFloat(m_shaderIn, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
+                    if (m_manaValue < 0.5f)
+                    {
+                        m_out.material.SetFloat(m_shaderOut, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
+                    }
+                    else
+                    {
+                        m_in.material.SetFloat(m_shaderIn, math.remap(0.5f, 1f, 1f, 0f, m_manaValue));
+                    }
                 }
                 else
                 {
-                m_out.material.SetFloat(m_shaderOut, math.remap(0.5f, 1f, 1f, 0f, m_manaValue));
+                    if (m_manaValue < 0.5f)
+                    {
+                        m_in.material.SetFloat(m_shaderIn, math.remap(0f, 0.5f, -1f, 0f, m_manaValue));
+                    }
+                    else
+                    {
+                        m_out.material.SetFloat(m_shaderOut, math.remap(0.5f, 1f, 1f, 0f, m_manaValue));
+                    }
                 }
+
             }
-            //STOP DELETE
+
             if (m_manaValue > 1.0f)
             {
                 m_manaValue = 1.0f;
@@ -557,10 +583,6 @@ public class RotateCircularMana : Puzzle
                     }
                 }
             }
-        }
-        else
-        {
-            Debug.Log("LogicBroken");
         }
     }
 }
