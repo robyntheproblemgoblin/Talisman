@@ -116,6 +116,15 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cinema"",
+                    ""type"": ""Button"",
+                    ""id"": ""5381bec4-89f9-4d84-a37d-dbee170aefcf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -371,6 +380,45 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""action"": ""BlockParry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21156ddb-49cf-42ae-9eeb-7ff92b794bb5"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cinema"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI_Map"",
+            ""id"": ""337d7e23-0b6b-4a90-bf1e-f969356c5d6b"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""2979741b-3c2d-4457-b0cc-b4eb10edcb6b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1b41344e-0999-4bfd-9ef9-f230777f0401"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -389,6 +437,10 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         m_Player_Map_Interact = m_Player_Map.FindAction("Interact", throwIfNotFound: true);
         m_Player_Map_Heal = m_Player_Map.FindAction("Heal", throwIfNotFound: true);
         m_Player_Map_BlockParry = m_Player_Map.FindAction("BlockParry", throwIfNotFound: true);
+        m_Player_Map_Cinema = m_Player_Map.FindAction("Cinema", throwIfNotFound: true);
+        // UI_Map
+        m_UI_Map = asset.FindActionMap("UI_Map", throwIfNotFound: true);
+        m_UI_Map_Newaction = m_UI_Map.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -458,6 +510,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Map_Interact;
     private readonly InputAction m_Player_Map_Heal;
     private readonly InputAction m_Player_Map_BlockParry;
+    private readonly InputAction m_Player_Map_Cinema;
     public struct Player_MapActions
     {
         private @FPControls m_Wrapper;
@@ -472,6 +525,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Map_Interact;
         public InputAction @Heal => m_Wrapper.m_Player_Map_Heal;
         public InputAction @BlockParry => m_Wrapper.m_Player_Map_BlockParry;
+        public InputAction @Cinema => m_Wrapper.m_Player_Map_Cinema;
         public InputActionMap Get() { return m_Wrapper.m_Player_Map; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -511,6 +565,9 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @BlockParry.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBlockParry;
                 @BlockParry.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBlockParry;
                 @BlockParry.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBlockParry;
+                @Cinema.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnCinema;
+                @Cinema.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnCinema;
+                @Cinema.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnCinema;
             }
             m_Wrapper.m_Player_MapActionsCallbackInterface = instance;
             if (instance != null)
@@ -545,10 +602,46 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @BlockParry.started += instance.OnBlockParry;
                 @BlockParry.performed += instance.OnBlockParry;
                 @BlockParry.canceled += instance.OnBlockParry;
+                @Cinema.started += instance.OnCinema;
+                @Cinema.performed += instance.OnCinema;
+                @Cinema.canceled += instance.OnCinema;
             }
         }
     }
     public Player_MapActions @Player_Map => new Player_MapActions(this);
+
+    // UI_Map
+    private readonly InputActionMap m_UI_Map;
+    private IUI_MapActions m_UI_MapActionsCallbackInterface;
+    private readonly InputAction m_UI_Map_Newaction;
+    public struct UI_MapActions
+    {
+        private @FPControls m_Wrapper;
+        public UI_MapActions(@FPControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_UI_Map_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_UI_Map; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UI_MapActions set) { return set.Get(); }
+        public void SetCallbacks(IUI_MapActions instance)
+        {
+            if (m_Wrapper.m_UI_MapActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_UI_MapActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_UI_MapActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_UI_MapActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_UI_MapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public UI_MapActions @UI_Map => new UI_MapActions(this);
     public interface IPlayer_MapActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -561,5 +654,10 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
         void OnBlockParry(InputAction.CallbackContext context);
+        void OnCinema(InputAction.CallbackContext context);
+    }
+    public interface IUI_MapActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

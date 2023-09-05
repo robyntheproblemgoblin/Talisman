@@ -15,6 +15,11 @@ public class Door : MonoBehaviour
         foreach(Puzzle puzzle in m_puzzleList)
         {
             puzzle.m_door = this;
+            if(puzzle is SymbolMatch)
+            {
+                SymbolMatch sm = puzzle as SymbolMatch;
+                sm.CheckSolve();
+            }
         }
     }
 

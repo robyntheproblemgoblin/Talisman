@@ -119,10 +119,16 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_inputControl.Player_Map.Interact.performed += Interact;
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
+        m_inputControl.Player_Map.Cinema.performed += CinematicTest;
 
         m_currentHealth = m_health;
         m_currentMana = m_startMana;
-    }   
+    }
+
+    private void CinematicTest(InputAction.CallbackContext obj)
+    {
+        m_animator.SetTrigger("Cinematic");
+    }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {

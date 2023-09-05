@@ -12,7 +12,19 @@ public class SymbolMatch : Puzzle
     // Lightup to signify in correct position
     [Space(5), Header("Unlock Visual Signifier"), Space(5)]
     public Material m_lightMaterial;
-    public MeshRenderer m_lightNotice;    
+    public MeshRenderer m_lightNotice;
+
+    public void CheckSolve()
+    { 
+        if (m_input == m_output)
+        {
+            m_unlocked = true;
+            List<Material> nm = m_lightNotice.sharedMaterials.ToList();
+            nm.Add(m_lightMaterial);
+            m_lightNotice.sharedMaterials = nm.ToArray();
+            m_door.CheckState();
+        }
+    }
 
     public override void RotatePuzzle()
     {        
@@ -49,13 +61,6 @@ public class SymbolMatch : Puzzle
         {
             m_input++;
         }
-        if (m_input == m_output)
-        {
-            m_unlocked = true;
-            List<Material> nm = m_lightNotice.sharedMaterials.ToList();
-            nm.Add(m_lightMaterial);
-            m_lightNotice.sharedMaterials = nm.ToArray();
-            m_door.CheckState();
-        }        
+      CheckSolve();
     }   
 }

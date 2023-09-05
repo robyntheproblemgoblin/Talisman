@@ -11,9 +11,9 @@ public class EnemyBT : MonoBehaviour
 
     public static float m_speed = 2.5f;
 
-    public static float m_fovRange = 10f;
+    public static float m_fovRange = 40f;
 
-    public static float m_attackRange = 4f;
+    public static float m_attackRange = 40f;
 
     int m_playerFlameLayer;
     int m_playerSwordLayer;
@@ -57,18 +57,7 @@ public class EnemyBT : MonoBehaviour
     {
         Node root = new Selector(new List<Node>
         {
-            new StatueMode(transform, this),
-            new Sequence(new List<Node>
-            {
-                new CheckTargetInAttackRange(transform),
-                new TaskGoToTarget(transform),
-            }),
-            new Sequence(new List<Node>
-            {
-                new CheckTargetInFOVRange(transform),
-                new TaskGoToTarget(transform),
-            }),
-            new TaskPatrol(transform, m_waypoints, m_agent),
+            new StatueMode(transform, this),          
         });
         return root;
     }
