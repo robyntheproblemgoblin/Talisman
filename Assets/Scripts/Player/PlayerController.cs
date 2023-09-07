@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour
     FPControls m_inputControl;
     #region Movement Fields
     CameraControls m_camera;
-    [Header("Camera and Movement")]
-    [Space(5)]
+    [Header("Camera and Movement"), Space(5)]
     public float m_cameraSensitivity = 10;
     Vector3 m_moveDirection = Vector3.zero;
     float m_gravity = 9.81f;
