@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public GameState m_lastState;
     public GameState m_gameState;
     public event Action<GameState> OnGameStateChanged;
-    PlayerController m_player;
-    FPControls m_inputControl;
+    public PlayerController m_player;
+    public FPControls m_inputControl;
 
     Transform m_teleportPoint;
 
@@ -31,12 +31,17 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         OnGameStateChanged += GameStateChanged;
+        m_player = FindObjectOfType<PlayerController>();
+        m_inputControl = new FPControls();
+        m_player.m_inputControl = m_inputControl;
+        m_inputControl.Player_Map.Enable();
+        
     }
 
     private void Start()
     {
-        UpdateGameState(GameState.TITLE);
-        Time.timeScale = 0;
+        UpdateGameState(GameState.GAME);
+        //Time.timeScale = 0;
     }
 
     void GameStateChanged(GameState state)
@@ -95,7 +100,9 @@ public enum GameState
 {
     GAME,
     TITLE,
+    MENU,
     CINEMATIC,
-    PAUSE
+    PAUSE,
+    OPTIONS,
+    CREDITS
 }
-

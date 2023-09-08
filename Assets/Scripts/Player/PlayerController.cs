@@ -28,11 +28,10 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Health Fields    
-    [Space(10)]
-    [Header("Player Health")]
-    [Space(5)]
-    public float m_health;    
-    float m_currentHealth;
+    [Space(10), Header("Player Health"), Space(5)]
+    public float m_health;
+    [HideInInspector]
+    public float m_currentHealth;
     public float m_healRate;
     public ParticleSystem m_healParticles;
     HealingState m_healing; 
@@ -99,9 +98,7 @@ public class PlayerController : MonoBehaviour
     {
         m_camera = FindObjectOfType<CameraControls>();
         m_camera.SetupCamera(this.gameObject, m_cameraSensitivity);
-        m_characterController = GetComponent<CharacterController>();
-        m_inputControl = new FPControls();
-        m_inputControl.Player_Map.Enable();
+        m_characterController = GetComponent<CharacterController>();        
 
         m_animator = GetComponentInChildren<Animator>();
         m_idle = new IdleState(m_animator, m_projectileMana);

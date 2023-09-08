@@ -81,11 +81,63 @@ public class MenuManager : MonoBehaviour
     PlayerController m_player;
     FPControls m_inputs;
 
-    private void Start()
+    private void Awake()
     {
         m_game = GameManager.Instance;
-        m_player = FindObjectOfType<PlayerController>();
-        m_inputs = m_player.m_inputControl;
+        m_player = m_game.m_player;
+        m_inputs = m_game.m_inputControl;
+
+        m_health.maxValue = m_player.m_health;
+        m_game.OnGameStateChanged += OnGameStateChanged;
+        
     }
 
+    private void Start()
+    {
+        UpdateState(GameState.TITLE);
+    }
+
+    void OnGameStateChanged(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.TITLE:
+                UpdateState(state);
+                break;
+            case GameState.GAME:
+                if (m_game.m_lastState == GameState.PAUSE)
+                {
+                    Resume();
+                }
+                else if (m_game.m_lastState == GameState.MENU)
+                {
+                    StartGame();
+                }
+                break;
+            case GameState.PAUSE:
+                Pause();
+                break;
+
+        }
+    }
+
+    void UpdateState(GameState state)
+    {
+
+    }
+
+    void Resume()
+    {
+
+    }
+
+    void StartGame()
+    {
+
+    }
+
+    private void Pause()
+    {
+        
+    }
 }

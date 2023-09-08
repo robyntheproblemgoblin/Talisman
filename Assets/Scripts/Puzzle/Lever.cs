@@ -16,7 +16,7 @@ public class Lever : Puzzle
     public Puzzle m_connectedPuzzle;
     public bool m_canBeInteracted = true;
 
-    private void Start()
+    private new void Start()
     {
         m_connectedPuzzle.SetInputObject(this);
         base.Start();
