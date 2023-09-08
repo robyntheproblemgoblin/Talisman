@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
-    FPControls m_inputControl;
+    public FPControls m_inputControl;
     #region Movement Fields
     CameraControls m_camera;
     [Header("Camera and Movement"), Space(5)]
