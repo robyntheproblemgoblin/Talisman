@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5374499047528616008}
   - component: {fileID: 5374499047528616009}
   - component: {fileID: 5437763285109156826}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,15 +117,14 @@ MonoBehaviour:
   m_manaValue: 0
   m_input: 0
   m_output: 0
-  m_rewindHere: 0
   m_rewindMana: 0
-  m_doubleRewind: 0
   m_isOn: 0
   m_onAngle: 25
   m_offAngle: -25
   m_leverSpeed: 10
   m_manaSpeed: 10
   m_connectedPuzzle: {fileID: 0}
+  m_canBeInteracted: 1
 --- !u!1 &5374499047949200860
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +137,7 @@ GameObject:
   - component: {fileID: 5374499047949200848}
   - component: {fileID: 5374499047949200849}
   - component: {fileID: 5374499047949200850}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5374499048724751783}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: 'Lever '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

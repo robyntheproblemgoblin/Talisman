@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameManager m_game;
     public FPControls m_inputControl;
     #region Movement Fields
     CameraControls m_camera;
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Animation Fields
-    Animator m_animator;
+    public Animator m_animator;
     #endregion
 
     #region Health Fields    
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
     public float m_currentHealth;
     public float m_healRate;
     public ParticleSystem m_healParticles;
-    HealingState m_healing; 
+    HealingState m_healing;
     Dictionary<string, float> m_enemiesHaveHit = new Dictionary<string, float>();
     #endregion
 
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
     [Space(5)]
     public float m_maxMana;
     public float m_startMana;
-    public float m_manaHealCost;    
+    public float m_manaHealCost;
     public float m_currentMana;
     #endregion
 
@@ -94,11 +95,15 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Unity Methods
+    private void Awake()
+    {
+        m_inputControl = new FPControls();
+    }
     void Start()
     {
         m_camera = FindObjectOfType<CameraControls>();
         m_camera.SetupCamera(this.gameObject, m_cameraSensitivity);
-        m_characterController = GetComponent<CharacterController>();        
+        m_characterController = GetComponent<CharacterController>();
 
         m_animator = GetComponentInChildren<Animator>();
         m_idle = new IdleState(m_animator, m_projectileMana);
@@ -117,8 +122,40 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
         m_inputControl.Player_Map.Cinema.performed += CinematicTest;
 
+        m_inputControl.UI.Cancel.started += m_game.m_menuManager.Cancel;
+
         m_currentHealth = m_health;
         m_currentMana = m_startMana;
+        m_game.OnGameStateChanged += OnGameStateChanged;
+        m_game.m_menuManager.UpdateHealth();
+    }
+
+    void OnGameStateChanged(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.TITLE:
+                m_inputControl.UI.Enable();
+                break;
+            case GameState.MENU:
+                m_inputControl.UI.Enable();
+                break;
+            case GameState.GAME:
+                m_inputControl.UI.Disable();
+                m_inputControl.Player_Map.Enable();
+                break;
+            case GameState.PAUSE:
+                m_inputControl.Player_Map.Disable();
+                m_inputControl.UI.Enable();
+                break;
+            case GameState.CINEMATIC:        
+                m_inputControl.Player_Map.Disable();
+                break;
+            case GameState.CREDITS:
+                m_inputControl.Player_Map.Disable();
+                m_inputControl.UI.Enable();
+                break;
+        }
     }
 
     private void CinematicTest(InputAction.CallbackContext obj)
@@ -175,6 +212,7 @@ public class PlayerController : MonoBehaviour
     {
         m_talismanState.Update();
         UpdateDictionary();
+        UpdateInteracts();
     }
     #endregion
 
@@ -193,7 +231,6 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         m_currentHealth -= damage;
-        Debug.Log(m_currentHealth);
     }
 
     void RegisterEnemyHit(string key, float value)
@@ -266,7 +303,7 @@ public class PlayerController : MonoBehaviour
             m_currentMana -= m_manaHealCost * Time.deltaTime;
             m_currentHealth += m_healRate * Time.deltaTime;
         }
-        else if(m_currentMana < 0)
+        else if (m_currentMana < 0)
         {
             m_currentMana = 0;
         }
@@ -277,7 +314,7 @@ public class PlayerController : MonoBehaviour
     #region Mana Methods
     public bool SpendMana(float mana)
     {
-        if(m_currentMana <= 0 || m_currentMana - mana <= 0)
+        if (m_currentMana <= 0 || m_currentMana - mana <= 0)
         {
             m_currentMana = 0;
             return false;
@@ -367,19 +404,55 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Interaction Methods
+    private void UpdateInteracts()
+    {
+        Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(camRay, out hit, m_interactionDistance))
+        {
+            Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
+            Interactable interactable = hit.transform.gameObject.GetComponentInParent<Interactable>();
+            if (puzzle != null)
+            {
+                m_game.m_menuManager.SetInteract(hit);
+            }
+            else if (interactable != null)
+            {
+                m_game.m_menuManager.SetInteract(hit);
+            }
+            else
+            {
+                m_game.m_menuManager.StopInteract();
+            }
+        }
+        else
+        {
+            m_game.m_menuManager.StopInteract();
+        }
+    }
+
     private void Interact(InputAction.CallbackContext obj)
     {
         Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
-
         if (Physics.Raycast(camRay, out hit, m_interactionDistance))
         {
             Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
+            Interactable interactable = hit.transform.gameObject.GetComponentInParent<Interactable>();
             if (puzzle != null)
             {
                 puzzle.RotatePuzzle();
             }
+            else if (interactable != null)
+            {
+                m_game.CinematicTrigger(interactable);
+            }
         }
+    }
+
+    public void FinishCinematic()
+    {
+        m_game.UpdateGameState(GameState.GAME);
     }
     #endregion
 }

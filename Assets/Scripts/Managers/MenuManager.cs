@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
@@ -19,7 +18,7 @@ public class MenuManager : MonoBehaviour
     #region Title Screen Fields
     [Space(5), Header("Title Screen"), Space(5)]
     public Button m_startButton;
-    public Camera m_titleCamera;
+    //public Camera m_titleCamera;
     #endregion
 
     #region Main Menu Fields
@@ -41,7 +40,7 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI m_interactText;
     #endregion
 
-    #region Cinematics
+    #region Cinematic Fields
     [Header("Cinematics"), Space(5)]
     public Image m_topBlackBar;
     public Image m_bottomBlackBar;
@@ -53,11 +52,11 @@ public class MenuManager : MonoBehaviour
     [Header("Pause Menu"), Space(5)]
     public Button m_resume;
     public Button m_pauseOptions;
-    public Button m_revert;
+    public Button m_revertCheckpoint;
     public Button m_quitMenu;
     #endregion
 
-    #region Options 
+    #region Option Fields
     [Header("Options"), Space(5)]
     public Button m_camSensitivityButton;
     public Slider m_camSensitivitySlider;
@@ -77,67 +76,209 @@ public class MenuManager : MonoBehaviour
     public Button m_optionsBack;
     #endregion    
 
+    //Credits
+
     GameManager m_game;
-    PlayerController m_player;
-    FPControls m_inputs;
+    PlayerController m_player;    
+    EventSystem m_eventSystem;
 
     private void Awake()
     {
         m_game = GameManager.Instance;
-        m_player = m_game.m_player;
-        m_inputs = m_game.m_inputControl;
+        m_player = m_game.m_player;        
+        m_game.m_menuManager = this;
+        m_eventSystem = FindObjectOfType<EventSystem>();
 
+        m_game.OnGameStateChanged += OnGameStateChanged;        
+
+        //Title Screen Setup
+        m_startButton.onClick.AddListener(delegate () { MainMenu(); });
+
+        //Main Menu Setup
+        m_newGame.onClick.AddListener(delegate () { StartGame(); });
+        m_menuOptions.onClick.AddListener(delegate () { Options(); });
+        m_credits.onClick.AddListener(delegate () { Credits(); });
+        m_bonusArt.onClick.AddListener(delegate () { BonusArt(); });
+        m_quit.onClick.AddListener(delegate () { QuitGame(); });
+
+        //HUD Setup
         m_health.maxValue = m_player.m_health;
-        m_game.OnGameStateChanged += OnGameStateChanged;
-        
-    }
 
-    private void Start()
-    {
-        UpdateState(GameState.TITLE);
-    }
+        //Cinematic Setup
+
+        //Pause Menu Setup
+        m_resume.onClick.AddListener(delegate () { Resume(); });
+        m_pauseOptions.onClick.AddListener(delegate () { Options(); });
+        m_revertCheckpoint.onClick.AddListener(delegate () { RevertCheckpoint(); });
+        m_quitMenu.onClick.AddListener(delegate () { MainMenu(); });
+
+        //Options Setup
+        m_camSensitivityButton.onClick.AddListener(delegate () { });
+        m_camSensitivitySlider.SetValueWithoutNotify(m_player.m_cameraSensitivity);
+        m_subtitlesButton.onClick.AddListener(delegate () { });
+        m_subtitlesSlider.SetValueWithoutNotify(1);
+        m_vibrationButton.onClick.AddListener(delegate () { });
+        m_vibrationSlider.SetValueWithoutNotify(1);
+        m_masterVolumeButton.onClick.AddListener(delegate () { });
+        m_masterVolumeSlider.SetValueWithoutNotify(100);
+        m_musicVolumeButton.onClick.AddListener(delegate () { });
+        m_musicVolumeSlider.SetValueWithoutNotify(100);
+        m_sfxButton.onClick.AddListener(delegate () { });
+        m_sfxSlider.SetValueWithoutNotify(100);
+        m_dialogueButton.onClick.AddListener(delegate () { });
+        m_dialogueSlider.SetValueWithoutNotify(100);
+        m_defaults.onClick.AddListener(delegate () { });
+        m_optionsBack.onClick.AddListener(delegate () { });
+    }    
 
     void OnGameStateChanged(GameState state)
     {
+        UpdateUI(state);
         switch (state)
         {
             case GameState.TITLE:
-                UpdateState(state);
+                TitleScreen();
+                break;
+            case GameState.MENU:
+                MainMenu();
                 break;
             case GameState.GAME:
-                if (m_game.m_lastState == GameState.PAUSE)
-                {
-                    Resume();
-                }
-                else if (m_game.m_lastState == GameState.MENU)
+                if (m_game.m_lastState == GameState.MENU)
                 {
                     StartGame();
+                }
+                else if (m_game.m_lastState == GameState.PAUSE)
+                {
+                    Resume();
                 }
                 break;
             case GameState.PAUSE:
                 Pause();
                 break;
-
+            case GameState.CINEMATIC:
+                break;
+            case GameState.CREDITS:
+                break;
         }
     }
 
-    void UpdateState(GameState state)
+    void UpdateUI(GameState state)
     {
-
+        m_title.SetActive(state == GameState.TITLE);
+        m_mainMenu.SetActive(state == GameState.MENU);
+        m_hud.SetActive(state == GameState.GAME);
+        m_cinematics.SetActive(state == GameState.CINEMATIC);
+        m_pauseMenu.SetActive(state == GameState.PAUSE);
+        m_optionsMenu.SetActive(state == GameState.OPTIONS);
     }
-
+    void TitleScreen()
+    {
+        m_eventSystem.SetSelectedGameObject(m_startButton.gameObject);
+    }
+    void MainMenu()
+    {
+        m_game.UpdateGameState(GameState.MENU);
+        m_eventSystem.SetSelectedGameObject(m_newGame.gameObject);
+    }
+    void StartGame()
+    {
+        m_game.UpdateGameState(GameState.GAME);
+    }
     void Resume()
     {
 
     }
+    void QuitGame()
+    {
 
-    void StartGame()
+    }
+    void Options()
+    {
+
+    }
+    void Pause()
+    {
+
+    }
+    public void Cancel(InputAction.CallbackContext obj)
+    {
+        switch (m_game.m_gameState)
+        {
+            case GameState.OPTIONS:
+                if (m_game.m_lastState == GameState.PAUSE)
+                {
+                    Pause();
+                }
+                else if (m_game.m_lastState == GameState.MENU)
+                {
+                    MainMenu();
+                }
+                break;
+            case GameState.PAUSE:
+                Resume();
+                break;
+            case GameState.CINEMATIC:
+                break;
+            default:
+                break;
+        }
+    }
+    void RevertCheckpoint()
+    {
+
+    }
+    void RevertDefaults()
+    {
+
+    }
+    void Credits()
+    {
+
+    }
+    void BonusArt()
     {
 
     }
 
-    private void Pause()
+    public void SetTutorial(string m_tutorialText)
     {
-        
+        m_tutorial.gameObject.SetActive(true);
+        m_tutorial.text = m_tutorialText;
+    }
+
+    public void ClearTutorial()
+    {
+        m_tutorial.gameObject.SetActive(false);
+    }
+
+    public void SetInteract(RaycastHit hit)
+    {
+        if (m_interactText.enabled)
+            return;
+        else
+        {
+            Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
+            if (puzzle != null)
+            {
+                m_interactText.enabled = true;
+                m_interactText.text = puzzle.m_interactMessage;
+            }
+            Interactable interactable = hit.transform.gameObject.GetComponentInParent<Interactable>();
+            if (interactable != null)
+            {
+                m_interactText.enabled = true;
+                m_interactText.text = interactable.m_interactMessage;
+            }
+        }
+    }
+
+    public void StopInteract()
+    {
+        m_interactText.enabled = false;
+    }
+
+    public void UpdateHealth()
+    {
+        m_health.value = m_player.m_currentHealth;
     }
 }

@@ -10,10 +10,11 @@ public class GameManager : MonoBehaviour
     public GameState m_lastState;
     public GameState m_gameState;
     public event Action<GameState> OnGameStateChanged;
-    public PlayerController m_player;
-    public FPControls m_inputControl;
-
-    Transform m_teleportPoint;
+    public PlayerController m_player;    
+    public MenuManager m_menuManager;
+    
+    public List<Interactable> m_cinematicTriggers;
+    public List<Transform> m_cinematicPoints;
 
     public static GameManager Instance
     {
@@ -32,16 +33,12 @@ public class GameManager : MonoBehaviour
     {
         OnGameStateChanged += GameStateChanged;
         m_player = FindObjectOfType<PlayerController>();
-        m_inputControl = new FPControls();
-        m_player.m_inputControl = m_inputControl;
-        m_inputControl.Player_Map.Enable();
-        
+        m_player.m_game = this;                
     }
 
     private void Start()
     {
-        UpdateGameState(GameState.GAME);
-        //Time.timeScale = 0;
+        UpdateGameState(GameState.TITLE);
     }
 
     void GameStateChanged(GameState state)
@@ -49,14 +46,22 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.TITLE:
-                //AudioManager.Instance.PlayMenuMusic(true);
-                break;
+                TitleScreen();
+                break;            
             case GameState.GAME:
-                Time.timeScale = 1;
+                if (m_lastState == GameState.MENU)
+                {
+                    StartGame();
+                }
+                else if (m_lastState == GameState.PAUSE)
+                {
+                    ResumeGame();
+                }                
                 break;
             case GameState.CINEMATIC:
+                Cinematic();
                 break;
-            case GameState.PAUSE:
+            case GameState.PAUSE:               
                 break;
             default:
                 break;
@@ -73,11 +78,17 @@ public class GameManager : MonoBehaviour
         {
             case GameState.TITLE:
                 break;
+            case GameState.MENU:
+                break;
             case GameState.GAME:
                 break;
             case GameState.CINEMATIC:
                 break;
             case GameState.PAUSE:
+                break;
+            case GameState.OPTIONS:
+                break;
+            case GameState.CREDITS:
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -85,22 +96,42 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(m_gameState);
     }
 
-    public void StartGame()
+    void TitleScreen()       
     {
-
+        //AudioManager.Instance.PlayMenuMusic(true);
+        Time.timeScale = 0;        
     }
 
-    public void GameOver()
-    {
-        
+    void StartGame()
+    {        
+        Time.timeScale = 1;
     }
+
+    void ResumeGame()
+    {     
+        Time.timeScale = 1;
+    }
+
+    void Cinematic()
+    {
+     
+    }
+
+    public void CinematicTrigger(Interactable interactable) 
+    {
+        int index = m_cinematicTriggers.IndexOf(interactable);
+        m_player.transform.position = m_cinematicPoints[index].position;
+        m_player.transform.rotation = m_cinematicPoints[index].rotation;
+        m_player.m_animator.SetTrigger("Cinematic");
+        UpdateGameState(GameState.CINEMATIC);
+    }    
 }
 
 public enum GameState
 {
-    GAME,
     TITLE,
     MENU,
+    GAME,
     CINEMATIC,
     PAUSE,
     OPTIONS,

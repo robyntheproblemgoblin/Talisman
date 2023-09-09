@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8806959734670993893}
   - component: {fileID: 5996681765569683268}
   - component: {fileID: 9045503123997196287}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 9041602114797604620}
   - component: {fileID: 9041602114797604619}
   - component: {fileID: 9041602114797604618}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Target (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 9041602114802178910}
   - component: {fileID: 9041602114802178909}
   - component: {fileID: 9041602114802178908}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Target (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 9041602115889445003}
   - component: {fileID: 9041602115889445002}
   - component: {fileID: 9041602115889445001}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 9041602115961703606}
   - component: {fileID: 9041602115961703605}
   - component: {fileID: 9041602115961703604}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 9041602116691806197}
   - component: {fileID: 5058166720517189280}
   - component: {fileID: 6965167159452088192}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SymbolMatchBollard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,9 +562,7 @@ MonoBehaviour:
   m_manaValue: 0
   m_input: 0
   m_output: 0
-  m_rewindHere: 0
   m_rewindMana: 0
-  m_doubleRewind: 0
   m_lockRotationOnSolve: 1
   m_lightMaterial: {fileID: 2100000, guid: 1fccd35da486cd14aaf25ef7b9b594c7, type: 2}
   m_lightNotice: {fileID: 0}

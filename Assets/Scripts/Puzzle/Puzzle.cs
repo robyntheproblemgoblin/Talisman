@@ -32,6 +32,8 @@ public class Puzzle : MonoBehaviour
 
     protected bool m_canInteract = true;
 
+    public string m_interactMessage = "Interact";
+
     public void Start()
     {
         m_nextY = transform.rotation.eulerAngles.y + 120;
