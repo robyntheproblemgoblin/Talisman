@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class EnemyActivator : Puzzle
 {
     public EnemyBT m_enemy;

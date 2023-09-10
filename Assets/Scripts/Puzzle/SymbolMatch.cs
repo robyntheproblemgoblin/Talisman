@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,6 +12,12 @@ public class SymbolMatch : Puzzle
     [Space(5), Header("Unlock Visual Signifier"), Space(5)]
     public Material m_lightMaterial;
     public MeshRenderer m_lightNotice;
+
+    new void Start()
+    {
+        base.Start();
+        CheckSolve();
+    }
 
     public void CheckSolve()
     {

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -15,12 +13,7 @@ public class Door : MonoBehaviour
     {
         foreach(Puzzle puzzle in m_puzzleList)
         {
-            puzzle.m_doors.Add(this);
-            if(puzzle is SymbolMatch)
-            {
-                SymbolMatch sm = puzzle as SymbolMatch;
-                sm.CheckSolve();
-            }
+            puzzle.m_doors.Add(this);            
         }
     }
 

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -457,6 +456,7 @@ public class PlayerController : MonoBehaviour
 
     public void FinishCinematic()
     {
+        m_swordCollider.gameObject.transform.localPosition = new Vector3(0,0.001446927f,0);
         m_game.UpdateGameState(GameState.GAME);
     }
     #endregion

@@ -388,8 +388,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 1
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &9041602115961703602
@@ -557,12 +557,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_unlocked: 0
-  m_door: {fileID: 0}
+  m_doors: []
   m_updateMana: 0
   m_manaValue: 0
   m_input: 0
   m_output: 0
   m_rewindMana: 0
+  m_interactMessage: Interact
   m_lockRotationOnSolve: 1
   m_lightMaterial: {fileID: 2100000, guid: 1fccd35da486cd14aaf25ef7b9b594c7, type: 2}
   m_lightNotice: {fileID: 0}

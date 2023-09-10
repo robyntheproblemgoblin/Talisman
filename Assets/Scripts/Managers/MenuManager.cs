@@ -13,6 +13,9 @@ public class MenuManager : MonoBehaviour
     public GameObject m_cinematics;
     public GameObject m_pauseMenu;
     public GameObject m_optionsMenu;
+    // TEMPORARY
+    public GameObject m_falseEnd;
+    public Button m_falseQuit;
     #endregion
 
     #region Title Screen Fields
@@ -89,7 +92,8 @@ public class MenuManager : MonoBehaviour
         m_game.m_menuManager = this;
         m_eventSystem = FindObjectOfType<EventSystem>();
 
-        m_game.OnGameStateChanged += OnGameStateChanged;        
+        m_game.OnGameStateChanged += OnGameStateChanged;
+        m_falseQuit.onClick.AddListener(delegate () { QuitGame(); });
 
         //Title Screen Setup
         m_startButton.onClick.AddListener(delegate () { MainMenu(); });
@@ -102,7 +106,6 @@ public class MenuManager : MonoBehaviour
         m_quit.onClick.AddListener(delegate () { QuitGame(); });
 
         //HUD Setup
-        m_health.maxValue = m_player.m_health;
 
         //Cinematic Setup
 
@@ -129,7 +132,11 @@ public class MenuManager : MonoBehaviour
         m_dialogueSlider.SetValueWithoutNotify(100);
         m_defaults.onClick.AddListener(delegate () { });
         m_optionsBack.onClick.AddListener(delegate () { });
-    }    
+    }
+    private void Start()
+    {        
+    m_health.maxValue = m_player.m_health;        
+    }
 
     void OnGameStateChanged(GameState state)
     {
@@ -193,7 +200,7 @@ public class MenuManager : MonoBehaviour
     }
     void QuitGame()
     {
-
+        Application.Quit();
     }
     void Options()
     {
