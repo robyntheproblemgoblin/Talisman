@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4685308145854060695}
   - component: {fileID: 103494555411619618}
   - component: {fileID: -3755576265204603034}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TutorialTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,3 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1523b84fc77bf45a3dafdb1b0022ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_tutorialText: 
+  m_secondText: 
+  m_enemy: {fileID: 0}

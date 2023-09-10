@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyBT : MonoBehaviour
 {
-    Node m_root = null;
+    protected Node m_root = null;
 
     public Transform[] m_waypoints;
 
@@ -13,29 +13,30 @@ public class EnemyBT : MonoBehaviour
 
     public static float m_fovRange = 40f;
 
-    public static float m_attackRange = 40f;
+    public static float m_attackRange = 5f;
 
-    int m_playerFlameLayer;
-    int m_playerSwordLayer;
-    PlayerController m_playerController;
+    protected int m_playerFlameLayer;
+    protected int m_playerSwordLayer;
+    protected PlayerController m_playerController;
         
     public float m_startingHP = 30;
     public float m_currentHP;
 
-    Animator m_animator;
-    protected NavMeshAgent m_agent;
-    NavMeshTriangulation m_triangulation;
+    protected Animator m_animator;
+    protected NavMeshAgent m_agent;    
 
     [SerializeField]
-    LookAt m_lookAt;
+    protected LookAt m_lookAt;
 
-    Vector2 m_velocity;
-    Vector2 m_smoothDeltaPosition;
+    protected Vector2 m_velocity;
+    protected Vector2 m_smoothDeltaPosition;
 
     public float m_damage = 5;
     public bool m_isStatue = true;
 
-    void Start()
+    public EnemyActivator m_activator;
+
+    public void Start()
     {
         m_currentHP = m_startingHP;
         m_animator = transform.gameObject.GetComponent<Animator>();
@@ -62,7 +63,7 @@ public class EnemyBT : MonoBehaviour
         return root;
     }
 
-    private void OnAnimatorMove()
+    protected void OnAnimatorMove()
     {
         Vector3 rootPosition = m_animator.rootPosition;
         rootPosition.y = m_agent.nextPosition.y;
@@ -78,7 +79,7 @@ public class EnemyBT : MonoBehaviour
         return isDead;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.layer == m_playerSwordLayer)
         {
@@ -86,7 +87,7 @@ public class EnemyBT : MonoBehaviour
         }        
     }
 
-    private void OnParticleCollision(GameObject other)
+    protected void OnParticleCollision(GameObject other)
     {      
         if (other.gameObject.layer == m_playerFlameLayer)
         {
@@ -98,12 +99,14 @@ public class EnemyBT : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected void Die()
     {
+        //Setup what is happening on die
+        m_activator.EnemyDead();
         Destroy(gameObject);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (m_root != null)
         {
@@ -112,7 +115,7 @@ public class EnemyBT : MonoBehaviour
         SyncAnimation();
     }
 
-    void SyncAnimation()
+    protected virtual void SyncAnimation()
     {
         Vector3 worldDeltaPosition = m_agent.nextPosition - transform.position;
         worldDeltaPosition.y = 0;

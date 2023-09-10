@@ -1859,7 +1859,6 @@ GameObject:
   - component: {fileID: 4593672157388523117}
   - component: {fileID: 6920837869882025629}
   - component: {fileID: 7306494379551147080}
-  - component: {fileID: 5208874854801542540}
   m_Layer: 8
   m_Name: SpearmanRootMotion
   m_TagString: Untagged
@@ -1975,24 +1974,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &5208874854801542540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4942848635437579967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0329546cf50a5a3488cb52aa717ddf6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_waypoints: []
-  m_startingHP: 30
-  m_currentHP: 0
-  m_lookAt: {fileID: 0}
-  m_damage: 5
-  m_isStatue: 1
 --- !u!1 &5080546051908508681
 GameObject:
   m_ObjectHideFlags: 0

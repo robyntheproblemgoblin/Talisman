@@ -12,7 +12,7 @@ public class Puzzle : MonoBehaviour
     [HideInInspector]
     public bool m_unlocked = false;
     [HideInInspector]
-    public Door m_door;
+    public List<Door> m_doors;
 
     [HideInInspector]
     public bool m_updateMana = false;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class Door : MonoBehaviour
     {
         foreach(Puzzle puzzle in m_puzzleList)
         {
-            puzzle.m_door = this;
+            puzzle.m_doors.Add(this);
             if(puzzle is SymbolMatch)
             {
                 SymbolMatch sm = puzzle as SymbolMatch;
@@ -47,5 +48,10 @@ public class Door : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, m_lockedPos.position, step);
         }
+    }
+
+    public void CloseDoor()
+    {
+        m_unlocked = false;
     }
 }

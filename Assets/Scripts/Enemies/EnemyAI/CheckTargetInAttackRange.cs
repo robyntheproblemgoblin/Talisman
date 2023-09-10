@@ -11,7 +11,7 @@ public class CheckTargetInAttackRange : Node
     public CheckTargetInAttackRange(Transform transform)
     {
         m_transform = transform;
-        m_animator = transform.GetComponent<Animator>();
+        m_animator = transform.GetComponent<Animator>();        
     }
 
     public override NodeState Evaluate()
@@ -19,17 +19,16 @@ public class CheckTargetInAttackRange : Node
         object t = GetData("target");
         if (t == null)
         {
-            m_state = NodeState.FAILURE;
+            m_state = NodeState.FAILURE;        
             return m_state;
-        }
-        var player = MonoBehaviour.FindObjectOfType<PlayerController>();
+        }        
         Transform target = (Transform)t;
         if (Vector3.Distance(m_transform.position, target.position) <= EnemyBT.m_attackRange && canAttack)
         {
             canAttack = false;
             m_animator.SetBool("AttackB", true);
-            time = 3f;
-            m_state = NodeState.SUCCESS;
+            time = 3f;        
+            m_state = NodeState.SUCCESS;        
             return m_state;
         }
         else if (!canAttack)
@@ -43,10 +42,10 @@ public class CheckTargetInAttackRange : Node
             {
                 m_animator.SetBool("AttackB", false);                
             }
-            m_state = NodeState.FAILURE;
+            m_state = NodeState.FAILURE;               
             return m_state;
-        }
-
+        }        
+        
         m_state = NodeState.FAILURE;
         return m_state;
     }

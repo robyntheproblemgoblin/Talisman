@@ -1,46 +1,27 @@
 using System.Collections.Generic;
 using BehaviourTree;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MeleeBT : EnemyBT
 {
-    public List<AudioClip> m_mainStory;
-    public List<AudioClip> m_otherStory;
-    int m_mainIndex = 0;
-    int m_rotationIndex = 0;
-    public AudioSource m_source;
-
-    public void PlayNextMainAudio()
+    new void Start()
     {
-        m_source.clip = m_mainStory[m_mainIndex];
-        m_source.Play();
-        m_mainIndex++;
-    }
-
-    public void PlayRotationRoomClip()
-    {
-        m_source.clip = m_otherStory[m_rotationIndex];
-        m_source.Play();
-        m_rotationIndex++;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        m_currentHP = m_startingHP;
+        m_animator = transform.gameObject.GetComponent<Animator>();
+        m_animator.applyRootMotion = true;
+        m_agent = transform.gameObject.GetComponent<NavMeshAgent>();
+        if (m_waypoints.Length > 0)
+        {
+            m_agent.SetDestination(m_waypoints[0].position);
+        }
+        m_agent.updatePosition = false;
+        m_agent.updateRotation = true;
+        m_root = SetupTree();
+        m_playerFlameLayer = (int)Mathf.Log(LayerMask.GetMask("Flame"), 2);
+        m_playerSwordLayer = (int)Mathf.Log(LayerMask.GetMask("Sword"), 2);
+        m_playerController = FindObjectOfType<PlayerController>();
+    }   
 
     protected override Node SetupTree()
     {
@@ -49,16 +30,15 @@ public class MeleeBT : EnemyBT
             new StatueMode(transform, this),
              new Sequence(new List<Node>
             {
-                new CheckTargetInAttackRange(transform),
+                new CheckTargetInFOVRange(transform),
                 new TaskGoToTarget(transform),
             }),
             new Sequence(new List<Node>
             {
-                new CheckTargetInFOVRange(transform),
-                new TaskGoToTarget(transform),
-            }),           
-    });
-
+                new CheckTargetInAttackRange(transform),
+//                new TaskGoToTarget(transform),
+            })
+        });        
         return root;
     }
 }

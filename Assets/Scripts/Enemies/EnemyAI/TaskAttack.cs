@@ -18,6 +18,7 @@ public class TaskAttack : Node
         if (t == null)
         {
             m_state = NodeState.FAILURE;
+        Debug.Log("TaskAttack is " + m_state);
             return m_state;
         }
 
@@ -37,6 +38,7 @@ public class TaskAttack : Node
         }
 
         m_state = NodeState.RUNNING;
+        Debug.Log("TaskAttack is " + m_state);
         return m_state;
     }
 }

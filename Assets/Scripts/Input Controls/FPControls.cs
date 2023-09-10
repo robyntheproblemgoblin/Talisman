@@ -118,15 +118,6 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Cinema"",
-                    ""type"": ""Button"",
-                    ""id"": ""5381bec4-89f9-4d84-a37d-dbee170aefcf"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""c34b2a32-3de6-4d73-bd84-4f15b673e8b0"",
@@ -387,17 +378,6 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""BlockParry"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""21156ddb-49cf-42ae-9eeb-7ff92b794bb5"",
-                    ""path"": ""<Keyboard>/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cinema"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -956,7 +936,6 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         m_Player_Map_Interact = m_Player_Map.FindAction("Interact", throwIfNotFound: true);
         m_Player_Map_Heal = m_Player_Map.FindAction("Heal", throwIfNotFound: true);
         m_Player_Map_BlockParry = m_Player_Map.FindAction("BlockParry", throwIfNotFound: true);
-        m_Player_Map_Cinema = m_Player_Map.FindAction("Cinema", throwIfNotFound: true);
         m_Player_Map_Pause = m_Player_Map.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1039,7 +1018,6 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Map_Interact;
     private readonly InputAction m_Player_Map_Heal;
     private readonly InputAction m_Player_Map_BlockParry;
-    private readonly InputAction m_Player_Map_Cinema;
     private readonly InputAction m_Player_Map_Pause;
     public struct Player_MapActions
     {
@@ -1055,7 +1033,6 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Map_Interact;
         public InputAction @Heal => m_Wrapper.m_Player_Map_Heal;
         public InputAction @BlockParry => m_Wrapper.m_Player_Map_BlockParry;
-        public InputAction @Cinema => m_Wrapper.m_Player_Map_Cinema;
         public InputAction @Pause => m_Wrapper.m_Player_Map_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player_Map; }
         public void Enable() { Get().Enable(); }
@@ -1096,9 +1073,6 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @BlockParry.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBlockParry;
                 @BlockParry.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBlockParry;
                 @BlockParry.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBlockParry;
-                @Cinema.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnCinema;
-                @Cinema.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnCinema;
-                @Cinema.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnCinema;
                 @Pause.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnPause;
@@ -1136,9 +1110,6 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @BlockParry.started += instance.OnBlockParry;
                 @BlockParry.performed += instance.OnBlockParry;
                 @BlockParry.canceled += instance.OnBlockParry;
-                @Cinema.started += instance.OnCinema;
-                @Cinema.performed += instance.OnCinema;
-                @Cinema.canceled += instance.OnCinema;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -1263,7 +1234,6 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
         void OnBlockParry(InputAction.CallbackContext context);
-        void OnCinema(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions

@@ -19,12 +19,12 @@ public class StatueMode : Node
     {
         if (m_enemyBT.m_isStatue)
         {
-            m_state = NodeState.RUNNING;            
+            m_state = NodeState.RUNNING;
         }
         else
         {
             m_state = NodeState.FAILURE;
         }
-            return m_state;
-    }   
+        return m_state;
+    }
 }

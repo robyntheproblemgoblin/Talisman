@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     public List<Interactable> m_cinematicTriggers;
     public List<Transform> m_cinematicPoints;
 
+    [HideInInspector]
+    public Transform m_respawnPoint;
+    public float m_respawnHealth;
+    public float m_respawnMana;
+
     public static GameManager Instance
     {
         get
@@ -111,6 +116,17 @@ public class GameManager : MonoBehaviour
     {     
         Time.timeScale = 1;
     }
+
+    public void SetRespawn(Transform transform)
+    {
+        m_respawnPoint = transform;
+    }
+
+    public void SetCheckPoint(Transform transform)
+    {
+        m_respawnPoint = transform;
+    }
+
 
     void Cinematic()
     {

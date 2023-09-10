@@ -174,19 +174,22 @@ public class MenuManager : MonoBehaviour
     void TitleScreen()
     {
         m_eventSystem.SetSelectedGameObject(m_startButton.gameObject);
+        Cursor.lockState = CursorLockMode.Confined;
     }
     void MainMenu()
     {
         m_game.UpdateGameState(GameState.MENU);
         m_eventSystem.SetSelectedGameObject(m_newGame.gameObject);
+        Cursor.lockState = CursorLockMode.Confined;
     }
     void StartGame()
     {
         m_game.UpdateGameState(GameState.GAME);
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void Resume()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void QuitGame()
     {
@@ -198,7 +201,7 @@ public class MenuManager : MonoBehaviour
     }
     void Pause()
     {
-
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void Cancel(InputAction.CallbackContext obj)
     {
@@ -268,6 +271,12 @@ public class MenuManager : MonoBehaviour
             {
                 m_interactText.enabled = true;
                 m_interactText.text = interactable.m_interactMessage;
+            }
+            ManaPool manaPool = hit.transform.gameObject.GetComponent<ManaPool>(); 
+            if(manaPool != null)
+            {
+                m_interactText.enabled = true;
+                m_interactText.text = manaPool.m_interactMessage;
             }
         }
     }

@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ManaChannels_PuzzleLeverRoom
-  m_Shader: {fileID: -6465566751694194690, guid: 1f53ca14c218ddc448ecf4984befde60,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 1f53ca14c218ddc448ecf4984befde60, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -93,10 +92,10 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _ManaChannel1: 0
-    - _ManaChannel2: -0
-    - _ManaChannel3: 0
-    - _ManaChannel4: -0
+    - _ManaChannel1: -1
+    - _ManaChannel2: -1
+    - _ManaChannel3: -1
+    - _ManaChannel4: -1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005

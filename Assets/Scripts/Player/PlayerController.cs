@@ -120,7 +120,6 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_inputControl.Player_Map.Interact.performed += Interact;
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
-        m_inputControl.Player_Map.Cinema.performed += CinematicTest;
 
         m_inputControl.UI.Cancel.started += m_game.m_menuManager.Cancel;
 
@@ -148,7 +147,7 @@ public class PlayerController : MonoBehaviour
                 m_inputControl.Player_Map.Disable();
                 m_inputControl.UI.Enable();
                 break;
-            case GameState.CINEMATIC:        
+            case GameState.CINEMATIC:
                 m_inputControl.Player_Map.Disable();
                 break;
             case GameState.CREDITS:
@@ -156,11 +155,6 @@ public class PlayerController : MonoBehaviour
                 m_inputControl.UI.Enable();
                 break;
         }
-    }
-
-    private void CinematicTest(InputAction.CallbackContext obj)
-    {
-        m_animator.SetTrigger("Cinematic");
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -180,7 +174,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-        Vector2 move = m_inputControl.Player_Map.Movement.ReadValue<Vector2>();
+        Vector2 move = m_inputControl.Player_Map.Movement.ReadValue<Vector2>().normalized;
         bool isRunning = m_inputControl.Player_Map.Sprint.IsInProgress();
         float speedX = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * move.y : 0;
         float speedY = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * move.x : 0;
@@ -206,7 +200,7 @@ public class PlayerController : MonoBehaviour
     }
     void LateUpdate()
     {
-        m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>());
+        m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>().normalized);
     }
     void Update()
     {
@@ -330,6 +324,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void AddMana(float mana)
+    {
+        m_currentMana += mana;
+        if(m_currentMana > m_maxMana)
+        {
+            m_currentMana = m_maxMana;
+        }
+    }
+
     #endregion
 
     #region Mana Attack Methods
@@ -412,13 +415,10 @@ public class PlayerController : MonoBehaviour
         {
             Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
             Interactable interactable = hit.transform.gameObject.GetComponentInParent<Interactable>();
-            if (puzzle != null)
+            ManaPool manaPool = hit.transform.gameObject.GetComponentInParent<ManaPool>();
+            if (puzzle != null || interactable != null || manaPool != null)
             {
-                m_game.m_menuManager.SetInteract(hit);
-            }
-            else if (interactable != null)
-            {
-                m_game.m_menuManager.SetInteract(hit);
+                m_game.m_menuManager.SetInteract(hit);            
             }
             else
             {
@@ -439,6 +439,7 @@ public class PlayerController : MonoBehaviour
         {
             Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
             Interactable interactable = hit.transform.gameObject.GetComponentInParent<Interactable>();
+            ManaPool manaPool = hit.transform.gameObject.GetComponentInParent<ManaPool>();
             if (puzzle != null)
             {
                 puzzle.RotatePuzzle();
@@ -446,6 +447,10 @@ public class PlayerController : MonoBehaviour
             else if (interactable != null)
             {
                 m_game.CinematicTrigger(interactable);
+            }
+            else if (manaPool != null)
+            {
+                manaPool.Interact(this);
             }
         }
     }

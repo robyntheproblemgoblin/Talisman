@@ -30,22 +30,23 @@ public class CheckTargetInFOVRange : Node
                         m_parent.m_parent.SetData("target", colliders[0].gameObject.transform);
                         targetPos = colliders[0].gameObject.transform;
                         m_agent.SetDestination(targetPos.position);
-                        m_state = NodeState.SUCCESS;
-                        return m_state;                    
+        
+                        m_state = NodeState.SUCCESS;        
+                    return m_state;                    
                 }
             }
-            m_state = NodeState.FAILURE;
+            m_state = NodeState.FAILURE;        
             return m_state;
         }
         if (CanSee(targetPos.position))
-        {
+        {        
             m_agent.SetDestination(targetPos.position);
-            m_state = NodeState.SUCCESS;
+            m_state = NodeState.SUCCESS;        
             return m_state;
         }
         else
-        {
-            m_state = NodeState.FAILURE;
+        {        
+            m_state = NodeState.FAILURE;        
             return m_state;
         }
     }

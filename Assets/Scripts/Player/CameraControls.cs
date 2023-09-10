@@ -16,8 +16,7 @@ public class CameraControls : MonoBehaviour
     public void SetupCamera(GameObject go, float sensitivity)
     {
         m_player = go;
-        m_mouseSensitivity = sensitivity;       
-        Cursor.lockState = CursorLockMode.Locked;
+        m_mouseSensitivity = sensitivity;               
     }
     
     public void MoveCamera(Vector2 mouseMove)

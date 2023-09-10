@@ -50,6 +50,7 @@ public class TaskPatrol : Node
             }
         }
         m_state = NodeState.RUNNING;
+        Debug.Log("TaskPatrol is " + m_state);
         return m_state;
     }
 
