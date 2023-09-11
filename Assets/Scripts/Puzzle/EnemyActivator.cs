@@ -9,7 +9,7 @@ public class EnemyActivator : Puzzle
         if (m_updateMana && m_enemy.m_isStatue)
         {
             m_updateMana = false;
-            m_enemy.m_isStatue = false;
+            m_enemy.StopStatue();
         }
         else
         {

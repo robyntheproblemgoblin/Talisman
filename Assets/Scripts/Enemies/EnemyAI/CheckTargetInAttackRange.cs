@@ -1,5 +1,6 @@
 using UnityEngine;
 using BehaviourTree;
+using UnityEngine.Rendering;
 
 public class CheckTargetInAttackRange : Node
 {
@@ -7,11 +8,13 @@ public class CheckTargetInAttackRange : Node
     Animator m_animator;
     float time = 1f;
     bool canAttack = true;
+    float m_attackRange;
 
-    public CheckTargetInAttackRange(Transform transform)
+    public CheckTargetInAttackRange(Transform transform, float attackRange)
     {
         m_transform = transform;
-        m_animator = transform.GetComponent<Animator>();        
+        m_animator = transform.GetComponent<Animator>();
+        m_attackRange = attackRange;
     }
 
     public override NodeState Evaluate()
@@ -23,7 +26,7 @@ public class CheckTargetInAttackRange : Node
             return m_state;
         }        
         Transform target = (Transform)t;
-        if (Vector3.Distance(m_transform.position, target.position) <= EnemyBT.m_attackRange && canAttack)
+        if (Vector3.Distance(m_transform.position, target.position) <= m_attackRange && canAttack)
         {
             canAttack = false;
             m_animator.SetBool("AttackB", true);

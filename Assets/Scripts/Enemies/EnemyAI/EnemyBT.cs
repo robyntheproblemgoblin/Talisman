@@ -9,21 +9,21 @@ public class EnemyBT : MonoBehaviour
 
     public Transform[] m_waypoints;
 
-    public static float m_speed = 2.5f;
+    public float m_speed = 2.5f;
 
-    public static float m_fovRange = 40f;
+    public float m_fovRange = 90f;
 
-    public static float m_attackRange = 5f;
+    public float m_attackRange = 10f;
 
     protected int m_playerFlameLayer;
     protected int m_playerSwordLayer;
     protected PlayerController m_playerController;
-        
+
     public float m_startingHP = 30;
     public float m_currentHP;
 
     protected Animator m_animator;
-    protected NavMeshAgent m_agent;    
+    protected NavMeshAgent m_agent;
 
     [SerializeField]
     protected LookAt m_lookAt;
@@ -41,6 +41,7 @@ public class EnemyBT : MonoBehaviour
         m_currentHP = m_startingHP;
         m_animator = transform.gameObject.GetComponent<Animator>();
         m_animator.applyRootMotion = true;
+        m_animator.enabled = false;
         m_agent = transform.gameObject.GetComponent<NavMeshAgent>();
         if (m_waypoints.Length > 0)
         {
@@ -58,7 +59,7 @@ public class EnemyBT : MonoBehaviour
     {
         Node root = new Selector(new List<Node>
         {
-            new StatueMode(transform, this),          
+            new StatueMode(transform, this),
         });
         return root;
     }
@@ -69,6 +70,12 @@ public class EnemyBT : MonoBehaviour
         rootPosition.y = m_agent.nextPosition.y;
         transform.position = rootPosition;
         m_agent.nextPosition = rootPosition;
+    }
+
+    public void StopStatue()
+    {
+        m_animator.enabled = true;
+        m_isStatue = false;
     }
 
     public bool TakeHit(float damage)
@@ -84,11 +91,11 @@ public class EnemyBT : MonoBehaviour
         if (collision.collider.gameObject.layer == m_playerSwordLayer)
         {
             TakeHit(m_playerController.m_meleeDamage);
-        }        
+        }
     }
 
     protected void OnParticleCollision(GameObject other)
-    {      
+    {
         if (other.gameObject.layer == m_playerFlameLayer)
         {
             TakeHit(m_playerController.m_flameDamage);
@@ -115,10 +122,11 @@ public class EnemyBT : MonoBehaviour
         SyncAnimation();
     }
 
-    protected virtual void SyncAnimation()
+    protected void SyncAnimation()
     {
         Vector3 worldDeltaPosition = m_agent.nextPosition - transform.position;
-        worldDeltaPosition.y = 0;
+        //worldDeltaPosition.y = 0;
+
         // Map 'worldDeltaPosition' to local space
         float dx = Vector3.Dot(transform.right, worldDeltaPosition);
         float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
@@ -133,20 +141,15 @@ public class EnemyBT : MonoBehaviour
         {
             m_velocity = Vector2.Lerp(Vector2.zero, m_velocity, m_agent.remainingDistance);
         }
-
-        bool shouldMove = m_velocity.magnitude > 0.5f && m_agent.remainingDistance > m_agent.stoppingDistance;
-
-
-        m_animator.SetBool("Idle", !shouldMove);
+        
         m_animator.SetFloat("MovementSpeed", m_velocity.magnitude);
 
         m_lookAt.lookAtTargetPosition = m_agent.steeringTarget + transform.forward;
 
         float deltaMagnitude = worldDeltaPosition.magnitude;
-        if (deltaMagnitude > m_agent.radius / 2)
+        if (deltaMagnitude > m_agent.radius/* / 2*/)
         {
             transform.position = Vector3.Lerp(m_animator.rootPosition, m_agent.nextPosition, smooth);
         }
-
     }
 }

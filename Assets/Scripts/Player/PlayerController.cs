@@ -100,8 +100,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        m_camera = FindObjectOfType<CameraControls>();
-        m_camera.SetupCamera(this.gameObject, m_cameraSensitivity);
+        m_camera = FindObjectOfType<CameraControls>();        
         m_characterController = GetComponent<CharacterController>();
 
         m_animator = GetComponentInChildren<Animator>();
@@ -199,7 +198,7 @@ public class PlayerController : MonoBehaviour
     }
     void LateUpdate()
     {
-        m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>().normalized);
+        m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>(), m_cameraSensitivity);
     }
     void Update()
     {

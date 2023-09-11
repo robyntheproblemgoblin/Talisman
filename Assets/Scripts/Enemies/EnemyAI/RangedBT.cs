@@ -10,8 +10,8 @@ public class RangedBT : EnemyBT
                 new StatueMode(transform, this),
             new Sequence(new List<Node>
             {
-                new CheckTargetInFOVRange(transform),
-                new TaskGoToTarget(transform),
+                new CheckTargetInFOVRange(transform, m_fovRange),
+                new TaskGoToTarget(transform, m_attackRange, m_speed),
             }),           
         });
         return root;

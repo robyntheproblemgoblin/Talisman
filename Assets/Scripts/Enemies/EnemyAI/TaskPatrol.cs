@@ -53,6 +53,4 @@ public class TaskPatrol : Node
         Debug.Log("TaskPatrol is " + m_state);
         return m_state;
     }
-
-
 }
