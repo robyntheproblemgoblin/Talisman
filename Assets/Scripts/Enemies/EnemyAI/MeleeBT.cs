@@ -15,13 +15,10 @@ public class MeleeBT : EnemyBT
                 new CheckTargetInFOVRange(transform, m_fovRange),
                 new TaskGoToTarget(transform, m_attackRange, m_speed),
             }),
-             new StatueMode(transform, this)
-
-           /* new Sequence(new List<Node>
+             new Sequence(new List<Node>
             {
-                new CheckTargetInAttackRange(transform, m_attackRange),
-                new TaskGoToTarget(transform, m_attackRange, m_speed),
-            })*/
+                new CheckTargetInAttackRange(transform, m_attackRange),                
+            })
         }) ;        
         return root;
     }

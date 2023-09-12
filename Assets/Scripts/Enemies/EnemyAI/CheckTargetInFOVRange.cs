@@ -48,7 +48,7 @@ public class CheckTargetInFOVRange : Node
         }
         else
         {
-            m_state = NodeState.FAILURE;
+            m_state = NodeState.RUNNING;
             return m_state;
         }
     }
