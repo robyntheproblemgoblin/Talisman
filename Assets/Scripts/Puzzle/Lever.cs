@@ -15,7 +15,11 @@ public class Lever : Puzzle
 
     private new void Start()
     {
-        m_connectedPuzzle.SetInputObject(this);
+        if(m_connectedPuzzle != null)
+        {
+            m_connectedPuzzle.SetInputObject(this);
+        }
+        
         base.Start();
     }
 
@@ -61,15 +65,25 @@ public class Lever : Puzzle
             {
                 m_canBeInteracted = false;
                 m_isOn = true;
-                m_connectedPuzzle.m_updateMana = true;
-                m_connectedPuzzle.StopRotation();
+                if (m_connectedPuzzle != null)
+                {
+                    m_connectedPuzzle.m_updateMana = true;
+                    m_connectedPuzzle.StopRotation();
+                }
             }
             else
             {
                 m_canBeInteracted = false;
-                m_isOn = false;
-                m_connectedPuzzle.StopRotation();
-                m_connectedPuzzle.RewindPuzzle();
+                m_isOn = false; 
+                if (m_connectedPuzzle != null)
+                {
+                    m_connectedPuzzle.StopRotation();
+                    m_connectedPuzzle.RewindPuzzle();
+                }
+            }
+            foreach(Door door in m_doors)
+            {
+                door.CheckState();
             }
         }
     }
