@@ -3,8 +3,14 @@ using UnityEngine;
 public class CameraControls : MonoBehaviour
 {    
     float m_xRotation;
-    float m_yRotation;              
-    
+    float m_yRotation;
+
+    private void Start()
+    {
+        m_xRotation = transform.rotation.eulerAngles.x; 
+        m_yRotation = transform.rotation.eulerAngles.y;
+    }
+
     public void MoveCamera(Vector2 mouseMove, float sensitivity)
     {           
         m_xRotation -= mouseMove.y * Time.deltaTime * sensitivity;

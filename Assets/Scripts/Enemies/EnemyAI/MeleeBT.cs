@@ -17,8 +17,7 @@ public class MeleeBT : EnemyBT
             }),
              new Sequence(new List<Node>
             {
-                new CheckTargetInAttackRange(transform, m_attackRange),
-                new TaskGoToTarget(transform, m_attackRange, m_speed),
+                new CheckTargetInAttackRange(transform, m_attackRange),                
             })
         }) ;        
         return root;

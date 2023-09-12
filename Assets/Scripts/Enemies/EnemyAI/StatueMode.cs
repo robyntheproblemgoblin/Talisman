@@ -17,7 +17,7 @@ public class StatueMode : Node
     {
         if (m_enemyBT.m_isStatue)
         {
-            m_state = NodeState.RUNNING;
+            m_state = NodeState.SUCCESS;
         }
         else
         {
