@@ -7,7 +7,7 @@ public class RangedBT : EnemyBT
     {
         Node root = new Selector(new List<Node>
         {
-                new StatueMode(transform, this),
+            new StatueMode(this),
             new Sequence(new List<Node>
             {
                 new CheckTargetInFOVRange(transform, m_fovRange),

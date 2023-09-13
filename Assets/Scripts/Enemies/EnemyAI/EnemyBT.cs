@@ -33,8 +33,9 @@ public class EnemyBT : MonoBehaviour
 
     public float m_damage = 5;
     public bool m_isStatue = true;
+    public bool m_canAttack = true;
 
-    float m_prev;
+    public EnemyState m_enemyState;
 
     public EnemyActivator m_activator;
 
@@ -43,7 +44,7 @@ public class EnemyBT : MonoBehaviour
         m_currentHP = m_startingHP;
         m_animator = transform.gameObject.GetComponent<Animator>();
         m_animator.applyRootMotion = true;
-        //m_animator.enabled = false;
+        m_animator.enabled = false;
         m_agent = transform.gameObject.GetComponent<NavMeshAgent>();
         if (m_waypoints.Length > 0)
         {
@@ -58,10 +59,10 @@ public class EnemyBT : MonoBehaviour
     }
 
     protected virtual Node SetupTree()
-    {        
+    {
         Node root = new Selector(new List<Node>
         {
-            new StatueMode(transform, this),
+            new StatueMode(this),
              new Sequence(new List<Node>
             {
                 new CheckTargetInFOVRange(transform, m_fovRange),
@@ -69,7 +70,7 @@ public class EnemyBT : MonoBehaviour
             }),
              new Sequence(new List<Node>
             {
-                new CheckTargetInAttackRange(transform, m_attackRange),
+                new CheckTargetInMeleeRange(transform, this, m_attackRange),
                 new TaskGoToTarget(transform, m_attackRange, m_speed),
             })
         });
@@ -131,13 +132,16 @@ public class EnemyBT : MonoBehaviour
         {
             m_root.Evaluate();
         }
-        SyncAnimation();
+        if (m_enemyState != EnemyState.DYING || m_enemyState != EnemyState.STATUE)
+        {
+            SyncAnimation();
+        }
     }
 
     protected void SyncAnimation()
     {
         Vector3 worldDeltaPosition = m_agent.nextPosition - transform.position;
-        
+
         // Map 'worldDeltaPosition' to local space
         float dx = Vector3.Dot(transform.right, worldDeltaPosition);
         float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
@@ -153,14 +157,29 @@ public class EnemyBT : MonoBehaviour
             m_velocity = Vector2.Lerp(Vector2.zero, m_velocity, m_agent.remainingDistance);
         }
 
-        m_animator.SetFloat("MovementSpeed", m_velocity.magnitude);        
+        m_animator.SetFloat("MovementSpeed", m_velocity.magnitude);
 
         m_lookAt.lookAtTargetPosition = m_agent.steeringTarget + transform.forward;
 
         float deltaMagnitude = worldDeltaPosition.magnitude;
-        if (deltaMagnitude> m_agent.radius)
+        if (deltaMagnitude > m_agent.radius)
         {
             transform.position = Vector3.Lerp(m_animator.rootPosition, m_agent.nextPosition, smooth);
         }
     }
+
+    public void StopAttack()
+    {
+        m_canAttack = true;
+    }
+}
+
+public enum EnemyState
+{
+    STATUE,
+    MOVING,
+    ATTACKING,
+    STRAFING,
+    HURTING,
+    DYING
 }

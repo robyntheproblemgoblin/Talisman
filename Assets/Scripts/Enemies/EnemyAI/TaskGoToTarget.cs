@@ -1,16 +1,19 @@
 using BehaviourTree;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TaskGoToTarget : Node
 {
     Transform m_transform;
     Animator m_animator;
+    NavMeshAgent m_agent;
     float m_attackRange;
     float m_speed;
     public TaskGoToTarget(Transform transform, float attackRange, float speed)
     {
         m_transform = transform;
         m_animator = transform.GetComponent<Animator>();
+        m_agent = transform.GetComponent<NavMeshAgent>();
         m_attackRange = attackRange;
     }
     public override NodeState Evaluate()

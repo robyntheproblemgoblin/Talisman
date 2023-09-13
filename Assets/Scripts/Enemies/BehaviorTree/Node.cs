@@ -40,10 +40,17 @@ namespace BehaviourTree
 
         public void SetData(string key, object value)
         {
-            m_dataContext[key] = value;
+            if (m_parent != null)
+            {
+                m_parent.SetData(key, value);
+            }
+            else
+            {
+                m_dataContext[key] = value;
+            }
         }
 
-        public object GetData(string key)
+            public object GetData(string key)
         {
             object val = null;
             if (m_dataContext.TryGetValue(key, out val))

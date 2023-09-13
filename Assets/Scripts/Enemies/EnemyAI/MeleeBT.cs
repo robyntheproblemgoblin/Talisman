@@ -9,19 +9,21 @@ public class MeleeBT : EnemyBT
     {
         Node root = new Selector(new List<Node>
         {
-            new StatueMode(transform, this),
-             new Sequence(new List<Node>
+            new StatueMode(this),
+            new Sequence(new List<Node>
             {
                 new CheckTargetInFOVRange(transform, m_fovRange),
-                new TaskGoToTarget(transform, m_attackRange, m_speed),
-            }),
-             new Sequence(new List<Node>
-            {
-                new CheckTargetInAttackRange(transform, m_attackRange),                
+                new Selector(new List<Node>
+                {
+                   new TaskGoToTarget(transform, m_attackRange, m_speed),
+                   new Sequence(new List<Node>
+                   {
+                      new CheckTargetInMeleeRange(transform, this,m_attackRange),
+                      new TaskAttack(this),
+                   })
+                })
             })
-        }) ;        
+        });
         return root;
     }
 }
-
-
