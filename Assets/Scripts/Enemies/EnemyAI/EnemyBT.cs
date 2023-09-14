@@ -132,10 +132,9 @@ public class EnemyBT : MonoBehaviour
         {
             m_root.Evaluate();
         }
-        if (m_enemyState != EnemyState.DYING || m_enemyState != EnemyState.STATUE)
-        {
-            SyncAnimation();
-        }
+
+        SyncAnimation();
+
     }
 
     protected void SyncAnimation()
@@ -157,7 +156,8 @@ public class EnemyBT : MonoBehaviour
             m_velocity = Vector2.Lerp(Vector2.zero, m_velocity, m_agent.remainingDistance);
         }
 
-        m_animator.SetFloat("MovementSpeed", m_velocity.magnitude);
+        m_animator.SetFloat("Sideways", m_velocity.x);
+        m_animator.SetFloat("ForwardsBackwards", m_velocity.y);
 
         m_lookAt.lookAtTargetPosition = m_agent.steeringTarget + transform.forward;
 
