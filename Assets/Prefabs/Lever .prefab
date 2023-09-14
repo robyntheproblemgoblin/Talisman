@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5374499047528616011}
-  m_LocalRotation: {x: -0.37992874, y: -0.59636694, z: -0.37992772, w: 0.59636873}
+  m_LocalRotation: {x: 0.5963679, y: -0.37992814, z: -0.5963679, w: -0.37992814}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -120,8 +120,8 @@ MonoBehaviour:
   m_rewindMana: 0
   m_interactMessage: Interact
   m_isOn: 0
-  m_onAngle: -110
-  m_offAngle: -65
+  m_onAngle: {x: 295, y: 90, z: 0}
+  m_offAngle: {x: 245, y: 90, z: 0}
   m_leverSpeed: 10
   m_manaSpeed: 10
   m_connectedPuzzle: {fileID: 0}
