@@ -57,19 +57,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98912895
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.14705075
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -83,6 +83,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6548886642481873289, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 782fe67b23804d54aae0928549adf28b, type: 2}
+    - target: {fileID: -5030023979354557948, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 38facf5ffdeea3349ab86c8477d62fcd, type: 2}
+    - target: {fileID: -910961998737376774, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0a866fbe0525ca04d9f8466689e2632c, type: 2}
     - target: {fileID: 919132149155446097, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
       propertyPath: m_Name
       value: SM_TutorialRoom_Puzzle_01
@@ -94,3 +106,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
   m_PrefabInstance: {fileID: 4624334778988162264}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7665190786503252085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6175326159059979091, guid: 8f7dd1b1fe84468409ec180580753fed, type: 3}
+  m_PrefabInstance: {fileID: 4624334778988162264}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &8764281450689836376
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7665190786503252085}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &5310604511654538542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7665190786503252085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522b20084f8ac6f4395b99884ba655ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_unlocked: 0
+  m_doors: []
+  m_updateMana: 0
+  m_manaValue: 0
+  m_input: 0
+  m_output: 0
+  m_rewindMana: 0
+  m_interactMessage: Interact
+  m_lockRotationOnSolve: 0
+  m_lightMaterial: {fileID: 2100000, guid: 1fccd35da486cd14aaf25ef7b9b594c7, type: 2}
+  m_lightNotice: {fileID: 0}
