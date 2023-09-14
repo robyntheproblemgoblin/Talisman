@@ -65,7 +65,7 @@ public class EnemyBT : MonoBehaviour
             new StatueMode(this),
              new Sequence(new List<Node>
             {
-                new CheckTargetInFOVRange(transform, m_fovRange),
+                new CanSeePlayer(transform, m_fovRange),
                 new TaskGoToTarget(transform, m_attackRange, m_speed),
             }),
              new Sequence(new List<Node>
