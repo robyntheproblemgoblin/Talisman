@@ -151,7 +151,7 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
-  m_enemy: {fileID: 0}
+  m_enemy: {fileID: 852733304687508871}
   m_puzzle: {fileID: 0}
   m_tutorial: {fileID: 0}
 --- !u!1001 &8993349835311609220
@@ -211,15 +211,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5411181888898886806, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5411181888898886806, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5411181888898886806, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5411181888898886806, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -227,15 +227,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8953667154440630750, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8953667154440630750, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8953667154440630750, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8953667154440630750, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -305,7 +305,6 @@ MonoBehaviour:
   m_damage: 5
   m_isStatue: 1
   m_canAttack: 1
-  m_enemyState: 0
   m_activator: {fileID: 1135818524463137477}
 --- !u!195 &1431595261902773665
 NavMeshAgent:

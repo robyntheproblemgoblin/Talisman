@@ -153,7 +153,7 @@ Transform:
   - {fileID: 492028565558494426}
   - {fileID: 2468141698717060383}
   - {fileID: 2226420397189231444}
-  - {fileID: 5256011658703112924}
+  - {fileID: 5574768002521629065}
   - {fileID: 8687538005491211362}
   - {fileID: 3766750602013835247}
   - {fileID: 4254742806289531893}
@@ -359,86 +359,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2977689302902301402, guid: 5475c2ffde14cb844a730de8b8cce4a8, type: 3}
   m_PrefabInstance: {fileID: 797833574427717573}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1898337871538807779
+--- !u!1001 &2302701752601176246
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 5183439550522520681}
     m_Modifications:
-    - target: {fileID: 1135818524463137477, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 1135818524463137477, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_puzzle
       value: 
       objectReference: {fileID: 2736556737210300312}
-    - target: {fileID: 1135818524463137477, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 1135818524463137477, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_tutorial
       value: 
       objectReference: {fileID: 4513207231242731550}
-    - target: {fileID: 4315285863579124991, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 4315285863579124991, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_Name
       value: MeleeEnemyPodium
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.75
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.25
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
+    - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
---- !u!114 &1556975340244623654 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1135818524463137477, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
-  m_PrefabInstance: {fileID: 1898337871538807779}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e452638c8678e884393c9675f7d498b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &5256011658703112924 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+--- !u!4 &5574768002521629065 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5956392025064630591, guid: 5ab23c494f21a134bace02ec7f350f8a, type: 3}
-  m_PrefabInstance: {fileID: 1898337871538807779}
+  m_CorrespondingSourceObject: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+  m_PrefabInstance: {fileID: 2302701752601176246}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2326021193551168207
 PrefabInstance:
@@ -454,7 +443,7 @@ PrefabInstance:
     - target: {fileID: 3317186833751353658, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
       propertyPath: m_puzzleList.Array.data[0]
       value: 
-      objectReference: {fileID: 1556975340244623654}
+      objectReference: {fileID: 2736556737210300312}
     - target: {fileID: 3317186833751353658, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
       propertyPath: m_puzzleList.Array.data[1]
       value: 
@@ -525,6 +514,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5183439550522520681}
     m_Modifications:
+    - target: {fileID: 1135818524463137477, guid: bcc0a4d62d4ac244fa4ff667298f1ed0, type: 3}
+      propertyPath: m_puzzle
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135818524463137477, guid: bcc0a4d62d4ac244fa4ff667298f1ed0, type: 3}
+      propertyPath: m_tutorial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288852237003016213, guid: bcc0a4d62d4ac244fa4ff667298f1ed0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a843ba91cb7cfac4d9c668c53d3e42c7, type: 2}
     - target: {fileID: 4315285863579124991, guid: bcc0a4d62d4ac244fa4ff667298f1ed0, type: 3}
       propertyPath: m_Name
       value: RangedEnemyPodium
@@ -601,7 +602,7 @@ PrefabInstance:
     - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_enemy
       value: 
-      objectReference: {fileID: 1556975340244623654}
+      objectReference: {fileID: 0}
     - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_secondText
       value: Left Trigger to Magic Attack. <br> Left Bumper to Heal.
