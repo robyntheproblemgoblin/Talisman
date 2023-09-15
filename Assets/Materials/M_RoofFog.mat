@@ -101,7 +101,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Strength: 3
+    - _Strength: 0.1
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -110,7 +110,7 @@ Material:
     - _Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tint: {r: 0.13900965, g: 0.13857244, b: 0.16981131, a: 0.5}
+    - _Tint: {r: 0.019607844, g: 0.011764706, b: 0.011764706, a: 0.5}
   m_BuildTextureStacks: []
 --- !u!114 &2047903506945234480
 MonoBehaviour:
