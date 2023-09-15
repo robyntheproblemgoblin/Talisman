@@ -378,13 +378,12 @@ public class PlayerController : MonoBehaviour
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
         int randomNumber = Random.Range(1, 4);
-        m_swordCollider.enabled = true;
-        Invoke("ResetCollider", 2.0f);
+        m_swordCollider.enabled = true;        
         m_animator.SetTrigger("Attack" + randomNumber);
     }
 
     void ResetCollider()
-    {
+    {     
         m_swordCollider.enabled = false;
     }
     #endregion

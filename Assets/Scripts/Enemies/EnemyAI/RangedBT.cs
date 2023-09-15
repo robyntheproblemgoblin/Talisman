@@ -11,7 +11,7 @@ public class RangedBT : EnemyBT
             new Sequence(new List<Node>
             {
                 new CanSeePlayer(transform, m_fovRange),
-                new TaskGoToTarget(transform, m_attackRange, m_speed),
+                new TaskGoToTarget(this, transform, m_attackRange, m_speed),
             }),           
         });
         return root;

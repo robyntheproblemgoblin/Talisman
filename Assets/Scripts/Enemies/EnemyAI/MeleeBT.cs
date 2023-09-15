@@ -13,19 +13,18 @@ public class MeleeBT : EnemyBT
             new Sequence(new List<Node>
             {
                 new CanSeePlayer(transform, m_fovRange),
-                new TaskGoToTarget(transform, m_attackRange, m_speed),
-                
-                new Decorator(new List<Node>
+                new Selector(new List<Node>
                 {
-                   new Sequence(new List<Node>
-                   {
-                      new CanSeePlayer(transform, m_fovRange),
-                      new TaskGoToTarget(transform, m_attackRange, m_speed),
-                      new TaskAttack(this),
-                      new CheckTargetInMeleeRange(transform, this,m_attackRange),
-                   })
+                    new Sequence(new List<Node>
+                    {
+                        new CheckTargetInMeleeRange(transform, m_attackRange),
+                        new TaskAttack(this, m_animator),
+                        new TaskGoToTarget(this, transform, m_attackRange, m_speed),
+                    }),
+                    new TaskGoToTarget(this, transform, m_attackRange, m_speed),
                 })
-            })
+
+            }),
         });
         return root;
     }

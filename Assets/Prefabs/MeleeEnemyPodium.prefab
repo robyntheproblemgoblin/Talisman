@@ -211,15 +211,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5411181888898886806, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5411181888898886806, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5411181888898886806, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5411181888898886806, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -231,15 +231,15 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: a843ba91cb7cfac4d9c668c53d3e42c7, type: 2}
     - target: {fileID: 8953667154440630750, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8953667154440630750, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8953667154440630750, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8953667154440630750, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -267,10 +267,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1
+  m_Radius: 0.002
+  m_Height: 0.01
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.005, z: 0}
 --- !u!1 &8074855000383015125 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
@@ -288,7 +288,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -321,14 +321,13 @@ MonoBehaviour:
   m_waypoints: []
   m_speed: 2.5
   m_fovRange: 90
-  m_attackRange: 10
+  m_attackRange: 2.5
   m_startingHP: 30
   m_currentHP: 0
   m_lookAt: {fileID: 3665512497855988595}
   m_damage: 5
   m_isStatue: 1
   m_canAttack: 1
-  m_enemyState: 0
   m_activator: {fileID: 1135818524463137477}
 --- !u!195 &1431595261902773665
 NavMeshAgent:
@@ -339,12 +338,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 8074855000383015125}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 2
+  m_Radius: 0.75
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 360
-  m_StoppingDistance: 0.5
+  m_StoppingDistance: 2.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

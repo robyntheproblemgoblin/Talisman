@@ -53,6 +53,7 @@ public class LookAt : MonoBehaviour
         float blendTime = lookAtTargetWeight > lookAtWeight ? lookAtHeatTime : lookAtCoolTime;
         lookAtWeight = Mathf.MoveTowards(lookAtWeight, lookAtTargetWeight, Time.deltaTime / blendTime);
         anim.SetLookAtWeight(lookAtWeight, 0.2f, 0.5f, 0.7f, 0.5f);
+        
         anim.SetLookAtPosition(lookAtPosition);
     }
 }

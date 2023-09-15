@@ -1,21 +1,26 @@
 using BehaviourTree;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
-public class CanSeePlayer : CompareNode
+public class CanSeePlayer : Node
 {
     Transform m_transform;
 
-    int m_playerLayerMask = LayerMask.GetMask("Player");    
+    int m_playerLayerMask = LayerMask.GetMask("Player");
+    Transform targetPos;
+    NavMeshAgent m_agent;    
     float m_fovRange;
 
     public CanSeePlayer(Transform transform, float fovRange)
     {
-        m_transform = transform;        
+        m_transform = transform;
+        m_agent = transform.gameObject.GetComponent<NavMeshAgent>();
         m_fovRange = fovRange;
     }
 
-    protected override bool Compare()
+    public override NodeState Evaluate()
     {
         Transform t = (Transform)GetData("target");
         if (t == null)
@@ -27,17 +32,21 @@ public class CanSeePlayer : CompareNode
                 if (CanSee(colliders[0].transform.position))
                 {
                     m_parent.m_parent.SetData("target", colliders[0].gameObject.transform);
-                    return true;
+                    targetPos = colliders[0].gameObject.transform;
+                    m_agent.SetDestination(new Vector3(targetPos.position.x, m_agent.gameObject.transform.position.y, targetPos.position.z));
                 }
             }
-            return false;
         }
-        else
+        else if (CanSee(targetPos.position))
         {
-            return CanSee(t.position);
+            m_agent.SetDestination(new Vector3(targetPos.position.x, m_agent.gameObject.transform.position.y, targetPos.position.z));
         }
+
+        m_state = NodeState.SUCCESS;
+        return m_state;
+
     }
-        
+
 
     bool CanSee(Vector3 pos)
     {

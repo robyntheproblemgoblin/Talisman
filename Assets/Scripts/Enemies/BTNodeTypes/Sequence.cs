@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace BehaviourTree
 {
@@ -14,7 +15,7 @@ namespace BehaviourTree
             {
                 switch (node.Evaluate())
                 {
-                    case NodeState.FAILURE:
+                    case NodeState.FAILURE:                        
                         m_state = NodeState.FAILURE;
                         return m_state;
                     case NodeState.SUCCESS:

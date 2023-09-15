@@ -35,8 +35,6 @@ public class EnemyBT : MonoBehaviour
     public bool m_isStatue = true;
     public bool m_canAttack = true;
 
-    public EnemyState m_enemyState;
-
     public EnemyActivator m_activator;
 
     public void Start()
@@ -66,12 +64,12 @@ public class EnemyBT : MonoBehaviour
              new Sequence(new List<Node>
             {
                 new CanSeePlayer(transform, m_fovRange),
-                new TaskGoToTarget(transform, m_attackRange, m_speed),
+                new TaskGoToTarget(this, transform, m_attackRange, m_speed),
             }),
              new Sequence(new List<Node>
             {
-                new CheckTargetInMeleeRange(transform, this, m_attackRange),
-                new TaskGoToTarget(transform, m_attackRange, m_speed),
+                new CheckTargetInMeleeRange(transform, m_attackRange),
+                new TaskGoToTarget(this, transform, m_attackRange, m_speed),
             })
         });
         return root;
@@ -140,6 +138,7 @@ public class EnemyBT : MonoBehaviour
     protected void SyncAnimation()
     {
         Vector3 worldDeltaPosition = m_agent.nextPosition - transform.position;
+        worldDeltaPosition.y = 0;
 
         // Map 'worldDeltaPosition' to local space
         float dx = Vector3.Dot(transform.right, worldDeltaPosition);
@@ -156,13 +155,17 @@ public class EnemyBT : MonoBehaviour
             m_velocity = Vector2.Lerp(Vector2.zero, m_velocity, m_agent.remainingDistance);
         }
 
-        m_animator.SetFloat("Sideways", m_velocity.x);
-        m_animator.SetFloat("ForwardsBackwards", m_velocity.y);
+         bool shouldMove = m_velocity.magnitude > 0.5f && m_agent.remainingDistance > m_agent.stoppingDistance;
 
-        m_lookAt.lookAtTargetPosition = m_agent.steeringTarget + transform.forward;
+             
+            m_animator.SetFloat("Sideways", m_velocity.x);
+            m_animator.SetFloat("ForwardsBackwards", m_velocity.y);
+        
+
+       m_lookAt.lookAtTargetPosition = m_agent.steeringTarget + transform.forward;
 
         float deltaMagnitude = worldDeltaPosition.magnitude;
-        if (deltaMagnitude > m_agent.radius)
+        if (deltaMagnitude > m_agent.radius / 2f)
         {
             transform.position = Vector3.Lerp(m_animator.rootPosition, m_agent.nextPosition, smooth);
         }
@@ -170,16 +173,9 @@ public class EnemyBT : MonoBehaviour
 
     public void StopAttack()
     {
+        Debug.Log("Should be working");
+        Vector3 pos = m_playerController.gameObject.transform.position;
+        m_agent.SetDestination(new Vector3(pos.x, transform.position.y, pos.z) );        
         m_canAttack = true;
     }
-}
-
-public enum EnemyState
-{
-    STATUE,
-    MOVING,
-    ATTACKING,
-    STRAFING,
-    HURTING,
-    DYING
 }
