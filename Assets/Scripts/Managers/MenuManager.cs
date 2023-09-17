@@ -171,8 +171,8 @@ public class MenuManager : MonoBehaviour
 
     void UpdateUI(GameState state)
     {
-        m_title.SetActive(state == GameState.TITLE);
-        m_mainMenu.SetActive(state == GameState.MENU);
+        //m_title.SetActive(state == GameState.TITLE);
+        m_mainMenu.SetActive(state == GameState.MENU || state == GameState.TITLE);
         m_hud.SetActive(state == GameState.GAME);
         m_cinematics.SetActive(state == GameState.CINEMATIC);
         m_pauseMenu.SetActive(state == GameState.PAUSE);
@@ -180,7 +180,8 @@ public class MenuManager : MonoBehaviour
     }
     void TitleScreen()
     {
-        m_eventSystem.SetSelectedGameObject(m_startButton.gameObject);
+        m_game.UpdateGameState(GameState.MENU);
+        m_eventSystem.SetSelectedGameObject(m_newGame.gameObject);
         Cursor.lockState = CursorLockMode.Confined;
     }
     void MainMenu()

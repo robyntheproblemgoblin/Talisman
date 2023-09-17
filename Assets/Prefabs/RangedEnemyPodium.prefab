@@ -225,6 +225,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5519667220147004682, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8953667154440630750, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
       propertyPath: m_LocalScale.x
       value: 100
@@ -248,6 +252,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6000282288945754661, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
   m_PrefabInstance: {fileID: 8993349835311609220}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3483252911380238478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5519667220147004682, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
+  m_PrefabInstance: {fileID: 8993349835311609220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &803086952802123627
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483252911380238478}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.001
+  m_Height: 0.01
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.005, z: 0}
 --- !u!1 &8074855000383015125 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bd0f0256b40f4804eb4f78076745f4ee, type: 3}
@@ -306,6 +329,7 @@ MonoBehaviour:
   m_isStatue: 1
   m_canAttack: 1
   m_activator: {fileID: 1135818524463137477}
+  m_meleeCollider: {fileID: 803086952802123627}
 --- !u!195 &1431595261902773665
 NavMeshAgent:
   m_ObjectHideFlags: 0

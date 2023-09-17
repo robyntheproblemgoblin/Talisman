@@ -18,19 +18,26 @@ public class AudioManager : MonoBehaviour
 
     [Header("Music")]
     public List<AudioClip> m_music;
+    public AudioSource m_musicSource;
 
     [Header("SFX")]
     public List<AudioClip> m_soundEffects;
+    public AudioSource m_sfxSource;
 
     //Source on other things? dragged into this? 
     //Source is object in world so put them where you want them in 3D space attached to a GameObject. Drag them into place in the inspector.
     //For this set of the variable it should be an array of 2 AudioSources. I kept them playerSources as a suggestion that as this is dialogue
     //from the player and the items in the players hands the sources can go onto the player. Will develop it more after alpha. Any more is currently
     //vetoed until further notice as it is not important to the alpha loop.
+    [Header("Cinematic Sources")]
     public AudioSource[] m_playerSources;
     public double m_initDelayLines;
     int m_playerSourceToggle;
     double m_nextStartTime;
+
+    [Header("Menu Source")]
+    public AudioSource m_menuSource;
+    public List<AudioClip> m_menuClips;
 
     #region Singleton
     private static AudioManager m_instance;

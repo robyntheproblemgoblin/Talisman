@@ -36,6 +36,7 @@ public class EnemyBT : MonoBehaviour
     public bool m_canAttack = true;
 
     public EnemyActivator m_activator;
+    public Collider m_meleeCollider;
 
     public void Start()
     {
@@ -54,6 +55,7 @@ public class EnemyBT : MonoBehaviour
         m_playerFlameLayer = (int)Mathf.Log(LayerMask.GetMask("Flame"), 2);
         m_playerSwordLayer = (int)Mathf.Log(LayerMask.GetMask("Sword"), 2);
         m_playerController = FindObjectOfType<PlayerController>();
+        m_meleeCollider.enabled = false;
     }
 
     protected virtual Node SetupTree()
@@ -175,7 +177,9 @@ public class EnemyBT : MonoBehaviour
     {
         Debug.Log("Should be working");
         Vector3 pos = m_playerController.gameObject.transform.position;
-        m_agent.SetDestination(new Vector3(pos.x, transform.position.y, pos.z) );        
+        m_agent.SetDestination(new Vector3(pos.x, transform.position.y, pos.z) );
+        m_meleeCollider.enabled = false;
         m_canAttack = true;
+        m_playerController.ClearSingleData(gameObject.name);
     }
 }

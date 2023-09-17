@@ -20,6 +20,7 @@ public class TaskAttack : Node
         if(m_enemy.m_canAttack)
         {
             m_animator.SetTrigger("Attack");
+            m_enemy.m_meleeCollider.enabled = true;
             m_agent.isStopped = true;
             m_state = NodeState.SUCCESS;
             return m_state;

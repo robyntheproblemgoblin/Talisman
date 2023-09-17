@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        m_camera = FindObjectOfType<CameraControls>();        
+        m_camera = FindObjectOfType<CameraControls>();
         m_characterController = GetComponent<CharacterController>();
 
         m_animator = GetComponentInChildren<Animator>();
@@ -158,10 +158,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.layer == 8)
+        if (hit.gameObject.layer == (int)Mathf.Log(LayerMask.GetMask("Enemy"), 2))
         {
+            Debug.Log("Enemy Hit me");
             EnemyBT e = hit.gameObject.GetComponentInParent<EnemyBT>();
-            if (!HitAlready(hit.gameObject.name))
+            if (e != null && HitAlready(hit.gameObject.name) == false)
             {
                 RegisterEnemyHit(hit.gameObject.name, 5);
                 TakeDamage(e.m_damage);
@@ -204,7 +205,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         m_talismanState.Update();
-        UpdateDictionary();
+        //UpdateDictionary();
         UpdateInteracts();
     }
     #endregion
@@ -224,6 +225,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         m_currentHealth -= damage;
+        m_game.m_menuManager.UpdateHealth();
     }
 
     void RegisterEnemyHit(string key, float value)
@@ -264,7 +266,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ClearSingleData(string key)
+    public void ClearSingleData(string key)
     {
         if (m_enemiesHaveHit.ContainsKey(key))
         {
@@ -326,7 +328,7 @@ public class PlayerController : MonoBehaviour
     public void AddMana(float mana)
     {
         m_currentMana += mana;
-        if(m_currentMana > m_maxMana)
+        if (m_currentMana > m_maxMana)
         {
             m_currentMana = m_maxMana;
         }
@@ -378,12 +380,12 @@ public class PlayerController : MonoBehaviour
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
         int randomNumber = Random.Range(1, 4);
-        m_swordCollider.enabled = true;        
+        m_swordCollider.enabled = true;
         m_animator.SetTrigger("Attack" + randomNumber);
     }
 
     void ResetCollider()
-    {     
+    {
         m_swordCollider.enabled = false;
     }
     #endregion
@@ -416,7 +418,7 @@ public class PlayerController : MonoBehaviour
             ManaPool manaPool = hit.transform.gameObject.GetComponentInParent<ManaPool>();
             if (puzzle != null || interactable != null || manaPool != null)
             {
-                m_game.m_menuManager.SetInteract(hit);            
+                m_game.m_menuManager.SetInteract(hit);
             }
             else
             {
@@ -455,7 +457,7 @@ public class PlayerController : MonoBehaviour
 
     public void FinishCinematic()
     {
-        m_swordCollider.gameObject.transform.localPosition = new Vector3(0,0.001446927f,0);
+        m_swordCollider.gameObject.transform.localPosition = new Vector3(0, 0.001446927f, 0);
         m_game.UpdateGameState(GameState.GAME);
     }
     #endregion
