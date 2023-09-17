@@ -2,22 +2,18 @@ using BehaviourTree;
 using UnityEngine;
 
 public class StatueMode : Node
-{
-    Transform m_transform;
-    Animator m_animator;
+{    
     EnemyBT m_enemyBT;
 
-    public StatueMode(Transform transform, EnemyBT enemyBT)
-    {
-        m_transform = transform;
-        m_animator = transform.GetComponent<Animator>();
+    public StatueMode(EnemyBT enemyBT)
+    {        
         m_enemyBT = enemyBT;
     }
     public override NodeState Evaluate()
     {
         if (m_enemyBT.m_isStatue)
         {
-            m_state = NodeState.RUNNING;
+            m_state = NodeState.SUCCESS;
         }
         else
         {

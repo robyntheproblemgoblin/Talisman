@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour
         m_characterController = GetComponent<CharacterController>();
 
         m_animator = GetComponentInChildren<Animator>();
+        m_animator.rootRotation = transform.rotation;
         m_idle = new IdleState(m_animator, m_projectileMana);
         m_charging = new ChargingState(m_animator, m_projectileMana, this);
         m_firing = new FiringState(m_animator, m_projectileMana, m_talisman);
@@ -377,13 +378,12 @@ public class PlayerController : MonoBehaviour
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
         int randomNumber = Random.Range(1, 4);
-        m_swordCollider.enabled = true;
-        Invoke("ResetCollider", 2.0f);
+        m_swordCollider.enabled = true;        
         m_animator.SetTrigger("Attack" + randomNumber);
     }
 
     void ResetCollider()
-    {
+    {     
         m_swordCollider.enabled = false;
     }
     #endregion

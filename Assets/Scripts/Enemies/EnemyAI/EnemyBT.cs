@@ -33,6 +33,7 @@ public class EnemyBT : MonoBehaviour
 
     public float m_damage = 5;
     public bool m_isStatue = true;
+    public bool m_canAttack = true;
 
     public EnemyActivator m_activator;
 
@@ -59,7 +60,17 @@ public class EnemyBT : MonoBehaviour
     {
         Node root = new Selector(new List<Node>
         {
-            new StatueMode(transform, this),
+            new StatueMode(this),
+             new Sequence(new List<Node>
+            {
+                new CanSeePlayer(transform, m_fovRange),
+                new TaskGoToTarget(this, transform, m_attackRange, m_speed),
+            }),
+             new Sequence(new List<Node>
+            {
+                new CheckTargetInMeleeRange(transform, m_attackRange),
+                new TaskGoToTarget(this, transform, m_attackRange, m_speed),
+            })
         });
         return root;
     }
@@ -119,13 +130,15 @@ public class EnemyBT : MonoBehaviour
         {
             m_root.Evaluate();
         }
+
         SyncAnimation();
+
     }
 
     protected void SyncAnimation()
     {
         Vector3 worldDeltaPosition = m_agent.nextPosition - transform.position;
-        //worldDeltaPosition.y = 0;
+        worldDeltaPosition.y = 0;
 
         // Map 'worldDeltaPosition' to local space
         float dx = Vector3.Dot(transform.right, worldDeltaPosition);
@@ -141,15 +154,28 @@ public class EnemyBT : MonoBehaviour
         {
             m_velocity = Vector2.Lerp(Vector2.zero, m_velocity, m_agent.remainingDistance);
         }
-        
-        m_animator.SetFloat("MovementSpeed", m_velocity.magnitude);
 
-        m_lookAt.lookAtTargetPosition = m_agent.steeringTarget + transform.forward;
+         bool shouldMove = m_velocity.magnitude > 0.5f && m_agent.remainingDistance > m_agent.stoppingDistance;
+
+             
+            m_animator.SetFloat("Sideways", m_velocity.x);
+            m_animator.SetFloat("ForwardsBackwards", m_velocity.y);
+        
+
+       m_lookAt.lookAtTargetPosition = m_agent.steeringTarget + transform.forward;
 
         float deltaMagnitude = worldDeltaPosition.magnitude;
-        if (deltaMagnitude > m_agent.radius/* / 2*/)
+        if (deltaMagnitude > m_agent.radius / 2f)
         {
             transform.position = Vector3.Lerp(m_animator.rootPosition, m_agent.nextPosition, smooth);
         }
+    }
+
+    public void StopAttack()
+    {
+        Debug.Log("Should be working");
+        Vector3 pos = m_playerController.gameObject.transform.position;
+        m_agent.SetDestination(new Vector3(pos.x, transform.position.y, pos.z) );        
+        m_canAttack = true;
     }
 }

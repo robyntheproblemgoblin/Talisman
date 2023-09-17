@@ -1,44 +1,32 @@
 using UnityEngine;
 using BehaviourTree;
+using UnityEngine.AI;
 
 public class TaskAttack : Node
-{    
-    PlayerController m_player;
-    float m_attackTime = 1f;
-    float m_attackCounter = 0f;    
+{
+    EnemyBT m_enemy;
+    NavMeshAgent m_agent;
+    Animator m_animator;
 
-    public TaskAttack(Transform transform)
-    {        
-        m_player = MonoBehaviour.FindObjectOfType<PlayerController>();
+    public TaskAttack(EnemyBT enemy, Animator anim)
+    {
+        m_enemy = enemy;
+        m_agent = m_enemy.gameObject.GetComponent<NavMeshAgent>();
+        m_animator = anim;
     }
 
     public override NodeState Evaluate()
     {
-        object t = GetData("target");
-        if (t == null)
+        if(m_enemy.m_canAttack)
         {
-            m_state = NodeState.FAILURE;
-        Debug.Log("TaskAttack is " + m_state);
+            m_animator.SetTrigger("Attack");
+            m_agent.isStopped = true;
+            m_state = NodeState.SUCCESS;
             return m_state;
-        }
-
-        m_attackCounter += Time.deltaTime;
-        if (m_attackCounter >= m_attackTime)
-        {
-            bool playerIsDead = m_player.m_health <= 0;
-            Debug.Log("Attack");
-            if (playerIsDead)
-            {
-                ClearData("target");                
-            }
-            else
-            {
-                m_attackCounter = 0f;
-            }
-        }
-
-        m_state = NodeState.RUNNING;
-        Debug.Log("TaskAttack is " + m_state);
+        }        
+     
+        m_state = NodeState.FAILURE;
         return m_state;
+    
     }
 }
