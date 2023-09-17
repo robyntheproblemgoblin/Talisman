@@ -112,11 +112,7 @@ public class EnemyBT : MonoBehaviour
         if (other.gameObject.layer == m_playerFlameLayer)
         {
             TakeHit(m_playerController.m_flameDamage);
-        }
-        else
-        {
-            Debug.Log(m_playerFlameLayer);
-        }
+        }        
     }
 
     protected void Die()
@@ -174,10 +170,9 @@ public class EnemyBT : MonoBehaviour
     }
 
     public void StopAttack()
-    {
-        Debug.Log("Should be working");
+    {       
         Vector3 pos = m_playerController.gameObject.transform.position;
-        m_agent.SetDestination(new Vector3(pos.x, transform.position.y, pos.z) );
+        m_agent.SetDestination(pos);
         m_meleeCollider.enabled = false;
         m_canAttack = true;
         m_playerController.ClearSingleData(gameObject.name);

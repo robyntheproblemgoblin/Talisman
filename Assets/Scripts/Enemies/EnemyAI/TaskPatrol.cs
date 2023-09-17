@@ -42,15 +42,13 @@ public class TaskPatrol : Node
                 if (Vector3.Distance(m_agent.nextPosition, wp.position) <= 1f)
                 {
                     m_agent.isStopped = true;
-                    Debug.Log("NextPos");
                     m_waitCounter = 0f;
                     m_waiting = true;
                     m_currentWaypoint = (m_currentWaypoint + 1) % m_waypoints.Length;
                 }
             }
         }
-        m_state = NodeState.RUNNING;
-        Debug.Log("TaskPatrol is " + m_state);
+        m_state = NodeState.RUNNING;        
         return m_state;
     }
 }

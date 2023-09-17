@@ -126,6 +126,7 @@ public class PlayerController : MonoBehaviour
         m_currentMana = m_startMana;
         m_game.OnGameStateChanged += OnGameStateChanged;
         m_game.m_menuManager.UpdateHealth();
+        m_game.m_menuManager.UpdateMana();
     }
 
     void OnGameStateChanged(GameState state)
@@ -157,14 +158,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
+    {        
         if (hit.gameObject.layer == (int)Mathf.Log(LayerMask.GetMask("Enemy"), 2))
-        {
-            Debug.Log("Enemy Hit me");
+        {     
             EnemyBT e = hit.gameObject.GetComponentInParent<EnemyBT>();
-            if (e != null && HitAlready(hit.gameObject.name) == false)
-            {
-                RegisterEnemyHit(hit.gameObject.name, 5);
+            if (e != null && HitAlready(e.gameObject.name) == false)
+            {                
+                RegisterEnemyHit(e.gameObject.name, 5);
                 TakeDamage(e.m_damage);
             }
         }
@@ -297,6 +297,8 @@ public class PlayerController : MonoBehaviour
         {
             m_currentMana -= m_manaHealCost * Time.deltaTime;
             m_currentHealth += m_healRate * Time.deltaTime;
+            m_game.m_menuManager.UpdateMana();
+            m_game.m_menuManager.UpdateHealth();
         }
         else if (m_currentMana < 0)
         {
@@ -321,6 +323,7 @@ public class PlayerController : MonoBehaviour
             {
                 m_currentMana = 0;
             }
+            m_game.m_menuManager.UpdateMana();
             return true;
         }
     }
@@ -332,6 +335,7 @@ public class PlayerController : MonoBehaviour
         {
             m_currentMana = m_maxMana;
         }
+        m_game.m_menuManager.UpdateMana();
     }
 
     #endregion

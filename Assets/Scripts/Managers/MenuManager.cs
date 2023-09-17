@@ -134,8 +134,9 @@ public class MenuManager : MonoBehaviour
         m_optionsBack.onClick.AddListener(delegate () { });
     }
     private void Start()
-    {        
-    m_health.maxValue = m_player.m_health;        
+    {         
+       m_health.maxValue = m_player.m_health;
+        m_mana.maxValue = m_player.m_maxMana;
     }
 
     void OnGameStateChanged(GameState state)
@@ -192,6 +193,7 @@ public class MenuManager : MonoBehaviour
     }
     void StartGame()
     {
+        m_game.m_audioManager.PlayIntroEffect();
         m_game.UpdateGameState(GameState.GAME);
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -297,5 +299,15 @@ public class MenuManager : MonoBehaviour
     public void UpdateHealth()
     {
         m_health.value = m_player.m_currentHealth;
+        /*if(m_health.value <= 0)
+        {
+            m_game.UpdateGameState(GameState.);
+        }*/
+    }
+
+    public void UpdateMana()
+    {
+        m_mana.value = m_player.m_currentMana;
+        Debug.Log("Should be updating");
     }
 }

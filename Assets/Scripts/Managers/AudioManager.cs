@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AudioManager : MonoBehaviour
 {
+    GameManager m_game;
     //Indexes
     int m_initialLinesIndex = 0;
     int m_circlePuzzleIndex = 0;
@@ -31,36 +33,26 @@ public class AudioManager : MonoBehaviour
     //vetoed until further notice as it is not important to the alpha loop.
     [Header("Cinematic Sources")]
     public AudioSource[] m_playerSources;
-    public double m_initDelayLines;
+    [HideInInspector]
+    public double m_initDelayLines = 0.01d;
     int m_playerSourceToggle;
     double m_nextStartTime;
+    bool m_playLines = false;
 
     [Header("Menu Source")]
     public AudioSource m_menuSource;
     public List<AudioClip> m_menuClips;
 
-    #region Singleton
-    private static AudioManager m_instance;
-
-    public static AudioManager Instance
+    private void Start()
     {
-        get
-        {
-            m_instance = FindObjectOfType<AudioManager>();
-            if (m_instance == null)
-            {
-                Debug.LogError("Player Manager is Null!!");
-            }
-            return m_instance;
-
-        }
+        m_game = GameManager.Instance;
+        m_game.m_audioManager = this;        
     }
-    #endregion
 
 
     private void Update()
     {
-        if (AudioSettings.dspTime > m_nextStartTime - 1 && m_initialLinesIndex != m_playerSources.Length)
+        if (/*AudioSettings.dspTime > m_nextStartTime - 1*/m_playLines && m_initialLinesIndex >= m_voiceLinesInitial.Count)
         {
             AudioClip clipToPlay = m_voiceLinesInitial[m_initialLinesIndex];
             // Loads the next Clip to play and schedules when it will start
@@ -98,6 +90,16 @@ public class AudioManager : MonoBehaviour
             m_initialLinesIndex++;
             double duration = (double)clipToPlay.samples / clipToPlay.frequency;
             m_nextStartTime = (m_nextStartTime + duration);
+            m_playLines = true;
+        }
+    }
+
+    public void PlayIntroEffect()
+    {
+        if (m_menuClips.Count > 0)
+        {
+            m_menuSource.clip = m_menuClips[0];
+            m_menuSource.Play();
         }
     }
 
@@ -126,14 +128,6 @@ public class AudioManager : MonoBehaviour
     {
         m_source.clip = m_music[m_musicIndex];
         m_source.Play();
-    }*/
-
-    // From other script... maybe? bad code, just a thought process. 
-    // No idea what you had planned here.
-    /*public void OnTriggerEnter(Collider other)
-    {
-        AudioManager.m_musicIndex = 1;
-        gameObject.SetActive(false);
-    }*/
+    }*/ 
 
 }

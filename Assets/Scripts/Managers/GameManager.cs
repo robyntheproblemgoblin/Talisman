@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public event Action<GameState> OnGameStateChanged;
     public PlayerController m_player;    
     public MenuManager m_menuManager;
+    public AudioManager m_audioManager;
     
     public List<Interactable> m_cinematicTriggers;
     public List<Transform> m_cinematicPoints;
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         OnGameStateChanged += GameStateChanged;
         m_player = FindObjectOfType<PlayerController>();
-        m_player.m_game = this;                
+        m_player.m_game = this;
     }
 
     private void Start()
@@ -138,6 +139,7 @@ public class GameManager : MonoBehaviour
         m_player.transform.position = m_cinematicPoints[index].position;
         m_player.transform.rotation = m_cinematicPoints[index].rotation;
         m_player.m_animator.SetTrigger("Cinematic");
+        m_audioManager.PlayInitialVoiceLines();
         UpdateGameState(GameState.CINEMATIC);
     }    
 }

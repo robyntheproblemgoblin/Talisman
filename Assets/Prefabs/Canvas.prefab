@@ -10999,6 +10999,7 @@ GameObject:
   - component: {fileID: 8225780667573492052}
   - component: {fileID: 6401465964559973944}
   - component: {fileID: 424437078005057766}
+  - component: {fileID: 1791306105140475677}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -11123,7 +11124,7 @@ MonoBehaviour:
   m_subtitles: {fileID: 8996121688656819825}
   m_health: {fileID: 4127150940266569255}
   m_mana: {fileID: 1522641958975393764}
-  m_tutorial: {fileID: 6465702365395002841}
+  m_tutorial: {fileID: 2869942065449170089}
   m_interactImage: {fileID: 2476287672756886431}
   m_interactText: {fileID: 2443051242007643845}
   m_topBlackBar: {fileID: 2283653589445396962}
@@ -11166,11 +11167,39 @@ MonoBehaviour:
   m_gameState: 0
   m_player: {fileID: 0}
   m_menuManager: {fileID: 0}
+  m_audioManager: {fileID: 0}
   m_cinematicTriggers: []
   m_cinematicPoints: []
   m_respawnPoint: {fileID: 0}
   m_respawnHealth: 0
   m_respawnMana: 0
+--- !u!114 &1791306105140475677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8225780667573492059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424300d9a47c76e478c00b2eff9db8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_musicIndex: 0
+  m_voiceLinesInitial: []
+  m_voiceLinesPuzzleLeft: []
+  m_voiceLinesPuzzleRight: []
+  m_voiceLinesEnd: []
+  m_music: []
+  m_musicSource: {fileID: 0}
+  m_soundEffects: []
+  m_sfxSource: {fileID: 0}
+  m_playerSources:
+  - {fileID: 0}
+  - {fileID: 0}
+  m_initDelayLines: 0
+  m_menuSource: {fileID: 0}
+  m_menuClips: []
 --- !u!1 &8285437667905867347
 GameObject:
   m_ObjectHideFlags: 0

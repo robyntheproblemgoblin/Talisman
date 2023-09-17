@@ -4,7 +4,7 @@ public class Lever : Puzzle
 {
     public bool m_isOn = true;
 
-    public Vector3 m_onAngle = new Vector3(295f, 0, 0 );
+    public Vector3 m_onAngle = new Vector3(295f, 0, 0);
     public Vector3 m_offAngle = new Vector3(245f, 0, 0);
 
     public float m_leverSpeed = 10;
@@ -15,11 +15,11 @@ public class Lever : Puzzle
 
     private new void Start()
     {
-        if(m_connectedPuzzle != null)
+        if (m_connectedPuzzle != null)
         {
             m_connectedPuzzle.SetInputObject(this);
         }
-        
+
         base.Start();
     }
 
@@ -27,13 +27,11 @@ public class Lever : Puzzle
     {
         if (m_isOn && Quaternion.Angle(transform.localRotation, Quaternion.Euler(m_onAngle)) >= 1)
         {
-            Debug.Log("ON and not at on position");
             float step = m_leverSpeed * Time.deltaTime;
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(m_onAngle), step);
         }
-        else if (m_isOn==false && Quaternion.Angle(transform.localRotation, Quaternion.Euler(m_offAngle)) >= 1)
+        else if (m_isOn == false && Quaternion.Angle(transform.localRotation, Quaternion.Euler(m_offAngle)) >= 1)
         {
-            Debug.Log("OFF and not at off position");
             float step = m_leverSpeed * Time.deltaTime;
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(m_offAngle), step);
         }
@@ -60,7 +58,7 @@ public class Lever : Puzzle
     }
 
     public override void RotatePuzzle()
-    {       
+    {
         if (m_canBeInteracted)
         {
             if (!m_isOn)
@@ -76,7 +74,7 @@ public class Lever : Puzzle
             else
             {
                 m_canBeInteracted = false;
-                m_isOn = false; 
+                m_isOn = false;
                 if (m_connectedPuzzle != null)
                 {
                     m_connectedPuzzle.StopRotation();
@@ -84,7 +82,7 @@ public class Lever : Puzzle
                 }
             }
             m_unlocked = m_isOn;
-            foreach(Door door in m_doors)
+            foreach (Door door in m_doors)
             {
                 door.CheckState();
             }

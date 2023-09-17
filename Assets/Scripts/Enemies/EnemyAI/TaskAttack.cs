@@ -21,13 +21,11 @@ public class TaskAttack : Node
         {
             m_animator.SetTrigger("Attack");
             m_enemy.m_meleeCollider.enabled = true;
-            m_agent.isStopped = true;
+           // m_agent.isStopped = true;
             m_state = NodeState.SUCCESS;
             return m_state;
-        }        
-     
-        m_state = NodeState.FAILURE;
-        return m_state;
-    
+        }                
+        m_state = NodeState.SUCCESS;
+        return m_state;    
     }
 }

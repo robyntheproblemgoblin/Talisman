@@ -23,7 +23,7 @@ public class CheckTargetInMeleeRange : Node
         }        
 
         Transform target = (Transform)t;
-        if (Vector3.Distance(m_transform.position, target.position) <= m_attackRange)
+        if (Vector3.Distance(m_transform.position, target.position) <= m_attackRange + 0.1f)
         {            
             m_state = NodeState.SUCCESS;        
             return m_state;
