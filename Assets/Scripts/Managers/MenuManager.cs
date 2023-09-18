@@ -83,7 +83,7 @@ public class MenuManager : MonoBehaviour
 
     GameManager m_game;
     public PlayerController m_player;    
-    EventSystem m_eventSystem;
+    public EventSystem m_eventSystem;
 
     private void Start()
     {
