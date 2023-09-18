@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 3052165065116266235}
   - component: {fileID: 1200786988578435755}
   - component: {fileID: 3317186833751353658}
+  - component: {fileID: 8082306464853232135}
   m_Layer: 0
   m_Name: SM_DoorwayTemp_Door_01
   m_TagString: Untagged
@@ -197,3 +198,16 @@ MonoBehaviour:
   m_lockedPos: {fileID: 8201409753071611754}
   m_unlockedPos: {fileID: 4452367487286165400}
   m_speed: 5
+--- !u!65 &8082306464853232135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8775461029133207696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 178.74571, y: 341.59418, z: 89.78046}
+  m_Center: {x: 0, y: 169.17499, z: -0.92944336}
