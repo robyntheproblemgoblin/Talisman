@@ -52,7 +52,7 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        if (/*AudioSettings.dspTime > m_nextStartTime - 1*/m_playLines && m_initialLinesIndex >= m_voiceLinesInitial.Count)
+        /*if (*//*AudioSettings.dspTime > m_nextStartTime - 1*//*m_playLines && m_initialLinesIndex <= m_voiceLinesInitial.Count)
         {
             AudioClip clipToPlay = m_voiceLinesInitial[m_initialLinesIndex];
             // Loads the next Clip to play and schedules when it will start
@@ -65,7 +65,7 @@ public class AudioManager : MonoBehaviour
             m_playerSourceToggle = 1 - m_playerSourceToggle;
             // Increase the clip index number, reset if it runs out of clips
             m_initialLinesIndex++;
-        }
+        }*/
     }
 
     /* Depending on how/when you want this called I see it as to potential options:
