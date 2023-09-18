@@ -154,14 +154,16 @@ AvatarMask:
   - m_Path: Armature/Weapon/Weapon_end
     m_Weight: 0
   - m_Path: Armature/Wrist.IK_L
-    m_Weight: 0
-  - m_Path: Armature/Wrist.IK_L/Wrist.IK_L_end
-    m_Weight: 0
+    m_Weight: 1
+  - m_Path: Armature/Wrist.IK_L/Talisman
+    m_Weight: 1
+  - m_Path: Armature/Wrist.IK_L/Talisman/Talisman_end
+    m_Weight: 1
   - m_Path: Armature/Wrist.IK_R
     m_Weight: 0
   - m_Path: Armature/Wrist.IK_R/Wrist.IK_R_end
     m_Weight: 0
   - m_Path: arms
     m_Weight: 0
-  - m_Path: VikingAxe
+  - m_Path: Sword
     m_Weight: 0
