@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         OnGameStateChanged += GameStateChanged;
-        m_player = FindObjectOfType<PlayerController>();
-        m_player.m_game = this;
     }
 
     private void Start()
