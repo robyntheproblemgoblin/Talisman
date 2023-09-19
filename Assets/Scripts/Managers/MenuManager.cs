@@ -82,14 +82,12 @@ public class MenuManager : MonoBehaviour
     //Credits
 
     GameManager m_game;
-    PlayerController m_player;    
-    EventSystem m_eventSystem;
+    public PlayerController m_player;    
+    public EventSystem m_eventSystem;
 
-    private void Awake()
+    private void Start()
     {
         m_game = GameManager.Instance;
-        m_player = m_game.m_player;        
-        m_game.m_menuManager = this;
         m_eventSystem = FindObjectOfType<EventSystem>();
 
         m_game.OnGameStateChanged += OnGameStateChanged;
@@ -132,9 +130,7 @@ public class MenuManager : MonoBehaviour
         m_dialogueSlider.SetValueWithoutNotify(100);
         m_defaults.onClick.AddListener(delegate () { });
         m_optionsBack.onClick.AddListener(delegate () { });
-    }
-    private void Start()
-    {         
+            
        m_health.maxValue = m_player.m_health;
         m_mana.maxValue = m_player.m_maxMana;
     }
@@ -308,6 +304,5 @@ public class MenuManager : MonoBehaviour
     public void UpdateMana()
     {
         m_mana.value = m_player.m_currentMana;
-        Debug.Log("Should be updating");
     }
 }

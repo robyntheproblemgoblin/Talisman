@@ -14,6 +14,7 @@ public class ManaPool : MonoBehaviour
         pc.m_game.SetCheckPoint(m_respawnPosition);
 
         GameManager.Instance.m_menuManager.m_falseEnd.SetActive(true) ;
+        GameManager.Instance.m_menuManager.m_eventSystem.SetSelectedGameObject(GameManager.Instance.m_menuManager.m_falseQuit.gameObject);
         GameManager.Instance.m_player.m_inputControl.Player_Map.Disable();
         GameManager.Instance.m_player.m_inputControl.UI.Enable();
         Cursor.lockState = CursorLockMode.Confined;

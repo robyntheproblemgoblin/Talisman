@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        m_game = GameManager.Instance;
         m_camera = FindObjectOfType<CameraControls>();
         m_characterController = GetComponent<CharacterController>();
 
