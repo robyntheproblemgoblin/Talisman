@@ -205,8 +205,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        m_talismanState.Update();
-        //UpdateDictionary();
+        m_talismanState.Update();        
         UpdateInteracts();
     }
     #endregion
