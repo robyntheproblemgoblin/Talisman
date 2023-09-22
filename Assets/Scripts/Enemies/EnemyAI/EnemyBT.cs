@@ -151,14 +151,10 @@ public class EnemyBT : MonoBehaviour
         if (m_agent.remainingDistance <= m_agent.stoppingDistance)
         {
             m_velocity = Vector2.Lerp(Vector2.zero, m_velocity, m_agent.remainingDistance);
-        }
-
-         bool shouldMove = m_velocity.magnitude > 0.5f && m_agent.remainingDistance > m_agent.stoppingDistance;
-
+        }       
              
             m_animator.SetFloat("Sideways", m_velocity.x);
-            m_animator.SetFloat("ForwardsBackwards", m_velocity.y);
-        
+            m_animator.SetFloat("ForwardsBackwards", m_velocity.y);        
 
        m_lookAt.lookAtTargetPosition = m_agent.steeringTarget + transform.forward;
 

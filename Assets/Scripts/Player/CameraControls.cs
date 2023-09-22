@@ -4,6 +4,7 @@ public class CameraControls : MonoBehaviour
 {    
     float m_xRotation;
     float m_yRotation;
+    public Transform m_parentTransform;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class CameraControls : MonoBehaviour
         m_xRotation -= mouseMove.y * Time.deltaTime * sensitivity;
         m_xRotation = Mathf.Clamp(m_xRotation, -90, 90);
         m_yRotation += mouseMove.x * Time.deltaTime * sensitivity;
-        transform.rotation = Quaternion.Euler(m_xRotation, m_yRotation, 0);   
+        m_parentTransform.rotation = Quaternion.Euler( 0, m_yRotation, 0);   
+        transform.localRotation = Quaternion.Euler(m_xRotation,0, 0);   
     }
 }

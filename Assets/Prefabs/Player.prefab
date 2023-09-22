@@ -7122,6 +7122,7 @@ GameObject:
   - component: {fileID: 3662069943301170421}
   - component: {fileID: 5518458939498831946}
   - component: {fileID: 2137990509009789327}
+  - component: {fileID: 3606366061665078165}
   m_Layer: 0
   m_Name: Mesh and Animations
   m_TagString: Untagged
@@ -7137,7 +7138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6256639084221880268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.85, z: 0}
+  m_LocalPosition: {x: 0, y: 0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7159,6 +7160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499d7f3cc20661a4b89a5af234f94743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_parentTransform: {fileID: 0}
 --- !u!95 &2137990509009789327
 Animator:
   serializedVersion: 4
@@ -7179,6 +7181,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3606366061665078165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6256639084221880268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 280c1f3b7af9ea949a2b65cf6ae9c706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6258736020136332439
 GameObject:
   m_ObjectHideFlags: 0
@@ -12002,7 +12016,7 @@ GameObject:
   - component: {fileID: 5859682556975132747}
   - component: {fileID: 4663373812209873979}
   - component: {fileID: 4030178515731363422}
-  - component: {fileID: 8787778063925695042}
+  - component: {fileID: 3691719635896632933}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -12018,7 +12032,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6492526628118096625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -7.485}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12046,7 +12060,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: -0.85, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4030178515731363422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12087,7 +12101,7 @@ MonoBehaviour:
   m_parryTime: 1
   m_blockingResetTime: 3
   m_interactionDistance: 3
---- !u!136 &8787778063925695042
+--- !u!136 &3691719635896632933
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12100,7 +12114,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: -0.85, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6534952654492010511
 GameObject:
   m_ObjectHideFlags: 0

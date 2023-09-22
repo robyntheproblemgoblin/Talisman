@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
     {
         m_game = GameManager.Instance;
         m_camera = FindObjectOfType<CameraControls>();
+        m_camera.m_parentTransform = transform; 
         m_characterController = GetComponent<CharacterController>();
 
         m_animator = GetComponentInChildren<Animator>();
@@ -157,8 +158,8 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    
+    private void OnTriggerEnter(Collider hit)
     {        
         if (hit.gameObject.layer == (int)Mathf.Log(LayerMask.GetMask("Enemy"), 2))
         {     
@@ -241,23 +242,7 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-
-    void UpdateDictionary()
-    {
-        List<string> list = new List<string>();
-        Dictionary<string, float> dict = new Dictionary<string, float>();
-        foreach (KeyValuePair<string, float> kvp in m_enemiesHaveHit)
-        {
-            dict[kvp.Key] = kvp.Value - Time.deltaTime;
-            if (dict[kvp.Key] <= 0)
-            {
-                list.Add(kvp.Key);
-            }
-        }
-        m_enemiesHaveHit = dict;
-        ClearData(list);
-    }
-
+   
     void ClearData(List<string> keys)
     {
         for (int i = 0; i < keys.Count; i++)
