@@ -6,6 +6,7 @@ public class ManaPool : MonoBehaviour
     public Transform m_respawnPosition;
     public Door m_door;
     public string m_interactMessage = "Interact";
+    public bool m_isFalseEnd;
 
     public void Interact(PlayerController pc)
     {
@@ -13,10 +14,13 @@ public class ManaPool : MonoBehaviour
         pc.AddMana(m_manaAmount);
         pc.m_game.SetCheckPoint(m_respawnPosition);
 
-        GameManager.Instance.m_menuManager.m_falseEnd.SetActive(true) ;
-        GameManager.Instance.m_menuManager.m_eventSystem.SetSelectedGameObject(GameManager.Instance.m_menuManager.m_falseQuit.gameObject);
-        GameManager.Instance.m_player.m_inputControl.Player_Map.Disable();
-        GameManager.Instance.m_player.m_inputControl.UI.Enable();
-        Cursor.lockState = CursorLockMode.Confined;
+        if (m_isFalseEnd)
+        {
+            GameManager.Instance.m_menuManager.m_falseEnd.SetActive(true);
+            GameManager.Instance.m_menuManager.m_eventSystem.SetSelectedGameObject(GameManager.Instance.m_menuManager.m_falseQuit.gameObject);
+            GameManager.Instance.m_player.m_inputControl.Player_Map.Disable();
+            GameManager.Instance.m_player.m_inputControl.UI.Enable();
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
 }

@@ -295,10 +295,10 @@ public class MenuManager : MonoBehaviour
     public void UpdateHealth()
     {
         m_health.value = m_player.m_currentHealth;
-        /*if(m_health.value <= 0)
+        if (m_health.value <= 0)
         {
-            m_game.UpdateGameState(GameState.);
-        }*/
+       //     m_game.UpdateGameState(GameState.);
+        }
     }
 
     public void UpdateMana()

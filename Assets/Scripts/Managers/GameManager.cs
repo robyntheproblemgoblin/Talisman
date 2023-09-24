@@ -93,6 +93,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.CREDITS:
                 break;
+            case GameState.DEATH:
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -125,7 +127,6 @@ public class GameManager : MonoBehaviour
         m_respawnPoint = transform;
     }
 
-
     void Cinematic()
     {
      
@@ -134,8 +135,10 @@ public class GameManager : MonoBehaviour
     public void CinematicTrigger(Interactable interactable) 
     {
         int index = m_cinematicTriggers.IndexOf(interactable);
+
         m_player.transform.position = m_cinematicPoints[index].position;
-        m_player.transform.rotation = m_cinematicPoints[index].rotation;
+        m_player.m_camera.SetRotation(m_cinematicPoints[index].rotation.eulerAngles);
+        
         m_player.m_animator.SetTrigger("Cinematic");
         m_audioManager.PlayInitialVoiceLines();
         UpdateGameState(GameState.CINEMATIC);
@@ -150,5 +153,6 @@ public enum GameState
     CINEMATIC,
     PAUSE,
     OPTIONS,
-    CREDITS
+    CREDITS,
+    DEATH
 }

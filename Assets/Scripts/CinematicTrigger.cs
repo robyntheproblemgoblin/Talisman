@@ -13,6 +13,9 @@ public class CinematicTrigger : MonoBehaviour
     public void FinishCinematic()
     {
         m_pc.FinishCinematic();
-        Debug.Log("This runs");
+    }
+    public void ResetCollider()
+    {
+        m_pc.ResetCollider();
     }
 }

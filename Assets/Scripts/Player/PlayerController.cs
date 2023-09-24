@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public GameManager m_game;
     public FPControls m_inputControl;
     #region Movement Fields
-    CameraControls m_camera;
+    public CameraControls m_camera;
     [Header("Camera and Movement"), Space(5)]
     public float m_cameraSensitivity = 10;
     Vector3 m_moveDirection = Vector3.zero;
@@ -373,7 +373,7 @@ public class PlayerController : MonoBehaviour
         m_animator.SetTrigger("Attack" + randomNumber);
     }
 
-    void ResetCollider()
+    public void ResetCollider()
     {
         m_swordCollider.enabled = false;
     }

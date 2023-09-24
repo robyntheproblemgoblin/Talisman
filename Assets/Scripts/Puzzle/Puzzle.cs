@@ -28,10 +28,10 @@ public class Puzzle : MonoBehaviour
     
     [SerializeField]
     protected bool m_rewindMana;
-
     protected bool m_canInteract = true;
-
     public string m_interactMessage = "Interact";
+
+    public Bridge m_bridge;
 
     public void Start()
     {

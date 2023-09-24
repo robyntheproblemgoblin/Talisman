@@ -31,6 +31,10 @@ public class SymbolMatch : Puzzle
             {
                 door.CheckState();
             }
+            if(m_bridge != null)
+            {
+                m_bridge.CheckState();
+            }
         }
     }
 
@@ -51,6 +55,10 @@ public class SymbolMatch : Puzzle
             foreach (Door door in m_doors)
             {
                 door.CheckState();
+            }
+            if (m_bridge != null)
+            {
+                m_bridge.CheckState();
             }
             m_rotate = true;
         }
