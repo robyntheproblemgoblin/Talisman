@@ -1,16 +1,21 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Dictionary<EnemyBT, KeyValuePair<Vector3, Quaternion>> m_enemies;
+
+    private void Awake()
     {
-        
+        m_enemies = new Dictionary<EnemyBT, KeyValuePair<Vector3, Quaternion>>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ResetEnemies()
     {
-        
+        Debug.Log(m_enemies.Count);
+        foreach(KeyValuePair<EnemyBT, KeyValuePair<Vector3, Quaternion>> enemy in m_enemies)
+        {
+            enemy.Key.ResetToPosition(enemy.Value.Key, enemy.Value.Value);            
+        }
     }
 }

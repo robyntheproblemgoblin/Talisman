@@ -36,7 +36,7 @@ public class EnemyBT : MonoBehaviour
     public bool m_canAttack = true;
 
     public EnemyActivator m_activator;
-    public Collider m_meleeCollider;
+    public Collider m_meleeCollider;    
 
     public void Start()
     {
@@ -56,6 +56,7 @@ public class EnemyBT : MonoBehaviour
         m_playerSwordLayer = (int)Mathf.Log(LayerMask.GetMask("Sword"), 2);
         m_playerController = FindObjectOfType<PlayerController>();
         m_meleeCollider.enabled = false;
+        m_playerController.m_game.m_aiManager.m_enemies.Add(this, new KeyValuePair<Vector3, Quaternion>(transform.position, transform.rotation));
     }
 
     protected virtual Node SetupTree()
@@ -119,6 +120,7 @@ public class EnemyBT : MonoBehaviour
     {
         //Setup what is happening on die
         m_activator.EnemyDead();
+        GameManager.Instance.m_aiManager.m_enemies.Remove(this);
         Destroy(gameObject);
     }
 
@@ -169,8 +171,17 @@ public class EnemyBT : MonoBehaviour
     {       
         Vector3 pos = m_playerController.gameObject.transform.position;
         m_agent.SetDestination(pos);
-        m_meleeCollider.enabled = false;
-        m_canAttack = true;
+        m_meleeCollider.enabled = false;        
         m_playerController.ClearSingleData(gameObject.name);
+    }
+
+    public void ResetToPosition(Vector3 position, Quaternion rotation)
+    {
+        transform.SetPositionAndRotation(position, rotation);
+        m_animator.rootPosition = position;
+        m_agent.nextPosition = position;   
+        
+        m_animator.enabled = false;
+        m_isStatue = true;
     }
 }
