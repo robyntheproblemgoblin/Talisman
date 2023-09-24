@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3563139748208109158
 Transform:
@@ -48,9 +48,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3563139748208109158}
     m_Modifications:
+    - target: {fileID: -6525634648005681992, guid: a2c72c01908aaf54a87a9909bf3f77e1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1749169365650161907, guid: a2c72c01908aaf54a87a9909bf3f77e1, type: 3}
       propertyPath: m_Name
       value: Prefab_Mod_Pillar_Middle_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749169365650161907, guid: a2c72c01908aaf54a87a9909bf3f77e1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7684117943702852000, guid: a2c72c01908aaf54a87a9909bf3f77e1, type: 3}
       propertyPath: m_RootOrder
@@ -110,6 +118,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3563139748208109158}
     m_Modifications:
+    - target: {fileID: -8869792299115324959, guid: a698d46564ac9f44e9239695013998d5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 191761436258760390, guid: a698d46564ac9f44e9239695013998d5, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -157,6 +169,10 @@ PrefabInstance:
     - target: {fileID: 2716265021070278478, guid: a698d46564ac9f44e9239695013998d5, type: 3}
       propertyPath: m_Name
       value: Prefab_Mod_Pillar_Top_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716265021070278478, guid: a698d46564ac9f44e9239695013998d5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a698d46564ac9f44e9239695013998d5, type: 3}
@@ -216,9 +232,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1712176126534530473, guid: a07d0daa386b05c4aa3504bdf954cb0d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5737774206079072964, guid: a07d0daa386b05c4aa3504bdf954cb0d, type: 3}
       propertyPath: m_Name
       value: Prefab_Mod_Pillar_Middle_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5737774206079072964, guid: a07d0daa386b05c4aa3504bdf954cb0d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a07d0daa386b05c4aa3504bdf954cb0d, type: 3}
@@ -234,9 +258,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3563139748208109158}
     m_Modifications:
+    - target: {fileID: -8111923495168192356, guid: ab06354c4f99aa448b3ac14bd9af9075, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1140308101085295601, guid: ab06354c4f99aa448b3ac14bd9af9075, type: 3}
       propertyPath: m_Name
       value: Prefab_Mod_Pillar_Middle_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140308101085295601, guid: ab06354c4f99aa448b3ac14bd9af9075, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5413164177992192244, guid: ab06354c4f99aa448b3ac14bd9af9075, type: 3}
       propertyPath: m_RootOrder
@@ -340,9 +372,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1712176126534530473, guid: a07d0daa386b05c4aa3504bdf954cb0d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5737774206079072964, guid: a07d0daa386b05c4aa3504bdf954cb0d, type: 3}
       propertyPath: m_Name
       value: Prefab_Mod_Pillar_Middle_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5737774206079072964, guid: a07d0daa386b05c4aa3504bdf954cb0d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a07d0daa386b05c4aa3504bdf954cb0d, type: 3}
@@ -358,9 +398,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3563139748208109158}
     m_Modifications:
+    - target: {fileID: -8111923495168192356, guid: ab06354c4f99aa448b3ac14bd9af9075, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1140308101085295601, guid: ab06354c4f99aa448b3ac14bd9af9075, type: 3}
       propertyPath: m_Name
       value: Prefab_Mod_Pillar_Middle_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140308101085295601, guid: ab06354c4f99aa448b3ac14bd9af9075, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5413164177992192244, guid: ab06354c4f99aa448b3ac14bd9af9075, type: 3}
       propertyPath: m_RootOrder
@@ -468,6 +516,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_Mod_Pillar_Middle_04
       objectReference: {fileID: 0}
+    - target: {fileID: 3371238531375859035, guid: a12aea65a58664a4abd95eab3fb6780b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719944007467532696, guid: a12aea65a58664a4abd95eab3fb6780b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a12aea65a58664a4abd95eab3fb6780b, type: 3}
 --- !u!4 &3009941626145355028 stripped
@@ -482,9 +538,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3563139748208109158}
     m_Modifications:
+    - target: {fileID: -6525634648005681992, guid: a2c72c01908aaf54a87a9909bf3f77e1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1749169365650161907, guid: a2c72c01908aaf54a87a9909bf3f77e1, type: 3}
       propertyPath: m_Name
       value: Prefab_Mod_Pillar_Middle_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749169365650161907, guid: a2c72c01908aaf54a87a9909bf3f77e1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7684117943702852000, guid: a2c72c01908aaf54a87a9909bf3f77e1, type: 3}
       propertyPath: m_RootOrder
@@ -548,6 +612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_Mod_Pillar_Bottom_01
       objectReference: {fileID: 0}
+    - target: {fileID: 4662174386015642037, guid: 4be27e38f1da7b54e8a3ae199ee2620b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5496213614490129441, guid: 4be27e38f1da7b54e8a3ae199ee2620b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -591,6 +659,10 @@ PrefabInstance:
     - target: {fileID: 5496213614490129441, guid: 4be27e38f1da7b54e8a3ae199ee2620b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5840370841949068684, guid: 4be27e38f1da7b54e8a3ae199ee2620b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4be27e38f1da7b54e8a3ae199ee2620b, type: 3}
@@ -653,6 +725,14 @@ PrefabInstance:
     - target: {fileID: 3371238531375859035, guid: a12aea65a58664a4abd95eab3fb6780b, type: 3}
       propertyPath: m_Name
       value: Prefab_Mod_Pillar_Middle_04 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371238531375859035, guid: a12aea65a58664a4abd95eab3fb6780b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719944007467532696, guid: a12aea65a58664a4abd95eab3fb6780b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a12aea65a58664a4abd95eab3fb6780b, type: 3}
