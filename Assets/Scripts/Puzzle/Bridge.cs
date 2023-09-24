@@ -40,7 +40,7 @@ public class Bridge : MonoBehaviour
         SetBridgeState(true);
     }
 
-    public void SetBridgeState(bool state)
+    void SetBridgeState(bool state)
     {
         m_unlocked = state;
         m_colliders.SetActive(state);
