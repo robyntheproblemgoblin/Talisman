@@ -344,7 +344,7 @@ public class PlayerController : MonoBehaviour
     {
         m_talismanState.StopState();
         m_talismanState = m_firing;
-        m_talismanState.StartState(m_charging.m_chargeTime);
+        m_talismanState.StartState(m_charging.m_chargeTime * m_projectileDamage);
     }
 
     public void StartIdle()
