@@ -64,7 +64,6 @@ public class AudioManager : MonoBehaviour
                 m_playLines = false;
             }
         await UniTask.WaitUntil(() => m_playerSources[0].isPlaying == false);
-        }
     }
 
     public async UniTask PlayIntroEffect()
