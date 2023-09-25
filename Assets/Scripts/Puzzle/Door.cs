@@ -4,7 +4,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public List<Puzzle> m_puzzleList;
-    bool m_unlocked;
+    public bool m_unlocked;
     public Transform m_lockedPos;
     public Transform m_unlockedPos;
     public float m_speed;
