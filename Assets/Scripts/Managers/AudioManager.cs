@@ -34,11 +34,11 @@ public class AudioManager : MonoBehaviour
         m_game = GameManager.Instance;
         m_game.m_audioManager = this;
         m_dictionary = new Dictionary<string, List<AudioSubtitle>>();
-        foreach(DialogueList dl in m_dialogues)
+        foreach (DialogueList dl in m_dialogues)
         {
             m_dictionary.Add(dl.m_section, dl.m_audioList);
         }
-    }    
+    }
 
     public async UniTask PlayVoiceSequence(string reference)
     {
@@ -46,24 +46,27 @@ public class AudioManager : MonoBehaviour
         int index = 0;
         m_playLines = true;
         while (m_playLines)
-        {            
-                AudioClip clipToPlay = current[index].m_clip;
-                // Loads the next Clip to play and schedules when it will start
-                m_playerSources[0].clip = clipToPlay;
-                m_playerSources[0].Play();
-                // Checks how long the Clip will last and updates the Next Start Time with a new value
-                /*double duration = (double)clipToPlay.samples / clipToPlay.frequency;
-                m_nextStartTime = m_nextStartTime + duration;*/
-                // Switches the toggle to use the other Audio Source next
-                //m_playerSourceToggle = 1 - m_playerSourceToggle;
-                // Increase the clip index number, reset if it runs out of clips
-                index++;
-            }
+        {
+            AudioClip clipToPlay = current[index].m_clip;
+            // Loads the next Clip to play and schedules when it will start
+            m_playerSources[0].clip = clipToPlay;
+            m_playerSources[0].Play();
+            // Checks how long the Clip will last and updates the Next Start Time with a new value
+            /*double duration = (double)clipToPlay.samples / clipToPlay.frequency;
+            m_nextStartTime = m_nextStartTime + duration;*/
+            // Switches the toggle to use the other Audio Source next
+            //m_playerSourceToggle = 1 - m_playerSourceToggle;
+            // Increase the clip index number, reset if it runs out of clips
+            index++;
             if (index >= current.Count)
             {
                 m_playLines = false;
             }
-        await UniTask.WaitUntil(() => m_playerSources[0].isPlaying == false);
+            else
+            {
+                await UniTask.WaitUntil(() => m_playerSources[0].isPlaying == false);
+            }
+        }
     }
 
     public async UniTask PlayIntroEffect()
@@ -73,7 +76,7 @@ public class AudioManager : MonoBehaviour
             m_menuSource.clip = m_menuClips[0];
             m_menuSource.Play();
         }
-        while(m_menuSource.isPlaying)
+        while (m_menuSource.isPlaying)
         {
             await UniTask.Yield();
         }

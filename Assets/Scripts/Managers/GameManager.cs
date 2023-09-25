@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         m_player.m_camera.SetRotation(m_cinematicPoints[index].rotation.eulerAngles);
         
         m_player.m_animator.SetTrigger("Cinematic");        
-        await m_audioManager.PlayVoiceSequence(interactable.m_audioReference);
+        m_audioManager.PlayVoiceSequence(interactable.m_audioReference);
         UpdateGameState(GameState.CINEMATIC);
     }    
 

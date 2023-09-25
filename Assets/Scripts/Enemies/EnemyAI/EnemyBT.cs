@@ -126,6 +126,7 @@ public class EnemyBT : MonoBehaviour
         m_activator.EnemyDead();
             m_animator.SetTrigger("Die");
         GameManager.Instance.m_aiManager.m_enemies.Remove(this);
+        gameObject.GetComponent<Collider>().enabled = false;
         float time = Time.time;
         while(Time.time < time + 3)
         {
