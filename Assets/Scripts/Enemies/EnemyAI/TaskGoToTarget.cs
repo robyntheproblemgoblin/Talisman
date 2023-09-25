@@ -30,6 +30,7 @@ public class TaskGoToTarget : Node
                 EnemyBuffer(target.position + Vector3.down),
                 m_speed * Time.deltaTime);
             m_transform.LookAt(target.position + Vector3.down);        
+            m_agent.isStopped = false;
             m_state = NodeState.SUCCESS;        
             return m_state;            
         }                

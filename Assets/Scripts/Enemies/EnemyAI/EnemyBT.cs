@@ -179,8 +179,9 @@ public class EnemyBT : MonoBehaviour
     {
         transform.SetPositionAndRotation(position, rotation);
         m_animator.rootPosition = position;
-        m_agent.nextPosition = position;   
-        
+        m_agent.isStopped = true;
+        m_animator.Rebind();
+        m_animator.Update(-1);
         m_animator.enabled = false;
         m_isStatue = true;
     }

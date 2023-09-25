@@ -12,7 +12,11 @@ public class AudioManager : MonoBehaviour
     int m_finalLinesIndex = 0;
     [HideInInspector] public int m_musicIndex;
 
-    [Header("Voice Lines")]
+    public List<DialogueList> m_dialogues;
+    Dictionary<string, List<AudioSubtitle>> m_dictionary;
+    
+    
+    [Header("Voice Lines Alpha Build")]
     public List<AudioClip> m_voiceLinesInitial;
     public List<AudioClip> m_voiceLinesPuzzleLeft;
     public List<AudioClip> m_voiceLinesPuzzleRight;
@@ -41,7 +45,12 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         m_game = GameManager.Instance;
-        m_game.m_audioManager = this;        
+        m_game.m_audioManager = this;
+        m_dictionary = new Dictionary<string, List<AudioSubtitle>>();
+        foreach(DialogueList dl in m_dialogues)
+        {
+            m_dictionary.Add(dl.m_section, dl.m_audioList);
+        }
     }
 
     private void Update()
@@ -53,24 +62,55 @@ public class AudioManager : MonoBehaviour
     {
         while (m_playLines)
         {
-            AudioClip clipToPlay = m_voiceLinesInitial[m_initialLinesIndex];
-            // Loads the next Clip to play and schedules when it will start
-            m_playerSources[m_playerSourceToggle].clip = clipToPlay;
-            m_playerSources[m_playerSourceToggle].PlayScheduled(m_nextStartTime);
-            // Checks how long the Clip will last and updates the Next Start Time with a new value
-            double duration = (double)clipToPlay.samples / clipToPlay.frequency;
-            m_nextStartTime = m_nextStartTime + duration;
-            // Switches the toggle to use the other Audio Source next
-            m_playerSourceToggle = 1 - m_playerSourceToggle;
-            // Increase the clip index number, reset if it runs out of clips
-            m_initialLinesIndex++;
-
+            if (AudioSettings.dspTime > m_nextStartTime - 1)
+            {
+                AudioClip clipToPlay = m_voiceLinesInitial[m_initialLinesIndex];
+                // Loads the next Clip to play and schedules when it will start
+                m_playerSources[m_playerSourceToggle].clip = clipToPlay;
+                m_playerSources[m_playerSourceToggle].PlayScheduled(m_nextStartTime);
+                // Checks how long the Clip will last and updates the Next Start Time with a new value
+                double duration = (double)clipToPlay.samples / clipToPlay.frequency;
+                m_nextStartTime = m_nextStartTime + duration;
+                // Switches the toggle to use the other Audio Source next
+                m_playerSourceToggle = 1 - m_playerSourceToggle;
+                // Increase the clip index number, reset if it runs out of clips
+                m_initialLinesIndex++;
+            }
             if (m_initialLinesIndex >= m_voiceLinesInitial.Count)
             {
                 m_playLines = false;
             }
             await UniTask.Yield();
         }    
+    }
+
+    public async UniTask PlayVoiceSequence(string reference)
+    {
+        List<AudioSubtitle> current = m_dictionary[reference];
+        int index = 0;
+        m_playLines = true;
+        while (m_playLines)
+        {
+            if (AudioSettings.dspTime > m_nextStartTime - 1)
+            {
+                AudioClip clipToPlay = current[index].m_clip;
+                // Loads the next Clip to play and schedules when it will start
+                m_playerSources[m_playerSourceToggle].clip = clipToPlay;
+                m_playerSources[m_playerSourceToggle].PlayScheduled(m_nextStartTime);
+                // Checks how long the Clip will last and updates the Next Start Time with a new value
+                double duration = (double)clipToPlay.samples / clipToPlay.frequency;
+                m_nextStartTime = m_nextStartTime + duration;
+                // Switches the toggle to use the other Audio Source next
+                m_playerSourceToggle = 1 - m_playerSourceToggle;
+                // Increase the clip index number, reset if it runs out of clips
+                index++;
+            }
+            if (index >= current.Count)
+            {
+                m_playLines = false;
+            }
+            await UniTask.Yield();
+        }
     }
 
     public void PlayIntroEffect()
@@ -80,6 +120,12 @@ public class AudioManager : MonoBehaviour
             m_menuSource.clip = m_menuClips[0];
             m_menuSource.Play();
         }
-    }    
+    }
+
+    public void OneOffDialouge(AudioSubtitle ASobject)
+    {
+        m_playerSources[2].clip = ASobject.m_clip;
+        m_playerSources[2].Play();
+    }
 
 }
