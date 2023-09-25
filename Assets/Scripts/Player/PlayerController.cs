@@ -121,6 +121,7 @@ public class PlayerController : MonoBehaviour
         m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_inputControl.Player_Map.Interact.performed += Interact;
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
+        m_inputControl.Player_Map.BlockParry.canceled += StopBlockParry;
 
         m_inputControl.UI.Cancel.started += m_game.m_menuManager.Cancel;
 
@@ -170,7 +171,7 @@ public class PlayerController : MonoBehaviour
         if (hit.gameObject.layer == (int)Mathf.Log(LayerMask.GetMask("Enemy"), 2))
         {     
             EnemyBT e = hit.gameObject.GetComponentInParent<EnemyBT>();
-            if (e != null && HitAlready(e.gameObject.name) == false)
+            if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {                
                 RegisterEnemyHit(e.gameObject.name, 5);
                 TakeDamage(e.m_damage);
@@ -390,13 +391,22 @@ public class PlayerController : MonoBehaviour
     {
         m_isBlocking = true;
         m_blockPressedTime = Time.realtimeSinceStartup;
+        m_animator.SetTrigger("Block");
         Invoke("StopBlock", m_blockingResetTime);
+    }
+    private void StopBlockParry(InputAction.CallbackContext obj)
+    {
+        m_isBlocking = false;        
+        m_animator.SetTrigger("StopBlock");        
     }
 
     private void StopBlock()
     {
         if (m_isBlocking)
+        {
             m_isBlocking = false;
+            m_animator.SetTrigger("StopBlock");
+        }
     }
 
     #endregion
