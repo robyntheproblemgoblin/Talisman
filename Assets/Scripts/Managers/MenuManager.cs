@@ -44,6 +44,9 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI m_tutorial;
     public Image m_interactImage;
     public TextMeshProUGUI m_interactText;
+    [Space(5)]
+    public float m_subtitleTime = 2;
+    bool m_showSubtitle = true;
     #endregion
 
     #region Cinematic Fields
@@ -86,6 +89,7 @@ public class MenuManager : MonoBehaviour
     public Image m_deathImage;
     public Button m_respawnButton;
     public Button m_deathQuit;
+    public float m_deathFade = 0.33f;
     #endregion
 
     //Credits
@@ -332,7 +336,7 @@ public class MenuManager : MonoBehaviour
         while (alpha < 1)
         {
             m_deathImage.color = new Color(0, 0, 0, alpha);
-            alpha += Time.deltaTime;
+            alpha += Time.deltaTime * m_deathFade;
             await UniTask.Yield();
         }
         SetDeathScreen();
@@ -352,5 +356,28 @@ public class MenuManager : MonoBehaviour
         m_deathQuit.gameObject.SetActive(false); 
         m_deathImage.color = new Color(0, 0, 0, 0);
         m_game.Respawn();
+    }
+
+    public async void SetSubtitle(string subtitile)
+    {
+        if(!m_subtitles.gameObject.activeSelf)
+        {
+            m_subtitles.gameObject.SetActive(true);
+        }
+        m_subtitles.text = subtitile;
+        SubtitleTimeOut(Time.time).Forget();
+    }    
+
+    async UniTask SubtitleTimeOut(float startTime)
+    {
+        string currentSub = m_subtitles.text;
+        while(Time.time <= startTime + m_subtitleTime)
+        {
+          await UniTask.Yield();
+        }
+        if(m_subtitles.text == currentSub)
+        {
+            m_subtitles.text = string.Empty;            
+        }
     }
 }
