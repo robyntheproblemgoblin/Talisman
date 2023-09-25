@@ -194,6 +194,7 @@ public class MenuManager : MonoBehaviour
         m_pauseMenu.SetActive(state == GameState.PAUSE);
         m_optionsMenu.SetActive(state == GameState.OPTIONS);
         m_deathScreen.SetActive(state == GameState.DEATH);
+        m_subtitles.gameObject.SetActive(state == GameState.CINEMATIC || state == GameState.GAME);
     }
     void TitleScreen()
     {
