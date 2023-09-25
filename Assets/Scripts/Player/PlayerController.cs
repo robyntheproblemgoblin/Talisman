@@ -97,10 +97,10 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         m_inputControl = new FPControls();
+        m_game = GameManager.Instance;
     }
     void Start()
     {
-        m_game = GameManager.Instance;
         m_camera = FindObjectOfType<CameraControls>();
         m_camera.m_parentTransform = transform; 
         m_characterController = GetComponent<CharacterController>();
@@ -129,6 +129,8 @@ public class PlayerController : MonoBehaviour
         m_game.OnGameStateChanged += OnGameStateChanged;
         m_game.m_menuManager.UpdateHealth();
         m_game.m_menuManager.UpdateMana();
+
+        
     }
 
     void OnGameStateChanged(GameState state)
@@ -151,6 +153,10 @@ public class PlayerController : MonoBehaviour
                 break;
             case GameState.CINEMATIC:
                 m_inputControl.Player_Map.Disable();
+                break;
+            case GameState.DEATH:
+                m_inputControl.Player_Map.Disable();
+                m_inputControl.UI.Enable();
                 break;
             case GameState.CREDITS:
                 m_inputControl.Player_Map.Disable();

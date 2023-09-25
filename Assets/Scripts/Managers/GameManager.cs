@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public PlayerController m_player;    
     public MenuManager m_menuManager;
     public AudioManager m_audioManager;
+    public AIManager m_aiManager;
     
     public List<Interactable> m_cinematicTriggers;
     public List<Transform> m_cinematicPoints;
@@ -62,9 +64,11 @@ public class GameManager : MonoBehaviour
                 }                
                 break;
             case GameState.CINEMATIC:
-                Cinematic();
                 break;
             case GameState.PAUSE:               
+                break;
+            case GameState.DEATH:
+                DeathMenuStart();
                 break;
             default:
                 break;
@@ -125,24 +129,37 @@ public class GameManager : MonoBehaviour
     public void SetCheckPoint(Transform transform)
     {
         m_respawnPoint = transform;
-    }
+    }   
 
-    void Cinematic()
-    {
-     
-    }
-
-    public void CinematicTrigger(Interactable interactable) 
+    public async void CinematicTrigger(Interactable interactable) 
     {
         int index = m_cinematicTriggers.IndexOf(interactable);
 
+        m_respawnPoint = m_cinematicPoints[index];
         m_player.transform.position = m_cinematicPoints[index].position;
         m_player.m_camera.SetRotation(m_cinematicPoints[index].rotation.eulerAngles);
         
-        m_player.m_animator.SetTrigger("Cinematic");
-        m_audioManager.PlayInitialVoiceLines();
+        m_player.m_animator.SetTrigger("Cinematic");        
+        await m_audioManager.PlayInitialVoiceLines();
         UpdateGameState(GameState.CINEMATIC);
     }    
+
+    void DeathMenuStart()
+    {
+        m_menuManager.FadeDeathScreen();
+    }
+
+    public void Respawn()
+    {
+        m_player.transform.position = m_respawnPoint.position;
+        m_player.m_camera.SetRotation(m_respawnPoint.rotation.eulerAngles);
+        m_player.m_currentHealth = 30;
+        m_player.m_currentMana = 30;
+        m_menuManager.UpdateHealth();
+        m_menuManager.UpdateMana();
+        m_aiManager.ResetEnemies();
+        UpdateGameState(GameState.GAME);
+    }
 }
 
 public enum GameState
@@ -154,5 +171,5 @@ public enum GameState
     PAUSE,
     OPTIONS,
     CREDITS,
-    DEATH
+    DEATH,
 }

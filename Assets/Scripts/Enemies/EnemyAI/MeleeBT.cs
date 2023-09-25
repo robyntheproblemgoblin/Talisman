@@ -18,7 +18,7 @@ public class MeleeBT : EnemyBT
                     new Sequence(new List<Node>
                     {
                         new CheckTargetInMeleeRange(transform, m_attackRange),
-                        new TaskAttack(this, m_animator),
+                        new TaskAttack(this, m_animator),                        
                         new TaskGoToTarget(this, transform, m_attackRange, m_speed),
                     }),
                     new TaskGoToTarget(this, transform, m_attackRange, m_speed),

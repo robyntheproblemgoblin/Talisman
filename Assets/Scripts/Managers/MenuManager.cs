@@ -3,6 +3,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using System;
+using Cysharp.Threading.Tasks;
 
 public class MenuManager : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class MenuManager : MonoBehaviour
     public GameObject m_cinematics;
     public GameObject m_pauseMenu;
     public GameObject m_optionsMenu;
+    public GameObject m_deathScreen;
     // TEMPORARY
     public GameObject m_falseEnd;
     public Button m_falseQuit;
@@ -77,7 +80,13 @@ public class MenuManager : MonoBehaviour
     public Slider m_dialogueSlider;
     public Button m_defaults;
     public Button m_optionsBack;
-    #endregion    
+    #endregion
+
+    #region Death Fields
+    public Image m_deathImage;
+    public Button m_respawnButton;
+    public Button m_deathQuit;
+    #endregion
 
     //Credits
 
@@ -130,8 +139,14 @@ public class MenuManager : MonoBehaviour
         m_dialogueSlider.SetValueWithoutNotify(100);
         m_defaults.onClick.AddListener(delegate () { });
         m_optionsBack.onClick.AddListener(delegate () { });
-            
-       m_health.maxValue = m_player.m_health;
+
+        //Death Setup
+        m_respawnButton.onClick.AddListener(delegate () { Respawn(); });
+        m_respawnButton.gameObject.SetActive(false);
+        m_deathQuit.onClick.AddListener(delegate () { QuitGame(); });
+        m_deathQuit.gameObject.SetActive(false);
+
+        m_health.maxValue = m_player.m_health;
         m_mana.maxValue = m_player.m_maxMana;
     }
 
@@ -151,7 +166,7 @@ public class MenuManager : MonoBehaviour
                 {
                     StartGame();
                 }
-                else if (m_game.m_lastState == GameState.PAUSE)
+                else if (m_game.m_lastState == GameState.PAUSE || m_game.m_lastState == GameState.DEATH)
                 {
                     Resume();
                 }
@@ -174,6 +189,7 @@ public class MenuManager : MonoBehaviour
         m_cinematics.SetActive(state == GameState.CINEMATIC);
         m_pauseMenu.SetActive(state == GameState.PAUSE);
         m_optionsMenu.SetActive(state == GameState.OPTIONS);
+        m_deathScreen.SetActive(state == GameState.DEATH);
     }
     void TitleScreen()
     {
@@ -199,7 +215,11 @@ public class MenuManager : MonoBehaviour
     }
     void QuitGame()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
     void Options()
     {
@@ -297,12 +317,40 @@ public class MenuManager : MonoBehaviour
         m_health.value = m_player.m_currentHealth;
         if (m_health.value <= 0)
         {
-       //     m_game.UpdateGameState(GameState.);
+            m_game.UpdateGameState(GameState.DEATH);
         }
     }
 
     public void UpdateMana()
     {
         m_mana.value = m_player.m_currentMana;
+    }
+
+    public async UniTask FadeDeathScreen()
+    {
+        float alpha = 0;
+        while (alpha < 1)
+        {
+            m_deathImage.color = new Color(0, 0, 0, alpha);
+            alpha += Time.deltaTime;
+            await UniTask.Yield();
+        }
+        SetDeathScreen();
+    }
+
+    void SetDeathScreen()
+    {        
+        m_respawnButton.gameObject.SetActive(true);
+        m_deathQuit.gameObject.SetActive(true);
+        m_eventSystem.SetSelectedGameObject(m_respawnButton.gameObject);
+    }
+
+
+    void Respawn()
+    {
+        m_respawnButton.gameObject.SetActive(false);
+        m_deathQuit.gameObject.SetActive(false); 
+        m_deathImage.color = new Color(0, 0, 0, 0);
+        m_game.Respawn();
     }
 }
