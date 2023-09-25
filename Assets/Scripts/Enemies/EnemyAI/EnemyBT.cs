@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
@@ -96,7 +97,10 @@ public class EnemyBT : MonoBehaviour
     {
         m_currentHP -= damage;
         bool isDead = m_currentHP <= 0;
-        if (isDead) Die();
+        if (isDead)
+        {
+            Die().Forget();
+        }
         return isDead;
     }
 
@@ -116,11 +120,17 @@ public class EnemyBT : MonoBehaviour
         }        
     }
 
-    protected void Die()
+    protected async UniTask Die()
     {
         //Setup what is happening on die
         m_activator.EnemyDead();
+            m_animator.SetTrigger("Die");
         GameManager.Instance.m_aiManager.m_enemies.Remove(this);
+        float time = Time.time;
+        while(Time.time < time + 3)
+        {
+            await UniTask.Yield();
+        }
         Destroy(gameObject);
     }
 

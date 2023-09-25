@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         m_player.m_camera.SetRotation(m_cinematicPoints[index].rotation.eulerAngles);
         
         m_player.m_animator.SetTrigger("Cinematic");        
-        await m_audioManager.PlayInitialVoiceLines();
+        await m_audioManager.PlayVoiceSequence(interactable.m_audioReference);
         UpdateGameState(GameState.CINEMATIC);
     }    
 
@@ -156,6 +156,7 @@ public class GameManager : MonoBehaviour
         m_player.m_camera.SetRotation(m_respawnPoint.rotation.eulerAngles);
         m_player.m_currentHealth = 30;
         m_player.m_currentMana = 30;
+        m_player.m_animator.SetTrigger("Alive");
         m_menuManager.UpdateHealth();
         m_menuManager.UpdateMana();
         m_aiManager.ResetEnemies();
