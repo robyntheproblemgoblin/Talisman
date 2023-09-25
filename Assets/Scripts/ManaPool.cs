@@ -5,6 +5,7 @@ public class ManaPool : MonoBehaviour
     public float m_manaAmount;
     public Transform m_respawnPosition;
     public Door m_inDoor;
+    public Door m_outDoor;
     public Light m_light;
     public string m_interactMessage = "Interact";
     public bool m_isFalseEnd;
@@ -15,6 +16,10 @@ public class ManaPool : MonoBehaviour
         if (m_inDoor != null)
         {
             m_inDoor.CloseDoor();
+        }
+        if(m_outDoor != null) 
+        {
+            m_outDoor.OpenDoor();
         }
         pc.AddMana(m_manaAmount);
         pc.m_game.SetCheckPoint(m_respawnPosition);

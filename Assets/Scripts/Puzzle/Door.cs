@@ -47,4 +47,9 @@ public class Door : MonoBehaviour
     {
         m_unlocked = false;
     }
+
+    public void OpenDoor()
+    {
+        m_unlocked = true;
+    }
 }

@@ -31,18 +31,22 @@ public class CanSeePlayer : Node
             {
                 if (CanSee(colliders[0].transform.position))
                 {
-                    m_parent.m_parent.SetData("target", colliders[0].gameObject.transform);
+                    SetData("target", colliders[0].gameObject.transform);
                     targetPos = colliders[0].gameObject.transform;
                     m_agent.SetDestination(new Vector3(targetPos.position.x, m_agent.gameObject.transform.position.y, targetPos.position.z));
+                    m_state = NodeState.SUCCESS;
+                    return m_state;
                 }
             }
         }
         else if (CanSee(targetPos.position))
         {
             m_agent.SetDestination(new Vector3(targetPos.position.x, m_agent.gameObject.transform.position.y, targetPos.position.z));
+            m_state = NodeState.SUCCESS;
+            return m_state;
         }
 
-        m_state = NodeState.SUCCESS;
+        m_state = NodeState.RUNNING;
         return m_state;
 
     }

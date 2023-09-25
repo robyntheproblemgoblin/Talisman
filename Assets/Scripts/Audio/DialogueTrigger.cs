@@ -20,7 +20,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
         {
-                m_audioManager.OneOffDialouge(m_oneOff);     
+                m_audioManager.OneOffDialogue(m_oneOff);     
                 Destroy(gameObject); 
         }
     }

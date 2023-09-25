@@ -12,9 +12,13 @@ public class SolvedFlare : Puzzle
     {
         if(m_updateMana && !m_isSolved)
         {
+            m_unlocked = true;
             m_isSolved = true;
             m_flare.Play();
-            //m_outputObject.m_updateMana = true;
+            foreach(Door door in m_doors)
+            {
+                door.CheckState();
+            }
         }
     }
 

@@ -10,7 +10,8 @@ public class DoorCloser : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
         {
-            m_door.m_unlocked = false;
+            m_door.m_unlocked = !m_door.m_unlocked;
+            Destroy(this);
         }
     }
 }

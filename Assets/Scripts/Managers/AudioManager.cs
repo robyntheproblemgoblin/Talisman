@@ -14,8 +14,8 @@ public class AudioManager : MonoBehaviour
 
     public List<DialogueList> m_dialogues;
     Dictionary<string, List<AudioSubtitle>> m_dictionary;
-    
-    
+
+    public AudioSubtitle m_intro;
     [Header("Voice Lines Alpha Build")]
     public List<AudioClip> m_voiceLinesInitial;
     public List<AudioClip> m_voiceLinesPuzzleLeft;
@@ -113,18 +113,24 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayIntroEffect()
+    public async UniTask PlayIntroEffect()
     {
         if (m_menuClips.Count > 0)
         {
             m_menuSource.clip = m_menuClips[0];
             m_menuSource.Play();
         }
+        while(m_menuSource.isPlaying)
+        {
+            await UniTask.Yield();
+        }
+        OneOffDialogue(m_intro);
     }
 
-    public void OneOffDialouge(AudioSubtitle ASobject)
+    public void OneOffDialogue(AudioSubtitle ASobject)
     {
         m_playerSources[2].clip = ASobject.m_clip;
+        m_game.m_menuManager.SetSubtitle(ASobject.m_subtitle);
         m_playerSources[2].Play();
     }
 
