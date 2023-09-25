@@ -7477,7 +7477,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credits
+  m_text: Respawn
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11678,12 +11678,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5dc32cc34ccb540ad6b49128cd1c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lastState: 0
-  m_gameState: 0
+  m_lastState: 6
+  m_gameState: 6
   m_player: {fileID: 0}
-  m_menuManager: {fileID: 0}
-  m_audioManager: {fileID: 0}
-  m_aiManager: {fileID: 0}
+  m_menuManager: {fileID: 6401465964559973944}
+  m_audioManager: {fileID: 1791306105140475677}
+  m_aiManager: {fileID: 7384736391290127244}
   m_cinematicTriggers: []
   m_cinematicPoints: []
   m_respawnPoint: {fileID: 0}

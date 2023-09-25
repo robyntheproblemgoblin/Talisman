@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
 
     void DeathMenuStart()
     {
+        m_player.m_animator.SetTrigger("Die");
         m_menuManager.FadeDeathScreen();
     }
 
