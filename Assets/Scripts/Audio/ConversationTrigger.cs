@@ -21,8 +21,8 @@ public class ConversationTrigger : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
         {
-                m_audioManager.PlayVoiceSequence(m_conversation).Forget();  
-                Destroy(gameObject); 
+            m_audioManager.PlayVoiceSequence(m_conversation).Forget();  
+            Destroy(gameObject); 
         }
     }
 }

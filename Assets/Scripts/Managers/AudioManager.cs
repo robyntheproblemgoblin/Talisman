@@ -46,18 +46,16 @@ public class AudioManager : MonoBehaviour
         int index = 0;
         m_playLines = true;
         while (m_playLines)
-        {
-            if (AudioSettings.dspTime > m_nextStartTime - 1)
-            {
+        {            
                 AudioClip clipToPlay = current[index].m_clip;
                 // Loads the next Clip to play and schedules when it will start
-                m_playerSources[m_playerSourceToggle].clip = clipToPlay;
-                m_playerSources[m_playerSourceToggle].PlayScheduled(m_nextStartTime);
+                m_playerSources[0].clip = clipToPlay;
+                m_playerSources[0].Play();
                 // Checks how long the Clip will last and updates the Next Start Time with a new value
-                double duration = (double)clipToPlay.samples / clipToPlay.frequency;
-                m_nextStartTime = m_nextStartTime + duration;
+                /*double duration = (double)clipToPlay.samples / clipToPlay.frequency;
+                m_nextStartTime = m_nextStartTime + duration;*/
                 // Switches the toggle to use the other Audio Source next
-                m_playerSourceToggle = 1 - m_playerSourceToggle;
+                //m_playerSourceToggle = 1 - m_playerSourceToggle;
                 // Increase the clip index number, reset if it runs out of clips
                 index++;
             }
@@ -65,7 +63,7 @@ public class AudioManager : MonoBehaviour
             {
                 m_playLines = false;
             }
-            await UniTask.Yield();
+        await UniTask.WaitUntil(() => m_playerSources[0].isPlaying == false);
         }
     }
 
