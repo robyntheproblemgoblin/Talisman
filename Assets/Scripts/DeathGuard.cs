@@ -17,7 +17,7 @@ public class DeathGuard : MonoBehaviour
 
     private void ResetOnDeath(GameState state)
     {
-        if(state == GameState.DEATH && !m_hasPassed)
+        if(state == GameState.DEATH && !m_hasPassed && gameObject.active)
         {
             m_doorCloser.ResetDoor();
         }
