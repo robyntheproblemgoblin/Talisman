@@ -24,6 +24,6 @@ public class DoorCloser : MonoBehaviour
     {
         m_door.OpenDoor();
         gameObject.SetActive(true);
-        m_safetyNet.gameObject.SetActive(true);
+        m_safetyNet.gameObject.SetActive(false);
     }
 }

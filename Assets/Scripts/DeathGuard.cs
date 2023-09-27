@@ -29,4 +29,9 @@ public class DeathGuard : MonoBehaviour
      Destroy(m_doorCloser.gameObject);
      Destroy(gameObject);
     }
+
+    private void OnDestroy()
+    {
+        m_game.OnGameStateChanged -= ResetOnDeath;
+    }
 }
