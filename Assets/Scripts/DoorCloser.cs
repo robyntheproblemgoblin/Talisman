@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorCloser : MonoBehaviour
 {
     public Door m_door;
-    public DeathGuard m_safetyNet;
+    public DoorOpener m_safetyNet;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +24,6 @@ public class DoorCloser : MonoBehaviour
     {
         m_door.OpenDoor();
         gameObject.SetActive(true);
-        m_safetyNet.gameObject.SetActive(true);
+        m_safetyNet.gameObject.SetActive(false);
     }
 }

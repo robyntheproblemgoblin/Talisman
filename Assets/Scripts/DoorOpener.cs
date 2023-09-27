@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class DeathGuard : MonoBehaviour
+public class DoorOpener : MonoBehaviour
 {    
     public DoorCloser m_doorCloser;
     GameManager m_game;
@@ -22,6 +22,11 @@ public class DeathGuard : MonoBehaviour
             m_doorCloser.ResetDoor();
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        m_game.OnGameStateChanged -= ResetOnDeath;
     }
 
     private void OnTriggerEnter(Collider other)
