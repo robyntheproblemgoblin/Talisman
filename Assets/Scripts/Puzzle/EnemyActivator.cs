@@ -1,6 +1,9 @@
+using AISystem;
+using System.Diagnostics;
+
 public class EnemyActivator : Puzzle
 {
-    public EnemyBT m_enemy;
+    public Enemy m_enemy;
     public Puzzle m_puzzle;
     public TutorialTrigger m_tutorial;
 
@@ -9,7 +12,8 @@ public class EnemyActivator : Puzzle
         if (m_updateMana && m_enemy.m_isStatue)
         {
             m_updateMana = false;
-            m_enemy.StopStatue();
+            // m_enemy.StopStatue();
+            UnityEngine.Debug.Log("FIX STOP STATUE");
         }
         else
         {

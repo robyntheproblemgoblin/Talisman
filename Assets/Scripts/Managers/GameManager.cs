@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using AISystem.Systems;
 
 
 public class GameManager : MonoBehaviour
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        m_aiManager = new AIManager();
         OnGameStateChanged += GameStateChanged;
     }
 

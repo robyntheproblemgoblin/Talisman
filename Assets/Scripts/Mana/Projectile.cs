@@ -1,4 +1,5 @@
 using UnityEngine;
+using AISystem;
 
 public class Projectile : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
-        EnemyBT enemy = collision.gameObject.GetComponent<EnemyBT>();
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if(enemy != null)
         {            
             enemy.TakeHit(m_damage);

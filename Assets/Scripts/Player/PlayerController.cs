@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using AISystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -170,7 +171,7 @@ public class PlayerController : MonoBehaviour
     {        
         if (hit.gameObject.layer == (int)Mathf.Log(LayerMask.GetMask("Enemy"), 2))
         {     
-            EnemyBT e = hit.gameObject.GetComponentInParent<EnemyBT>();
+            Enemy e = hit.gameObject.GetComponentInParent<Enemy>();
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {                
                 RegisterEnemyHit(e.gameObject.name, 5);
