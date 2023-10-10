@@ -13,12 +13,10 @@ namespace AISystem.Behaviours.StandardNodes
             {
                 var state = m_children[i].Evaluate(dt);
                 if (state == NodeState.SUCCESS)
-                {
-                    UnityEngine.Debug.Log(m_children[i].ToString() + " succeeded");
+                {                    
                     ++m_currentIndex;
                     continue;
-                }
-                UnityEngine.Debug.Log(m_children[i].ToString() + " is running or failed");
+                }                
                 return state;
             }
             return NodeState.SUCCESS;

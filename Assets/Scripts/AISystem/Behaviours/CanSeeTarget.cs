@@ -10,10 +10,10 @@ namespace AISystem.Behaviours
             if (m_input.m_aIKnowledge.CanSeeBeing(out BeingKnowledge info))
             {
                 m_input.m_blackboard.m_target = info.m_being;
-                UnityEngine.Debug.Log("True");
+                UnityEngine.Debug.Log("Seen Target");
                 return true;
             }
-            UnityEngine.Debug.Log("False");
+            UnityEngine.Debug.Log("Failed to see Target");
             return false;
         }
     }

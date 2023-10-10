@@ -12,8 +12,7 @@ namespace AISystem.Behaviours
                 return NodeState.FAILURE;
             }
 
-            m_input.m_aIMovement.Stop();
-            UnityEngine.Debug.Log("Stopped Here");
+            m_input.m_aIMovement.Stop();            
             return NodeState.SUCCESS;
         }
     }

@@ -28,10 +28,7 @@ MonoBehaviour:
     - rid: 235161575055687700
     - rid: 235161575055687702
     - rid: 235161575055687703
-    - rid: 235161575055687710
-    - rid: 235161575055687711
     - rid: 235161575055687713
-    - rid: 235161575055687708
     - rid: 235161575055687709
   m_nodeData:
   - m_position:
@@ -109,26 +106,8 @@ MonoBehaviour:
   - m_position:
       serializedVersion: 2
       x: 690
-      y: 166
-      width: 131
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 849
-      y: 166
-      width: 93
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 690
       y: 416
       width: 133
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 152
-      y: 89
-      width: 72
       height: 77
   - m_position:
       serializedVersion: 2
@@ -153,7 +132,6 @@ MonoBehaviour:
       data:
         <m_children>k__BackingField:
         - rid: 235161575055687680
-        - rid: 235161575055687708
         - rid: 235161575055687709
     - rid: 235161575055687691
       type: {class: CanSeeTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
@@ -178,7 +156,6 @@ MonoBehaviour:
         - rid: 235161575055687700
         - rid: 235161575055687702
         - rid: 235161575055687703
-        - rid: 235161575055687710
         - rid: 235161575055687713
     - rid: 235161575055687699
       type: {class: CanSeeTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
@@ -194,18 +171,7 @@ MonoBehaviour:
       type: {class: Wait, ns: AISystem.Behaviours, asm: Assembly-CSharp}
       data:
         m_duration: 1
-    - rid: 235161575055687708
-      type: {class: Wait, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-      data:
-        m_duration: 1
     - rid: 235161575055687709
-      type: {class: IsStatue, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-    - rid: 235161575055687710
-      type: {class: InverterNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
-      data:
-        <m_child>k__BackingField:
-          rid: 235161575055687711
-    - rid: 235161575055687711
       type: {class: IsStatue, ns: AISystem.Behaviours, asm: Assembly-CSharp}
     - rid: 235161575055687712
       type: {class: StopMovement, ns: AISystem.Behaviours, asm: Assembly-CSharp}
