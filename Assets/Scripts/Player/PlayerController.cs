@@ -2,9 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using AISystem;
+using AISystem.Contracts;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IBeing
 {
+    public Vector3 m_position => transform.position;
+    public Vector3 m_forward => transform.forward;
+    public Vector3 m_headPosition => transform.position;
+    
     public GameManager m_game;
     public FPControls m_inputControl;
     #region Movement Fields
@@ -132,7 +137,7 @@ public class PlayerController : MonoBehaviour
         m_game.m_menuManager.UpdateHealth();
         m_game.m_menuManager.UpdateMana();
 
-        
+        m_game.m_aiManager.RegisterBeing(this);
     }
 
     void OnGameStateChanged(GameState state)

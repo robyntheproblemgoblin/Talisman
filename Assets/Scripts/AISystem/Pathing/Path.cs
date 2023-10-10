@@ -9,7 +9,7 @@ namespace AISystem.Pathing
         public float3 m_heading { get; private set; }
         public float m_length { get; private set; }
 
-        Spline m_pathSpline;
+        public Spline m_pathSpline;
         public bool m_isEmpty => m_pathSpline == null;
 
         public Path(Spline spline, float3 dest, float3 heading)

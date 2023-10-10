@@ -24,6 +24,25 @@ namespace AISystem
             m_behaviourPerformer = behaviourPerformer;
         }
 
+        public bool IsStatue()
+        {
+            return m_aiMovement.m_isStatue;
+        }
+
+        public void SetStatue(bool state)
+        {
+            m_aiMovement.m_isStatue = state;
+            if(state)
+            {
+                DisableIntelligience();
+            }
+            else
+            {
+                m_aiMovement.AwakenStatue();
+                EnableIntelligience();
+            }
+        }
+
         public void EnableIntelligience()
         {
             m_isActive = true;

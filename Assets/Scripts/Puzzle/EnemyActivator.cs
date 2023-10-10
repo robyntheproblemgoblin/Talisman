@@ -9,16 +9,11 @@ public class EnemyActivator : Puzzle
 
     void Update()
     {
-        if (m_updateMana && m_enemy.m_isStatue)
+        if (m_updateMana && m_enemy != null && m_enemy.IsStatue())
         {
             m_updateMana = false;
-            // m_enemy.StopStatue();
-            UnityEngine.Debug.Log("FIX STOP STATUE");
-        }
-        else
-        {
-            m_updateMana = false;
-        }
+            m_enemy.SetStatue(false);
+        }        
     }
 
     public override void RotatePuzzle() { }

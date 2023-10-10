@@ -1,0 +1,213 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b494ccb1938774445ae84d09e491cce6, type: 3}
+  m_Name: Enemy
+  m_EditorClassIdentifier: 
+  m_behaviourTree:
+    m_parent:
+      rid: 235161575055687690
+    m_nodes:
+    - rid: 235161575055687690
+    - rid: 235161575055687680
+    - rid: 235161575055687691
+    - rid: 235161575055687692
+    - rid: 235161575055687712
+    - rid: 235161575055687694
+    - rid: 235161575055687695
+    - rid: 235161575055687697
+    - rid: 235161575055687699
+    - rid: 235161575055687700
+    - rid: 235161575055687702
+    - rid: 235161575055687703
+    - rid: 235161575055687710
+    - rid: 235161575055687711
+    - rid: 235161575055687713
+    - rid: 235161575055687708
+    - rid: 235161575055687709
+  m_nodeData:
+  - m_position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 131
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 152
+      y: 0
+      width: 134
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 348
+      y: -172
+      width: 128
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 361
+      y: -68
+      width: 115
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 371
+      y: 39
+      width: 133
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 380
+      y: 128
+      width: 124
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 352
+      y: 243
+      width: 131
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 504
+      y: 262
+      width: 134
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 679
+      y: 262
+      width: 128
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 679
+      y: 339
+      width: 115
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 683
+      y: 493
+      width: 124
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 683
+      y: 570
+      width: 72
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 690
+      y: 166
+      width: 131
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 849
+      y: 166
+      width: 93
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 690
+      y: 416
+      width: 133
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 152
+      y: 89
+      width: 72
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 178
+      y: -134
+      width: 93
+      height: 77
+  references:
+    version: 2
+    RefIds:
+    - rid: 235161575055687680
+      type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
+      data:
+        <m_children>k__BackingField:
+        - rid: 235161575055687691
+        - rid: 235161575055687692
+        - rid: 235161575055687712
+        - rid: 235161575055687694
+        - rid: 235161575055687695
+    - rid: 235161575055687690
+      type: {class: SelectorNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
+      data:
+        <m_children>k__BackingField:
+        - rid: 235161575055687680
+        - rid: 235161575055687708
+        - rid: 235161575055687709
+    - rid: 235161575055687691
+      type: {class: CanSeeTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 235161575055687692
+      type: {class: GoToTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+      data:
+        m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
+    - rid: 235161575055687694
+      type: {class: TriggerAttack, ns: Behaviours, asm: Assembly-CSharp}
+      data:
+        m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
+    - rid: 235161575055687695
+      type: {class: UntilFailNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
+      data:
+        <m_child>k__BackingField:
+          rid: 235161575055687697
+    - rid: 235161575055687697
+      type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
+      data:
+        <m_children>k__BackingField:
+        - rid: 235161575055687699
+        - rid: 235161575055687700
+        - rid: 235161575055687702
+        - rid: 235161575055687703
+        - rid: 235161575055687710
+        - rid: 235161575055687713
+    - rid: 235161575055687699
+      type: {class: CanSeeTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 235161575055687700
+      type: {class: GoToTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+      data:
+        m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
+    - rid: 235161575055687702
+      type: {class: TriggerAttack, ns: Behaviours, asm: Assembly-CSharp}
+      data:
+        m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
+    - rid: 235161575055687703
+      type: {class: Wait, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+      data:
+        m_duration: 1
+    - rid: 235161575055687708
+      type: {class: Wait, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+      data:
+        m_duration: 1
+    - rid: 235161575055687709
+      type: {class: IsStatue, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 235161575055687710
+      type: {class: InverterNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
+      data:
+        <m_child>k__BackingField:
+          rid: 235161575055687711
+    - rid: 235161575055687711
+      type: {class: IsStatue, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 235161575055687712
+      type: {class: StopMovement, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 235161575055687713
+      type: {class: StopMovement, ns: AISystem.Behaviours, asm: Assembly-CSharp}

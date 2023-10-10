@@ -28,10 +28,13 @@ namespace AISystem
 
         #region  Game Fields
         [SerializeField] float m_startingHP;
-        public float m_currentHP;
-        public bool m_isStatue;
+        public float m_currentHP;        
         public EnemyActivator m_activator;
         public float m_damage;
+        PlayerController m_playerController;
+        int m_playerMask;
+        Vector3 m_startPosition;
+        Quaternion m_startRotation;
         #endregion
 
         void Start()
@@ -52,7 +55,15 @@ namespace AISystem
             }));
 
             m_intelligience = new Intelligience(optics, aIKnowledge, aIMovement, behaviourManager);
-            m_intelligience.EnableIntelligience();
+
+            m_playerController = FindObjectOfType<PlayerController>();
+            m_playerMask = (int)Mathf.Log(LayerMask.GetMask("Sword"), 2);
+
+            m_startPosition = transform.position;
+            m_startRotation = transform.rotation;
+            
+            m_animator.enabled = false;
+            m_intelligience.SetStatue(true);
         }
 
         void OnDestroy()
@@ -77,14 +88,24 @@ namespace AISystem
             return bt;
         }
 
-        public void ResetToPosition(Vector3 position, Quaternion rotation)
+        public void ResetToPosition()
         {
-            transform.SetPositionAndRotation(position, rotation);
-            m_animator.rootPosition = position;            
+            transform.SetPositionAndRotation(m_startPosition, m_startRotation);
+            m_animator.rootPosition = m_startPosition;            
             m_animator.Rebind();
             m_animator.Update(-1);
             m_animator.enabled = false;
-            m_isStatue = true;
+            m_intelligience.SetStatue(true);
+        }
+
+        public bool IsStatue()
+        {
+            return m_intelligience.IsStatue();
+        }
+
+        public void SetStatue(bool state)
+        {
+            m_intelligience.SetStatue(state);
         }
 
         public bool TakeHit(float damage)
@@ -102,8 +123,7 @@ namespace AISystem
         {
             //Setup what is happening on die
             m_activator.EnemyDead();
-            m_animator.SetTrigger("Die");
-            GameManager.Instance.m_aiManager.m_enemies.Remove(this);
+            m_animator.SetTrigger("Die");            
             gameObject.GetComponent<Collider>().enabled = false;
             float time = Time.time;
             while (Time.time < time + 3)
@@ -113,6 +133,13 @@ namespace AISystem
             Destroy(gameObject);
         }
 
+        protected void OnCollisionEnter(Collision collision)
+        {
+            if (collision.collider.gameObject.layer == m_playerMask)
+            {
+                TakeHit(m_playerController.m_meleeDamage);
+            }
+        }
 
     }
 

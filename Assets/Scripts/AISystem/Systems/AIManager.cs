@@ -11,21 +11,13 @@ namespace AISystem.Systems
     {
         List<IBeing> m_beings = new();
         NavMeshPath m_navMeshPath = new();
-        Vector3[] m_navMeshCorners = new Vector3[64];
-
-        public Dictionary<Enemy, KeyValuePair<Vector3, Quaternion>> m_enemies;
-
-        private void Awake()
-        {
-            m_enemies = new Dictionary<Enemy, KeyValuePair<Vector3, Quaternion>>();
-        }
+        Vector3[] m_navMeshCorners = new Vector3[64];       
 
         public void ResetEnemies()
-        {
-            Debug.Log(m_enemies.Count);
-            foreach (KeyValuePair<Enemy, KeyValuePair<Vector3, Quaternion>> enemy in m_enemies)
+        {            
+            foreach (Enemy enemy in m_beings)
             {
-                enemy.Key.ResetToPosition(enemy.Value.Key, enemy.Value.Value);
+                enemy.ResetToPosition();
             }
         }
 

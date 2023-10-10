@@ -1,4 +1,5 @@
 ﻿using AISystem.BehaviourTrees;
+using System.Diagnostics;
 
 namespace AISystem.Behaviours
 {
@@ -12,6 +13,7 @@ namespace AISystem.Behaviours
             }
 
             m_input.m_aIMovement.Stop();
+            UnityEngine.Debug.Log("Stopped Here");
             return NodeState.SUCCESS;
         }
     }
