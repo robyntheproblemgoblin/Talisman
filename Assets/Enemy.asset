@@ -17,19 +17,17 @@ MonoBehaviour:
       rid: 235161575055687690
     m_nodes:
     - rid: 235161575055687690
-    - rid: 235161575055687680
-    - rid: 235161575055687691
-    - rid: 235161575055687692
-    - rid: 235161575055687712
-    - rid: 235161575055687694
-    - rid: 235161575055687695
-    - rid: 235161575055687697
-    - rid: 235161575055687699
-    - rid: 235161575055687700
-    - rid: 235161575055687702
-    - rid: 235161575055687703
-    - rid: 235161575055687713
     - rid: 235161575055687709
+    - rid: 478097596349415425
+    - rid: 478097596349415426
+    - rid: 478097596349415427
+    - rid: 478097590313549825
+    - rid: 478097590313549826
+    - rid: 478097590313549827
+    - rid: 478097590313549828
+    - rid: 478097590313549829
+    - rid: 478097590313549830
+    - rid: 478097590313549831
   m_nodeData:
   - m_position:
       serializedVersion: 2
@@ -39,141 +37,122 @@ MonoBehaviour:
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 152
+      x: 185
+      y: -311
+      width: 93
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 193
+      y: -197
+      width: 134
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 376
+      y: -274
+      width: 119
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 371
+      y: -197
+      width: 124
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 178
+      y: 0
+      width: 131
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 325
       y: 0
       width: 134
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 348
-      y: -172
+      x: 490
+      y: 0
       width: 128
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 361
-      y: -68
+      x: 490
+      y: 77
       width: 115
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 371
-      y: 39
+      x: 494
+      y: 154
       width: 133
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 380
-      y: 128
+      x: 494
+      y: 231
       width: 124
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 352
-      y: 243
-      width: 131
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 504
-      y: 262
-      width: 134
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 679
-      y: 262
-      width: 128
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 679
-      y: 339
-      width: 115
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 683
-      y: 493
-      width: 124
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 683
-      y: 570
+      x: 494
+      y: 308
       width: 72
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 690
-      y: 416
-      width: 133
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 178
-      y: -134
-      width: 93
       height: 77
   references:
     version: 2
     RefIds:
-    - rid: 235161575055687680
-      type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
-      data:
-        <m_children>k__BackingField:
-        - rid: 235161575055687691
-        - rid: 235161575055687692
-        - rid: 235161575055687712
-        - rid: 235161575055687694
-        - rid: 235161575055687695
     - rid: 235161575055687690
       type: {class: SelectorNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
       data:
         <m_children>k__BackingField:
-        - rid: 235161575055687680
         - rid: 235161575055687709
-    - rid: 235161575055687691
-      type: {class: CanSeeTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-    - rid: 235161575055687692
-      type: {class: GoToTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-      data:
-        m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
-    - rid: 235161575055687694
-      type: {class: TriggerAttack, ns: Behaviours, asm: Assembly-CSharp}
-      data:
-        m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
-    - rid: 235161575055687695
+        - rid: 478097596349415425
+        - rid: 478097590313549825
+    - rid: 235161575055687709
+      type: {class: IsStatue, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 478097590313549825
       type: {class: UntilFailNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
       data:
         <m_child>k__BackingField:
-          rid: 235161575055687697
-    - rid: 235161575055687697
+          rid: 478097590313549826
+    - rid: 478097590313549826
       type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
       data:
         <m_children>k__BackingField:
-        - rid: 235161575055687699
-        - rid: 235161575055687700
-        - rid: 235161575055687702
-        - rid: 235161575055687703
-        - rid: 235161575055687713
-    - rid: 235161575055687699
+        - rid: 478097590313549827
+        - rid: 478097590313549828
+        - rid: 478097590313549829
+        - rid: 478097590313549830
+        - rid: 478097590313549831
+    - rid: 478097590313549827
       type: {class: CanSeeTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-    - rid: 235161575055687700
+    - rid: 478097590313549828
       type: {class: GoToTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
       data:
         m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
-    - rid: 235161575055687702
+        m_playerHeight: {x: 0, y: 1.8, z: 0}
+    - rid: 478097590313549829
+      type: {class: StopMovement, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 478097590313549830
       type: {class: TriggerAttack, ns: Behaviours, asm: Assembly-CSharp}
       data:
         m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
-    - rid: 235161575055687703
+    - rid: 478097590313549831
       type: {class: Wait, ns: AISystem.Behaviours, asm: Assembly-CSharp}
       data:
         m_duration: 1
-    - rid: 235161575055687709
-      type: {class: IsStatue, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-    - rid: 235161575055687712
-      type: {class: StopMovement, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-    - rid: 235161575055687713
-      type: {class: StopMovement, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 478097596349415425
+      type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
+      data:
+        <m_children>k__BackingField:
+        - rid: 478097596349415426
+        - rid: 478097596349415427
+    - rid: 478097596349415426
+      type: {class: IsInterrupted, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 478097596349415427
+      type: {class: TriggerAttack, ns: Behaviours, asm: Assembly-CSharp}
+      data:
+        m_attack: {fileID: 11400000, guid: 784ed8e713ac81c4eb377eacb627b313, type: 2}

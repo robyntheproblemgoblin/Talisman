@@ -550,15 +550,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5859682556975132747, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.35
+      value: -19.945
       objectReference: {fileID: 0}
     - target: {fileID: 5859682556975132747, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.832
+      value: 1.669
       objectReference: {fileID: 0}
     - target: {fileID: 5859682556975132747, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -49.67
+      value: -89.638
       objectReference: {fileID: 0}
     - target: {fileID: 5859682556975132747, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -595,7 +595,7 @@ PrefabInstance:
     - target: {fileID: 8972684320955924386, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: fa33cc40aef7d9544aef1f22c0123fe5, type: 3}
+      objectReference: {fileID: 8300000, guid: d29c504f0aff17b479f50ab4a299e34a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
 --- !u!82 &262707108 stripped
@@ -1444,6 +1444,10 @@ PrefabInstance:
     - target: {fileID: 3430499441041158404, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745464735126855388, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4075506056804014100, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
       propertyPath: m_NavMeshLayer

@@ -17,7 +17,7 @@ namespace Behaviours
             m_animator.SetTrigger(m_attack.m_attackHandle);
             m_startTime = Time.time;
 
-            m_input.m_aIMovement.SetWarp(false);
+            m_input.m_aIMovement.SetWarp(false);            
         }
 
         protected override NodeState Update(float dt)

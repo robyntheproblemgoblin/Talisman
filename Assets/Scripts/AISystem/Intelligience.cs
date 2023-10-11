@@ -43,6 +43,11 @@ namespace AISystem
             }
         }
 
+        public void Interrupt()
+        {
+            m_aiMovement.m_isInterrupted = true;            
+        }
+
         public void EnableIntelligience()
         {
             m_isActive = true;

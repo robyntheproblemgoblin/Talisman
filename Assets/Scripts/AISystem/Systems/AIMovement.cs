@@ -24,9 +24,6 @@ namespace AISystem.Systems
         bool m_movementEnabled;
         float m_speed = 0;
 
-        static readonly int m_sideways = Animator.StringToHash("Sideways");
-        static readonly int m_forwardsBackwards = Animator.StringToHash("ForwardsBackwards");
-
         float m_targetSpeed => m_pace switch
         {
             MovePace.RUN => m_settings.m_run,
@@ -37,6 +34,8 @@ namespace AISystem.Systems
         public bool m_atDestination { get; private set; } = true;
 
         public bool m_isStatue = true;
+
+        public bool m_isInterrupted = false;
 
         public enum MovePace
         {
@@ -73,7 +72,7 @@ namespace AISystem.Systems
 
         public void SetDestination(Vector3 dest)
         {
-            if (Vector3.SqrMagnitude(m_attachedBeing.m_position - dest) < m_arrivalThreshold * m_arrivalThreshold)
+            if (Vector3.SqrMagnitude(m_attachedBeing.m_position - dest) <= m_arrivalThreshold * m_arrivalThreshold)
             {
                 m_atDestination = true;
                 return;
@@ -102,25 +101,36 @@ namespace AISystem.Systems
             {
                 if (m_currentPath.m_isEmpty == false && m_animator != null)
                 {
-                    float distToDest = Vector3.Distance(m_currentPath.m_destination, m_attachedBeing.m_position);
-                    UpdateSideWays(distToDest);
-                    UpdateForwardBackwards(distToDest);
+                    float sqrmag = Vector3.SqrMagnitude(m_attachedBeing.m_position - (Vector3)m_currentPath.m_destination);
+                    m_atDestination = sqrmag <= m_arrivalThreshold * m_arrivalThreshold;
 
-                    m_atDestination = Vector3.SqrMagnitude(m_attachedBeing.m_position - (Vector3)m_currentPath.m_destination) <= m_arrivalThreshold;
-                   
-                }
+                    if (!m_atDestination)
+                    {
+                        UpdateForwardBackwards();
+                        UpdateSideWays();
+                    }
+                    else
+                    {
+                        m_speed = 0;
+                        m_animator.SetFloat("ForwardsBackwards", 0); 
+                        m_rootMotionSync.SetTurnWarp(0);
+                        m_animator.SetFloat("Sideways", 0);
+                    }
+                }                
 
                 await UniTask.Yield();
             }
         }
 
-        void UpdateSideWays(float distToDest)
+        void UpdateSideWays()
         {
             m_currentPath.GetRelativePoint(m_attachedBeing.m_position, 0.1f, out float3 predictPos, out float3 predictTan);
 
             //DEBUG
-            Debug.DrawRay(m_attachedBeing.m_position, predictTan, Color.green);
+            /*Debug.DrawRay(m_attachedBeing.m_position, predictTan, Color.green);
             Debug.DrawRay(m_attachedBeing.m_position, m_attachedBeing.m_forward, Color.red);
+            Debug.DrawRay(m_aiManager.GetCloseBeings(15, m_attachedBeing.m_position)[0].m_position + new Vector3(0, -1.5f, 0), -predictTan, Color.blue);
+            Debug.DrawRay(m_aiManager.GetCloseBeings(15, m_attachedBeing.m_position)[0].m_position + new Vector3(0, -1.5f, 0), m_aiManager.GetCloseBeings(15, m_attachedBeing.m_position)[0].m_forward, Color.magenta);*/
 
             float angle = Vector3.SignedAngle(m_attachedBeing.m_forward, predictTan, Vector3.up);
 
@@ -137,9 +147,10 @@ namespace AISystem.Systems
             }
         }
 
-        void UpdateForwardBackwards(float distToDest)
+        void UpdateForwardBackwards()
         {
-
+            float distToDest = Vector3.Distance(m_currentPath.m_destination, m_attachedBeing.m_position);
+            
             if (distToDest >= m_arrivalThreshold * m_arrivalThreshold)
             {
                 m_speed = m_targetSpeed;
