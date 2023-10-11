@@ -178,8 +178,9 @@ public class PlayerController : MonoBehaviour, IBeing
         {     
             Enemy e = hit.gameObject.GetComponentInParent<Enemy>();
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
-            {                
-                RegisterEnemyHit(e.gameObject.name, 5);
+            {
+                e.m_swordCollider.enabled = false;
+                //RegisterEnemyHit(e.gameObject.name, 5);
                 TakeDamage(e.m_damage);
             }
         }

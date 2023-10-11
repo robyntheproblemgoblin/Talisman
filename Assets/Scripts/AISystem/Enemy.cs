@@ -31,6 +31,7 @@ namespace AISystem
         public float m_currentHP;        
         public EnemyActivator m_activator;
         public float m_damage;
+        public CapsuleCollider m_swordCollider;
         PlayerController m_playerController;
         int m_playerMask;
         Vector3 m_startPosition;
@@ -46,7 +47,7 @@ namespace AISystem
 
             List<IOptic> optics = CreateOptics();
             AIKnowledge aIKnowledge = new AIKnowledge();
-            AIMovement aIMovement = new AIMovement(AISettings.MovementSettings, m_animator, this, m_aiManager, m_rootMotionSync);
+            AIMovement aIMovement = new AIMovement(AISettings.MovementSettings, m_animator, this, m_aiManager, m_rootMotionSync, m_swordCollider);
             BehaviourManager behaviourManager = new BehaviourManager(UnpackBehaviourTree(AISettings.BehaviourTree, new BehaviourInput()
             {
                 m_aIKnowledge = aIKnowledge,
@@ -62,7 +63,6 @@ namespace AISystem
             m_startPosition = transform.position;
             m_startRotation = transform.rotation;
             
-            m_animator.enabled = false;
             m_intelligience.SetStatue(true);
         }
 
@@ -93,7 +93,7 @@ namespace AISystem
             transform.SetPositionAndRotation(m_startPosition, m_startRotation);
             m_animator.rootPosition = m_startPosition;            
             m_animator.Rebind();
-            m_animator.Update(-1);
+            m_animator.Update(0);
             m_animator.enabled = false;
             m_intelligience.SetStatue(true);
         }
@@ -122,6 +122,7 @@ namespace AISystem
         protected async UniTask Die()
         {
             //Setup what is happening on die
+            m_swordCollider.enabled = false;
             m_activator.EnemyDead();
             m_animator.SetTrigger("Die");            
             gameObject.GetComponent<Collider>().enabled = false;

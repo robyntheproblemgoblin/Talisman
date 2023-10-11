@@ -15,6 +15,7 @@ namespace Behaviours
             base.BeginNode();
             m_animator = m_input.m_go.GetComponentInChildren<Animator>();
             m_animator.SetTrigger(m_attack.m_attackHandle);
+            m_input.m_aIMovement.m_swordCollider.enabled = true;
             m_startTime = Time.time;
 
             m_input.m_aIMovement.SetWarp(false);            

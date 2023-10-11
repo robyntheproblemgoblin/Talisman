@@ -12,6 +12,7 @@ namespace AISystem
         float m_angle;
         float m_lastUpdated;
         bool m_warpEnabled = true;
+        bool m_startPose = true;
 
         void Awake()
         {
@@ -46,5 +47,13 @@ namespace AISystem
             m_transform.rotation *= deltaRotation;
             m_lastUpdated = Time.time;
         }
+
+
+        #region Animation Events
+        void StartPose()
+        {
+            m_animator.enabled = false;
+        }
+        #endregion
     }
 }

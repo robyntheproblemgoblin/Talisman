@@ -15,9 +15,13 @@ namespace AISystem.Systems
 
         public void ResetEnemies()
         {            
-            foreach (Enemy enemy in m_beings)
-            {
-                enemy.ResetToPosition();
+            foreach (IBeing enemy in m_beings)
+            {                
+             if(enemy is Enemy)
+                {
+                    Enemy e = (Enemy)enemy;
+                    e.ResetToPosition();
+                }
             }
         }
 

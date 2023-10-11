@@ -5,7 +5,6 @@ using UnityEngine;
 using AISystem.Data;
 using AISystem.Contracts;
 using AISystem.Pathing;
-using UnityEngine.Splines;
 
 namespace AISystem.Systems
 {
@@ -36,6 +35,7 @@ namespace AISystem.Systems
         public bool m_isStatue = true;
 
         public bool m_isInterrupted = false;
+        public CapsuleCollider m_swordCollider;
 
         public enum MovePace
         {
@@ -43,13 +43,14 @@ namespace AISystem.Systems
             RUN,
         }
 
-        public AIMovement(MovementSettings settings, [CanBeNull] Animator animator, IBeing attachedBeing, IManager manager, RootMotionSync rootMotionSync)
+        public AIMovement(MovementSettings settings, [CanBeNull] Animator animator, IBeing attachedBeing, IManager manager, RootMotionSync rootMotionSync, CapsuleCollider swordCollider)
         {
             m_settings = settings;
             m_animator = animator;
             m_attachedBeing = attachedBeing;
             m_aiManager = manager;
             m_rootMotionSync = rootMotionSync;
+            m_swordCollider = swordCollider;
         }
 
         public void EnableMovement()
