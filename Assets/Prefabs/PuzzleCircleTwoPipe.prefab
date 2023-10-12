@@ -211,7 +211,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &38205673376693969
+--- !u!114 &7176937523581815230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1137280657799093688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdd011828e1f1e44291d5e3dbe25c1e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 50dd8b4b4677acf47806a3ea592cc87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_unlocked: 0
@@ -232,24 +232,16 @@ MonoBehaviour:
   m_rewindMana: 0
   m_interactMessage: Interact
   m_bridge: {fileID: 0}
-  m_isThreeWay: 0
-  m_twoInputs: 0
-  m_isLeftBent: 0
   m_speed: 1
   m_rewindSpeed: 1
-  m_outputLeftObject: {fileID: 0}
-  m_outputRightObject: {fileID: 0}
+  m_outputObject: {fileID: 0}
   m_one: {fileID: 1174590429222018789}
   m_two: {fileID: 5780948498947984020}
-  m_three: {fileID: 5449618175608292371}
+  m_tutInput: 1
+  m_tutOutput: 3
 --- !u!23 &1174590429222018789 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7834578144494436852, guid: 4620c7a92baf2bb4f8fedaa576bffce6, type: 3}
-  m_PrefabInstance: {fileID: 218714210732122345}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &5449618175608292371 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -3987399048496569094, guid: 4620c7a92baf2bb4f8fedaa576bffce6, type: 3}
   m_PrefabInstance: {fileID: 218714210732122345}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &5780948498947984020 stripped

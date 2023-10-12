@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
 public class Bridge : MonoBehaviour
 {
     public List<Puzzle> m_puzzleList;
+    [HideInInspector]
     public bool m_unlocked;
     public float m_speed;
     List<Material> m_materials;

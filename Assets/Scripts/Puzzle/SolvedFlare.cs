@@ -19,6 +19,10 @@ public class SolvedFlare : Puzzle
             {
                 door.CheckState();
             }
+            if(m_bridge != null)
+            {
+                m_bridge.CheckState();
+            }
         }
     }
 

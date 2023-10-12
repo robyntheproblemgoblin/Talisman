@@ -6,6 +6,7 @@ public class Puzzle : MonoBehaviour
     // Rotation safety
     protected bool m_rotate = false;
     protected float m_nextY;
+    protected int m_degrees = 120;
     protected Quaternion m_targetRotation;
     protected int m_rotations = 0;
     [HideInInspector]
@@ -35,18 +36,18 @@ public class Puzzle : MonoBehaviour
 
     public void Start()
     {
-        m_nextY = transform.rotation.eulerAngles.y + 120;
+        m_nextY = transform.rotation.eulerAngles.y + m_degrees;
     }
 
     private void FixedUpdate()
     {
         if (m_rotate)
         {
-            transform.Rotate(0, 120 * Time.deltaTime, 0);
+            transform.Rotate(0, m_degrees * Time.deltaTime, 0);
             if (Quaternion.Angle(transform.rotation, m_targetRotation) <= 5f)
             {
                 transform.rotation = Quaternion.Euler(0, m_nextY, 0);
-                m_nextY += 120;
+                m_nextY += m_degrees;
                 m_rotate = false;
                 UpdatePositions();
             }

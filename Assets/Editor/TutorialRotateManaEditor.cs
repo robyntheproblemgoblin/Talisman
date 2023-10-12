@@ -2,15 +2,15 @@ using UnityEditor;
 using System.Collections.Generic;
 
 
-[CustomEditor(typeof(ManaPipe))]
+[CustomEditor(typeof(TutorialRotateMana))]
 [CanEditMultipleObjects]
-public class ManaPipeEditor : Editor
+public class TutorialRotateManaEditor: Editor
 {
     private List<SerializedProperty> properties;
 
     private void OnEnable()
     {
-        string[] hiddenProperties = new string[] { "m_input", "m_output", "m_interactMessage", "m_bridge" }; 
+        string[] hiddenProperties = new string[] { "m_rewindMana", "m_bridge", "m_input", "m_output" }; 
         properties = EditorHelper.GetExposedProperties(this.serializedObject, hiddenProperties);
     }
 

@@ -10,7 +10,7 @@ public class ManaPipe : Puzzle
     public Puzzle m_outputLeftObject;
     public Puzzle m_outputRightObject;
 
-    public bool m_twoOutputs;
+    bool m_twoOutputs = false;
 
     public Material m_black;
     public Material m_white;
@@ -27,6 +27,10 @@ public class ManaPipe : Puzzle
         if (m_outputRightObject != null)
         {
             m_outputRightObject.SetInputObject(this);
+        }
+        if(m_outputLeftObject != null && m_outputRightObject != null)
+        {
+            m_twoOutputs = true;
         }
     }
 

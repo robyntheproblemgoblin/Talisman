@@ -2,15 +2,15 @@ using UnityEditor;
 using System.Collections.Generic;
 
 
-[CustomEditor(typeof(ManaPipe))]
+[CustomEditor(typeof(EnemyActivator))]
 [CanEditMultipleObjects]
-public class ManaPipeEditor : Editor
+public class EnemyActivatorEditor: Editor
 {
     private List<SerializedProperty> properties;
 
     private void OnEnable()
     {
-        string[] hiddenProperties = new string[] { "m_input", "m_output", "m_interactMessage", "m_bridge" }; 
+        string[] hiddenProperties = new string[] { "m_input", "m_output", "m_rewindMana", "m_interactMessage", "m_bridge" }; 
         properties = EditorHelper.GetExposedProperties(this.serializedObject, hiddenProperties);
     }
 

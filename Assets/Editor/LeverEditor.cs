@@ -2,15 +2,15 @@ using UnityEditor;
 using System.Collections.Generic;
 
 
-[CustomEditor(typeof(ManaPipe))]
+[CustomEditor(typeof(Lever))]
 [CanEditMultipleObjects]
-public class ManaPipeEditor : Editor
+public class LeverEditor : Editor
 {
     private List<SerializedProperty> properties;
 
     private void OnEnable()
     {
-        string[] hiddenProperties = new string[] { "m_input", "m_output", "m_interactMessage", "m_bridge" }; 
+        string[] hiddenProperties = new string[] { "m_input", "m_output", "m_rewindMana", "m_bridge", "m_isOn", "m_canBeInteracted" }; 
         properties = EditorHelper.GetExposedProperties(this.serializedObject, hiddenProperties);
     }
 
