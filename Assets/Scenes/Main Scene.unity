@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.13333334
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    accuratePlacement: 1
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -411,6 +411,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 5449618174649180088, guid: 0d16a930b3e7f2b438dfc88dba3cff75, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5474627521551340580, guid: 0d16a930b3e7f2b438dfc88dba3cff75, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -550,15 +554,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5859682556975132747, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.945
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 5859682556975132747, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.669
+      value: 2.73
       objectReference: {fileID: 0}
     - target: {fileID: 5859682556975132747, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -89.638
+      value: -49.46
       objectReference: {fileID: 0}
     - target: {fileID: 5859682556975132747, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -746,6 +750,22 @@ PrefabInstance:
     - target: {fileID: 5183439550522520681, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213168559627889734, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213168559627889734, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013007666492847758, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013007666492847758, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7351212345133686777, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
       propertyPath: m_NavMeshLayer
@@ -1148,6 +1168,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e452638c8678e884393c9675f7d498b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &553205070 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4728877302123025170, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+  m_PrefabInstance: {fileID: 8225780666598699644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &592942699 stripped
@@ -2859,6 +2890,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1101596651199269028, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1248287927409032880, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3003,6 +3038,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4728877302123025170, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4982358579024987427, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3031,6 +3070,10 @@ PrefabInstance:
       propertyPath: m_player
       value: 
       objectReference: {fileID: 1178709339}
+    - target: {fileID: 6401465964559973944, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_reticleHit
+      value: 
+      objectReference: {fileID: 553205070}
     - target: {fileID: 6630454619161422149, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

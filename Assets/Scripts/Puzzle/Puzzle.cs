@@ -15,7 +15,7 @@ public class Puzzle : MonoBehaviour
 
     [HideInInspector]
     public bool m_updateMana = false;
-    //[HideInInspector]
+    [HideInInspector]
     public float m_manaValue = 0f;
 
     protected Puzzle m_inputObject;

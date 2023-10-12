@@ -57,12 +57,16 @@ namespace AISystem
 
             m_intelligience = new Intelligience(optics, aIKnowledge, aIMovement, behaviourManager);
 
+            m_currentHP = m_startingHP;
+
             m_playerController = FindObjectOfType<PlayerController>();
             m_playerMask = (int)Mathf.Log(LayerMask.GetMask("Sword"), 2);
 
             m_startPosition = transform.position;
             m_startRotation = transform.rotation;
-            
+           
+            m_animator.enabled = false;
+
             m_intelligience.SetStatue(true);
         }
 
@@ -108,13 +112,23 @@ namespace AISystem
             m_intelligience.SetStatue(state);
         }
 
+        public void Interrupt()
+        {
+            m_intelligience.Interrupt();
+        }
+
         public bool TakeHit(float damage)
         {
+            m_playerController.HitReticle();
             m_currentHP -= damage;
             bool isDead = m_currentHP <= 0;
             if (isDead)
             {
                 Die().Forget();
+            }
+            else
+            {
+                Interrupt();
             }
             return isDead;
         }

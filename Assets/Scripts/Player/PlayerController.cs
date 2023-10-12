@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using AISystem;
 using AISystem.Contracts;
+using Cysharp.Threading.Tasks;
 
 public class PlayerController : MonoBehaviour, IBeing
 {
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour, IBeing
     [Space(5)]
     public Collider m_swordCollider;
     public float m_meleeDamage;
+    int m_currentAttack = 1;
     #endregion
 
     #region Block Parry Fields
@@ -180,6 +182,7 @@ public class PlayerController : MonoBehaviour, IBeing
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {
                 e.m_swordCollider.enabled = false;
+                e.Interrupt();
                 //RegisterEnemyHit(e.gameObject.name, 5);
                 TakeDamage(e.m_damage);
             }
@@ -381,10 +384,20 @@ public class PlayerController : MonoBehaviour, IBeing
     #region Melee Attack Methods
 
     private void MeleeAttack(InputAction.CallbackContext obj)
-    {
-        int randomNumber = Random.Range(1, 4);
+    {        
         m_swordCollider.enabled = true;
-        m_animator.SetTrigger("Attack" + randomNumber);
+        m_animator.SetTrigger("Attack" + m_currentAttack);
+        m_currentAttack++;
+        if(m_currentAttack == 3)
+        {
+            m_currentAttack = 1;
+        }
+    }
+
+    public void HitReticle()        
+    {
+        ResetCollider();
+       m_game.m_menuManager.HitReticle().Forget();
     }
 
     public void ResetCollider()

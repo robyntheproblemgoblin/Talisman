@@ -21,13 +21,14 @@ MonoBehaviour:
     - rid: 478097596349415425
     - rid: 478097596349415426
     - rid: 478097596349415427
-    - rid: 478097590313549825
-    - rid: 478097590313549826
-    - rid: 478097590313549827
-    - rid: 478097590313549828
-    - rid: 478097590313549829
-    - rid: 478097590313549830
-    - rid: 478097590313549831
+    - rid: 1235179539079888903
+    - rid: 1235179539079888905
+    - rid: 1235179539079888896
+    - rid: 1235179539079888897
+    - rid: 1235179539079888898
+    - rid: 1235179539079888899
+    - rid: 1235179539079888900
+    - rid: 1235179539079888904
   m_nodeData:
   - m_position:
       serializedVersion: 2
@@ -49,55 +50,61 @@ MonoBehaviour:
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 376
-      y: -274
+      x: 399
+      y: -312
       width: 119
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 371
-      y: -197
+      x: 396
+      y: -158
       width: 124
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 396
+      y: -81
+      width: 72
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 396
+      y: -235
+      width: 133
       height: 77
   - m_position:
       serializedVersion: 2
       x: 178
       y: 0
-      width: 131
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 325
-      y: 0
       width: 134
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 490
+      x: 343
       y: 0
       width: 128
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 490
+      x: 343
       y: 77
       width: 115
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 494
+      x: 347
       y: 154
       width: 133
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 494
+      x: 347
       y: 231
       width: 124
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 494
+      x: 347
       y: 308
       width: 72
       height: 77
@@ -110,49 +117,52 @@ MonoBehaviour:
         <m_children>k__BackingField:
         - rid: 235161575055687709
         - rid: 478097596349415425
-        - rid: 478097590313549825
+        - rid: 1235179539079888896
     - rid: 235161575055687709
       type: {class: IsStatue, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-    - rid: 478097590313549825
-      type: {class: UntilFailNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
-      data:
-        <m_child>k__BackingField:
-          rid: 478097590313549826
-    - rid: 478097590313549826
-      type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
-      data:
-        <m_children>k__BackingField:
-        - rid: 478097590313549827
-        - rid: 478097590313549828
-        - rid: 478097590313549829
-        - rid: 478097590313549830
-        - rid: 478097590313549831
-    - rid: 478097590313549827
-      type: {class: CanSeeTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-    - rid: 478097590313549828
-      type: {class: GoToTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-      data:
-        m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
-        m_playerHeight: {x: 0, y: 1.8, z: 0}
-    - rid: 478097590313549829
-      type: {class: StopMovement, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-    - rid: 478097590313549830
-      type: {class: TriggerAttack, ns: Behaviours, asm: Assembly-CSharp}
-      data:
-        m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
-    - rid: 478097590313549831
-      type: {class: Wait, ns: AISystem.Behaviours, asm: Assembly-CSharp}
-      data:
-        m_duration: 1
     - rid: 478097596349415425
       type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
       data:
         <m_children>k__BackingField:
         - rid: 478097596349415426
         - rid: 478097596349415427
+        - rid: 1235179539079888903
+        - rid: 1235179539079888905
     - rid: 478097596349415426
       type: {class: IsInterrupted, ns: AISystem.Behaviours, asm: Assembly-CSharp}
     - rid: 478097596349415427
       type: {class: TriggerAttack, ns: Behaviours, asm: Assembly-CSharp}
       data:
         m_attack: {fileID: 11400000, guid: 784ed8e713ac81c4eb377eacb627b313, type: 2}
+    - rid: 1235179539079888896
+      type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
+      data:
+        <m_children>k__BackingField:
+        - rid: 1235179539079888897
+        - rid: 1235179539079888898
+        - rid: 1235179539079888899
+        - rid: 1235179539079888900
+        - rid: 1235179539079888904
+    - rid: 1235179539079888897
+      type: {class: CanSeeTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 1235179539079888898
+      type: {class: GoToTarget, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+      data:
+        m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
+        m_playerHeight: {x: 0, y: 1.8, z: 0}
+    - rid: 1235179539079888899
+      type: {class: StopMovement, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 1235179539079888900
+      type: {class: TriggerAttack, ns: Behaviours, asm: Assembly-CSharp}
+      data:
+        m_attack: {fileID: 11400000, guid: a5108cbd74b7e424e8e4af9176b8e579, type: 2}
+    - rid: 1235179539079888903
+      type: {class: Wait, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+      data:
+        m_duration: 0.1
+    - rid: 1235179539079888904
+      type: {class: Wait, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+      data:
+        m_duration: 1
+    - rid: 1235179539079888905
+      type: {class: StopMovement, ns: AISystem.Behaviours, asm: Assembly-CSharp}

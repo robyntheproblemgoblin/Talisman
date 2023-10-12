@@ -47,13 +47,5 @@ namespace AISystem
             m_transform.rotation *= deltaRotation;
             m_lastUpdated = Time.time;
         }
-
-
-        #region Animation Events
-        void StartPose()
-        {
-            m_animator.enabled = false;
-        }
-        #endregion
     }
 }

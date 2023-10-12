@@ -95,7 +95,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.13
+  m_Radius: 0.5
   m_Height: 1.48
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.75}
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_bridge: {fileID: 0}
   m_isOn: 0
   m_onAngle: {x: 295, y: 90, z: 0}
   m_offAngle: {x: 245, y: 90, z: 0}

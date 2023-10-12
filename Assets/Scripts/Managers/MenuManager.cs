@@ -47,6 +47,8 @@ public class MenuManager : MonoBehaviour
     [Space(5)]
     public float m_subtitleTime = 2;
     bool m_showSubtitle = true;
+    public Image m_reticleHit;
+    public float m_reticleHitTime = 0.5f;
     #endregion
 
     #region Cinematic Fields
@@ -379,6 +381,20 @@ public class MenuManager : MonoBehaviour
         if(m_subtitles.text == currentSub)
         {
             m_subtitles.text = string.Empty;            
+        }
+    }
+
+    public async UniTask HitReticle()
+    {
+        float startTime = Time.time;
+        m_reticleHit.enabled = true;
+        while(Time.time <= startTime + m_reticleHitTime)
+        {
+            await UniTask.Yield();
+        }
+        if(m_reticleHit.enabled == true)
+        {
+            m_reticleHit.enabled = false;
         }
     }
 }
