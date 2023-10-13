@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using FMODUnity;
 
 public class AudioManager : MonoBehaviour
 {
     GameManager m_game;
-    //Indexes
-    int m_initialLinesIndex = 0;
-    int m_circlePuzzleIndex = 0;
-    int m_rotatingPuzzleIndex = 0;
-    int m_finalLinesIndex = 0;
+    
     [HideInInspector] public int m_musicIndex;
 
     public List<DialogueList> m_dialogues;
@@ -50,13 +47,7 @@ public class AudioManager : MonoBehaviour
             AudioClip clipToPlay = current[index].m_clip;
             // Loads the next Clip to play and schedules when it will start
             m_playerSources[0].clip = clipToPlay;
-            m_playerSources[0].Play();
-            // Checks how long the Clip will last and updates the Next Start Time with a new value
-            /*double duration = (double)clipToPlay.samples / clipToPlay.frequency;
-            m_nextStartTime = m_nextStartTime + duration;*/
-            // Switches the toggle to use the other Audio Source next
-            //m_playerSourceToggle = 1 - m_playerSourceToggle;
-            // Increase the clip index number, reset if it runs out of clips
+            m_playerSources[0].Play();            
             index++;
             if (index >= current.Count)
             {
@@ -90,4 +81,18 @@ public class AudioManager : MonoBehaviour
         m_playerSources[2].Play();
     }
 
+    static void PlayFmodEvent(string fmodEvent, Vector3 pos)
+    {
+        RuntimeManager.PlayOneShot("event:/" + fmodEvent, pos);
+    }
+
+    static void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
+    {
+        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    static void StartFmodLoop(FMOD.Studio.EventInstance eventInstance)
+    {
+        eventInstance.start();
+    }
 }

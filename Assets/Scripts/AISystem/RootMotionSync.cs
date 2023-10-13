@@ -11,13 +11,11 @@ namespace AISystem
 
         float m_angle;
         float m_lastUpdated;
-        bool m_warpEnabled = true;
-        bool m_startPose = true;
+        bool m_warpEnabled = true;        
 
         void Awake()
         {
-            m_animator = GetComponent<Animator>();
-            m_lastUpdated = Time.time;
+            m_animator = GetComponent<Animator>();            
         }
 
         public void SetTurnWarp(float angle)
@@ -44,8 +42,7 @@ namespace AISystem
             }
 
             m_transform.position += deltaMove;
-            m_transform.rotation *= deltaRotation;
-            m_lastUpdated = Time.time;
+            m_transform.rotation *= deltaRotation;            
         }
     }
 }
