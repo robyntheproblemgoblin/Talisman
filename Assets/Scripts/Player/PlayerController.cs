@@ -396,7 +396,7 @@ public class PlayerController : MonoBehaviour, IBeing
             ResetAttack().Forget();
             m_animator.SetTrigger("Attack" + m_currentAttack);
             m_currentAttack++;
-            if (m_currentAttack == 3)
+            if (m_currentAttack == 4)
             {
                 m_currentAttack = 1;
             }
