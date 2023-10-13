@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour, IBeing
     public Vector3 m_position => transform.position;
     public Vector3 m_forward => transform.forward;
     public Vector3 m_headPosition => transform.position;
-    
+
     public GameManager m_game;
     public FPControls m_inputControl;
     #region Movement Fields
@@ -82,16 +82,13 @@ public class PlayerController : MonoBehaviour, IBeing
     public Collider m_swordCollider;
     public float m_meleeDamage;
     int m_currentAttack = 1;
+    public bool m_canAttack = true;
+    public float m_attackTime = 22f;
     #endregion
 
     #region Block Parry Fields
-    bool m_isBlocking = false;
-    float m_blockPressedTime;
-    [Space(10)]
-    [Header("Blocking and Parrying")]
-    [Space(5)]
-    public float m_parryTime;
-    public float m_blockingResetTime;
+    public bool m_isBlocking = false;  
+            
     #endregion
 
     #region Interaction Fields
@@ -110,7 +107,7 @@ public class PlayerController : MonoBehaviour, IBeing
     void Start()
     {
         m_camera = FindObjectOfType<CameraControls>();
-        m_camera.m_parentTransform = transform; 
+        m_camera.m_parentTransform = transform;
         m_characterController = GetComponent<CharacterController>();
 
         m_animator = GetComponentInChildren<Animator>();
@@ -128,6 +125,7 @@ public class PlayerController : MonoBehaviour, IBeing
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
         m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_inputControl.Player_Map.Interact.performed += Interact;
+
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
         m_inputControl.Player_Map.BlockParry.canceled += StopBlockParry;
 
@@ -173,11 +171,11 @@ public class PlayerController : MonoBehaviour, IBeing
                 break;
         }
     }
-    
+
     private void OnTriggerEnter(Collider hit)
-    {        
+    {
         if (hit.gameObject.layer == (int)Mathf.Log(LayerMask.GetMask("Enemy"), 2))
-        {     
+        {
             Enemy e = hit.gameObject.GetComponentInParent<Enemy>();
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {
@@ -185,6 +183,12 @@ public class PlayerController : MonoBehaviour, IBeing
                 e.Interrupt();
                 //RegisterEnemyHit(e.gameObject.name, 5);
                 TakeDamage(e.m_damage);
+            }
+            else if (e != null && HitAlready(e.gameObject.name) == false && m_isBlocking)
+            {
+                StopBlock();
+                e.m_swordCollider.enabled = false;
+                e.Interrupt();
             }
         }
     }
@@ -223,7 +227,7 @@ public class PlayerController : MonoBehaviour, IBeing
     }
     void Update()
     {
-        m_talismanState.Update();        
+        m_talismanState.Update();
         UpdateInteracts();
     }
     #endregion
@@ -259,7 +263,7 @@ public class PlayerController : MonoBehaviour, IBeing
         }
         return false;
     }
-   
+
     void ClearData(List<string> keys)
     {
         for (int i = 0; i < keys.Count; i++)
@@ -384,20 +388,35 @@ public class PlayerController : MonoBehaviour, IBeing
     #region Melee Attack Methods
 
     private void MeleeAttack(InputAction.CallbackContext obj)
-    {        
-        m_swordCollider.enabled = true;
-        m_animator.SetTrigger("Attack" + m_currentAttack);
-        m_currentAttack++;
-        if(m_currentAttack == 3)
+    {
+        if (m_canAttack)
         {
-            m_currentAttack = 1;
+            m_canAttack = false;
+            m_swordCollider.enabled = true;
+            ResetAttack().Forget();
+            m_animator.SetTrigger("Attack" + m_currentAttack);
+            m_currentAttack++;
+            if (m_currentAttack == 3)
+            {
+                m_currentAttack = 1;
+            }
         }
     }
 
-    public void HitReticle()        
+    async UniTask ResetAttack()
+    {
+        float time = Time.time;
+        while (Time.time < time + m_attackTime)
+        {
+            await UniTask.Yield();
+        }
+        m_canAttack = true;
+    }
+
+    public void HitReticle()
     {
         ResetCollider();
-       m_game.m_menuManager.HitReticle().Forget();
+        m_game.m_menuManager.HitReticle().Forget();
     }
 
     public void ResetCollider()
@@ -410,14 +429,11 @@ public class PlayerController : MonoBehaviour, IBeing
     private void BlockParry(InputAction.CallbackContext obj)
     {
         m_isBlocking = true;
-        m_blockPressedTime = Time.realtimeSinceStartup;
         m_animator.SetTrigger("Block");
-        Invoke("StopBlock", m_blockingResetTime);
     }
     private void StopBlockParry(InputAction.CallbackContext obj)
     {
-        m_isBlocking = false;        
-        m_animator.SetTrigger("StopBlock");        
+        StopBlock();
     }
 
     private void StopBlock()
