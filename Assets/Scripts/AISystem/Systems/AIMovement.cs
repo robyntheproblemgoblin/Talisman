@@ -126,7 +126,7 @@ namespace AISystem.Systems
         void UpdateSideWays()
         {
             m_currentPath.GetRelativePoint(m_attachedBeing.m_position, 0.1f, out float3 predictPos, out float3 predictTan);
-
+            m_rootMotionSync.SetYPos(predictPos.y);
             //DEBUG
             /*Debug.DrawRay(m_attachedBeing.m_position, predictTan, Color.green);
             Debug.DrawRay(m_attachedBeing.m_position, m_attachedBeing.m_forward, Color.red);
