@@ -17,7 +17,7 @@ public class DoorOpener : MonoBehaviour
 
     private void ResetOnDeath(GameState state)
     {
-        if(state == GameState.DEATH && !m_hasPassed && gameObject.active)
+        if(state == GameState.DEATH && !m_hasPassed && gameObject.activeSelf)
         {
             m_doorCloser.ResetDoor();
         }
