@@ -10,8 +10,8 @@ namespace AISystem
         Animator m_animator;
 
         float m_angle;
-        float m_lastUpdated;
-        bool m_warpEnabled = true;        
+        Vector3 m_yLevel;
+        bool m_warpEnabled = true;      
 
         void Awake()
         {
@@ -28,10 +28,17 @@ namespace AISystem
             m_warpEnabled = warpOn;
         }
 
+        public void SetYPos(float y)
+        {
+            Vector3 pos = transform.position;
+            pos.y = y;
+            m_transform.position = pos;
+        }
+
         void OnAnimatorMove()
         {
             Vector3 deltaMove = m_animator.deltaPosition;
-            deltaMove.y = 0f;
+            deltaMove.y = 0f;            
 
             Quaternion deltaRotation = m_animator.deltaRotation;
 
@@ -42,7 +49,8 @@ namespace AISystem
             }
 
             m_transform.position += deltaMove;
-            m_transform.rotation *= deltaRotation;            
+            m_transform.rotation *= deltaRotation;
+            
         }
     }
 }
