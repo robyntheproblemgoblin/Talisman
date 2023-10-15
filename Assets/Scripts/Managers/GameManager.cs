@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.XInput;
 using UnityEngine.InputSystem.DualShock;
 using UnityEngine.InputSystem.Switch;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.LowLevel;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
     public float m_respawnHealth;
     public float m_respawnMana;
     
+    InputDevice m_lastDevice;
+    ControllerType m_controlScheme;
+
     public static GameManager Instance
     {
         get
@@ -43,9 +47,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {        
-        m_aiManager = new AIManager();                    
-        SetCurrentDevice();        
-        InputSystem.onDeviceChange += InputDeviceChanged;
+        m_aiManager = new AIManager();                        
+        InputSystem.onEvent += InputDeviceChanged;
         OnGameStateChanged += GameStateChanged;
     }
 
@@ -54,114 +57,42 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.TITLE);
     }
 
-    void SetCurrentDevice()
-    {       
-        for (int i = 2; i < InputSystem.devices.Count-1; i++)
-        {
-            InputSystem.RemoveDevice(InputSystem.devices[i]);
-        }
-
-        if (InputSystem.devices.Count > 2)
-        {
-            var device = InputSystem.devices[2];
-
-            if (device is XInputController)
-            {
-                Debug.Log("Xbox " + InputSystem.devices.Count);
-            }
-           /* else if (device is Keyboard || device is Mouse)
-            {
-                Debug.Log("Keyboard " + InputSystem.devices.Count);
-            }*/
-            else if (device is DualShockGamepad)
-            {
-                Debug.Log("PS " + InputSystem.devices.Count);
-            }
-            else if (device is SwitchProControllerHID)
-            {
-                Debug.Log("Switch " + InputSystem.devices.Count);
-            }
-            else
-            {
-                Debug.LogAssertion("Failure on InputSystem");
-            }
-        }
-        /*if (InputSystem.devices[0].description.manufacturer == "Sony Interactive Entertainment")
-        {
-            //Sets UI scheme to PS
-            Debug.Log("Playstation Controller Detected");
-            m_menuManager.m_currentController = ControllerType.PS;
-        }
-        else
-        {
-            //Sets UI scheme to XB
-            Debug.Log("Xbox Controller Detected");
-            m_menuManager.m_currentController = ControllerType.XBOX;
-        }*/
-    }
-
-    //Method called  when a device change event is fired
-    public void InputDeviceChanged(InputDevice device, InputDeviceChange change)
+    public void InputDeviceChanged(InputEventPtr eventPtr, InputDevice device)
     {
-        switch (change)
+        if (m_lastDevice == device) return;
+
+        if (eventPtr.type != StateEvent.Type) return;
+
+        bool validPress = false;
+        foreach (InputControl control in eventPtr.EnumerateChangedControls(device, 0.01F))
         {
-            //New device added
-            case InputDeviceChange.Added:
-                Debug.Log("New device added");
-                SetCurrentDevice();
-                /*   //Checks if is Playstation Controller
-                   if (device.description.manufacturer == "Sony Interactive Entertainment")
-                   {
-                       //Sets UI scheme
-                       Debug.Log("Playstation Controller Detected");
-                       currentImageScheme.SetImagesToPlaystation();
-                       controllerTypeChange.Invoke();
-                   }
-                   //Else, assumes Xbox controller
-                   //device.description.manufacturer for Xbox returns empty string
-                   else
-                   {
-                       Debug.Log("Xbox Controller Detected");
-                       currentImageScheme.SetImagesToXbox();
-                       controllerTypeChange.Invoke();
-                   }*/
-                break;
-
-            //Device disconnected
-            case InputDeviceChange.Disconnected:
-                SetCurrentDevice();
-                //controllerDisconnected.Invoke();
-                Debug.Log("Device disconnected");
-                break;
-
-            //Familiar device connected
-            case InputDeviceChange.Reconnected:
-                //controllerReconnected.Invoke();
-                SetCurrentDevice();
-                Debug.Log("Device reconnected");
-
-                //Checks if is Playstation Controller
-                /*  if (device.description.manufacturer == "Sony Interactive Entertainment")
-                  {
-                      //Sets UI scheme
-                      Debug.Log("Playstation Controller Detected");
-                      currentImageScheme.SetImagesToPlaystation();
-                      controllerTypeChange.Invoke();
-                  }
-                  //Else, assumes Xbox controller
-                  //device.description.manufacturer for Xbox returns empty string
-                  else
-                  {
-                      Debug.Log("Xbox Controller Detected");
-                      currentImageScheme.SetImagesToXbox();
-                      controllerTypeChange.Invoke();
-                  }*/
-                break;
-
-            //Else
-            default:
-                break;
+            validPress = true;
+            break;
         }
+        if (validPress is false) return;
+
+        if (device is Keyboard || device is Mouse)
+        {
+            Debug.Log("KEyMouse");
+            if (m_controlScheme == ControllerType.KEYBOARD) return;
+            m_controlScheme = ControllerType.KEYBOARD;            
+        }
+        if (device is XInputController)
+        {
+            Debug.Log("Xbox");
+        }
+        else if (device is DualShockGamepad)
+        {
+            Debug.Log("PS");
+        }
+        else if (device is SwitchProControllerHID)
+        {
+            Debug.Log("Switch");
+        }
+        else if (device is Gamepad)
+        {
+            Debug.Log("Generic Gamepad");            
+        }     
     }
 
     void GameStateChanged(GameState state)
