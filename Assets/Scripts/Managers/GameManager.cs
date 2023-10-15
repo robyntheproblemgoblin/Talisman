@@ -3,7 +3,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using AISystem.Systems;
-
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XInput;
+using UnityEngine.InputSystem.DualShock;
+using UnityEngine.InputSystem.Switch;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +15,11 @@ public class GameManager : MonoBehaviour
     public GameState m_lastState;
     public GameState m_gameState;
     public event Action<GameState> OnGameStateChanged;
-    public PlayerController m_player;    
+    public PlayerController m_player;
     public MenuManager m_menuManager;
     public AudioManager m_audioManager;
     public AIManager m_aiManager;
-    
+
     public List<Interactable> m_cinematicTriggers;
     public List<Transform> m_cinematicPoints;
 
@@ -23,7 +27,7 @@ public class GameManager : MonoBehaviour
     public Transform m_respawnPoint;
     public float m_respawnHealth;
     public float m_respawnMana;
-
+    
     public static GameManager Instance
     {
         get
@@ -38,8 +42,10 @@ public class GameManager : MonoBehaviour
     }
 
     private void Awake()
-    {
-        m_aiManager = new AIManager();
+    {        
+        m_aiManager = new AIManager();                    
+        SetCurrentDevice();        
+        InputSystem.onDeviceChange += InputDeviceChanged;
         OnGameStateChanged += GameStateChanged;
     }
 
@@ -48,13 +54,123 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.TITLE);
     }
 
+    void SetCurrentDevice()
+    {       
+        for (int i = 2; i < InputSystem.devices.Count-1; i++)
+        {
+            InputSystem.RemoveDevice(InputSystem.devices[i]);
+        }
+
+        if (InputSystem.devices.Count > 2)
+        {
+            var device = InputSystem.devices[2];
+
+            if (device is XInputController)
+            {
+                Debug.Log("Xbox " + InputSystem.devices.Count);
+            }
+           /* else if (device is Keyboard || device is Mouse)
+            {
+                Debug.Log("Keyboard " + InputSystem.devices.Count);
+            }*/
+            else if (device is DualShockGamepad)
+            {
+                Debug.Log("PS " + InputSystem.devices.Count);
+            }
+            else if (device is SwitchProControllerHID)
+            {
+                Debug.Log("Switch " + InputSystem.devices.Count);
+            }
+            else
+            {
+                Debug.LogAssertion("Failure on InputSystem");
+            }
+        }
+        /*if (InputSystem.devices[0].description.manufacturer == "Sony Interactive Entertainment")
+        {
+            //Sets UI scheme to PS
+            Debug.Log("Playstation Controller Detected");
+            m_menuManager.m_currentController = ControllerType.PS;
+        }
+        else
+        {
+            //Sets UI scheme to XB
+            Debug.Log("Xbox Controller Detected");
+            m_menuManager.m_currentController = ControllerType.XBOX;
+        }*/
+    }
+
+    //Method called  when a device change event is fired
+    public void InputDeviceChanged(InputDevice device, InputDeviceChange change)
+    {
+        switch (change)
+        {
+            //New device added
+            case InputDeviceChange.Added:
+                Debug.Log("New device added");
+                SetCurrentDevice();
+                /*   //Checks if is Playstation Controller
+                   if (device.description.manufacturer == "Sony Interactive Entertainment")
+                   {
+                       //Sets UI scheme
+                       Debug.Log("Playstation Controller Detected");
+                       currentImageScheme.SetImagesToPlaystation();
+                       controllerTypeChange.Invoke();
+                   }
+                   //Else, assumes Xbox controller
+                   //device.description.manufacturer for Xbox returns empty string
+                   else
+                   {
+                       Debug.Log("Xbox Controller Detected");
+                       currentImageScheme.SetImagesToXbox();
+                       controllerTypeChange.Invoke();
+                   }*/
+                break;
+
+            //Device disconnected
+            case InputDeviceChange.Disconnected:
+                SetCurrentDevice();
+                //controllerDisconnected.Invoke();
+                Debug.Log("Device disconnected");
+                break;
+
+            //Familiar device connected
+            case InputDeviceChange.Reconnected:
+                //controllerReconnected.Invoke();
+                SetCurrentDevice();
+                Debug.Log("Device reconnected");
+
+                //Checks if is Playstation Controller
+                /*  if (device.description.manufacturer == "Sony Interactive Entertainment")
+                  {
+                      //Sets UI scheme
+                      Debug.Log("Playstation Controller Detected");
+                      currentImageScheme.SetImagesToPlaystation();
+                      controllerTypeChange.Invoke();
+                  }
+                  //Else, assumes Xbox controller
+                  //device.description.manufacturer for Xbox returns empty string
+                  else
+                  {
+                      Debug.Log("Xbox Controller Detected");
+                      currentImageScheme.SetImagesToXbox();
+                      controllerTypeChange.Invoke();
+                  }*/
+                break;
+
+            //Else
+            default:
+                break;
+        }
+    }
+
     void GameStateChanged(GameState state)
     {
         switch (state)
         {
             case GameState.TITLE:
                 TitleScreen();
-                break;            
+                break;
             case GameState.GAME:
                 if (m_lastState == GameState.MENU)
                 {
@@ -63,11 +179,11 @@ public class GameManager : MonoBehaviour
                 else if (m_lastState == GameState.PAUSE)
                 {
                     ResumeGame();
-                }                
+                }
                 break;
             case GameState.CINEMATIC:
                 break;
-            case GameState.PAUSE:               
+            case GameState.PAUSE:
                 break;
             case GameState.DEATH:
                 DeathMenuStart();
@@ -75,7 +191,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
-    }    
+    }
 
     public void UpdateGameState(GameState newState)
     {
@@ -107,19 +223,19 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(m_gameState);
     }
 
-    void TitleScreen()       
+    void TitleScreen()
     {
         //AudioManager.Instance.PlayMenuMusic(true);
-        Time.timeScale = 0;        
+        Time.timeScale = 0;
     }
 
     void StartGame()
-    {        
+    {
         Time.timeScale = 1;
     }
 
     void ResumeGame()
-    {     
+    {
         Time.timeScale = 1;
     }
 
@@ -131,20 +247,20 @@ public class GameManager : MonoBehaviour
     public void SetCheckPoint(Transform transform)
     {
         m_respawnPoint = transform;
-    }   
+    }
 
-    public async void CinematicTrigger(Interactable interactable) 
+    public async void CinematicTrigger(Interactable interactable)
     {
         int index = m_cinematicTriggers.IndexOf(interactable);
 
         m_respawnPoint = m_cinematicPoints[index];
         m_player.transform.position = m_cinematicPoints[index].position;
         m_player.m_camera.SetRotation(m_cinematicPoints[index].rotation.eulerAngles);
-        
-        m_player.m_animator.SetTrigger("Cinematic");        
+
+        m_player.m_animator.SetTrigger("Cinematic");
         m_audioManager.PlayVoiceSequence(interactable.m_audioReference);
         UpdateGameState(GameState.CINEMATIC);
-    }    
+    }
 
     void DeathMenuStart()
     {
