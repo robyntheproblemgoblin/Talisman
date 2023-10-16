@@ -11635,7 +11635,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2883fc54c37289043bc345f94eb64bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_title: {fileID: 2912274868516703997}
+  m_currentController: 0
+  m_keyboardImages: {fileID: 0}
+  m_xBoxImages: {fileID: 0}
+  m_pSImages: {fileID: 0}
+  m_nintendoImages: {fileID: 0}
+  m_genericImages: {fileID: 0}
   m_mainMenu: {fileID: 1101118467751625593}
   m_hud: {fileID: 372299217724807679}
   m_cinematics: {fileID: 322376154656962226}
@@ -11644,7 +11649,6 @@ MonoBehaviour:
   m_deathScreen: {fileID: 7966380529047095949}
   m_falseEnd: {fileID: 1918455202830285652}
   m_falseQuit: {fileID: 1065435799899588576}
-  m_startButton: {fileID: 5873637770907510710}
   m_newGame: {fileID: 8329856550697621549}
   m_menuOptions: {fileID: 5367326840436496010}
   m_credits: {fileID: 6058666133096251553}
@@ -11665,7 +11669,7 @@ MonoBehaviour:
   m_fadeWhite: {fileID: 4604984822739612991}
   m_resume: {fileID: 6785440557005428135}
   m_pauseOptions: {fileID: 2362285987794727016}
-  m_revertCheckpoint: {fileID: 8912715201763856799}
+  m_controllerImage: {fileID: 8912715201763856799}
   m_quitMenu: {fileID: 2261637913289029916}
   m_camSensitivityButton: {fileID: 3356144322408174500}
   m_camSensitivitySlider: {fileID: 2934500305222150067}
