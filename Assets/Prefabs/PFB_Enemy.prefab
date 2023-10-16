@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AISettings>k__BackingField:
     <ObservationSettings>k__BackingField:
-      m_viewDistance: 20
+      m_viewDistance: 40
       m_opticMask:
         serializedVersion: 2
         m_Bits: 64
@@ -171,9 +171,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.0025
-  m_Height: 0.01
+  m_Height: 0.0125
   m_Direction: 1
-  m_Center: {x: 0, y: 0.0055, z: 0}
+  m_Center: {x: 0, y: 0.006125, z: 0}
 --- !u!1 &5947448876523383343 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 842e4b29a90147d42a078f22e0e6e44b, type: 3}
