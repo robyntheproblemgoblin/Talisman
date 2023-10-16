@@ -10,9 +10,9 @@ public class AudioManager : MonoBehaviour
     [HideInInspector] public int m_musicIndex;
 
     public List<DialogueList> m_dialogues;
-    Dictionary<string, List<AudioSubtitle>> m_dictionary;
+    Dictionary<string, List<DialogueObject>> m_dictionary;
 
-    public AudioSubtitle m_intro;
+    public DialogueObject m_intro;
 
     [Header("Cinematic Sources")]
     public AudioSource[] m_playerSources;
@@ -30,25 +30,25 @@ public class AudioManager : MonoBehaviour
     {
         m_game = GameManager.Instance;
         m_game.m_audioManager = this;
-        m_dictionary = new Dictionary<string, List<AudioSubtitle>>();
+        m_dictionary = new Dictionary<string, List<DialogueObject>>();
         foreach (DialogueList dl in m_dialogues)
         {
-            m_dictionary.Add(dl.m_section, dl.m_audioList);
+            m_dictionary.Add(dl.m_section, dl.m_sequence);
         }
     }
 
     public async UniTask PlayVoiceSequence(string reference)
     {
-        List<AudioSubtitle> current = m_dictionary[reference];
+        List<DialogueObject> current = m_dictionary[reference];
         int index = 0;
         m_playLines = true;
         while (m_playLines)
         {
-            AudioClip clipToPlay = current[index].m_clip;
+            /*AudioClip clipToPlay = current[index].m_clip;
             // Loads the next Clip to play and schedules when it will start
             m_playerSources[0].clip = clipToPlay;
             m_playerSources[0].Play();            
-            index++;
+            */index++;
             if (index >= current.Count)
             {
                 m_playLines = false;
@@ -74,10 +74,9 @@ public class AudioManager : MonoBehaviour
         OneOffDialogue(m_intro);
     }
 
-    public void OneOffDialogue(AudioSubtitle ASobject)
-    {
-        m_playerSources[2].clip = ASobject.m_clip;
-        m_game.m_menuManager.SetSubtitle(ASobject.m_subtitle);
+    public void OneOffDialogue(DialogueObject Dobject)
+    {        
+        m_game.m_menuManager.SetSubtitle(Dobject.m_subtitle);
         m_playerSources[2].Play();
     }
 

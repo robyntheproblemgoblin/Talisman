@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {    
-    public AudioSubtitle m_oneOff;
+    public DialogueObject m_oneOff;
     AudioManager m_audioManager;    
 
     private void Start()
