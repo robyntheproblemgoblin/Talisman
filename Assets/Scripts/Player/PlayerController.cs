@@ -193,9 +193,7 @@ public class PlayerController : MonoBehaviour, IBeing
             Enemy e = hit.gameObject.GetComponentInParent<Enemy>();
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {
-                e.m_swordCollider.enabled = false;
-                e.Interrupt();
-                //RegisterEnemyHit(e.gameObject.name, 5);
+                e.m_swordCollider.enabled = false;                
                 TakeDamage(e.m_damage);
             }
             else if (e != null && HitAlready(e.gameObject.name) == false && m_isBlocking)
