@@ -235,8 +235,9 @@ public class PlayerController : MonoBehaviour, IBeing
     }
     void LateUpdate()
     {
-        m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>(), 
-            m_game.m_menuManager.m_currentController == ControllerType.KEYBOARD ? m_cameraSensitivity/50 : m_cameraSensitivity);
+        m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>(),           
+        m_game.m_menuManager.m_currentController == ControllerType.KEYBOARD ? m_cameraSensitivity/10 : m_cameraSensitivity);
+
     }
     void Update()
     {
