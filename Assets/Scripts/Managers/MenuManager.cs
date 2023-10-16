@@ -5,11 +5,32 @@ using TMPro;
 using UnityEngine.InputSystem;
 using System;
 using Cysharp.Threading.Tasks;
+using UnityEngine.InputSystem.DualShock;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.Switch;
+using UnityEngine.InputSystem.XInput;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public event Action<ControllerType> OnControllerChanged;
+    public ControllerType m_currentController;
+    InputDevice m_lastDevice;
+
+    [SerializeField]
+    ControllerImages m_keyboardImages;    
+    [SerializeField]
+    ControllerImages m_xBoxImages;    
+    [SerializeField]
+    ControllerImages m_pSImages;    
+    [SerializeField]    
+    ControllerImages m_nintendoImages;    
+    [SerializeField]
+    ControllerImages m_genericImages;
+    ControllerImages m_currentImages;
+
     #region UI Category Objects
-    public GameObject m_title;
+    //public GameObject m_title;
     public GameObject m_mainMenu;
     public GameObject m_hud;
     public GameObject m_cinematics;
@@ -22,8 +43,8 @@ public class MenuManager : MonoBehaviour
     #endregion
 
     #region Title Screen Fields
-    [Space(5), Header("Title Screen"), Space(5)]
-    public Button m_startButton;
+    //[Space(5), Header("Title Screen"), Space(5)]
+    //public Button m_startButton;
     //public Camera m_titleCamera;
     #endregion
 
@@ -63,7 +84,7 @@ public class MenuManager : MonoBehaviour
     [Header("Pause Menu"), Space(5)]
     public Button m_resume;
     public Button m_pauseOptions;
-    public Button m_revertCheckpoint;
+    public Button m_controllerImage;
     public Button m_quitMenu;
     #endregion
 
@@ -97,7 +118,7 @@ public class MenuManager : MonoBehaviour
     //Credits
 
     GameManager m_game;
-    public PlayerController m_player;    
+    public PlayerController m_player;
     public EventSystem m_eventSystem;
 
     private void Start()
@@ -105,28 +126,32 @@ public class MenuManager : MonoBehaviour
         m_game = GameManager.Instance;
         m_eventSystem = FindObjectOfType<EventSystem>();
 
+        InputSystem.onEvent += InputDeviceChanged;
+        OnControllerChanged += SwapControls;
+
         m_game.OnGameStateChanged += OnGameStateChanged;
         m_falseQuit.onClick.AddListener(delegate () { QuitGame(); });
 
         //Title Screen Setup
-        m_startButton.onClick.AddListener(delegate () { MainMenu(); });
+        //m_startButton.onClick.AddListener(delegate () { MainMenu(); });
 
         //Main Menu Setup
         m_newGame.onClick.AddListener(delegate () { StartGame(); });
         m_menuOptions.onClick.AddListener(delegate () { Options(); });
         m_credits.onClick.AddListener(delegate () { Credits(); });
-        m_bonusArt.onClick.AddListener(delegate () { BonusArt(); });
         m_quit.onClick.AddListener(delegate () { QuitGame(); });
 
         //HUD Setup
+        m_health.maxValue = m_player.m_health;
+        m_mana.maxValue = m_player.m_maxMana;
 
         //Cinematic Setup
 
         //Pause Menu Setup
         m_resume.onClick.AddListener(delegate () { Resume(); });
         m_pauseOptions.onClick.AddListener(delegate () { Options(); });
-        m_revertCheckpoint.onClick.AddListener(delegate () { RevertCheckpoint(); });
-        m_quitMenu.onClick.AddListener(delegate () { MainMenu(); });
+        m_controllerImage.onClick.AddListener(delegate () { ShowControllerImages(); });
+        m_quitMenu.onClick.AddListener(delegate () { TitleScreen(); });
 
         //Options Setup
         m_camSensitivityButton.onClick.AddListener(delegate () { });
@@ -152,8 +177,78 @@ public class MenuManager : MonoBehaviour
         m_deathQuit.onClick.AddListener(delegate () { QuitGame(); });
         m_deathQuit.gameObject.SetActive(false);
 
-        m_health.maxValue = m_player.m_health;
-        m_mana.maxValue = m_player.m_maxMana;
+    }
+
+    public void InputDeviceChanged(InputEventPtr eventPtr, InputDevice device)
+    {
+        if (m_lastDevice == device) return;
+
+        if (eventPtr.type != StateEvent.Type) return;
+
+        bool validPress = false;
+        foreach (InputControl control in eventPtr.EnumerateChangedControls(device, 0.01F))
+        {
+            validPress = true;
+            break;
+        }
+        if (validPress is false) return;
+
+        if (device is Keyboard || device is Mouse)
+        {
+            Debug.Log("KEyMouse");
+            if (m_currentController == ControllerType.KEYBOARD) return;            
+            OnControllerChanged(ControllerType.KEYBOARD);
+        }
+        if (device is XInputController)
+        {
+            OnControllerChanged(ControllerType.XBOX);
+            Debug.Log("Xbox");
+        }
+        else if (device is DualShockGamepad)
+        {
+            OnControllerChanged(ControllerType.PS);
+            Debug.Log("PS");
+        }
+        else if (device is SwitchProControllerHID)
+        {
+            OnControllerChanged(ControllerType.NINTENDO);
+            Debug.Log("Switch");
+        }
+        else if (device is Gamepad)
+        {
+             OnControllerChanged(ControllerType.GENERIC);
+            Debug.Log("Generic Gamepad");
+        }
+    }
+
+    void SwapControls(ControllerType controls)
+    {
+        m_currentController = controls;
+        switch (controls)
+        {
+            case ControllerType.KEYBOARD:
+                UpdateUIImages(m_keyboardImages);
+                break;
+            case ControllerType.XBOX:                
+                UpdateUIImages(m_xBoxImages);
+                break;
+            case ControllerType.PS:                
+                UpdateUIImages(m_pSImages);
+                break;
+            case ControllerType.NINTENDO:                
+                UpdateUIImages(m_nintendoImages);
+                break;
+            case ControllerType.GENERIC:
+                UpdateUIImages(m_genericImages);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(controls), controls, null);
+        }
+    }
+
+    void UpdateUIImages(ControllerImages ci)
+    {
+
     }
 
     void OnGameStateChanged(GameState state)
@@ -162,7 +257,7 @@ public class MenuManager : MonoBehaviour
         switch (state)
         {
             case GameState.TITLE:
-                TitleScreen();
+                MainMenu();
                 break;
             case GameState.MENU:
                 MainMenu();
@@ -200,9 +295,7 @@ public class MenuManager : MonoBehaviour
     }
     void TitleScreen()
     {
-        m_game.UpdateGameState(GameState.MENU);
-        m_eventSystem.SetSelectedGameObject(m_newGame.gameObject);
-        Cursor.lockState = CursorLockMode.Confined;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     void MainMenu()
     {
@@ -218,6 +311,7 @@ public class MenuManager : MonoBehaviour
     }
     void Resume()
     {
+        m_game.UpdateGameState(GameState.GAME);
         Cursor.lockState = CursorLockMode.Locked;
     }
     void QuitGame()
@@ -230,10 +324,18 @@ public class MenuManager : MonoBehaviour
     }
     void Options()
     {
+     /*   m_game.UpdateGameState(GameState.OPTIONS);
+        m_eventSystem.SetSelectedGameObject(m_camSensitivityButton.gameObject);*/
+    }
+
+    void ShowControllerImages()
+    {
 
     }
+
     void Pause()
     {
+        m_eventSystem.SetSelectedGameObject(m_resume.gameObject);
         Cursor.lockState = CursorLockMode.Confined;
     }
     public void Cancel(InputAction.CallbackContext obj)
@@ -259,19 +361,8 @@ public class MenuManager : MonoBehaviour
                 break;
         }
     }
-    void RevertCheckpoint()
-    {
 
-    }
-    void RevertDefaults()
-    {
-
-    }
     void Credits()
-    {
-
-    }
-    void BonusArt()
     {
 
     }
@@ -305,8 +396,8 @@ public class MenuManager : MonoBehaviour
                 m_interactText.enabled = true;
                 m_interactText.text = interactable.m_interactMessage;
             }
-            ManaPool manaPool = hit.transform.gameObject.GetComponent<ManaPool>(); 
-            if(manaPool != null)
+            ManaPool manaPool = hit.transform.gameObject.GetComponent<ManaPool>();
+            if (manaPool != null)
             {
                 m_interactText.enabled = true;
                 m_interactText.text = manaPool.m_interactMessage;
@@ -346,7 +437,7 @@ public class MenuManager : MonoBehaviour
     }
 
     void SetDeathScreen()
-    {        
+    {
         m_respawnButton.gameObject.SetActive(true);
         m_deathQuit.gameObject.SetActive(true);
         m_eventSystem.SetSelectedGameObject(m_respawnButton.gameObject);
@@ -356,31 +447,31 @@ public class MenuManager : MonoBehaviour
     void Respawn()
     {
         m_respawnButton.gameObject.SetActive(false);
-        m_deathQuit.gameObject.SetActive(false); 
+        m_deathQuit.gameObject.SetActive(false);
         m_deathImage.color = new Color(0, 0, 0, 0);
         m_game.Respawn();
     }
 
     public async void SetSubtitle(string subtitile)
     {
-        if(!m_subtitles.gameObject.activeSelf)
+        if (!m_subtitles.gameObject.activeSelf)
         {
             m_subtitles.gameObject.SetActive(true);
         }
         m_subtitles.text = subtitile;
         SubtitleTimeOut(Time.time).Forget();
-    }    
+    }
 
     async UniTask SubtitleTimeOut(float startTime)
     {
         string currentSub = m_subtitles.text;
-        while(Time.time <= startTime + m_subtitleTime)
+        while (Time.time <= startTime + m_subtitleTime)
         {
-          await UniTask.Yield();
+            await UniTask.Yield();
         }
-        if(m_subtitles.text == currentSub)
+        if (m_subtitles.text == currentSub)
         {
-            m_subtitles.text = string.Empty;            
+            m_subtitles.text = string.Empty;
         }
     }
 
@@ -388,13 +479,41 @@ public class MenuManager : MonoBehaviour
     {
         float startTime = Time.time;
         m_reticleHit.enabled = true;
-        while(Time.time <= startTime + m_reticleHitTime)
+        while (Time.time <= startTime + m_reticleHitTime)
         {
             await UniTask.Yield();
         }
-        if(m_reticleHit.enabled == true)
+        if (m_reticleHit.enabled == true)
         {
             m_reticleHit.enabled = false;
         }
     }
+
+    void ControllerTypeChange(ControllerType type)
+    {
+        switch (type)
+        {
+            case ControllerType.KEYBOARD:
+                break;
+            case ControllerType.PS:
+                break;
+            case ControllerType.XBOX:
+                break;
+            case ControllerType.NINTENDO:
+                break;
+            default:
+                break;
+        }
+    }
+
+   
+}
+
+public enum ControllerType
+{
+    KEYBOARD,
+    PS,
+    XBOX,
+    NINTENDO, 
+    GENERIC
 }

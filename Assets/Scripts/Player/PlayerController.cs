@@ -130,6 +130,7 @@ public class PlayerController : MonoBehaviour, IBeing
         m_inputControl.Player_Map.BlockParry.canceled += StopBlockParry;
 
         m_inputControl.UI.Cancel.started += m_game.m_menuManager.Cancel;
+        m_inputControl.Player_Map.Pause.started += PauseGame;
 
         m_currentHealth = m_health;
         m_currentMana = m_startMana;
@@ -139,6 +140,19 @@ public class PlayerController : MonoBehaviour, IBeing
 
         m_game.m_aiManager.RegisterBeing(this);
     }
+
+    private void PauseGame(InputAction.CallbackContext obj)
+    {
+        if(m_game.m_gameState == GameState.GAME)
+        {
+            m_game.UpdateGameState(GameState.PAUSE);
+        }
+        else if(m_game.m_gameState == GameState.PAUSE)
+        {
+            m_game.UpdateGameState(GameState.GAME);
+        }
+    }
+
 
     void OnGameStateChanged(GameState state)
     {
@@ -179,9 +193,7 @@ public class PlayerController : MonoBehaviour, IBeing
             Enemy e = hit.gameObject.GetComponentInParent<Enemy>();
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {
-                e.m_swordCollider.enabled = false;
-                e.Interrupt();
-                //RegisterEnemyHit(e.gameObject.name, 5);
+                e.m_swordCollider.enabled = false;                
                 TakeDamage(e.m_damage);
             }
             else if (e != null && HitAlready(e.gameObject.name) == false && m_isBlocking)
@@ -223,7 +235,9 @@ public class PlayerController : MonoBehaviour, IBeing
     }
     void LateUpdate()
     {
-        m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>(), m_cameraSensitivity);
+        m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>(),           
+        m_game.m_menuManager.m_currentController == ControllerType.KEYBOARD ? m_cameraSensitivity/10 : m_cameraSensitivity);
+
     }
     void Update()
     {

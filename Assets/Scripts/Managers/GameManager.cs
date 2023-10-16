@@ -3,7 +3,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using AISystem.Systems;
-
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XInput;
+using UnityEngine.InputSystem.DualShock;
+using UnityEngine.InputSystem.Switch;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.LowLevel;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +16,11 @@ public class GameManager : MonoBehaviour
     public GameState m_lastState;
     public GameState m_gameState;
     public event Action<GameState> OnGameStateChanged;
-    public PlayerController m_player;    
+    public PlayerController m_player;
     public MenuManager m_menuManager;
     public AudioManager m_audioManager;
     public AIManager m_aiManager;
-    
+
     public List<Interactable> m_cinematicTriggers;
     public List<Transform> m_cinematicPoints;
 
@@ -38,15 +43,15 @@ public class GameManager : MonoBehaviour
     }
 
     private void Awake()
-    {
-        m_aiManager = new AIManager();
+    {        
+        m_aiManager = new AIManager();                        
         OnGameStateChanged += GameStateChanged;
     }
 
     private void Start()
     {
         UpdateGameState(GameState.TITLE);
-    }
+    }  
 
     void GameStateChanged(GameState state)
     {
@@ -54,7 +59,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.TITLE:
                 TitleScreen();
-                break;            
+                break;
             case GameState.GAME:
                 if (m_lastState == GameState.MENU)
                 {
@@ -63,11 +68,12 @@ public class GameManager : MonoBehaviour
                 else if (m_lastState == GameState.PAUSE)
                 {
                     ResumeGame();
-                }                
+                }
                 break;
             case GameState.CINEMATIC:
                 break;
-            case GameState.PAUSE:               
+            case GameState.PAUSE:
+                PauseGame();
                 break;
             case GameState.DEATH:
                 DeathMenuStart();
@@ -75,7 +81,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
-    }    
+    }
 
     public void UpdateGameState(GameState newState)
     {
@@ -107,20 +113,25 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(m_gameState);
     }
 
-    void TitleScreen()       
+    void TitleScreen()
     {
         //AudioManager.Instance.PlayMenuMusic(true);
-        Time.timeScale = 0;        
+        Time.timeScale = 0;
     }
 
     void StartGame()
-    {        
+    {
         Time.timeScale = 1;
     }
 
     void ResumeGame()
-    {     
+    {
         Time.timeScale = 1;
+    }
+
+    void PauseGame()
+    {        
+        Time.timeScale = 0;
     }
 
     public void SetRespawn(Transform transform)
@@ -131,20 +142,20 @@ public class GameManager : MonoBehaviour
     public void SetCheckPoint(Transform transform)
     {
         m_respawnPoint = transform;
-    }   
+    }
 
-    public async void CinematicTrigger(Interactable interactable) 
+    public async void CinematicTrigger(Interactable interactable)
     {
         int index = m_cinematicTriggers.IndexOf(interactable);
 
         m_respawnPoint = m_cinematicPoints[index];
         m_player.transform.position = m_cinematicPoints[index].position;
         m_player.m_camera.SetRotation(m_cinematicPoints[index].rotation.eulerAngles);
-        
-        m_player.m_animator.SetTrigger("Cinematic");        
+
+        m_player.m_animator.SetTrigger("Cinematic");
         m_audioManager.PlayVoiceSequence(interactable.m_audioReference);
         UpdateGameState(GameState.CINEMATIC);
-    }    
+    }
 
     void DeathMenuStart()
     {
