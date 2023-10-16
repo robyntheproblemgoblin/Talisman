@@ -384,7 +384,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ef5025f0-e2f2-4c97-a7a4-b5da3e2d4ef2"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

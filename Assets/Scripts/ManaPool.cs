@@ -7,7 +7,7 @@ public class ManaPool : MonoBehaviour
     public Door m_inDoor;
     public Door m_outDoor;
     public Light m_light;
-    public string m_interactMessage = "Interact";
+    public string m_interactMessage = "<sprite=Reticle> Interact";
     public bool m_isFalseEnd;
 
 
