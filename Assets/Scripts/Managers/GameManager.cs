@@ -28,9 +28,6 @@ public class GameManager : MonoBehaviour
     public Transform m_respawnPoint;
     public float m_respawnHealth;
     public float m_respawnMana;
-    
-    InputDevice m_lastDevice;
-    ControllerType m_controlScheme;
 
     public static GameManager Instance
     {
@@ -48,52 +45,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {        
         m_aiManager = new AIManager();                        
-        InputSystem.onEvent += InputDeviceChanged;
         OnGameStateChanged += GameStateChanged;
     }
 
     private void Start()
     {
         UpdateGameState(GameState.TITLE);
-    }
-
-    public void InputDeviceChanged(InputEventPtr eventPtr, InputDevice device)
-    {
-        if (m_lastDevice == device) return;
-
-        if (eventPtr.type != StateEvent.Type) return;
-
-        bool validPress = false;
-        foreach (InputControl control in eventPtr.EnumerateChangedControls(device, 0.01F))
-        {
-            validPress = true;
-            break;
-        }
-        if (validPress is false) return;
-
-        if (device is Keyboard || device is Mouse)
-        {
-            Debug.Log("KEyMouse");
-            if (m_controlScheme == ControllerType.KEYBOARD) return;
-            m_controlScheme = ControllerType.KEYBOARD;            
-        }
-        if (device is XInputController)
-        {
-            Debug.Log("Xbox");
-        }
-        else if (device is DualShockGamepad)
-        {
-            Debug.Log("PS");
-        }
-        else if (device is SwitchProControllerHID)
-        {
-            Debug.Log("Switch");
-        }
-        else if (device is Gamepad)
-        {
-            Debug.Log("Generic Gamepad");            
-        }     
-    }
+    }  
 
     void GameStateChanged(GameState state)
     {
@@ -115,6 +73,7 @@ public class GameManager : MonoBehaviour
             case GameState.CINEMATIC:
                 break;
             case GameState.PAUSE:
+                PauseGame();
                 break;
             case GameState.DEATH:
                 DeathMenuStart();
@@ -168,6 +127,11 @@ public class GameManager : MonoBehaviour
     void ResumeGame()
     {
         Time.timeScale = 1;
+    }
+
+    void PauseGame()
+    {        
+        Time.timeScale = 0;
     }
 
     public void SetRespawn(Transform transform)
