@@ -6,10 +6,9 @@ public class Bridge : MonoBehaviour
     public List<Puzzle> m_puzzleList;
     [HideInInspector]
     public bool m_unlocked;
-    public float m_speed;
-    List<Material> m_materials;
-    MeshRenderer[] m_meshes;
-    Color m_color;
+    public float m_speed;   
+    MeshRenderer m_mesh;
+    float m_alpha;
     public GameObject m_colliders;
 
     private void Start()
@@ -17,14 +16,9 @@ public class Bridge : MonoBehaviour
         foreach(Puzzle p in m_puzzleList)
         {
             p.m_bridge = this;
-        }
-        m_materials = new List<Material>();
-        m_meshes = gameObject.GetComponentsInChildren<MeshRenderer>();
-        for (int i = 0; i < m_meshes.Length; i++)
-        {
-            m_materials.Add(m_meshes[i].material);
-        }
-        m_color = m_materials[0].color;
+        }       
+        m_mesh = GetComponentInChildren<MeshRenderer>();
+        m_mesh.material.SetFloat("_ArmorFade", 0);
     }
 
     public void CheckState()
@@ -49,21 +43,14 @@ public class Bridge : MonoBehaviour
     private void Update()
     {
         var step = m_speed * Time.deltaTime;
-        if (m_unlocked && m_color.a < 1f)
+        if (m_unlocked && m_alpha < 1f)
         {
-            m_color = new Color(m_color.r, m_color.g, m_color.b, m_color.a + step);
-            foreach (Material m in m_materials)
-            {
-                m.color = m_color;
-            }
+            m_alpha += step;
         }
-        else if (!m_unlocked && m_color.a > 0f)
+        else if (!m_unlocked && m_alpha > 0f)
         {
-            m_color = new Color(m_color.r, m_color.g, m_color.b, m_color.a - step);
-            foreach (Material m in m_materials)
-            {
-                m.color = m_color;
-            }
+            m_alpha -= step;
         }
+            m_mesh.material.SetFloat("_ArmorFade", m_alpha);
     }   
 }

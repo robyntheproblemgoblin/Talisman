@@ -25,9 +25,8 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_jumpSpeed = 5;
     CharacterController m_characterController;
     float m_smoothTime = 0.3f;
-    Vector2 MoveDampVelocity;
-    // Coyote time
-    // Jump Buffer
+    Vector2 MoveDampVelocity; 
+    public SkinnedMeshRenderer m_skinnedMeshRenderer;
     #endregion
 
     #region Animation Fields
@@ -83,7 +82,7 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_meleeDamage;
     int m_currentAttack = 1;
     public bool m_canAttack = true;
-    public float m_attackTime = 22f;
+    public float m_attackTime;
     #endregion
 
     #region Block Parry Fields
@@ -103,6 +102,7 @@ public class PlayerController : MonoBehaviour, IBeing
     {
         m_inputControl = new FPControls();
         m_game = GameManager.Instance;
+        m_skinnedMeshRenderer.enabled = false;
     }
     void Start()
     {
