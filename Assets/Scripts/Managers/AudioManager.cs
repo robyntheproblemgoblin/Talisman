@@ -37,6 +37,26 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    void PlayOneShot(string fmodEvent, Vector3 pos)
+    {
+        RuntimeManager.PlayOneShot("event:/" + fmodEvent, pos);
+    }
+
+    void PlayOneShotAttached(string fmodEvent, GameObject go)
+    {
+        RuntimeManager.PlayOneShotAttached("event:/" + fmodEvent, go);
+    }
+
+    void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
+    {
+        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    void StartFmodLoop(FMOD.Studio.EventInstance eventInstance)
+    {
+        eventInstance.start();
+    }
+
     public async UniTask PlayVoiceSequence(string reference)
     {
         List<DialogueObject> current = m_dictionary[reference];
@@ -62,7 +82,7 @@ public class AudioManager : MonoBehaviour
 
     public async UniTask PlayIntroEffect()
     {
-        if (m_menuClips.Count > 0)
+       /* if (m_menuClips.Count > 0)
         {
             m_menuSource.clip = m_menuClips[0];
             m_menuSource.Play();
@@ -70,28 +90,13 @@ public class AudioManager : MonoBehaviour
         while (m_menuSource.isPlaying)
         {
             await UniTask.Yield();
-        }
+        }*/
         OneOffDialogue(m_intro);
     }
 
     public void OneOffDialogue(DialogueObject Dobject)
     {        
         m_game.m_menuManager.SetSubtitle(Dobject.m_subtitle);
-        m_playerSources[2].Play();
-    }
-
-    static void PlayFmodEvent(string fmodEvent, Vector3 pos)
-    {
-        RuntimeManager.PlayOneShot("event:/" + fmodEvent, pos);
-    }
-
-    static void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
-    {
-        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-    }
-
-    static void StartFmodLoop(FMOD.Studio.EventInstance eventInstance)
-    {
-        eventInstance.start();
+       // PlayOneShotAttached(Dobject.m_FMODEvent, m_game.m_player.gameObject);
     }
 }

@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Talisman/DialogueObject", fileName = "New Dialogue Object")]
 public class DialogueObject : ScriptableObject
 {
-    public string m_FMODEvent;
+    public FMODUnity.EventReference m_eventReference;
     public string m_subtitle;
 }
