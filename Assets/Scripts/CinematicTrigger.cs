@@ -18,4 +18,8 @@ public class CinematicTrigger : MonoBehaviour
     {
         m_pc.ResetCollider();
     }
+    public void TurnOnMesh()
+    {
+        m_pc.m_skinnedMeshRenderer.enabled = true;
+    }
 }
