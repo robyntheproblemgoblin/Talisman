@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5769199033890582261, guid: c7f0623ac9e27344994d5f400571bfa3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -3900330787601656601, guid: c7f0623ac9e27344994d5f400571bfa3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -192,9 +196,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 80483284988a09a4a9ad9b229e6b3fb8, type: 2}
+    - target: {fileID: -1622758205791760576, guid: c7f0623ac9e27344994d5f400571bfa3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c7f0623ac9e27344994d5f400571bfa3, type: 3}
       propertyPath: m_Name
       value: SM_FinalCorridor_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397553086512302745, guid: c7f0623ac9e27344994d5f400571bfa3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f0623ac9e27344994d5f400571bfa3, type: 3}
@@ -2932,6 +2944,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 871697124636276369}
     m_Modifications:
+    - target: {fileID: 453009545043291296, guid: 0ff8076f8ccda1d48940f7ce0cb17f2b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3337316413931996120, guid: 0ff8076f8ccda1d48940f7ce0cb17f2b, type: 3}
       propertyPath: m_Name
       value: PFB_Alcove_01
