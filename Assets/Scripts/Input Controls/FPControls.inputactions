@@ -42,27 +42,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ManaAttack",
-                    "type": "Button",
-                    "id": "aa0bf4eb-ad63-4ccd-af39-1fcb03a8488e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "MeleeAttack",
                     "type": "Button",
                     "id": "66acf2e2-ed1a-4975-a711-970b7ef327b7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SwapManaStyle",
-                    "type": "Button",
-                    "id": "69d26a49-be75-4478-83b6-ed7e7d2463b1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -229,28 +211,6 @@
                 },
                 {
                     "name": "",
-                    "id": "6a5ab479-8630-4a59-b7b7-a55e3c3cc158",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ManaAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f798b046-50c8-4b43-928a-c39d98e368fc",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ManaAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "dc5b219c-f62e-4142-aa8c-b393b6ee1d6f",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -273,30 +233,8 @@
                 },
                 {
                     "name": "",
-                    "id": "0de3cd77-8b66-4735-9595-2f180e972bfa",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwapManaStyle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f1184d60-6de8-47bd-9a2d-9fe9b8415d73",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwapManaStyle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e525a0a2-7ac8-42a1-95b3-6ee65960a563",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -308,6 +246,17 @@
                     "name": "",
                     "id": "2ccb05e0-e119-4115-b432-fea92b9765c2",
                     "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "458f93a4-3bbf-411e-a6f1-125448715205",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

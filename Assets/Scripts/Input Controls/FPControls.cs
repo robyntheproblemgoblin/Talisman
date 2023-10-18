@@ -64,27 +64,9 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ManaAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""aa0bf4eb-ad63-4ccd-af39-1fcb03a8488e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""MeleeAttack"",
                     ""type"": ""Button"",
                     ""id"": ""66acf2e2-ed1a-4975-a711-970b7ef327b7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwapManaStyle"",
-                    ""type"": ""Button"",
-                    ""id"": ""69d26a49-be75-4478-83b6-ed7e7d2463b1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -251,28 +233,6 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6a5ab479-8630-4a59-b7b7-a55e3c3cc158"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ManaAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f798b046-50c8-4b43-928a-c39d98e368fc"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ManaAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""dc5b219c-f62e-4142-aa8c-b393b6ee1d6f"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -295,30 +255,8 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0de3cd77-8b66-4735-9595-2f180e972bfa"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwapManaStyle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f1184d60-6de8-47bd-9a2d-9fe9b8415d73"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwapManaStyle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e525a0a2-7ac8-42a1-95b3-6ee65960a563"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -330,6 +268,17 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2ccb05e0-e119-4115-b432-fea92b9765c2"",
                     ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""458f93a4-3bbf-411e-a6f1-125448715205"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -952,9 +901,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         m_Player_Map_Look = m_Player_Map.FindAction("Look", throwIfNotFound: true);
         m_Player_Map_Jump = m_Player_Map.FindAction("Jump", throwIfNotFound: true);
         m_Player_Map_Sprint = m_Player_Map.FindAction("Sprint", throwIfNotFound: true);
-        m_Player_Map_ManaAttack = m_Player_Map.FindAction("ManaAttack", throwIfNotFound: true);
         m_Player_Map_MeleeAttack = m_Player_Map.FindAction("MeleeAttack", throwIfNotFound: true);
-        m_Player_Map_SwapManaStyle = m_Player_Map.FindAction("SwapManaStyle", throwIfNotFound: true);
         m_Player_Map_Interact = m_Player_Map.FindAction("Interact", throwIfNotFound: true);
         m_Player_Map_Heal = m_Player_Map.FindAction("Heal", throwIfNotFound: true);
         m_Player_Map_BlockParry = m_Player_Map.FindAction("BlockParry", throwIfNotFound: true);
@@ -1034,9 +981,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Map_Look;
     private readonly InputAction m_Player_Map_Jump;
     private readonly InputAction m_Player_Map_Sprint;
-    private readonly InputAction m_Player_Map_ManaAttack;
     private readonly InputAction m_Player_Map_MeleeAttack;
-    private readonly InputAction m_Player_Map_SwapManaStyle;
     private readonly InputAction m_Player_Map_Interact;
     private readonly InputAction m_Player_Map_Heal;
     private readonly InputAction m_Player_Map_BlockParry;
@@ -1049,9 +994,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Map_Look;
         public InputAction @Jump => m_Wrapper.m_Player_Map_Jump;
         public InputAction @Sprint => m_Wrapper.m_Player_Map_Sprint;
-        public InputAction @ManaAttack => m_Wrapper.m_Player_Map_ManaAttack;
         public InputAction @MeleeAttack => m_Wrapper.m_Player_Map_MeleeAttack;
-        public InputAction @SwapManaStyle => m_Wrapper.m_Player_Map_SwapManaStyle;
         public InputAction @Interact => m_Wrapper.m_Player_Map_Interact;
         public InputAction @Heal => m_Wrapper.m_Player_Map_Heal;
         public InputAction @BlockParry => m_Wrapper.m_Player_Map_BlockParry;
@@ -1077,15 +1020,9 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSprint;
-                @ManaAttack.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnManaAttack;
-                @ManaAttack.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnManaAttack;
-                @ManaAttack.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnManaAttack;
                 @MeleeAttack.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnMeleeAttack;
                 @MeleeAttack.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnMeleeAttack;
                 @MeleeAttack.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnMeleeAttack;
-                @SwapManaStyle.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
-                @SwapManaStyle.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
-                @SwapManaStyle.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnSwapManaStyle;
                 @Interact.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnInteract;
@@ -1114,15 +1051,9 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
-                @ManaAttack.started += instance.OnManaAttack;
-                @ManaAttack.performed += instance.OnManaAttack;
-                @ManaAttack.canceled += instance.OnManaAttack;
                 @MeleeAttack.started += instance.OnMeleeAttack;
                 @MeleeAttack.performed += instance.OnMeleeAttack;
                 @MeleeAttack.canceled += instance.OnMeleeAttack;
-                @SwapManaStyle.started += instance.OnSwapManaStyle;
-                @SwapManaStyle.performed += instance.OnSwapManaStyle;
-                @SwapManaStyle.canceled += instance.OnSwapManaStyle;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
@@ -1250,9 +1181,7 @@ public partial class @FPControls : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnManaAttack(InputAction.CallbackContext context);
         void OnMeleeAttack(InputAction.CallbackContext context);
-        void OnSwapManaStyle(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
         void OnBlockParry(InputAction.CallbackContext context);

@@ -10047,14 +10047,6 @@ MonoBehaviour:
   m_startMana: 30
   m_manaHealCost: 5
   m_currentMana: 0
-  m_fireMana: {fileID: 6258736020136332432}
-  m_projectileMana: {fileID: 7682027787357394336}
-  projectile: {fileID: 9086220017073451869, guid: 8a86b0cb8aefef744a8a2037d3995233, type: 3}
-  m_flameDamage: 5
-  m_flameCost: 1
-  m_minProjectileCost: 1
-  m_projectileManaCost: 1
-  m_projectileDamage: 5
   m_talisman: {fileID: 1115986646205182058}
   m_swordCollider: {fileID: 7416392098017492337}
   m_meleeDamage: 10
@@ -15159,9 +15151,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   m_Radius: 0.0013
-  m_Height: 0.009
+  m_Height: 0.018
   m_Direction: 1
-  m_Center: {x: 0, y: 0.0045, z: 0}
+  m_Center: {x: 0, y: 0.009, z: 0}
 --- !u!137 &6095952105130605281 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -3488063919645288440, guid: db3f383c55c11a441b45042bb67d41f3, type: 3}
