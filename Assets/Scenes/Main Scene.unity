@@ -1480,6 +1480,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 1103464754603524916, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 1575027705657228904, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
       propertyPath: m_outputLeftObject
       value: 
@@ -2034,17 +2038,6 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d7ac4e00c6f689c4ebb76bd8a53128b2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 231816b8de5d9064aa8c52b4ee7451c7, type: 3}
---- !u!114 &1376188569 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1376188569, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
-  m_PrefabInstance: {fileID: 495561488}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d06232641466d45448ff4d16ecdd50f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1388614272
 GameObject:
   m_ObjectHideFlags: 0
@@ -2225,6 +2218,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1480968059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2196879685256601838, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+  m_PrefabInstance: {fileID: 495561488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06232641466d45448ff4d16ecdd50f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1502612608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2913,7 +2917,7 @@ PrefabInstance:
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_cinematicTriggers.Array.data[0]
       value: 
-      objectReference: {fileID: 1376188569}
+      objectReference: {fileID: 1480968059}
     - target: {fileID: 427970350640858626, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
