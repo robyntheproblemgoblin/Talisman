@@ -112,8 +112,8 @@ public class PlayerController : MonoBehaviour, IBeing
 
         m_animator = GetComponentInChildren<Animator>();
         m_animator.rootRotation = transform.rotation;
-        /*m_idle = new IdleState(m_animator, m_projectileMana);
-        m_charging = new ChargingState(m_animator, m_projectileMana, this);
+        m_idle = new IdleState(m_animator, m_healParticles);
+        /*m_charging = new ChargingState(m_animator, m_projectileMana, this);
         m_firing = new FiringState(m_animator, m_projectileMana, m_talisman);*/
         m_healing = new HealingState(m_animator, m_healParticles, this);
         m_talismanState = m_idle;
