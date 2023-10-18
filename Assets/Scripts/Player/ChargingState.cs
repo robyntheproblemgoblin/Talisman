@@ -14,9 +14,9 @@ public class ChargingState : LeftHandState
         m_animator = anim;
         m_particles = ps;
         m_playerController = pc;
-        m_minProjectileManaCost = pc.m_minProjectileCost;
-        m_projectileManaCost = pc.m_projectileManaCost;
-        m_flameCost = pc.m_flameCost;
+       // m_minProjectileManaCost = pc.m_minProjectileCost;
+       // m_projectileManaCost = pc.m_projectileManaCost;
+       // m_flameCost = pc.m_flameCost;
     }
     public override void StartState(float startValue)
     {

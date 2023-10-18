@@ -41,18 +41,18 @@ public class FiringState : LeftHandState
             {
                 destination = camRay.GetPoint(50);
             }
-            var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<PlayerController>().projectile, m_projectileSpawn.position + m_projectileSpawn.forward, Quaternion.identity) as GameObject;
-            Projectile p = manaBolt.GetComponent<Projectile>();
-            p.m_damage = m_damage;
+            //var manaBolt = MonoBehaviour.Instantiate(MonoBehaviour.FindObjectOfType<PlayerController>().projectile, m_projectileSpawn.position + m_projectileSpawn.forward, Quaternion.identity) as GameObject;
+            //Projectile p = manaBolt.GetComponent<Projectile>();
+            //p.m_damage = m_damage;
             if (m_damage > m_minSize)
             {
-                var main = manaBolt.GetComponentInChildren<ParticleSystem>().main;
-                main.startSize = m_damage;
+           //     var main = manaBolt.GetComponentInChildren<ParticleSystem>().main;
+           //     main.startSize = m_damage;
             }
-            manaBolt.GetComponent<Rigidbody>().velocity = (destination - m_projectileSpawn.position).normalized * m_manaBoltSpeed;
+            //manaBolt.GetComponent<Rigidbody>().velocity = (destination - m_projectileSpawn.position).normalized * m_manaBoltSpeed;
         }
 
-        MonoBehaviour.FindObjectOfType<PlayerController>().StartIdle();
+      //  MonoBehaviour.FindObjectOfType<PlayerController>().StartIdle();
     }
     public override void StopState()
     {

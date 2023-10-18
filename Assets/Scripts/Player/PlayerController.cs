@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour, IBeing
     FiringState m_firing;
     IdleState m_idle;
 
-    [Space(10)]
+ /*   [Space(10)]
     [Header("Mana Attacks")]
     [Space(5)]
     public ParticleSystem m_fireMana;
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_flameCost = 1;
     public float m_minProjectileCost = 1;
     public float m_projectileManaCost = 1;
-    public float m_projectileDamage = 1;
+    public float m_projectileDamage = 1;*/
     public Transform m_talisman;
     #endregion
 
@@ -112,18 +112,18 @@ public class PlayerController : MonoBehaviour, IBeing
 
         m_animator = GetComponentInChildren<Animator>();
         m_animator.rootRotation = transform.rotation;
-        m_idle = new IdleState(m_animator, m_projectileMana);
+        /*m_idle = new IdleState(m_animator, m_projectileMana);
         m_charging = new ChargingState(m_animator, m_projectileMana, this);
-        m_firing = new FiringState(m_animator, m_projectileMana, m_talisman);
+        m_firing = new FiringState(m_animator, m_projectileMana, m_talisman);*/
         m_healing = new HealingState(m_animator, m_healParticles, this);
         m_talismanState = m_idle;
 
         m_inputControl.Player_Map.Heal.performed += StartHealing;
         m_inputControl.Player_Map.Heal.canceled += StopHealing;
-        m_inputControl.Player_Map.ManaAttack.performed += StartCharging;
-        m_inputControl.Player_Map.ManaAttack.canceled += StartFiring;
+        /*m_inputControl.Player_Map.ManaAttack.performed += StartCharging;
+        m_inputControl.Player_Map.ManaAttack.canceled += StartFiring;*/
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
-        m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
+        //m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_inputControl.Player_Map.Interact.performed += Interact;
 
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
@@ -361,7 +361,7 @@ public class PlayerController : MonoBehaviour, IBeing
     #endregion
 
     #region Mana Attack Methods
-    void StartCharging(InputAction.CallbackContext t)
+   /* void StartCharging(InputAction.CallbackContext t)
     {
         m_talismanState.StopState();
         m_talismanState = m_charging;
@@ -396,7 +396,7 @@ public class PlayerController : MonoBehaviour, IBeing
             m_charging.m_particles = m_fireMana;
             m_firing.m_particles = m_fireMana;
         }
-    }
+    }*/
     #endregion
 
     #region Melee Attack Methods
