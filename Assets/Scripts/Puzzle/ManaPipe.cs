@@ -11,6 +11,7 @@ public class ManaPipe : Puzzle
     public Puzzle m_outputRightObject;
 
     bool m_twoOutputs = false;
+    bool m_ready = false;
 
     public Material m_black;
     public Material m_white;
@@ -32,6 +33,14 @@ public class ManaPipe : Puzzle
         {
             m_twoOutputs = true;
         }
+        if(m_white != null)
+        {
+            m_ready = false;
+        }
+        else
+        {
+            m_ready = true;
+        }
     }
 
     private void Update()
@@ -47,6 +56,10 @@ public class ManaPipe : Puzzle
         if (m_rewindMana)
         {
             m_manaValue -= Time.deltaTime * m_rewindSpeed;
+            if (m_ready)
+            {
+                m_pipe.material.SetFloat("ManaChannel1", m_manaValue);
+            }
             //Update material
             if (m_manaValue < 0.0f)
             {
@@ -55,7 +68,14 @@ public class ManaPipe : Puzzle
                 m_updateMana = false;
                 //Update material
                 //DELETE THIS
-                m_pipe.material = m_black;
+                if (m_ready)
+                {
+                    m_pipe.material.SetFloat("ManaChannel1", m_manaValue);
+                }
+                    else
+                        {
+                            m_pipe.material = m_black;
+                        }
                 //STOP DELETE
                 if (m_inputObject != null && !(m_inputObject is Lever))
                 {
@@ -68,13 +88,24 @@ public class ManaPipe : Puzzle
             m_manaValue += Time.deltaTime * m_speed;
             //Update material
             //DELETE THIS
-            m_pipe.material = m_white;
+            if (m_ready)
+            {
+                m_pipe.material.SetFloat("ManaChannel1", m_manaValue);
+            }
+            else
+            {
+                m_pipe.material = m_white;
+            }
             //STOP DELETE
             if (m_manaValue > 1.0f)
             {
                 m_manaValue = 1.0f;
                 m_updateMana = false;
                 //Update material
+                if (m_ready)
+                {
+                    m_pipe.material.SetFloat("ManaChannel1", m_manaValue);
+                }
                 StartNextSequence();
             }
         }

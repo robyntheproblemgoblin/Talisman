@@ -101,6 +101,7 @@ public class RotateCircularMana : Puzzle
             m_shaderOut = "_ManaChannel2";
             m_shaderInOut = "_ManaChannel3";
             m_inOut.enabled = true;
+            m_canInteract = false;
         }
         else
         {
@@ -166,6 +167,7 @@ public class RotateCircularMana : Puzzle
         m_canInteract = !m_canInteract;
         if (m_isThreeWay)
         {
+            m_canInteract = false;
             if (m_twoInputs)
             {
                 if (m_outputLeftObject != null)

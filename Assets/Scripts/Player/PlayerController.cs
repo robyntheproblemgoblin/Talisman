@@ -471,7 +471,7 @@ public class PlayerController : MonoBehaviour, IBeing
             Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
             Interactable interactable = hit.transform.gameObject.GetComponentInParent<Interactable>();
             ManaPool manaPool = hit.transform.gameObject.GetComponentInParent<ManaPool>();
-            if (puzzle != null || interactable != null || manaPool != null)
+            if ((puzzle != null && puzzle.CanInteract() == true) || interactable != null || manaPool != null)
             {
                 m_game.m_menuManager.SetInteract(hit);
             }

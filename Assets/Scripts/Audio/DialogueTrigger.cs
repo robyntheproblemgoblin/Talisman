@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {    
-    public DialogueObject m_oneOff;
+    public Dialogue m_dialogue;
     AudioManager m_audioManager;    
 
     private void Start()
@@ -20,7 +20,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
         {
-                m_audioManager.OneOffDialogue(m_oneOff);     
+                m_audioManager.PlayDialogueSequence(m_dialogue);     
                 Destroy(gameObject); 
         }
     }

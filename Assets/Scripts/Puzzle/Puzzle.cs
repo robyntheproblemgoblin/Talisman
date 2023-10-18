@@ -54,6 +54,11 @@ public class Puzzle : MonoBehaviour
         }
     }
 
+    public bool CanInteract()
+    {
+        return m_canInteract;
+    }
+
     public virtual void RotatePuzzle()
     {
         if (m_canInteract)

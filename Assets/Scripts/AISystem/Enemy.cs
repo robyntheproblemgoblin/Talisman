@@ -150,7 +150,7 @@ namespace AISystem
 
         protected void OnCollisionEnter(Collision collision)
         {
-            if (collision.collider.gameObject.layer == m_playerMask)
+            if (collision.collider.gameObject.layer == m_playerMask && !m_intelligience.IsStatue())
             {
                 TakeHit(m_playerController.m_meleeDamage);
             }
