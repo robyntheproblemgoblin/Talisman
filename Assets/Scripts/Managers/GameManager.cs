@@ -114,8 +114,7 @@ public class GameManager : MonoBehaviour
     }
 
     void TitleScreen()
-    {
-        //AudioManager.Instance.PlayMenuMusic(true);
+    {        
         Time.timeScale = 0;
     }
 
@@ -132,12 +131,7 @@ public class GameManager : MonoBehaviour
     void PauseGame()
     {        
         Time.timeScale = 0;
-    }
-
-    public void SetRespawn(Transform transform)
-    {
-        m_respawnPoint = transform;
-    }
+    }  
 
     public void SetCheckPoint(Transform transform)
     {
@@ -167,8 +161,8 @@ public class GameManager : MonoBehaviour
     {
         m_player.transform.position = m_respawnPoint.position;
         m_player.m_camera.SetRotation(m_respawnPoint.rotation.eulerAngles);
-        m_player.m_currentHealth = 30;
-        m_player.m_currentMana = 30;
+        m_player.m_currentHealth = m_player.m_health;
+        m_player.m_currentMana = m_player.m_startMana;
         m_player.m_animator.SetTrigger("Alive");
         m_menuManager.UpdateHealth();
         m_menuManager.UpdateMana();

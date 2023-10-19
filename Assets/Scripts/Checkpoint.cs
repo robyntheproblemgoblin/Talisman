@@ -3,28 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
-{
-    public Bridge[] m_sideBridges;
-    public Bridge m_entryBridge;
-
-    private void Start()
-    {
-        foreach (Bridge bridge in m_sideBridges)
-        {
-            bridge.SetBridgeState(false);
-        }
-        m_entryBridge.SetBridgeState(true);
-    }
+{    
+    public Drawbridge m_bridge;
+    public Transform m_respawnPosition;
+    public List<Door> m_door;    
+    public ManaPool m_manaPool;        
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponentInParent<PlayerController>() != null)
-        {
-            foreach (Bridge bridge in m_sideBridges)
+        PlayerController pc = other.gameObject.GetComponentInParent<PlayerController>();
+        if (pc != null)
+        {               
+            pc.m_game.SetCheckPoint(m_respawnPosition);
+            if (m_bridge != null)
             {
-                bridge.SetBridgeState(true);
+                m_bridge.m_draw = true;
             }
-            m_entryBridge.SetBridgeState(false);
+            if(m_door.Count > 0)
+            {
+                foreach (Door d in m_door)
+                {
+                    d.CloseDoor();
+                }
+            }
+            if(m_manaPool != null)
+            {
+                m_manaPool.ResetPool();
+            }
             Destroy(this.gameObject);
         }
     }

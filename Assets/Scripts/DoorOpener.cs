@@ -6,6 +6,7 @@ public class DoorOpener : MonoBehaviour
     public DoorCloser m_doorCloser;
     GameManager m_game;
     bool m_hasPassed;
+    public Checkpoint m_checkpoint;
 
     private void Start()
     {
@@ -13,6 +14,7 @@ public class DoorOpener : MonoBehaviour
         m_game.OnGameStateChanged += ResetOnDeath;
         m_doorCloser.m_safetyNet = this;
         gameObject.SetActive(false);
+        m_checkpoint.gameObject.SetActive(false);
     }
 
     private void ResetOnDeath(GameState state)
@@ -31,7 +33,11 @@ public class DoorOpener : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            m_checkpoint.gameObject.SetActive(true);
      Destroy(m_doorCloser.gameObject);
-     Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

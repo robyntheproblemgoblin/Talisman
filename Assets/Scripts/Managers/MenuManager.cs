@@ -18,13 +18,13 @@ public class MenuManager : MonoBehaviour
     InputDevice m_lastDevice;
 
     [SerializeField]
-    ControllerImages m_keyboardImages;    
+    ControllerImages m_keyboardImages;
     [SerializeField]
-    ControllerImages m_xBoxImages;    
+    ControllerImages m_xBoxImages;
     [SerializeField]
-    ControllerImages m_pSImages;    
-    [SerializeField]    
-    ControllerImages m_nintendoImages;    
+    ControllerImages m_pSImages;
+    [SerializeField]
+    ControllerImages m_nintendoImages;
     [SerializeField]
     ControllerImages m_genericImages;
     ControllerImages m_currentImages;
@@ -195,29 +195,24 @@ public class MenuManager : MonoBehaviour
 
         if (device is Keyboard || device is Mouse)
         {
-            Debug.Log("KEyMouse");
-            if (m_currentController == ControllerType.KEYBOARD) return;            
+            if (m_currentController == ControllerType.KEYBOARD) return;
             OnControllerChanged(ControllerType.KEYBOARD);
         }
         if (device is XInputController)
         {
             OnControllerChanged(ControllerType.XBOX);
-            Debug.Log("Xbox");
         }
         else if (device is DualShockGamepad)
         {
             OnControllerChanged(ControllerType.PS);
-            Debug.Log("PS");
         }
         else if (device is SwitchProControllerHID)
         {
             OnControllerChanged(ControllerType.NINTENDO);
-            Debug.Log("Switch");
         }
         else if (device is Gamepad)
         {
-             OnControllerChanged(ControllerType.GENERIC);
-            Debug.Log("Generic Gamepad");
+            OnControllerChanged(ControllerType.GENERIC);
         }
     }
 
@@ -229,13 +224,13 @@ public class MenuManager : MonoBehaviour
             case ControllerType.KEYBOARD:
                 UpdateUIImages(m_keyboardImages);
                 break;
-            case ControllerType.XBOX:                
+            case ControllerType.XBOX:
                 UpdateUIImages(m_xBoxImages);
                 break;
-            case ControllerType.PS:                
+            case ControllerType.PS:
                 UpdateUIImages(m_pSImages);
                 break;
-            case ControllerType.NINTENDO:                
+            case ControllerType.NINTENDO:
                 UpdateUIImages(m_nintendoImages);
                 break;
             case ControllerType.GENERIC:
@@ -324,8 +319,8 @@ public class MenuManager : MonoBehaviour
     }
     void Options()
     {
-     /*   m_game.UpdateGameState(GameState.OPTIONS);
-        m_eventSystem.SetSelectedGameObject(m_camSensitivityButton.gameObject);*/
+        /*   m_game.UpdateGameState(GameState.OPTIONS);
+           m_eventSystem.SetSelectedGameObject(m_camSensitivityButton.gameObject);*/
     }
 
     void ShowControllerImages()
@@ -506,7 +501,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-   
+
 }
 
 public enum ControllerType
@@ -514,6 +509,6 @@ public enum ControllerType
     KEYBOARD,
     PS,
     XBOX,
-    NINTENDO, 
+    NINTENDO,
     GENERIC
 }

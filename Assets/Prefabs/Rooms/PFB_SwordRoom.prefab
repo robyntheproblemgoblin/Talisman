@@ -3815,6 +3815,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1054390236143505773, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
+      propertyPath: m_outputPuzzles.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054390236143505773, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
       propertyPath: m_puzzleList.Array.data[0]
       value: 
       objectReference: {fileID: 1168661997854222963}
@@ -3822,6 +3826,14 @@ PrefabInstance:
       propertyPath: m_puzzleList.Array.data[1]
       value: 
       objectReference: {fileID: 3204213029385473046}
+    - target: {fileID: 1054390236143505773, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
+      propertyPath: m_outputPuzzles.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054390236143505773, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
+      propertyPath: m_outputPuzzles.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4513304456997122459, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3871,6 +3883,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6328293690845330771, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
+      propertyPath: m_outputPuzzles.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328293690845330771, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
       propertyPath: m_puzzleList.Array.data[0]
       value: 
       objectReference: {fileID: 1168661997854222963}
@@ -3878,6 +3894,14 @@ PrefabInstance:
       propertyPath: m_puzzleList.Array.data[1]
       value: 
       objectReference: {fileID: 3204213029385473046}
+    - target: {fileID: 6328293690845330771, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
+      propertyPath: m_outputPuzzles.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328293690845330771, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
+      propertyPath: m_outputPuzzles.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8175796463114569652, guid: 2539fe39c25ce0047bdb6a5377fb91d1, type: 3}
       propertyPath: m_Name
       value: PFB_DoorSystem
