@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class ManaPipe : Puzzle
@@ -16,6 +17,10 @@ public class ManaPipe : Puzzle
     public Material m_black;
     public Material m_white;
 
+    public ManaChannel m_channel;
+    public ManaDirection m_direction;
+    string m_shader;
+
     MeshRenderer m_pipe;
 
     private new void Start()
@@ -29,11 +34,11 @@ public class ManaPipe : Puzzle
         {
             m_outputRightObject.SetInputObject(this);
         }
-        if(m_outputLeftObject != null && m_outputRightObject != null)
+        if (m_outputLeftObject != null && m_outputRightObject != null)
         {
             m_twoOutputs = true;
         }
-        if(m_white != null)
+        if (m_white != null)
         {
             m_ready = false;
         }
@@ -41,6 +46,24 @@ public class ManaPipe : Puzzle
         {
             m_ready = true;
         }
+
+        if (m_channel == ManaChannel.ONE)
+        {
+            m_shader = "_ManaChannel1";
+        }
+        else if (m_channel == ManaChannel.TWO)
+        {
+            m_shader = "_ManaChannel2";
+        }
+        else if (m_channel == ManaChannel.THREE)
+        {
+            m_shader = "_ManaChannel3";
+        }
+        else if (m_channel == ManaChannel.FOUR)
+        {
+            m_shader = "_ManaChannel4";
+        }
+
     }
 
     private void Update()
@@ -58,7 +81,14 @@ public class ManaPipe : Puzzle
             m_manaValue -= Time.deltaTime * m_rewindSpeed;
             if (m_ready)
             {
-                m_pipe.material.SetFloat("ManaChannel1", m_manaValue);
+                if (m_direction == ManaDirection.POS)
+                {
+                    m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, 1, m_manaValue));
+                }
+                else
+                {
+                    m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
+                }
             }
             //Update material
             if (m_manaValue < 0.0f)
@@ -70,12 +100,19 @@ public class ManaPipe : Puzzle
                 //DELETE THIS
                 if (m_ready)
                 {
-                    m_pipe.material.SetFloat("ManaChannel1", m_manaValue);
-                }
+                    if (m_direction == ManaDirection.POS)
+                    {
+                        m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, 1, m_manaValue));
+                    }
                     else
-                        {
-                            m_pipe.material = m_black;
-                        }
+                    {
+                        m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
+                    }
+                }
+                else
+                {
+                    m_pipe.material = m_black;
+                }
                 //STOP DELETE
                 if (m_inputObject != null && !(m_inputObject is Lever))
                 {
@@ -90,7 +127,14 @@ public class ManaPipe : Puzzle
             //DELETE THIS
             if (m_ready)
             {
-                m_pipe.material.SetFloat("ManaChannel1", m_manaValue);
+                if (m_direction == ManaDirection.POS)
+                {
+                    m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, 1, m_manaValue));
+                }
+                else
+                {
+                    m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
+                }
             }
             else
             {
@@ -104,7 +148,16 @@ public class ManaPipe : Puzzle
                 //Update material
                 if (m_ready)
                 {
-                    m_pipe.material.SetFloat("ManaChannel1", m_manaValue);
+
+                    if (m_direction == ManaDirection.POS)
+                    {
+                        m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, 1, m_manaValue));
+                    }
+                    else
+                    {
+                        m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
+                    }
+
                 }
                 StartNextSequence();
             }
@@ -189,4 +242,17 @@ public class ManaPipe : Puzzle
             m_updateMana = true;
         }
     }
+}
+
+public enum ManaChannel
+{
+    ONE,
+    TWO,
+    THREE,
+    FOUR
+}
+public enum ManaDirection
+{
+    POS,
+    NEG
 }

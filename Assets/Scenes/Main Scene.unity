@@ -399,6 +399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_Rotation_Puzzle_Room_01 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5374499047478082013, guid: 0d16a930b3e7f2b438dfc88dba3cff75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 5374499049327899046, guid: 0d16a930b3e7f2b438dfc88dba3cff75, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -603,6 +607,10 @@ PrefabInstance:
     - target: {fileID: 6492526628118096625, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096398096553665058, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_CameraType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8972684320955924386, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_audioClip
@@ -1548,6 +1556,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 5374499047415346925, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 210
+      objectReference: {fileID: 0}
     - target: {fileID: 5374499047786120770, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -1571,6 +1583,18 @@ PrefabInstance:
     - target: {fileID: 5374499048303079542, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374499048533374989, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374499048710823618, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374499049157267001, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5374499049256517270, guid: df5ee97fca6733d4588bde839aa7f101, type: 3}
       propertyPath: m_NavMeshLayer
@@ -2186,6 +2210,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1586639005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7166422284668395546, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
+  m_PrefabInstance: {fileID: 3831862568501436957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a83a1bc08711f4b921716e9dd0ef27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1670361277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5323867714855246679, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
+  m_PrefabInstance: {fileID: 3831862568501436957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a83a1bc08711f4b921716e9dd0ef27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1671286401
 GameObject:
   m_ObjectHideFlags: 0
@@ -2486,6 +2532,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_TutorialRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 1056290314743062032, guid: c6b9c824009f2104b8de0057dfc1bfd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 2162089450661148853, guid: c6b9c824009f2104b8de0057dfc1bfd8, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2623,10 +2673,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 376645172948435801, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
-      propertyPath: m_puzzleList.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 376645172948435801, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
       propertyPath: m_puzzleList.Array.data[0]
       value: 
       objectReference: {fileID: 1156479132}
@@ -2669,10 +2715,6 @@ PrefabInstance:
     - target: {fileID: 1606360548225102728, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
       propertyPath: m_unlocked
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1606360548225102728, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
-      propertyPath: m_puzzleList.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1606360548225102728, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
       propertyPath: m_puzzleList.Array.data[0]
@@ -2751,6 +2793,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5708769548467937206, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
+      propertyPath: m_outputPuzzles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5708769548467937206, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
       propertyPath: m_puzzleList.Array.data[0]
       value: 
       objectReference: {fileID: 668824658}
@@ -2758,6 +2804,14 @@ PrefabInstance:
       propertyPath: m_puzzleList.Array.data[1]
       value: 
       objectReference: {fileID: 1199982100}
+    - target: {fileID: 5708769548467937206, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
+      propertyPath: m_outputPuzzles.Array.data[0]
+      value: 
+      objectReference: {fileID: 1670361277}
+    - target: {fileID: 5708769548467937206, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
+      propertyPath: m_outputPuzzles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586639005}
     - target: {fileID: 6207564187084454239, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 40

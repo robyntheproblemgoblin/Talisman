@@ -99,20 +99,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_unlocked: 0
-  m_door: {fileID: 0}
+  m_doors: []
   m_updateMana: 0
   m_manaValue: 0
   m_input: 0
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_bridge: {fileID: 0}
   m_speed: 1
   m_rewindSpeed: 1
   m_outputLeftObject: {fileID: 0}
   m_outputRightObject: {fileID: 0}
-  m_twoOutputs: 0
   m_black: {fileID: 0}
   m_white: {fileID: 0}
+  m_channel: 0
+  m_direction: 0
 --- !u!1 &2168401865542378809 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7029948723529949830, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -131,20 +133,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_unlocked: 0
-  m_door: {fileID: 0}
+  m_doors: []
   m_updateMana: 0
   m_manaValue: 0
   m_input: 0
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_bridge: {fileID: 0}
   m_speed: 1
   m_rewindSpeed: 1
   m_outputLeftObject: {fileID: 0}
   m_outputRightObject: {fileID: 0}
-  m_twoOutputs: 0
   m_black: {fileID: 0}
   m_white: {fileID: 0}
+  m_channel: 1
+  m_direction: 1
 --- !u!1 &4777784331910360048 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4767400413853537203, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -163,20 +167,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_unlocked: 0
-  m_door: {fileID: 0}
+  m_doors: []
   m_updateMana: 0
   m_manaValue: 0
   m_input: 0
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_bridge: {fileID: 0}
   m_speed: 1
   m_rewindSpeed: 1
   m_outputLeftObject: {fileID: 0}
   m_outputRightObject: {fileID: 0}
-  m_twoOutputs: 0
   m_black: {fileID: 0}
   m_white: {fileID: 0}
+  m_channel: 0
+  m_direction: 0
 --- !u!1 &6500834726287510342 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6507901977716847365, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -195,20 +201,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_unlocked: 0
-  m_door: {fileID: 0}
+  m_doors: []
   m_updateMana: 0
   m_manaValue: 0
   m_input: 0
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_bridge: {fileID: 0}
   m_speed: 1
   m_rewindSpeed: 1
   m_outputLeftObject: {fileID: 0}
   m_outputRightObject: {fileID: 0}
-  m_twoOutputs: 0
   m_black: {fileID: 0}
   m_white: {fileID: 0}
+  m_channel: 0
+  m_direction: 0
 --- !u!1 &8167720650249196063 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1063203228461421988, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -227,17 +235,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_unlocked: 0
-  m_door: {fileID: 0}
+  m_doors: []
   m_updateMana: 0
   m_manaValue: 0
   m_input: 0
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_bridge: {fileID: 0}
   m_speed: 1
   m_rewindSpeed: 1
   m_outputLeftObject: {fileID: 0}
   m_outputRightObject: {fileID: 0}
-  m_twoOutputs: 0
   m_black: {fileID: 0}
   m_white: {fileID: 0}
+  m_channel: 0
+  m_direction: 0

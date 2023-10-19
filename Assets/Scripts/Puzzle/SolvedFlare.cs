@@ -23,6 +23,10 @@ public class SolvedFlare : Puzzle
             {
                 m_bridge.CheckState();
             }
+            if(m_outputObject != null)
+            {
+                m_outputObject.m_updateMana = true;
+            }
         }
     }
 

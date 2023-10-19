@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BridgeTrigger : MonoBehaviour
+public class Checkpoint : MonoBehaviour
 {
     public Bridge[] m_sideBridges;
     public Bridge m_entryBridge;

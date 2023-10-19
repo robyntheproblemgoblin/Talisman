@@ -8,6 +8,8 @@ public class Door : MonoBehaviour
     public Transform m_lockedPos;
     public Transform m_unlockedPos;
     public float m_speed;
+    public List<Puzzle> m_outputPuzzles;
+    bool m_manaContinue = true;
 
     private void Start()
     {
@@ -28,6 +30,14 @@ public class Door : MonoBehaviour
             }
         }
         m_unlocked = true;
+        if(m_outputPuzzles.Count > 0 && m_manaContinue)
+        {
+            m_manaContinue = false;
+            foreach (Puzzle puzzle in m_outputPuzzles)
+            {
+                puzzle.m_updateMana = true;
+            }
+        }
     }
 
     private void Update()
