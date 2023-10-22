@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AISystem.Behaviours
 {
-    public class Interrupt : ActionNode
+    public class HitReaction : ActionNode
     {
         Animator m_animator;
         float m_startTime;
@@ -15,12 +15,13 @@ namespace AISystem.Behaviours
             base.BeginNode();
             m_startTime = Time.time;
             m_animator = m_input.m_go.GetComponentInChildren<Animator>();
-            m_animator.SetTrigger("Interrupt");
+            m_animator.SetFloat("HitX", m_input.m_aIMovement.m_hitDirection.x);
+            m_animator.SetFloat("HitY", m_input.m_aIMovement.m_hitDirection.y);
+            m_animator.SetTrigger("Hit");            
             m_input.m_aIMovement.m_swordCollider.enabled = false;
             m_input.m_aIMovement.SetWarp(false);
-            m_input.m_aIMovement.m_isInterrupted = false;
+            m_input.m_aIMovement.m_isHit = false;
             m_input.m_aIMovement.Stop();
-
         }
         protected override NodeState Update(float dt)
         {

@@ -117,7 +117,7 @@ namespace AISystem
             m_intelligience.Interrupt();
         }
 
-        public bool TakeHit(float damage)
+        public bool TakeHit(float damage, Vector2 angle)
         {
             m_playerController.HitReticle();
             m_currentHP -= damage;
@@ -128,7 +128,7 @@ namespace AISystem
             }
             else
             {
-                Interrupt();
+                m_intelligience.IsHit(angle);
             }
             return isDead;
         }
@@ -138,7 +138,8 @@ namespace AISystem
             //Setup what is happening on die
             m_swordCollider.enabled = false;
             m_activator.EnemyDead();
-            m_animator.SetTrigger("Die");            
+            m_animator.SetTrigger("Die");
+            m_rootMotionSync.SetDead();
             gameObject.GetComponent<Collider>().enabled = false;
             float time = Time.time;
             while (Time.time < time + 3)
@@ -152,7 +153,9 @@ namespace AISystem
         {
             if (collision.collider.gameObject.layer == m_playerMask && !m_intelligience.IsStatue())
             {
-                TakeHit(m_playerController.m_meleeDamage);
+                Vector3 direction = -collision.GetContact(0).normal;
+                Vector2 angle = new Vector2(direction.x, direction.z);
+                TakeHit(m_playerController.m_meleeDamage, angle);
             }
         }
 

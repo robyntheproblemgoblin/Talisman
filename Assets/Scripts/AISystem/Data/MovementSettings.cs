@@ -5,5 +5,6 @@
     {
         public float m_walk = 3.5f;
         public float m_run = 5f;
+        public float m_acceleration = 5f;
     }
 }

@@ -18,30 +18,18 @@ namespace AISystem.Systems
         Animator m_animator;
 
         public Path m_currentPath;
-        MovePace m_pace;
 
         bool m_movementEnabled;
-        float m_speed = 0;
-
-        float m_targetSpeed => m_pace switch
-        {
-            MovePace.RUN => m_settings.m_run,
-            MovePace.WALK => m_settings.m_walk,
-            _ => 1f
-        };
+        float m_speed = 0;       
 
         public bool m_atDestination { get; private set; } = true;
 
         public bool m_isStatue = true;
 
         public bool m_isInterrupted = false;
-        public CapsuleCollider m_swordCollider;
-
-        public enum MovePace
-        {
-            WALK,
-            RUN,
-        }
+        public bool m_isHit = false;
+        public Vector2 m_hitDirection;
+        public CapsuleCollider m_swordCollider;                
 
         public AIMovement(MovementSettings settings, [CanBeNull] Animator animator, IBeing attachedBeing, IManager manager, RootMotionSync rootMotionSync, CapsuleCollider swordCollider)
         {
@@ -59,12 +47,11 @@ namespace AISystem.Systems
             MovementLoop().Forget();
         }
 
-        public void DisableMovement() => m_movementEnabled = false;
-
-        public void SetMovePace(MovePace movePace) => m_pace = movePace;
+        public void DisableMovement() => m_movementEnabled = false;        
 
         public void Stop()
         {
+            m_speed = 0;
             m_currentPath = Path.Empty;
             m_atDestination = true;
         }
@@ -103,7 +90,7 @@ namespace AISystem.Systems
                 if (m_currentPath.m_isEmpty == false && m_animator != null)
                 {
                     float sqrmag = Vector3.SqrMagnitude(m_attachedBeing.m_position - (Vector3)m_currentPath.m_destination);
-                    m_atDestination = sqrmag <= m_arrivalThreshold * m_arrivalThreshold;
+                    m_atDestination = sqrmag <= m_arrivalThreshold * m_arrivalThreshold;                    
 
                     if (!m_atDestination)
                     {
@@ -113,7 +100,7 @@ namespace AISystem.Systems
                     else
                     {
                         m_speed = 0;
-                        m_animator.SetFloat("ForwardsBackwards", 0); 
+                        m_animator.SetFloat("ForwardsBackwards", m_speed); 
                         m_rootMotionSync.SetTurnWarp(0);
                         m_animator.SetFloat("Sideways", 0);
                     }
@@ -126,12 +113,7 @@ namespace AISystem.Systems
         void UpdateSideWays()
         {
             m_currentPath.GetRelativePoint(m_attachedBeing.m_position, 0.1f, out float3 predictPos, out float3 predictTan);
-            m_rootMotionSync.SetYPos(predictPos.y);
-            //DEBUG
-            /*Debug.DrawRay(m_attachedBeing.m_position, predictTan, Color.green);
-            Debug.DrawRay(m_attachedBeing.m_position, m_attachedBeing.m_forward, Color.red);
-            Debug.DrawRay(m_aiManager.GetCloseBeings(15, m_attachedBeing.m_position)[0].m_position + new Vector3(0, -1.5f, 0), -predictTan, Color.blue);
-            Debug.DrawRay(m_aiManager.GetCloseBeings(15, m_attachedBeing.m_position)[0].m_position + new Vector3(0, -1.5f, 0), m_aiManager.GetCloseBeings(15, m_attachedBeing.m_position)[0].m_forward, Color.magenta);*/
+            m_rootMotionSync.SetYPos(predictPos.y);            
 
             float angle = Vector3.SignedAngle(m_attachedBeing.m_forward, predictTan, Vector3.up);
 
@@ -142,7 +124,6 @@ namespace AISystem.Systems
             }
             else
             {
-
                 m_rootMotionSync.SetTurnWarp(angle);
                 m_animator.SetFloat("Sideways", angle * Mathf.Deg2Rad);
             }
@@ -153,14 +134,15 @@ namespace AISystem.Systems
             float distToDest = Vector3.Distance(m_currentPath.m_destination, m_attachedBeing.m_position);
             
             if (distToDest >= m_arrivalThreshold * m_arrivalThreshold)
-            {
-                m_speed = m_targetSpeed;
-                m_animator.SetFloat("ForwardsBackwards", m_pace == MovePace.WALK ? 2 : 4);
+            {   
+                m_speed = Mathf.Lerp(m_speed, m_settings.m_run, Time.deltaTime * m_settings.m_acceleration);                
+                float speed = math.remap(0, m_settings.m_run, 0, 1, m_speed);             
+                m_animator.SetFloat("ForwardsBackwards", speed);
             }
             else
             {
                 m_speed = 0;
-                m_animator.SetFloat("ForwardsBackwards", 0);
+                m_animator.SetFloat("ForwardsBackwards", m_speed);
             }
         }
 

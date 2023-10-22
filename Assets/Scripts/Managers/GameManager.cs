@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         m_player.m_camera.SetRotation(m_cinematicPoints[index].rotation.eulerAngles);
 
         m_player.m_animator.SetTrigger("Cinematic");
-        m_audioManager.PlayDialogueSequence(interactable.m_dialogue);
+        m_audioManager.PlayDialogue(interactable.m_dialogue);
         UpdateGameState(GameState.CINEMATIC);
     }
 

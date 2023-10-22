@@ -21,8 +21,7 @@ namespace AISystem.Behaviours
             Vector3 targetPos = m_input.m_blackboard.m_target.m_position - m_playerHeight;
             Vector3 aiPos = m_input.m_go.transform.position;
             var offset = Vector3.Normalize(aiPos - targetPos) * m_attack.m_attackDistance;
-
-            m_input.m_aIMovement.SetMovePace(AIMovement.MovePace.RUN);
+            
             m_input.m_aIMovement?.SetDestination(targetPos + offset);
             
             if (m_input.m_aIMovement.m_atDestination == false)

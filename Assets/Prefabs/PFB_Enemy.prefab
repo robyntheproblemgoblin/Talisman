@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7553453540490302227}
   - component: {fileID: 1428111520865393886}
   - component: {fileID: 4940352319632828954}
+  - component: {fileID: 4667414372420083824}
   m_Layer: 8
   m_Name: PFB_Enemy
   m_TagString: Untagged
@@ -71,6 +72,7 @@ MonoBehaviour:
     <MovementSettings>k__BackingField:
       m_walk: 3.5
       m_run: 5
+      m_acceleration: 1
     <BehaviourTree>k__BackingField: {fileID: 11400000, guid: c9fd704a62775574795a4c525545cada, type: 2}
   m_animator: {fileID: 1090549809602194159}
   m_rootMotionSync: {fileID: 7000438933645964598}
@@ -80,6 +82,28 @@ MonoBehaviour:
   m_activator: {fileID: 0}
   m_damage: 5
   m_swordCollider: {fileID: 6859884962832234199}
+--- !u!195 &4667414372420083824
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326103737644685129}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &6793958145089984382
 PrefabInstance:
   m_ObjectHideFlags: 0

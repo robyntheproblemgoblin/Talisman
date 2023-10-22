@@ -43,6 +43,12 @@ namespace AISystem
             }
         }
 
+        public void IsHit(Vector2 angle)
+        {
+            m_aiMovement.m_isHit = true;
+            m_aiMovement.m_hitDirection = angle;
+        }
+
         public void Interrupt()
         {
             m_aiMovement.m_isInterrupted = true;            

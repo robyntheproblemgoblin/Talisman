@@ -11,11 +11,12 @@ namespace AISystem
 
         float m_angle;
         Vector3 m_yLevel;
-        bool m_warpEnabled = true;      
+        bool m_warpEnabled = true;
+        bool m_isDead = false;
 
         void Awake()
         {
-            m_animator = GetComponent<Animator>();            
+            m_animator = GetComponent<Animator>();
         }
 
         public void SetTurnWarp(float angle)
@@ -28,6 +29,11 @@ namespace AISystem
             m_warpEnabled = warpOn;
         }
 
+        public void SetDead()
+        {
+            m_isDead = true;
+        }
+
         public void SetYPos(float y)
         {
             Vector3 pos = transform.position;
@@ -37,20 +43,22 @@ namespace AISystem
 
         void OnAnimatorMove()
         {
-            Vector3 deltaMove = m_animator.deltaPosition;
-            deltaMove.y = 0f;            
-
-            Quaternion deltaRotation = m_animator.deltaRotation;
-
-            if (m_applyRotationWarp && m_warpEnabled)
+            if (!m_isDead)
             {
-                float turn = deltaRotation.eulerAngles.y;
-                deltaRotation *= Quaternion.Euler(0f, m_angle * .05f, 0f);
-            }
+                Vector3 deltaMove = m_animator.deltaPosition;
+                deltaMove.y = 0f;
 
-            m_transform.position += deltaMove;
-            m_transform.rotation *= deltaRotation;
-            
+                Quaternion deltaRotation = m_animator.deltaRotation;
+
+                if (m_applyRotationWarp && m_warpEnabled)
+                {
+                    float turn = deltaRotation.eulerAngles.y;
+                    deltaRotation *= Quaternion.Euler(0f, m_angle * .05f, 0f);
+                }
+
+                m_transform.position += deltaMove;
+                m_transform.rotation *= deltaRotation;
+            }
         }
     }
 }

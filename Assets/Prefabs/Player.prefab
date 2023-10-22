@@ -4940,7 +4940,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -10014,7 +10014,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 30
   m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -14997,6 +14997,18 @@ PrefabInstance:
     - target: {fileID: -7708239893827916486, guid: db3f383c55c11a441b45042bb67d41f3, type: 3}
       propertyPath: m_TagString
       value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: -5471901410102084090, guid: db3f383c55c11a441b45042bb67d41f3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5349238997135523672, guid: db3f383c55c11a441b45042bb67d41f3, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -5349238997135523672, guid: db3f383c55c11a441b45042bb67d41f3, type: 3}
+      propertyPath: m_projectionMatrixMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3488063919645288440, guid: db3f383c55c11a441b45042bb67d41f3, type: 3}
       propertyPath: m_Enabled

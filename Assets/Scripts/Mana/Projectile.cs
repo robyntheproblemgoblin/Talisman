@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if(enemy != null)
         {            
-            enemy.TakeHit(m_damage);
+         //   enemy.TakeHit(m_damage);
         }
     }
     void Update()

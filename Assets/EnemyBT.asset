@@ -21,9 +21,14 @@ MonoBehaviour:
     - rid: 1235179561357148173
     - rid: 1235179561357148181
     - rid: 1235179561357148182
-    - rid: 1235179561357148174
     - rid: 1235179561357148183
     - rid: 1235179561357148184
+    - rid: 1235179561357148174
+    - rid: 8272514889055469585
+    - rid: 8272514889055469586
+    - rid: 8272514889055469587
+    - rid: 8272514889055469588
+    - rid: 8272514889055469589
     - rid: 1235179561357148175
     - rid: 1235179561357148176
     - rid: 1235179561357148177
@@ -45,39 +50,69 @@ MonoBehaviour:
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 342
-      y: -370
+      x: 333
+      y: -569
       width: 93
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 342
-      y: -281
+      x: 333
+      y: -473
       width: 134
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 503
-      y: -293
+      x: 497
+      y: -550
       width: 119
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 503
-      y: -127
-      width: 96
-      height: 77
-  - m_position:
-      serializedVersion: 2
-      x: 503
-      y: -216
+      x: 497
+      y: -473
       width: 131
       height: 77
   - m_position:
       serializedVersion: 2
-      x: 647
-      y: -216
+      x: 652
+      y: -473
       width: 93
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 497
+      y: -396
+      width: 96
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 342
+      y: -298
+      width: 134
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 542
+      y: -298
+      width: 72
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 542
+      y: -221
+      width: 131
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 686
+      y: -221
+      width: 93
+      height: 77
+  - m_position:
+      serializedVersion: 2
+      x: 542
+      y: -144
+      width: 112
       height: 77
   - m_position:
       serializedVersion: 2
@@ -129,6 +164,7 @@ MonoBehaviour:
         <m_children>k__BackingField:
         - rid: 1235179561357148173
         - rid: 1235179561357148181
+        - rid: 8272514889055469585
         - rid: 1235179561357148175
     - rid: 1235179561357148173
       type: {class: IsStatue, ns: AISystem.Behaviours, asm: Assembly-CSharp}
@@ -167,8 +203,8 @@ MonoBehaviour:
       data:
         <m_children>k__BackingField:
         - rid: 1235179561357148182
-        - rid: 1235179561357148174
         - rid: 1235179561357148183
+        - rid: 1235179561357148174
     - rid: 1235179561357148182
       type: {class: IsInterrupted, ns: AISystem.Behaviours, asm: Assembly-CSharp}
     - rid: 1235179561357148183
@@ -178,3 +214,23 @@ MonoBehaviour:
           rid: 1235179561357148184
     - rid: 1235179561357148184
       type: {class: IsStatue, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 8272514889055469585
+      type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
+      data:
+        <m_children>k__BackingField:
+        - rid: 8272514889055469586
+        - rid: 8272514889055469587
+        - rid: 8272514889055469589
+    - rid: 8272514889055469586
+      type: {class: IsHit, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 8272514889055469587
+      type: {class: InverterNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
+      data:
+        <m_child>k__BackingField:
+          rid: 8272514889055469588
+    - rid: 8272514889055469588
+      type: {class: IsStatue, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+    - rid: 8272514889055469589
+      type: {class: HitReaction, ns: AISystem.Behaviours, asm: Assembly-CSharp}
+      data:
+        m_duration: 1
