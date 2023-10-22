@@ -64,9 +64,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.030998707
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0.96840423
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -528,7 +528,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 6287555647573474647, guid: 842e4b29a90147d42a078f22e0e6e44b, type: 3}
     m_Threshold: 0
-    m_Position: {x: 0, y: 1}
+    m_Position: {x: 0, y: 0.3}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Sideways
@@ -536,7 +536,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 5645424785977461795, guid: 842e4b29a90147d42a078f22e0e6e44b, type: 3}
     m_Threshold: 0.33333334
-    m_Position: {x: 0, y: -1}
+    m_Position: {x: 0, y: -0.3}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Sideways
@@ -544,7 +544,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 2239422376167696494, guid: 842e4b29a90147d42a078f22e0e6e44b, type: 3}
     m_Threshold: 0.6666667
-    m_Position: {x: -1, y: 0}
+    m_Position: {x: -0.3, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Sideways
@@ -552,7 +552,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 167045798823985751, guid: 842e4b29a90147d42a078f22e0e6e44b, type: 3}
     m_Threshold: 1
-    m_Position: {x: 1, y: 0}
+    m_Position: {x: 0.3, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Sideways
@@ -578,9 +578,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.031420827
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0.92294174
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
