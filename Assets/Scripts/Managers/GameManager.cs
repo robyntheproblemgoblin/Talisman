@@ -61,14 +61,9 @@ public class GameManager : MonoBehaviour
                 TitleScreen();
                 break;
             case GameState.GAME:
-                if (m_lastState == GameState.MENU)
-                {
-                    StartGame();
-                }
-                else if (m_lastState == GameState.PAUSE)
-                {
+                
                     ResumeGame();
-                }
+                
                 break;
             case GameState.CINEMATIC:
                 break;
@@ -154,6 +149,7 @@ public class GameManager : MonoBehaviour
     void DeathMenuStart()
     {
         m_player.m_animator.SetTrigger("Die");
+        m_audioManager.PlayDeathDialogue();
         m_menuManager.FadeDeathScreen();
     }
 
@@ -163,11 +159,11 @@ public class GameManager : MonoBehaviour
         m_player.m_camera.SetRotation(m_respawnPoint.rotation.eulerAngles);
         m_player.m_currentHealth = m_player.m_health;
         m_player.m_currentMana = m_player.m_startMana;
+        UpdateGameState(GameState.GAME);
         m_player.m_animator.SetTrigger("Alive");
         m_menuManager.UpdateHealth();
         m_menuManager.UpdateMana();
         m_aiManager.ResetEnemies();
-        UpdateGameState(GameState.GAME);
     }
 }
 
