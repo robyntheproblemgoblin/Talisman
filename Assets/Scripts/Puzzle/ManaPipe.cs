@@ -11,15 +11,14 @@ public class ManaPipe : Puzzle
     public Puzzle m_outputLeftObject;
     public Puzzle m_outputRightObject;
 
-    bool m_twoOutputs = false;
-    bool m_ready = false;
-
-    public Material m_black;
-    public Material m_white;
+    bool m_twoOutputs = false;    
 
     public ManaChannel m_channel;
     public ManaDirection m_direction;
     string m_shader;
+
+    public bool m_murrayPuzzleOut;
+    public bool m_rotationPuzzleOut;
 
     MeshRenderer m_pipe;
 
@@ -37,15 +36,7 @@ public class ManaPipe : Puzzle
         if (m_outputLeftObject != null && m_outputRightObject != null)
         {
             m_twoOutputs = true;
-        }
-        if (m_white != null)
-        {
-            m_ready = false;
-        }
-        else
-        {
-            m_ready = true;
-        }
+        }       
 
         if (m_channel == ManaChannel.ONE)
         {
@@ -79,8 +70,25 @@ public class ManaPipe : Puzzle
         if (m_rewindMana)
         {
             m_manaValue -= Time.deltaTime * m_rewindSpeed;
-            if (m_ready)
+
+            if (m_direction == ManaDirection.POS)
             {
+                m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, 1, m_manaValue));
+            }
+            else
+            {
+                m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
+            }
+
+            //Update material
+            if (m_manaValue < 0.0f)
+            {
+                m_manaValue = 0.0f;
+                m_rewindMana = false;
+                m_updateMana = false;
+                //Update material
+
+
                 if (m_direction == ManaDirection.POS)
                 {
                     m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, 1, m_manaValue));
@@ -89,30 +97,8 @@ public class ManaPipe : Puzzle
                 {
                     m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
                 }
-            }
-            //Update material
-            if (m_manaValue < 0.0f)
-            {
-                m_manaValue = 0.0f;
-                m_rewindMana = false;
-                m_updateMana = false;
-                //Update material
-                //DELETE THIS
-                if (m_ready)
-                {
-                    if (m_direction == ManaDirection.POS)
-                    {
-                        m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, 1, m_manaValue));
-                    }
-                    else
-                    {
-                        m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
-                    }
-                }
-                else
-                {
-                    m_pipe.material = m_black;
-                }
+
+
                 //STOP DELETE
                 if (m_inputObject != null && !(m_inputObject is Lever))
                 {
@@ -125,8 +111,21 @@ public class ManaPipe : Puzzle
             m_manaValue += Time.deltaTime * m_speed;
             //Update material
             //DELETE THIS
-            if (m_ready)
+
+            if (m_direction == ManaDirection.POS)
             {
+                m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, 1, m_manaValue));
+            }
+            else
+            {
+                m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
+            }
+            if (m_manaValue > 1.0f)
+            {
+                m_manaValue = 1.0f;
+                m_updateMana = false;
+                //Update material
+
                 if (m_direction == ManaDirection.POS)
                 {
                     m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, 1, m_manaValue));
@@ -135,30 +134,17 @@ public class ManaPipe : Puzzle
                 {
                     m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
                 }
-            }
-            else
-            {
-                m_pipe.material = m_white;
-            }
-            //STOP DELETE
-            if (m_manaValue > 1.0f)
-            {
-                m_manaValue = 1.0f;
-                m_updateMana = false;
-                //Update material
-                if (m_ready)
-                {
 
-                    if (m_direction == ManaDirection.POS)
-                    {
-                        m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, 1, m_manaValue));
-                    }
-                    else
-                    {
-                        m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
-                    }
+                if(m_murrayPuzzleOut)
+                {
+                    GameManager.Instance.m_audioManager.PlayMurrayPuzzleRoom();
+                }
+                else if(m_rotationPuzzleOut)
+                {
+                    GameManager.Instance.m_audioManager.PlayRoationPuzzleRoom();
 
                 }
+
                 StartNextSequence();
             }
         }
