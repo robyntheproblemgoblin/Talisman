@@ -68,6 +68,7 @@ namespace AISystem
             m_animator.enabled = false;
 
             m_intelligience.SetStatue(true);
+            m_swordCollider.enabled = false;
         }
 
         void OnDestroy()
