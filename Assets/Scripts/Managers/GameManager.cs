@@ -61,11 +61,7 @@ public class GameManager : MonoBehaviour
                 TitleScreen();
                 break;
             case GameState.GAME:
-                if (m_lastState == GameState.MENU)
-                {
-                    StartGame();
-                }
-                else if (m_lastState == GameState.PAUSE)
+                if (m_lastState == GameState.PAUSE || m_lastState == GameState.DEATH)
                 {
                     ResumeGame();
                 }
