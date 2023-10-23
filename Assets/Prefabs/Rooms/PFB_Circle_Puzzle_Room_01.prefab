@@ -1928,6 +1928,10 @@ PrefabInstance:
       value: SM_PuzzleLeverRoom
       objectReference: {fileID: 0}
     - target: {fileID: 1083341132019423532, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_speed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083341132019423532, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_channel
       value: 2
       objectReference: {fileID: 0}
@@ -1936,16 +1940,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1083341132019423532, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_rewindSpeed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083341132019423532, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_outputLeftObject
       value: 
       objectReference: {fileID: 6314272149790915188}
     - target: {fileID: 2774635803478029288, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_speed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774635803478029288, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_direction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774635803478029288, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_rewindSpeed
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3665375370098570819, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199480090700339440, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_speed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199480090700339440, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_rewindSpeed
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4422185544281102882, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_black
@@ -1964,12 +1988,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7029342609036801244, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_speed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029342609036801244, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_channel
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7029342609036801244, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_direction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029342609036801244, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_rewindSpeed
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7029342609036801244, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_outputLeftObject

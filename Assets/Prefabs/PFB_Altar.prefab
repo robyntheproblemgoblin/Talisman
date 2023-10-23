@@ -49,12 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_manaAmount: 0
-  m_respawnPosition: {fileID: 0}
-  m_inDoor: {fileID: 0}
-  m_outDoor: {fileID: 0}
   m_light: {fileID: 0}
+  m_lightDimSpeed: 1
   m_interactMessage: Present Sword
-  m_isFalseEnd: 1
+  m_isEnd: 0
 --- !u!65 &3402074933406007662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -126,6 +124,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 87ff42b2f647d654493670f2f766b6c7, type: 3}
       propertyPath: m_Name
       value: SM_Obelisk_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 87ff42b2f647d654493670f2f766b6c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87ff42b2f647d654493670f2f766b6c7, type: 3}
@@ -258,6 +260,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 87ff42b2f647d654493670f2f766b6c7, type: 3}
       propertyPath: m_Name
       value: SM_Obelisk_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 87ff42b2f647d654493670f2f766b6c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87ff42b2f647d654493670f2f766b6c7, type: 3}
