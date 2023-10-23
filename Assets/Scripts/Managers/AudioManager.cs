@@ -5,11 +5,17 @@ using FMODUnity;
 
 public class AudioManager : MonoBehaviour
 {
-    GameManager m_game;    
+    GameManager m_game;
 
+    [Header("FMOD Music Event References")]
     public FMODUnity.EventReference m_menuMusic;
     public FMODUnity.EventReference m_combatMusic;
-    
+
+    [Space(5), Header("Murray Puzzle Dialogue References")]
+    public Dialogue m_murrayHalfSolve;
+    public Dialogue m_murrayFullSolve;
+    int m_murrayPuzzleInstances = 0;
+
     FMOD.Studio.EventInstance m_dialogueInstance;
     FMOD.Studio.EventInstance m_menuMusicInstance;
     FMOD.Studio.EventInstance m_combatMusicInstance;
@@ -21,6 +27,8 @@ public class AudioManager : MonoBehaviour
     Dictionary<string, Dialogue> m_dialoguesDict;
 
     bool m_playLines = true;
+    [HideInInspector]
+    public bool m_stopInteractions = false;
 
     private void Start()
     {
@@ -51,21 +59,6 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot("event:/" + fmodEvent, pos);
     }
 
-    void PlayOneShotAttachedDialogue(DialogueObject fmodEvent, GameObject go)
-    {
-        FMOD.Studio.PLAYBACK_STATE current;
-        m_dialogueInstance.getPlaybackState(out current);
-
-        if (current == FMOD.Studio.PLAYBACK_STATE.PLAYING)
-        {
-            m_dialogueInstance.release();
-            m_dialogueInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        }
-        m_dialogueInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent.m_eventReference);
-        RuntimeManager.AttachInstanceToGameObject(m_dialogueInstance, go.transform);
-        m_dialogueInstance.start();
-        m_game.m_menuManager.SetSubtitle(fmodEvent.m_subtitle);
-    }
 
     void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
     {
@@ -93,10 +86,12 @@ public class AudioManager : MonoBehaviour
     {
         int index = 0;
         m_playLines = true;
-
+        if(m_stopInteractions)
+        {
+            m_game.m_player.m_stopInteracts = true;
+        }
         while (m_playLines)
         {
-
             m_dialogueInstance = FMODUnity.RuntimeManager.CreateInstance(reference.m_sequence[index].m_eventReference);
             RuntimeManager.AttachInstanceToGameObject(m_dialogueInstance, m_game.m_player.gameObject.transform);
             m_dialogueInstance.start();            
@@ -109,6 +104,7 @@ public class AudioManager : MonoBehaviour
             if (index >= reference.m_sequence.Count)
             {
                 m_playLines = false;
+                StopInteractions(m_dialogueInstance).Forget();
             }
             else
             {
@@ -121,6 +117,41 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    void PlayOneShotAttachedDialogue(DialogueObject fmodEvent, GameObject go)
+    {
+        FMOD.Studio.PLAYBACK_STATE current;
+        m_dialogueInstance.getPlaybackState(out current);
+
+        if (current == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+        {
+            m_dialogueInstance.release();
+            m_dialogueInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+        m_dialogueInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent.m_eventReference);
+        RuntimeManager.AttachInstanceToGameObject(m_dialogueInstance, go.transform);
+        m_dialogueInstance.start();
+        m_game.m_menuManager.SetSubtitle(fmodEvent.m_subtitle);
+        
+        if(m_stopInteractions)
+        {            
+            StopInteractions(m_dialogueInstance).Forget();
+        }
+    }
+
+    async UniTask StopInteractions(FMOD.Studio.EventInstance instance)
+    {
+        FMOD.Studio.PLAYBACK_STATE current;
+        instance.getPlaybackState(out current);
+        m_game.m_player.m_stopInteracts = true;
+        while(current != FMOD.Studio.PLAYBACK_STATE.STOPPED)
+        {
+            instance.getPlaybackState(out current);          
+            await UniTask.Yield();
+        }        
+        m_game.m_player.m_stopInteracts = false;
+        m_stopInteractions = false;
+    }
+
     public void PlayIntroDialogue()
     {
         PlayDialogue(m_intro);        
@@ -129,5 +160,19 @@ public class AudioManager : MonoBehaviour
     public void PlayDeathDialogue()
     {
         PlayDialogue(m_playerDeath);
+    }
+
+    public void PlayMurrayPuzzleDialogue()
+    {
+        if(m_murrayPuzzleInstances == 0)
+        {
+            m_murrayPuzzleInstances++;
+            PlayDialogue(m_murrayHalfSolve);
+        }
+        else if(m_murrayPuzzleInstances == 1)
+        {
+            m_murrayPuzzleInstances++;
+            PlayDialogue(m_murrayFullSolve);
+        }
     }
 }

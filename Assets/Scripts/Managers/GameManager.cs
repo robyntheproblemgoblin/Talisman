@@ -155,12 +155,12 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
+        UpdateGameState(GameState.GAME);
+        m_player.m_animator.SetTrigger("Alive");
         m_player.transform.position = m_respawnPoint.position;
         m_player.m_camera.SetRotation(m_respawnPoint.rotation.eulerAngles);
         m_player.m_currentHealth = m_player.m_health;
         m_player.m_currentMana = m_player.m_startMana;
-        UpdateGameState(GameState.GAME);
-        m_player.m_animator.SetTrigger("Alive");
         m_menuManager.UpdateHealth();
         m_menuManager.UpdateMana();
         m_aiManager.ResetEnemies();
