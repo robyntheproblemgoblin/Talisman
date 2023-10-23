@@ -11790,8 +11790,8 @@ MonoBehaviour:
   m_cinematicTriggers: []
   m_cinematicPoints: []
   m_respawnPoint: {fileID: 0}
-  m_respawnHealth: 0
-  m_respawnMana: 0
+  m_respawnHealth: 30
+  m_respawnMana: 30
 --- !u!114 &1791306105140475677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11804,15 +11804,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424300d9a47c76e478c00b2eff9db8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_musicIndex: 0
-  m_dialogues: []
+  m_menuMusic:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  m_combatMusic:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_intro: {fileID: 0}
-  m_playerSources:
-  - {fileID: 0}
-  - {fileID: 0}
-  m_initDelayLines: 0
-  m_menuSource: {fileID: 0}
-  m_menuClips: []
+  m_playerDeath: {fileID: 0}
+  m_cinematicDialogue: []
 --- !u!114 &7384736391290127244
 MonoBehaviour:
   m_ObjectHideFlags: 0
