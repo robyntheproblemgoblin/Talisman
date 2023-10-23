@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using FMODUnity;
-using static UnityEditor.Profiling.RawFrameDataView;
 
 public class AudioManager : MonoBehaviour
 {
