@@ -216,6 +216,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 60c15a6f6eb595d4ebf3e475e3acc7ba, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 8ca24d89a714e814f8de42d72b43b141, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 80483284988a09a4a9ad9b229e6b3fb8, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 8ca24d89a714e814f8de42d72b43b141, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 80483284988a09a4a9ad9b229e6b3fb8, type: 2}
     - target: {fileID: 919132149155446097, guid: 8ca24d89a714e814f8de42d72b43b141, type: 3}
       propertyPath: m_Name
       value: SM_Door_Door_01 (1)
@@ -262,6 +270,7 @@ MonoBehaviour:
   m_lockedPos: {fileID: 7887778903142951130}
   m_unlockedPos: {fileID: 715582039900866866}
   m_speed: 0.35
+  m_outputPuzzles: []
 --- !u!1001 &5927608707403196869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -317,6 +326,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 60c15a6f6eb595d4ebf3e475e3acc7ba, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 8ca24d89a714e814f8de42d72b43b141, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 80483284988a09a4a9ad9b229e6b3fb8, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 8ca24d89a714e814f8de42d72b43b141, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 80483284988a09a4a9ad9b229e6b3fb8, type: 2}
     - target: {fileID: 919132149155446097, guid: 8ca24d89a714e814f8de42d72b43b141, type: 3}
       propertyPath: m_Name
       value: SM_Door_Door_01
@@ -363,3 +380,4 @@ MonoBehaviour:
   m_lockedPos: {fileID: 8201409753071611754}
   m_unlockedPos: {fileID: 4452367487286165400}
   m_speed: 0.35
+  m_outputPuzzles: []
