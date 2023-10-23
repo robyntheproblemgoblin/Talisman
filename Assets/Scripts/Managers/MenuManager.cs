@@ -258,11 +258,7 @@ public class MenuManager : MonoBehaviour
                 MainMenu();
                 break;
             case GameState.GAME:
-                if (m_game.m_lastState == GameState.MENU)
-                {
-                    StartGame();
-                }
-                else if (m_game.m_lastState == GameState.PAUSE || m_game.m_lastState == GameState.DEATH)
+                if (m_game.m_lastState == GameState.PAUSE || m_game.m_lastState == GameState.DEATH)
                 {
                     Resume();
                 }
@@ -300,7 +296,7 @@ public class MenuManager : MonoBehaviour
     }
     void StartGame()
     {
-        m_game.m_audioManager.PlayIntroEffect();
+        m_game.m_audioManager.PlayIntroDialogue();
         m_game.UpdateGameState(GameState.GAME);
         Cursor.lockState = CursorLockMode.Locked;
     }
