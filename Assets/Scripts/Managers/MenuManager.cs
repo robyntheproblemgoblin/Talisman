@@ -10,6 +10,7 @@ using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Switch;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,17 +18,15 @@ public class MenuManager : MonoBehaviour
     public ControllerType m_currentController;
     InputDevice m_lastDevice;
 
-   /* [SerializeField]
-    ControllerImages m_keyboardImages;
-    [SerializeField]
-    ControllerImages m_xBoxImages;
-    [SerializeField]
-    ControllerImages m_pSImages;
-    [SerializeField]
-    ControllerImages m_nintendoImages;
-    [SerializeField]
-    ControllerImages m_genericImages;
-    ControllerImages m_currentImages;*/
+    public ControllerImages m_keyboardImages;
+    public ControllerImages m_xBoxImages;
+    public ControllerImages m_pSImages;
+    public ControllerImages m_nintendoImages;
+    public ControllerImages m_genericImages;
+    ControllerImages m_currentImages;
+    bool m_tutorialSpriteFirst = false;
+    List<string> m_currentTutorialStrings = new List<String>();
+    List<ControlSprites> m_currentTutorialSprites = new List<ControlSprites>();
 
     #region UI Category Objects
     //public GameObject m_title;
@@ -128,6 +127,7 @@ public class MenuManager : MonoBehaviour
 
         InputSystem.onEvent += InputDeviceChanged;
         OnControllerChanged += SwapControls;
+        m_currentImages = m_keyboardImages;
 
         m_game.OnGameStateChanged += OnGameStateChanged;
         m_falseQuit.onClick.AddListener(delegate () { QuitGame(); });
@@ -196,24 +196,24 @@ public class MenuManager : MonoBehaviour
         if (device is Keyboard || device is Mouse)
         {
             if (m_currentController == ControllerType.KEYBOARD) return;
-            OnControllerChanged(ControllerType.KEYBOARD);
+            OnControllerChanged?.Invoke(ControllerType.KEYBOARD);
         }
         if (device is XInputController)
         {
-            OnControllerChanged(ControllerType.XBOX);
+            OnControllerChanged?.Invoke(ControllerType.XBOX);
         }
         else if (device is DualShockGamepad)
         {
-            OnControllerChanged(ControllerType.PS);
+            OnControllerChanged?.Invoke(ControllerType.PS);
         }
         else if (device is SwitchProControllerHID)
         {
-            OnControllerChanged(ControllerType.NINTENDO);
+            OnControllerChanged?.Invoke(ControllerType.NINTENDO);
         }
         else if (device is Gamepad)
         {
-            OnControllerChanged(ControllerType.GENERIC);
-        }
+            OnControllerChanged?.Invoke(ControllerType.GENERIC);
+        }        
     }
 
     void SwapControls(ControllerType controls)
@@ -222,28 +222,32 @@ public class MenuManager : MonoBehaviour
         switch (controls)
         {
             case ControllerType.KEYBOARD:
-                UpdateUIImages(/*m_keyboardImages*/);
+                UpdateUIImages(m_keyboardImages);
                 break;
             case ControllerType.XBOX:
-                UpdateUIImages(/*m_xBoxImages*/);
+                UpdateUIImages(m_xBoxImages);
                 break;
             case ControllerType.PS:
-                UpdateUIImages(/*m_pSImages*/);
+                UpdateUIImages(m_pSImages);
                 break;
             case ControllerType.NINTENDO:
-                UpdateUIImages(/*m_nintendoImages*/);
+                UpdateUIImages(m_nintendoImages);
                 break;
             case ControllerType.GENERIC:
-                UpdateUIImages(/*m_genericImages*/);
+                UpdateUIImages(m_genericImages);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(controls), controls, null);
         }
     }
 
-    void UpdateUIImages(/*ControllerImages ci*/)
-    {
-
+    void UpdateUIImages(ControllerImages ci)
+    {        
+        m_currentImages = ci;
+        if(m_tutorial.isActiveAndEnabled)
+        {
+            SetTutorial(m_currentTutorialStrings, m_currentTutorialSprites, m_tutorialSpriteFirst);
+        }
     }
 
     void OnGameStateChanged(GameState state)
@@ -358,11 +362,90 @@ public class MenuManager : MonoBehaviour
 
     }
 
-    public void SetTutorial(string m_tutorialText)
+    public void SetTutorial(List<string> text, List<ControlSprites> sprites, bool spriteFirst)
     {
+        m_currentTutorialStrings = text;
+        m_currentTutorialSprites = sprites;
+        m_tutorialSpriteFirst = spriteFirst;
         m_tutorial.gameObject.SetActive(true);
-        m_tutorial.text = m_tutorialText;
+        string message = "";
+        int index = 0;
+        if (spriteFirst)
+        {
+            while (index < sprites.Count)
+            {
+                message += SpriteToString(sprites[index]);
+                if (index < text.Count)
+                {
+                    message += text[index];
+                }
+                index++;
+            }
+        }
+        else
+        {
+            while (index < text.Count)
+            {
+                message += text[index];
+                if (index < sprites.Count)
+                {
+                    message += SpriteToString(sprites[index]);
+                }
+                index++;
+            }
+        }
+        m_tutorial.text = message;
     }
+
+    string SpriteToString(ControlSprites cs)
+    {
+        string sprite = "";
+        switch (cs)
+        {
+            case ControlSprites.MENU_NAV:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_menuNavigation + "> ";
+                break;
+            case ControlSprites.MENU_SELECT:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_menuSelect + "> ";
+                break;
+            case ControlSprites.MENU_BACK:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_menuBack + "> ";
+                break;
+            case ControlSprites.MOVEMENT:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_movement + "> ";
+                break;
+            case ControlSprites.CAMERA:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_camera + "> ";
+                break;
+            case ControlSprites.JUMP:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_jump + "> ";
+                break;
+            case ControlSprites.INTERACT_ONE:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_interactOne + "> ";
+                break;
+            case ControlSprites.INTERACT_TWO:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_interactTwo + "> ";
+                break;
+            case ControlSprites.ATTACK:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_attack + "> ";
+                break;
+            case ControlSprites.BLOCK:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_block + "> ";
+                break;
+            case ControlSprites.HEAL:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_heal + "> ";
+                break;
+            case ControlSprites.PAUSE:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_pause + "> ";
+                break;
+            case ControlSprites.SPRINT:
+                sprite = "<sprite=\"SS_" + m_currentImages.m_spriteAsset + "\" index= " + m_currentImages.m_sprint + "> ";
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(cs), cs, null);
+        }
+        return sprite;
+    }    
 
     public void ClearTutorial()
     {
@@ -395,9 +478,8 @@ public class MenuManager : MonoBehaviour
             }
         }
     }
-
     public void StopInteract()
-    {
+    {        
         m_interactText.enabled = false;
     }
 
@@ -477,23 +559,6 @@ public class MenuManager : MonoBehaviour
         if (m_reticleHit.enabled == true)
         {
             m_reticleHit.enabled = false;
-        }
-    }
-
-    void ControllerTypeChange(ControllerType type)
-    {
-        switch (type)
-        {
-            case ControllerType.KEYBOARD:
-                break;
-            case ControllerType.PS:
-                break;
-            case ControllerType.XBOX:
-                break;
-            case ControllerType.NINTENDO:
-                break;
-            default:
-                break;
         }
     }
 

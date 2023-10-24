@@ -670,6 +670,10 @@ PrefabInstance:
       propertyPath: m_outputPuzzles.Array.data[1]
       value: 
       objectReference: {fileID: 1383077041}
+    - target: {fileID: 4794843300544666349, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4887401026970503366, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1349,6 +1353,30 @@ PrefabInstance:
     - target: {fileID: 1277138067012987813, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
       propertyPath: m_Name
       value: PFB_TutorialRoom_Hallway_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
+      propertyPath: m_spriteFirst
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
+      propertyPath: m_tutorialText.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
+      propertyPath: m_controlSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
+      propertyPath: m_tutorialText.Array.data[0]
+      value: this
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
+      propertyPath: m_tutorialText.Array.data[1]
+      value: 'Should '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
+      propertyPath: m_tutorialText.Array.data[2]
+      value: 'Work '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
@@ -3105,7 +3133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2443051242007643845, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2443051242007643845, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_spriteAsset

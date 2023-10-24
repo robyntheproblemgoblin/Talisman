@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e999bbe32c78664448e4cb9a724909ff, type: 3}
+  m_Name: PSImages
+  m_EditorClassIdentifier: 
+  m_spriteAsset: PS
+  m_menuNavigation: 0
+  m_menuSelect: 1
+  m_menuBack: 2
+  m_movement: 3
+  m_camera: 4
+  m_jump: 5
+  m_interactOne: 6
+  m_interactTwo: 7
+  m_attack: 8
+  m_block: 9
+  m_heal: 10
+  m_pause: 11
+  m_sprint: 12
+  m_controlsDisplay: {fileID: 0}
