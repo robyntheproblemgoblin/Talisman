@@ -18,7 +18,6 @@ namespace AISystem.Behaviours
         {
             if (Time.time - m_startTime >= m_duration)
             {
-                Debug.Log("Wait Node Success");
                 return NodeState.SUCCESS;
             }
 

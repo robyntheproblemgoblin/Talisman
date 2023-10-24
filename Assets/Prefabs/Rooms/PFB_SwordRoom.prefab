@@ -1442,6 +1442,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 77fcadd22a313db45b7d7095df0de4f9, type: 2}
+    - target: {fileID: -2444448450088024066, guid: d4ee7392f997c6c4a9ffd189bd918d7e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77d41cf436f824f46a81bfccce5fbc0e, type: 2}
     - target: {fileID: -2401580492469842891, guid: d4ee7392f997c6c4a9ffd189bd918d7e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1470,6 +1474,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 77fcadd22a313db45b7d7095df0de4f9, type: 2}
+    - target: {fileID: -1009246811912399100, guid: d4ee7392f997c6c4a9ffd189bd918d7e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77d41cf436f824f46a81bfccce5fbc0e, type: 2}
     - target: {fileID: -871658743433764520, guid: d4ee7392f997c6c4a9ffd189bd918d7e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -1502,6 +1510,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d338b9ab3f10a004fa8dce40eb0d6e37, type: 2}
+    - target: {fileID: 202201719573585105, guid: d4ee7392f997c6c4a9ffd189bd918d7e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77d41cf436f824f46a81bfccce5fbc0e, type: 2}
     - target: {fileID: 919132149155446097, guid: d4ee7392f997c6c4a9ffd189bd918d7e, type: 3}
       propertyPath: m_Name
       value: SM_Sword_room_01
@@ -3131,6 +3143,10 @@ PrefabInstance:
       propertyPath: m_tutorial
       value: 
       objectReference: {fileID: 4513207231242731550}
+    - target: {fileID: 1135818524463137477, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+      propertyPath: m_isLastSwordInRoom
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4315285863579124991, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_Name
       value: MeleeEnemyPodium (1)

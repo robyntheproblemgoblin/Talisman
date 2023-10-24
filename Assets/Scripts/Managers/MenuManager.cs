@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour
     public ControllerType m_currentController;
     InputDevice m_lastDevice;
 
-    [SerializeField]
+   /* [SerializeField]
     ControllerImages m_keyboardImages;
     [SerializeField]
     ControllerImages m_xBoxImages;
@@ -27,7 +27,7 @@ public class MenuManager : MonoBehaviour
     ControllerImages m_nintendoImages;
     [SerializeField]
     ControllerImages m_genericImages;
-    ControllerImages m_currentImages;
+    ControllerImages m_currentImages;*/
 
     #region UI Category Objects
     //public GameObject m_title;
@@ -222,26 +222,26 @@ public class MenuManager : MonoBehaviour
         switch (controls)
         {
             case ControllerType.KEYBOARD:
-                UpdateUIImages(m_keyboardImages);
+                UpdateUIImages(/*m_keyboardImages*/);
                 break;
             case ControllerType.XBOX:
-                UpdateUIImages(m_xBoxImages);
+                UpdateUIImages(/*m_xBoxImages*/);
                 break;
             case ControllerType.PS:
-                UpdateUIImages(m_pSImages);
+                UpdateUIImages(/*m_pSImages*/);
                 break;
             case ControllerType.NINTENDO:
-                UpdateUIImages(m_nintendoImages);
+                UpdateUIImages(/*m_nintendoImages*/);
                 break;
             case ControllerType.GENERIC:
-                UpdateUIImages(m_genericImages);
+                UpdateUIImages(/*m_genericImages*/);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(controls), controls, null);
         }
     }
 
-    void UpdateUIImages(ControllerImages ci)
+    void UpdateUIImages(/*ControllerImages ci*/)
     {
 
     }

@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_jumpSpeed = 5;
     CharacterController m_characterController;
     float m_smoothTime = 0.3f;
-    Vector2 MoveDampVelocity; 
+    Vector2 MoveDampVelocity;
     public SkinnedMeshRenderer m_skinnedMeshRenderer;
     #endregion
 
@@ -60,17 +60,17 @@ public class PlayerController : MonoBehaviour, IBeing
     FiringState m_firing;
     IdleState m_idle;
 
- /*   [Space(10)]
-    [Header("Mana Attacks")]
-    [Space(5)]
-    public ParticleSystem m_fireMana;
-    public ParticleSystem m_projectileMana;
-    public GameObject projectile;
-    public float m_flameDamage = 0.1f;
-    public float m_flameCost = 1;
-    public float m_minProjectileCost = 1;
-    public float m_projectileManaCost = 1;
-    public float m_projectileDamage = 1;*/
+    /*   [Space(10)]
+       [Header("Mana Attacks")]
+       [Space(5)]
+       public ParticleSystem m_fireMana;
+       public ParticleSystem m_projectileMana;
+       public GameObject projectile;
+       public float m_flameDamage = 0.1f;
+       public float m_flameCost = 1;
+       public float m_minProjectileCost = 1;
+       public float m_projectileManaCost = 1;
+       public float m_projectileDamage = 1;*/
     public Transform m_talisman;
     #endregion
 
@@ -86,8 +86,8 @@ public class PlayerController : MonoBehaviour, IBeing
     #endregion
 
     #region Block Parry Fields
-    public bool m_isBlocking = false;  
-            
+    public bool m_isBlocking = false;
+
     #endregion
 
     #region Interaction Fields
@@ -95,6 +95,8 @@ public class PlayerController : MonoBehaviour, IBeing
     [Header("Interactions")]
     [Space(5)]
     public float m_interactionDistance;
+    [HideInInspector]
+    public bool m_stopInteracts = false;
     #endregion
 
     #region Unity Methods
@@ -143,11 +145,11 @@ public class PlayerController : MonoBehaviour, IBeing
 
     private void PauseGame(InputAction.CallbackContext obj)
     {
-        if(m_game.m_gameState == GameState.GAME)
+        if (m_game.m_gameState == GameState.GAME)
         {
             m_game.UpdateGameState(GameState.PAUSE);
         }
-        else if(m_game.m_gameState == GameState.PAUSE)
+        else if (m_game.m_gameState == GameState.PAUSE)
         {
             m_game.UpdateGameState(GameState.GAME);
         }
@@ -193,7 +195,7 @@ public class PlayerController : MonoBehaviour, IBeing
             Enemy e = hit.gameObject.GetComponentInParent<Enemy>();
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {
-                e.m_swordCollider.enabled = false;                
+                e.m_swordCollider.enabled = false;
                 TakeDamage(e.m_damage);
             }
             else if (e != null && HitAlready(e.gameObject.name) == false && m_isBlocking)
@@ -235,8 +237,8 @@ public class PlayerController : MonoBehaviour, IBeing
     }
     void LateUpdate()
     {
-        m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>(),           
-        m_game.m_menuManager.m_currentController == ControllerType.KEYBOARD ? m_cameraSensitivity/10 : m_cameraSensitivity);
+        m_camera.MoveCamera(m_inputControl.Player_Map.Look.ReadValue<Vector2>(),
+        m_game.m_menuManager.m_currentController == ControllerType.KEYBOARD ? m_cameraSensitivity / 10 : m_cameraSensitivity);
 
     }
     void Update()
@@ -361,42 +363,42 @@ public class PlayerController : MonoBehaviour, IBeing
     #endregion
 
     #region Mana Attack Methods
-   /* void StartCharging(InputAction.CallbackContext t)
-    {
-        m_talismanState.StopState();
-        m_talismanState = m_charging;
-        m_talismanState.StartState(0);
-    }
+    /* void StartCharging(InputAction.CallbackContext t)
+     {
+         m_talismanState.StopState();
+         m_talismanState = m_charging;
+         m_talismanState.StartState(0);
+     }
 
-    void StartFiring(InputAction.CallbackContext t)
-    {
-        m_talismanState.StopState();
-        m_talismanState = m_firing;
-        m_talismanState.StartState(m_charging.m_chargeTime * m_projectileDamage);
-    }
+     void StartFiring(InputAction.CallbackContext t)
+     {
+         m_talismanState.StopState();
+         m_talismanState = m_firing;
+         m_talismanState.StartState(m_charging.m_chargeTime * m_projectileDamage);
+     }
 
-    public void StartIdle()
-    {
-        m_talismanState.StopState();
-        m_talismanState = m_idle;
-        m_talismanState.StartState(0);
-    }
+     public void StartIdle()
+     {
+         m_talismanState.StopState();
+         m_talismanState = m_idle;
+         m_talismanState.StartState(0);
+     }
 
-    void SwapStyle(InputAction.CallbackContext t)
-    {
-        m_charging.m_isProjectile = !m_charging.m_isProjectile;
-        m_firing.m_isProjectile = !m_firing.m_isProjectile;
-        if (m_charging.m_isProjectile)
-        {
-            m_charging.m_particles = m_projectileMana;
-            m_firing.m_particles = m_projectileMana;
-        }
-        else
-        {
-            m_charging.m_particles = m_fireMana;
-            m_firing.m_particles = m_fireMana;
-        }
-    }*/
+     void SwapStyle(InputAction.CallbackContext t)
+     {
+         m_charging.m_isProjectile = !m_charging.m_isProjectile;
+         m_firing.m_isProjectile = !m_firing.m_isProjectile;
+         if (m_charging.m_isProjectile)
+         {
+             m_charging.m_particles = m_projectileMana;
+             m_firing.m_particles = m_projectileMana;
+         }
+         else
+         {
+             m_charging.m_particles = m_fireMana;
+             m_firing.m_particles = m_fireMana;
+         }
+     }*/
     #endregion
 
     #region Melee Attack Methods
@@ -464,6 +466,11 @@ public class PlayerController : MonoBehaviour, IBeing
     #region Interaction Methods
     private void UpdateInteracts()
     {
+        if (m_stopInteracts)
+        {
+            Debug.Log("Should Return");
+            return;
+        }
         Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
         if (Physics.Raycast(camRay, out hit, m_interactionDistance))
@@ -488,6 +495,10 @@ public class PlayerController : MonoBehaviour, IBeing
 
     private void Interact(InputAction.CallbackContext obj)
     {
+        if (m_stopInteracts)
+        {
+            return;
+        }
         Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
         if (Physics.Raycast(camRay, out hit, m_interactionDistance))

@@ -6,7 +6,7 @@ public class EnemyActivator : Puzzle
     public Enemy m_enemy;
     public Puzzle m_puzzle;
     public TutorialTrigger m_tutorial;
-
+    public bool m_isLastSwordInRoom;
     void Update()
     {
         if (m_updateMana && m_enemy != null && m_enemy.IsStatue())
@@ -33,6 +33,10 @@ public class EnemyActivator : Puzzle
         if(m_tutorial != null)
         {
             m_tutorial.SecondTutorial();
+        }
+        if(m_isLastSwordInRoom)
+        {
+            GameManager.Instance.m_audioManager.PlaySwordRoomEndDialogue();
         }
     }
 }
