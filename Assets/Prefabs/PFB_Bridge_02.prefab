@@ -128,8 +128,10 @@ MonoBehaviour:
   m_rewindSpeed: 1
   m_outputLeftObject: {fileID: 0}
   m_outputRightObject: {fileID: 0}
-  m_black: {fileID: 0}
-  m_white: {fileID: 0}
+  m_channel: 0
+  m_direction: 0
+  m_murrayPuzzleOut: 0
+  m_rotationPuzzleOut: 0
 --- !u!4 &1981704595535351518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e16b36e9a54a1114f868a576467f95db, type: 3}
@@ -165,8 +167,10 @@ MonoBehaviour:
   m_rewindSpeed: 1
   m_outputLeftObject: {fileID: 0}
   m_outputRightObject: {fileID: 0}
-  m_black: {fileID: 0}
-  m_white: {fileID: 0}
+  m_channel: 0
+  m_direction: 0
+  m_murrayPuzzleOut: 0
+  m_rotationPuzzleOut: 0
 --- !u!1001 &2182804595709842636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,6 +228,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
       propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ab4c256e8bce8a438dd29a4b04efc3e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
+      propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: a319c082c83d34e4185649989df3ab37, type: 2}
     - target: {fileID: -6759130981171045336, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
