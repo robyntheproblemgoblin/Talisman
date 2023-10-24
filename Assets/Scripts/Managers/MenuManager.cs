@@ -24,6 +24,7 @@ public class MenuManager : MonoBehaviour
     public ControllerImages m_nintendoImages;
     public ControllerImages m_genericImages;
     ControllerImages m_currentImages;
+    ControllerImages m_currentInteract;
     bool m_tutorialSpriteFirst = false;
     List<string> m_currentTutorialStrings = new List<String>();
     List<ControlSprites> m_currentTutorialSprites = new List<ControlSprites>();
@@ -213,7 +214,7 @@ public class MenuManager : MonoBehaviour
         else if (device is Gamepad)
         {
             OnControllerChanged?.Invoke(ControllerType.GENERIC);
-        }        
+        }
     }
 
     void SwapControls(ControllerType controls)
@@ -242,9 +243,9 @@ public class MenuManager : MonoBehaviour
     }
 
     void UpdateUIImages(ControllerImages ci)
-    {        
+    {
         m_currentImages = ci;
-        if(m_tutorial.isActiveAndEnabled)
+        if (m_tutorial.isActiveAndEnabled)
         {
             SetTutorial(m_currentTutorialStrings, m_currentTutorialSprites, m_tutorialSpriteFirst);
         }
@@ -445,7 +446,7 @@ public class MenuManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(cs), cs, null);
         }
         return sprite;
-    }    
+    }
 
     public void ClearTutorial()
     {
@@ -454,32 +455,33 @@ public class MenuManager : MonoBehaviour
 
     public void SetInteract(RaycastHit hit)
     {
-        if (m_interactText.enabled)
+        if (m_interactText.enabled && m_currentInteract == m_currentImages)
             return;
         else
         {
+            m_currentInteract = m_currentImages;
+            string interact = (SpriteToString(ControlSprites.INTERACT_ONE) + "/" + SpriteToString(ControlSprites.INTERACT_TWO) + " ");
             Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
             if (puzzle != null)
             {
-                m_interactText.enabled = true;
-                m_interactText.text = puzzle.m_interactMessage;
+                interact += puzzle.m_interactMessage;
             }
             Interactable interactable = hit.transform.gameObject.GetComponentInParent<Interactable>();
             if (interactable != null)
             {
-                m_interactText.enabled = true;
-                m_interactText.text = interactable.m_interactMessage;
+                interact += interactable.m_interactMessage;
             }
             ManaPool manaPool = hit.transform.gameObject.GetComponent<ManaPool>();
             if (manaPool != null)
             {
-                m_interactText.enabled = true;
-                m_interactText.text = manaPool.m_interactMessage;
+                interact += manaPool.m_interactMessage;
             }
+            m_interactText.enabled = true;
+            m_interactText.text = interact;
         }
     }
     public void StopInteract()
-    {        
+    {
         m_interactText.enabled = false;
     }
 
