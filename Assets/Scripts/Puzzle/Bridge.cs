@@ -5,7 +5,7 @@ public class Bridge : MonoBehaviour
 {
     public List<Puzzle> m_puzzleList;
     [HideInInspector]
-    public bool m_unlocked;
+    public bool m_unlocked = false;
     public float m_speed;
     MeshRenderer m_mesh;
     float m_alpha;
@@ -22,6 +22,7 @@ public class Bridge : MonoBehaviour
         {
             m.SetFloat("_ArmorFade", 0);
         }
+        m_alpha = 0.0f;
     }
 
     public void CheckState()
