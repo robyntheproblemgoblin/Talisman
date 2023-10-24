@@ -1,16 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialTrigger : MonoBehaviour
 {
     MenuManager m_manager;
-    public string m_tutorialText;
-    public string m_secondText;
+    public List<string> m_tutorialText;
+    public List<ControlSprites> m_controlSprites;
+    public bool m_spriteFirst;
+    public TutorialTrigger m_secondText;
     public EnemyActivator m_enemy;
-    bool m_firstDone = false;
 
     private void Start()
     {
-        m_manager = GameManager.Instance.m_menuManager;        
+        m_manager = GameManager.Instance.m_menuManager;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,9 +20,9 @@ public class TutorialTrigger : MonoBehaviour
         var player = other.gameObject.GetComponent<PlayerController>();
         if (player != null)
         {
-            m_manager.SetTutorial(m_firstDone?m_secondText:m_tutorialText);
-            if(m_enemy != null && !m_enemy.m_updateMana)
-            {                
+            m_manager.SetTutorial(m_tutorialText, m_controlSprites, m_spriteFirst);
+            if (m_enemy != null && !m_enemy.m_updateMana)
+            {
                 m_enemy.m_updateMana = true;
             }
         }
@@ -36,15 +38,24 @@ public class TutorialTrigger : MonoBehaviour
 
     public void SecondTutorial()
     {
-        if (m_firstDone)
-        {
-            m_manager.ClearTutorial();
-            Destroy(this);
-        }
-        else
-        {
-            m_firstDone = true;
-            m_manager.SetTutorial(m_secondText);
-        }
+        m_secondText.gameObject.SetActive(true);
+        m_manager.ClearTutorial();
+        Destroy(this);
     }
+}
+public enum ControlSprites
+{
+    MENU_NAV,
+    MENU_SELECT,
+    MENU_BACK,
+    MOVEMENT,
+    CAMERA,
+    JUMP,
+    INTERACT_ONE,
+    INTERACT_TWO,
+    ATTACK,
+    BLOCK,
+    HEAL,
+    PAUSE,
+    SPRINT
 }

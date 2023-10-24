@@ -12021,11 +12021,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_currentController: 0
-  m_keyboardImages: {fileID: 0}
-  m_xBoxImages: {fileID: 0}
-  m_pSImages: {fileID: 0}
-  m_nintendoImages: {fileID: 0}
-  m_genericImages: {fileID: 0}
+  m_keyboardImages: {fileID: 11400000, guid: b7bb269d8ba1f4745831d0c16bef7aa1, type: 2}
+  m_xBoxImages: {fileID: 11400000, guid: 56a84de2c235bc848b2dd71af6351e6d, type: 2}
+  m_pSImages: {fileID: 11400000, guid: 189bc22a2c6a5174e9656843ccb88867, type: 2}
+  m_nintendoImages: {fileID: 11400000, guid: 4f8738dc26af17f478956a889204dcda, type: 2}
+  m_genericImages: {fileID: 11400000, guid: 5580a81885f30f047a44c12ddf2e4a7d, type: 2}
   m_mainMenu: {fileID: 1101118467751625593}
   m_hud: {fileID: 372299217724807679}
   m_cinematics: {fileID: 322376154656962226}
@@ -12126,9 +12126,17 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  m_murrayHalfSolve: {fileID: 0}
+  m_murrayFullSolve: {fileID: 0}
+  m_murrayFirstFail: {fileID: 0}
+  m_murraySecondFail: {fileID: 0}
+  m_rotationFirstFail: {fileID: 0}
+  m_rotationSecondFail: {fileID: 0}
+  m_swordRoomEnd: {fileID: 0}
   m_intro: {fileID: 0}
   m_playerDeath: {fileID: 0}
   m_cinematicDialogue: []
+  m_stopInteractions: 0
 --- !u!114 &7384736391290127244
 MonoBehaviour:
   m_ObjectHideFlags: 0

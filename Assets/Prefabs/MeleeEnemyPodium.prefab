@@ -96,7 +96,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 80483284988a09a4a9ad9b229e6b3fb8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,6 +155,7 @@ MonoBehaviour:
   m_enemy: {fileID: 7066435293357956659}
   m_puzzle: {fileID: 0}
   m_tutorial: {fileID: 0}
+  m_isLastSwordInRoom: 0
 --- !u!1001 &2782852074786763817
 PrefabInstance:
   m_ObjectHideFlags: 0
