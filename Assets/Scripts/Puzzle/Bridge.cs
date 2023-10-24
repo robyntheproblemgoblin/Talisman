@@ -56,7 +56,7 @@ public class Bridge : MonoBehaviour
         }
         foreach (Material m in m_mesh.materials)
         {
-            m.SetFloat("_ArmorFade", 0);
+            m.SetFloat("_ArmorFade", m_alpha);
         }
     }
 }
