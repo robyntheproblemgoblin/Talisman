@@ -11,6 +11,7 @@ using UnityEngine.InputSystem.Switch;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 public class MenuManager : MonoBehaviour
 {
@@ -23,8 +24,9 @@ public class MenuManager : MonoBehaviour
     public ControllerImages m_pSImages;
     public ControllerImages m_nintendoImages;
     public ControllerImages m_genericImages;
-    ControllerImages m_currentImages;
+    ControllerImages m_currentImages;    
     bool m_tutorialSpriteFirst = false;
+    string m_currentMessage = "";
     List<string> m_currentTutorialStrings = new List<String>();
     List<ControlSprites> m_currentTutorialSprites = new List<ControlSprites>();
 
@@ -213,7 +215,7 @@ public class MenuManager : MonoBehaviour
         else if (device is Gamepad)
         {
             OnControllerChanged?.Invoke(ControllerType.GENERIC);
-        }        
+        }
     }
 
     void SwapControls(ControllerType controls)
@@ -242,11 +244,21 @@ public class MenuManager : MonoBehaviour
     }
 
     void UpdateUIImages(ControllerImages ci)
-    {        
+    {
         m_currentImages = ci;
-        if(m_tutorial.isActiveAndEnabled)
+        if (m_tutorial.isActiveAndEnabled)
         {
             SetTutorial(m_currentTutorialStrings, m_currentTutorialSprites, m_tutorialSpriteFirst);
+        }
+        UpdateInteract();
+    }
+
+    void UpdateInteract()
+    {
+        if (m_interactText.enabled)
+        {             
+            string interact = (SpriteToString(ControlSprites.INTERACT_ONE) + "/" + SpriteToString(ControlSprites.INTERACT_TWO) + " " + m_currentMessage);                        
+            m_interactText.text = interact;
         }
     }
 
@@ -445,7 +457,7 @@ public class MenuManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(cs), cs, null);
         }
         return sprite;
-    }    
+    }
 
     public void ClearTutorial()
     {
@@ -458,28 +470,32 @@ public class MenuManager : MonoBehaviour
             return;
         else
         {
+            m_currentInteract = m_currentImages;
+            string interact = (SpriteToString(ControlSprites.INTERACT_ONE) + "/" + SpriteToString(ControlSprites.INTERACT_TWO) + " ");
             Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
             if (puzzle != null)
             {
-                m_interactText.enabled = true;
-                m_interactText.text = puzzle.m_interactMessage;
+                interact += puzzle.m_interactMessage;
+                m_currentMessage = puzzle.m_interactMessage;
             }
             Interactable interactable = hit.transform.gameObject.GetComponentInParent<Interactable>();
             if (interactable != null)
             {
-                m_interactText.enabled = true;
-                m_interactText.text = interactable.m_interactMessage;
+                interact += interactable.m_interactMessage;
+                m_currentMessage = interactable.m_interactMessage;
             }
             ManaPool manaPool = hit.transform.gameObject.GetComponent<ManaPool>();
             if (manaPool != null)
             {
-                m_interactText.enabled = true;
-                m_interactText.text = manaPool.m_interactMessage;
+                interact += manaPool.m_interactMessage;
+                m_currentMessage = manaPool.m_interactMessage;
             }
+            m_interactText.enabled = true;
+            m_interactText.text = interact;
         }
     }
     public void StopInteract()
-    {        
+    {
         m_interactText.enabled = false;
     }
 
