@@ -11,6 +11,7 @@ using UnityEngine.InputSystem.Switch;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 public class MenuManager : MonoBehaviour
 {
@@ -23,9 +24,9 @@ public class MenuManager : MonoBehaviour
     public ControllerImages m_pSImages;
     public ControllerImages m_nintendoImages;
     public ControllerImages m_genericImages;
-    ControllerImages m_currentImages;
-    ControllerImages m_currentInteract;
+    ControllerImages m_currentImages;    
     bool m_tutorialSpriteFirst = false;
+    string m_currentMessage = "";
     List<string> m_currentTutorialStrings = new List<String>();
     List<ControlSprites> m_currentTutorialSprites = new List<ControlSprites>();
 
@@ -249,6 +250,16 @@ public class MenuManager : MonoBehaviour
         {
             SetTutorial(m_currentTutorialStrings, m_currentTutorialSprites, m_tutorialSpriteFirst);
         }
+        UpdateInteract();
+    }
+
+    void UpdateInteract()
+    {
+        if (m_interactText.enabled)
+        {             
+            string interact = (SpriteToString(ControlSprites.INTERACT_ONE) + "/" + SpriteToString(ControlSprites.INTERACT_TWO) + " " + m_currentMessage);                        
+            m_interactText.text = interact;
+        }
     }
 
     void OnGameStateChanged(GameState state)
@@ -455,7 +466,7 @@ public class MenuManager : MonoBehaviour
 
     public void SetInteract(RaycastHit hit)
     {
-        if (m_interactText.enabled && m_currentInteract == m_currentImages)
+        if (m_interactText.enabled)
             return;
         else
         {
@@ -465,16 +476,19 @@ public class MenuManager : MonoBehaviour
             if (puzzle != null)
             {
                 interact += puzzle.m_interactMessage;
+                m_currentMessage = puzzle.m_interactMessage;
             }
             Interactable interactable = hit.transform.gameObject.GetComponentInParent<Interactable>();
             if (interactable != null)
             {
                 interact += interactable.m_interactMessage;
+                m_currentMessage = interactable.m_interactMessage;
             }
             ManaPool manaPool = hit.transform.gameObject.GetComponent<ManaPool>();
             if (manaPool != null)
             {
                 interact += manaPool.m_interactMessage;
+                m_currentMessage = manaPool.m_interactMessage;
             }
             m_interactText.enabled = true;
             m_interactText.text = interact;
