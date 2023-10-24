@@ -5,20 +5,24 @@ public class Bridge : MonoBehaviour
 {
     public List<Puzzle> m_puzzleList;
     [HideInInspector]
-    public bool m_unlocked;
-    public float m_speed;   
+    public bool m_unlocked = false;
+    public float m_speed;
     MeshRenderer m_mesh;
     float m_alpha;
     public GameObject m_colliders;
 
     private void Start()
     {
-        foreach(Puzzle p in m_puzzleList)
+        foreach (Puzzle p in m_puzzleList)
         {
             p.m_bridge = this;
-        }       
+        }
         m_mesh = GetComponentInChildren<MeshRenderer>();
-        m_mesh.material.SetFloat("_ArmorFade", 0);
+        foreach (Material m in m_mesh.materials)
+        {
+            m.SetFloat("_ArmorFade", 0);
+        }
+        m_alpha = 0.0f;
     }
 
     public void CheckState()
@@ -34,7 +38,7 @@ public class Bridge : MonoBehaviour
         SetBridgeState(true);
     }
 
-   public void SetBridgeState(bool state)
+    public void SetBridgeState(bool state)
     {
         m_unlocked = state;
         m_colliders.SetActive(state);
@@ -51,6 +55,9 @@ public class Bridge : MonoBehaviour
         {
             m_alpha -= step;
         }
-            m_mesh.material.SetFloat("_ArmorFade", m_alpha);
-    }   
+        foreach (Material m in m_mesh.materials)
+        {
+            m.SetFloat("_ArmorFade", 0);
+        }
+    }
 }

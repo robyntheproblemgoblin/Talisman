@@ -86,7 +86,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c04ef73ec1cba1644811532519d98515, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a319c082c83d34e4185649989df3ab37, type: 2}
+      objectReference: {fileID: 2100000, guid: 0f06c487acc7b6947a62f1bc9456e7db, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c04ef73ec1cba1644811532519d98515, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 80483284988a09a4a9ad9b229e6b3fb8, type: 2}
     - target: {fileID: 919132149155446097, guid: c04ef73ec1cba1644811532519d98515, type: 3}
       propertyPath: m_Name
       value: SM_SwordPodium_01
