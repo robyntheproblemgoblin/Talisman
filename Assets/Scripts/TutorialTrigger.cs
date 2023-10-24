@@ -39,7 +39,7 @@ public class TutorialTrigger : MonoBehaviour
     public void SecondTutorial()
     {
         m_secondText.gameObject.SetActive(true);
-        m_manager.ClearTutorial();
+        //m_manager.ClearTutorial();
         Destroy(this);
     }
 }
