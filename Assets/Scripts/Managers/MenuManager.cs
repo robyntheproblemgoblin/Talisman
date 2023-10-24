@@ -469,8 +469,7 @@ public class MenuManager : MonoBehaviour
         if (m_interactText.enabled)
             return;
         else
-        {
-            m_currentInteract = m_currentImages;
+        {            
             string interact = (SpriteToString(ControlSprites.INTERACT_ONE) + "/" + SpriteToString(ControlSprites.INTERACT_TWO) + " ");
             Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
             if (puzzle != null)
