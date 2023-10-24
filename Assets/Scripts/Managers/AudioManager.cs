@@ -207,7 +207,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayRoationPuzzleRoom()
     {
-
         if (m_rotationFailInstances == 0)
         {
             m_rotationFailInstances++;

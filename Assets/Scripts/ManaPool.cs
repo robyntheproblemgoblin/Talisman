@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ManaPool : MonoBehaviour
@@ -10,6 +11,10 @@ public class ManaPool : MonoBehaviour
     public string m_interactMessage = "<sprite=Reticle> Interact";
     public bool m_isEnd;
     bool m_isActive = true;
+    bool m_isFirst = true;
+
+    public List<Door> m_doorList = new List<Door>();
+
 
     private void Start()
     {
@@ -44,6 +49,14 @@ public class ManaPool : MonoBehaviour
         {
             m_isActive = false;
             pc.AddMana(m_manaAmount);
+            if(m_isFirst)
+            {
+                m_isFirst = false;
+                foreach(Door door in m_doorList)
+                {
+                    door.OpenDoor();
+                }
+            }
         }
     }
 
