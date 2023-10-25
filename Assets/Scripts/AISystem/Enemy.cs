@@ -121,6 +121,7 @@ namespace AISystem
         public bool TakeHit(float damage, Vector2 angle)
         {
             m_playerController.HitReticle();
+            m_swordCollider.enabled = false;
             m_currentHP -= damage;
             bool isDead = m_currentHP <= 0;
             if (isDead)

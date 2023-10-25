@@ -3,12 +3,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using AISystem.Systems;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XInput;
-using UnityEngine.InputSystem.DualShock;
-using UnityEngine.InputSystem.Switch;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.LowLevel;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +17,9 @@ public class GameManager : MonoBehaviour
 
     public List<Interactable> m_cinematicTriggers;
     public List<Transform> m_cinematicPoints;
+    public float m_talismanFadeWhite = 1f;
+    public float m_talismanFadeBlack = 1f;
+    public float m_talismanFadeClear = 1f;
 
     [HideInInspector]
     public Transform m_respawnPoint;
@@ -43,15 +40,15 @@ public class GameManager : MonoBehaviour
     }
 
     private void Awake()
-    {        
-        m_aiManager = new AIManager();                        
+    {
+        m_aiManager = new AIManager();
         OnGameStateChanged += GameStateChanged;
     }
 
     private void Start()
     {
-        UpdateGameState(GameState.TITLE);
-    }  
+        UpdateGameState(GameState.TITLE);        
+    }
 
     void GameStateChanged(GameState state)
     {
@@ -61,9 +58,9 @@ public class GameManager : MonoBehaviour
                 TitleScreen();
                 break;
             case GameState.GAME:
-                
-                    ResumeGame();
-                
+
+                ResumeGame();
+
                 break;
             case GameState.CINEMATIC:
                 break;
@@ -109,7 +106,7 @@ public class GameManager : MonoBehaviour
     }
 
     void TitleScreen()
-    {        
+    {
         Time.timeScale = 0;
     }
 
@@ -124,33 +121,77 @@ public class GameManager : MonoBehaviour
     }
 
     void PauseGame()
-    {        
+    {
         Time.timeScale = 0;
-    }  
+    }
 
     public void SetCheckPoint(Transform transform)
     {
         m_respawnPoint = transform;
     }
 
-    public async void CinematicTrigger(Interactable interactable)
+    public void FirstCinematic()
     {
-        int index = m_cinematicTriggers.IndexOf(interactable);
+        m_player.m_skinnedMeshRenderer.enabled = true;
+        m_audioManager.PlayCinematic().Forget();
+        UpdateGameState(GameState.CINEMATIC);
+    }
 
-        m_respawnPoint = m_cinematicPoints[index];
-        m_player.transform.position = m_cinematicPoints[index].position;
-        m_player.m_camera.SetRotation(m_cinematicPoints[index].rotation.eulerAngles);
+    public async UniTask SecondCinematic()
+    {
+        m_menuManager.m_fadeWhite.gameObject.SetActive(true);
+        Color w;
+        Color f;
+        Color b = new Color(0, 0, 0, 1);
+        while (m_menuManager.m_fadeWhite.color.a <= 1)
+        {
+            w = new Color(1, 1, 1, m_menuManager.m_fadeWhite.color.a + Time.deltaTime * m_talismanFadeWhite);
+            m_menuManager.m_fadeWhite.color = w;
+            await UniTask.Yield();
+        }
+        w = new Color(1, 1, 1, 1);
+        m_menuManager.m_fadeWhite.color = w;
+        m_menuManager.m_fadeBlack.gameObject.SetActive(true);
+        m_menuManager.m_fadeBlack.color = b;
+
+        m_respawnPoint = m_cinematicPoints[0];
+        m_player.transform.position = m_cinematicPoints[0].position;
+        m_player.m_camera.SetRotation(m_cinematicPoints[0].rotation.eulerAngles);
+
+        while (m_menuManager.m_fadeWhite.color.a >= 0)
+        {
+            f = new Color(1, 1, 1, m_menuManager.m_fadeWhite.color.a - Time.deltaTime * m_talismanFadeBlack);
+            m_menuManager.m_fadeWhite.color = f;
+            await UniTask.Yield();
+        }
+        f = new Color(1, 1, 1, 0);
+        m_menuManager.m_fadeWhite.color = f;
 
         m_player.m_animator.SetTrigger("Cinematic");
-        m_audioManager.PlayDialogue(interactable.m_dialogue);
-        UpdateGameState(GameState.CINEMATIC);
+        m_audioManager.PlayCinematic().Forget();
+
+        while (m_menuManager.m_fadeBlack.color.a >= 0)
+        {
+            b = new Color(1, 1, 1, m_menuManager.m_fadeBlack.color.a - Time.deltaTime * m_talismanFadeClear);
+            m_menuManager.m_fadeBlack.color = b;
+            await UniTask.Yield();
+        }
+        b = new Color();
+        m_menuManager.m_fadeWhite.color = b;
+        m_menuManager.m_fadeWhite.gameObject.SetActive(false);
+        m_menuManager.m_fadeBlack.gameObject.SetActive(false);
+    }
+
+    public void LastCinematic()
+    {
+
     }
 
     void DeathMenuStart()
     {
         m_player.m_animator.SetTrigger("Die");
         m_audioManager.PlayDeathDialogue();
-        m_menuManager.FadeDeathScreen();
+        m_menuManager.FadeDeathScreen().Forget();
     }
 
     public void Respawn()

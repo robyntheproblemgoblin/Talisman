@@ -7,6 +7,13 @@ public class EnemyActivator : Puzzle
     public Puzzle m_puzzle;
     public TutorialTrigger m_tutorial;
     public bool m_isLastSwordInRoom;
+
+    private new void Start()
+    {
+        base.Start();
+        m_canInteract = false;
+    }
+
     void Update()
     {
         if (m_updateMana && m_enemy != null && m_enemy.IsStatue())

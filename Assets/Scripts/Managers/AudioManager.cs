@@ -18,8 +18,7 @@ public class AudioManager : MonoBehaviour
     public float MasterVolume = 1f;
 
     [Header("FMOD Music Event References")]
-    public FMODUnity.EventReference m_menuMusic;
-    public FMODUnity.EventReference m_combatMusic;
+    public FMODUnity.EventReference m_menuMusic;    
 
     [Space(5), Header("Murray Puzzle Dialogue References")]
     public Dialogue m_murrayHalfSolve;
@@ -38,14 +37,17 @@ public class AudioManager : MonoBehaviour
     public Dialogue m_swordRoomEnd;
 
     FMOD.Studio.EventInstance m_dialogueInstance;
-    FMOD.Studio.EventInstance m_menuMusicInstance;
-    FMOD.Studio.EventInstance m_combatMusicInstance;
+    FMOD.Studio.EventInstance m_menuMusicInstance;    
 
     [Header("Dialogue Sections")]
     public Dialogue m_intro;
     public Dialogue m_playerDeath;
-    public List<Dialogue> m_cinematicDialogue;
-    Dictionary<string, Dialogue> m_dialoguesDict;
+
+    public Dialogue m_talismanGrab;
+    public Dialogue m_teleport;
+    public Dialogue m_ending;
+    int m_cinematics = 0;
+    bool m_nextCinematic = false;
 
     bool m_playLines = true;
     [HideInInspector]
@@ -59,6 +61,14 @@ public class AudioManager : MonoBehaviour
         Dialogue = FMODUnity.RuntimeManager.GetBus("bus:/Master/Dialogue");
     }
 
+    void Start()
+    {
+        m_game = GameManager.Instance;
+        m_game.m_audioManager = this;
+        
+        m_menuMusicInstance= FMODUnity.RuntimeManager.CreateInstance(m_menuMusic);
+        StartFmodLoop(m_menuMusicInstance);        
+    }
 
     void Update()
     {
@@ -86,37 +96,11 @@ public class AudioManager : MonoBehaviour
     public void DialogueVolumeLevel(float newDialogueVolume)
     {
         SFXVolume = newDialogueVolume;
-
     }
 
-
-    private void Start()
+    public void PlayOneShot(EventReference fmodEvent, Vector3 pos)
     {
-        m_game = GameManager.Instance;
-        m_game.m_audioManager = this;
-        foreach (var dialogue in m_cinematicDialogue)
-        {
-            if (dialogue is DialogueObject)
-            {
-                if (!m_dialoguesDict.ContainsKey(dialogue.name))
-                {
-                    m_dialoguesDict.Add(dialogue.name, dialogue);
-                }
-            }
-            else if (dialogue is DialogueSequence)
-            {
-                DialogueSequence dialogueSequence = (DialogueSequence)dialogue;
-                if (!m_dialoguesDict.ContainsKey(dialogueSequence.m_section))
-                {
-                    m_dialoguesDict.Add(dialogueSequence.m_section, dialogue);
-                }
-            }
-        }
-    }
-
-    void PlayOneShot(string fmodEvent, Vector3 pos)
-    {
-        RuntimeManager.PlayOneShot("event:/" + fmodEvent, pos);
+        RuntimeManager.PlayOneShot(fmodEvent, pos);
     }
 
     void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
@@ -129,11 +113,11 @@ public class AudioManager : MonoBehaviour
         eventInstance.start();
     }
 
-    public async UniTask PlayDialogue(Dialogue reference)
+    public void PlayDialogue(Dialogue reference)
     {
         if (reference is DialogueSequence)
         {
-            PlayDialogueSequence((DialogueSequence)reference);
+            PlayDialogueSequence((DialogueSequence)reference).Forget();
         }
         else if (reference is DialogueObject)
         {
@@ -143,6 +127,14 @@ public class AudioManager : MonoBehaviour
 
     public async UniTask PlayDialogueSequence(DialogueSequence reference)
     {
+        FMOD.Studio.PLAYBACK_STATE current;
+        m_dialogueInstance.getPlaybackState(out current);
+
+        if (current == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+        {
+            m_dialogueInstance.release();
+            m_dialogueInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
         int index = 0;
         m_playLines = true;
         if (m_stopInteractions)
@@ -154,14 +146,14 @@ public class AudioManager : MonoBehaviour
             m_dialogueInstance = FMODUnity.RuntimeManager.CreateInstance(reference.m_sequence[index].m_eventReference);
             RuntimeManager.AttachInstanceToGameObject(m_dialogueInstance, m_game.m_player.gameObject.transform);
             m_dialogueInstance.start();
-
-            FMOD.Studio.PLAYBACK_STATE current;
+            m_dialogueInstance.release();
             m_dialogueInstance.getPlaybackState(out current);
 
             m_game.m_menuManager.SetSubtitle(reference.m_sequence[index].m_subtitle);
             index++;
             if (index >= reference.m_sequence.Count)
             {
+            Debug.Log(index);
                 m_playLines = false;
                 StopInteractions(m_dialogueInstance).Forget();
             }
@@ -171,9 +163,10 @@ public class AudioManager : MonoBehaviour
                 {
                     m_dialogueInstance.getPlaybackState(out current);
                     await UniTask.Yield();
-                }
+                }                
             }
         }
+        m_nextCinematic = false;
     }
 
     void PlayOneShotAttachedDialogue(DialogueObject fmodEvent, GameObject go)
@@ -272,4 +265,36 @@ public class AudioManager : MonoBehaviour
         m_stopInteractions = true;
         PlayDialogue(m_swordRoomEnd);
     }
+
+    public async UniTask PlayCinematic()
+    {
+        m_nextCinematic = true;
+        if(m_cinematics > 2)
+        {
+            return;
+        }
+        else if(m_cinematics == 0)
+        {
+            PlayDialogue(m_talismanGrab);
+            while(m_nextCinematic)
+            {
+                await UniTask.Yield();
+            }
+            m_game.SecondCinematic().Forget();
+        }
+        else if(m_cinematics == 1)
+        {
+            PlayDialogue(m_teleport);
+        }
+        else if(m_cinematics == 2)
+        {
+            PlayDialogue(m_ending);
+            while (m_nextCinematic)
+            {
+                await UniTask.Yield();
+            }
+            m_game.LastCinematic();
+        }
+        m_cinematics++;
+    }    
 }

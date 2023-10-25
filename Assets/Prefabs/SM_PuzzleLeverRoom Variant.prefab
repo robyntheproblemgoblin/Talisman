@@ -142,13 +142,20 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 0.25
   m_rewindSpeed: 0.25
   m_outputLeftObject: {fileID: 0}
   m_outputRightObject: {fileID: 0}
   m_channel: 0
-  m_direction: 0
+  m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
 --- !u!1 &537947467216032246 stripped
@@ -176,13 +183,20 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 0.25
   m_rewindSpeed: 0.25
   m_outputLeftObject: {fileID: 2143194097576820002}
   m_outputRightObject: {fileID: 6968969748087054055}
   m_channel: 0
-  m_direction: 0
+  m_direction: 1
   m_murrayPuzzleOut: 1
   m_rotationPuzzleOut: 0
 --- !u!1 &1647263244465088491 stripped
@@ -210,6 +224,13 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 9999999
   m_rewindSpeed: 9999999
@@ -244,6 +265,13 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 9999999
   m_rewindSpeed: 9999999
@@ -278,13 +306,20 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 0.25
   m_rewindSpeed: 0.25
   m_outputLeftObject: {fileID: 0}
   m_outputRightObject: {fileID: 0}
-  m_channel: 0
-  m_direction: 0
+  m_channel: 3
+  m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
 --- !u!1 &7382802671976580060 stripped
@@ -312,14 +347,21 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 0.25
   m_rewindSpeed: 0.25
   m_outputLeftObject: {fileID: 3321918330096788526}
   m_outputRightObject: {fileID: 4363616519171097674}
   m_channel: 1
-  m_direction: 0
-  m_murrayPuzzleOut: 0
+  m_direction: 1
+  m_murrayPuzzleOut: 1
   m_rotationPuzzleOut: 0
 --- !u!1 &7935959577113099821 stripped
 GameObject:
@@ -346,6 +388,13 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 9999999
   m_rewindSpeed: 9999999
@@ -380,6 +429,13 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 9999999
   m_rewindSpeed: 9999999

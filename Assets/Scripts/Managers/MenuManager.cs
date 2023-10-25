@@ -11,7 +11,6 @@ using UnityEngine.InputSystem.Switch;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 
 public class MenuManager : MonoBehaviour
 {
@@ -540,7 +539,7 @@ public class MenuManager : MonoBehaviour
         m_game.Respawn();
     }
 
-    public async void SetSubtitle(string subtitile)
+    public void SetSubtitle(string subtitile)
     {
         if (!m_subtitles.gameObject.activeSelf)
         {

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Profiling.RawFrameDataView;
 
 public class Puzzle : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class Puzzle : MonoBehaviour
     protected bool m_rewindMana;
     protected bool m_canInteract = true;
     public string m_interactMessage = "Interact";
+
+    public FMODUnity.EventReference m_interact;
 
     public Bridge m_bridge;
 
@@ -66,6 +69,7 @@ public class Puzzle : MonoBehaviour
             m_targetRotation = Quaternion.Euler(0, m_nextY, 0);
             m_rotations++;
             m_rotate = true;
+            GameManager.Instance.m_audioManager.PlayOneShot(m_interact, transform.position);
         }
     }
 

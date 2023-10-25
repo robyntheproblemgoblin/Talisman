@@ -467,8 +467,7 @@ public class PlayerController : MonoBehaviour, IBeing
     private void UpdateInteracts()
     {
         if (m_stopInteracts)
-        {
-            Debug.Log("Should Return");
+        {            
             return;
         }
         Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -512,7 +511,7 @@ public class PlayerController : MonoBehaviour, IBeing
             }
             else if (interactable != null)
             {
-                m_game.CinematicTrigger(interactable);
+                m_game.FirstCinematic();
             }
             else if (manaPool != null)
             {

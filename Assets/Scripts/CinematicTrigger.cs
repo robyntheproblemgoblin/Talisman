@@ -10,6 +10,11 @@ public class CinematicTrigger : MonoBehaviour
         m_pc = gameObject.GetComponentInParent<PlayerController>();
     }
 
+    public void MiddleCinematic()
+    {
+        
+    }
+
     public void FinishCinematic()
     {
         m_pc.FinishCinematic();
@@ -17,9 +22,5 @@ public class CinematicTrigger : MonoBehaviour
     public void ResetCollider()
     {
         m_pc.ResetCollider();
-    }
-    public void TurnOnMesh()
-    {
-        m_pc.m_skinnedMeshRenderer.enabled = true;
     }
 }
