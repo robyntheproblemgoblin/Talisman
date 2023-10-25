@@ -538,6 +538,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6095952105130605281, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f06c487acc7b6947a62f1bc9456e7db, type: 2}
     - target: {fileID: 6492526628118096625, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2747,10 +2751,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5558935957521389706, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f4e88a2254b9b6a44a5805617ae67d97, type: 2}
     - target: {fileID: 5708769548467937206, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
       propertyPath: m_puzzleList.Array.size
       value: 2
@@ -3326,7 +3326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8225780667573492059, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8225780667573492059, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_NavMeshLayer
