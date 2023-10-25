@@ -1287,7 +1287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1277138067012987812, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -80.50613
+      value: -80.30127
       objectReference: {fileID: 0}
     - target: {fileID: 1277138067012987812, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1320,30 +1320,6 @@ PrefabInstance:
     - target: {fileID: 1277138067012987813, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
       propertyPath: m_Name
       value: PFB_TutorialRoom_Hallway_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
-      propertyPath: m_spriteFirst
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
-      propertyPath: m_tutorialText.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
-      propertyPath: m_controlSprites.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
-      propertyPath: m_tutorialText.Array.data[0]
-      value: this
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
-      propertyPath: m_tutorialText.Array.data[1]
-      value: 'Should '
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068957546688908087, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
-      propertyPath: m_tutorialText.Array.data[2]
-      value: 'Work '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
@@ -2481,7 +2457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8843243286599680231, guid: c6b9c824009f2104b8de0057dfc1bfd8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -67
+      value: -66.74453
       objectReference: {fileID: 0}
     - target: {fileID: 8843243286599680231, guid: c6b9c824009f2104b8de0057dfc1bfd8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2910,7 +2886,7 @@ PrefabInstance:
     - target: {fileID: 3725266465970994640, guid: d06c5508d12293944b831232d184f83a, type: 3}
       propertyPath: m_dialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 4721c2aeef8a4b845bfb993677d1f4b5, type: 2}
+      objectReference: {fileID: 11400000, guid: 0cf9e19eaf4781c468ae0a5d8288515d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06c5508d12293944b831232d184f83a, type: 3}
 --- !u!1001 &8225780666598699644
@@ -3008,10 +2984,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
-      propertyPath: m_intro
-      value: 
-      objectReference: {fileID: 11400000, guid: 0cf9e19eaf4781c468ae0a5d8288515d, type: 2}
     - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_menuSource
       value: 
