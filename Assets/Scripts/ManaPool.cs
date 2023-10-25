@@ -24,11 +24,11 @@ public class ManaPool : MonoBehaviour
     void Update()
     {
         float step = m_lightDimSpeed * Time.deltaTime;
-        if(m_isActive && m_light.intensity != m_intensity)
+        if(m_isActive && m_light.intensity <= m_intensity)
         {
             m_light.intensity += step;
         }
-        else if (m_isActive && m_light.intensity != 0)
+        else if (m_isActive && m_light.intensity >= 0)
         {
             m_light.intensity -= step;
         }

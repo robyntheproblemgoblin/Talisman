@@ -2,10 +2,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using FMODUnity;
+using System;
 
 public class AudioManager : MonoBehaviour
 {
     GameManager m_game;
+
+    FMOD.Studio.Bus Music;
+    FMOD.Studio.Bus SFX;
+    FMOD.Studio.Bus Dialogue;
+    FMOD.Studio.Bus Master;
+    public float MusicVolume = 0.5f;
+    public float SFXVolume = 0.5f;
+    public float DialogueVolume = 0.5f;
+    public float MasterVolume = 1f;
 
     [Header("FMOD Music Event References")]
     public FMODUnity.EventReference m_menuMusic;
@@ -41,6 +51,45 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]
     public bool m_stopInteractions = false;
 
+    private void Awake()
+    {
+        Music = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
+        SFX = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
+        Master = FMODUnity.RuntimeManager.GetBus("bus:/Master");
+        Dialogue = FMODUnity.RuntimeManager.GetBus("bus:/Master/Dialogue");
+    }
+
+
+    void Update()
+    {
+        Music.setVolume(MusicVolume);
+        SFX.setVolume(SFXVolume);
+        Master.setVolume(MasterVolume);
+        Dialogue.setVolume(DialogueVolume);       
+    }
+
+    public void MasterVolumeLevel(float newMasterVolume)
+    {
+        MasterVolume = newMasterVolume;
+    }
+
+    public void MusicVolumeLevel(float newMusicVolume)
+    {
+        MusicVolume = newMusicVolume;
+    }
+
+    public void SFXVolumeLevel(float newSFXVolume)
+    {
+        SFXVolume = newSFXVolume;
+
+    }
+    public void DialogueVolumeLevel(float newDialogueVolume)
+    {
+        SFXVolume = newDialogueVolume;
+
+    }
+
+
     private void Start()
     {
         m_game = GameManager.Instance;
@@ -69,7 +118,6 @@ public class AudioManager : MonoBehaviour
     {
         RuntimeManager.PlayOneShot("event:/" + fmodEvent, pos);
     }
-
 
     void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
     {
