@@ -12126,16 +12126,19 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  m_murrayHalfSolve: {fileID: 0}
-  m_murrayFullSolve: {fileID: 0}
-  m_murrayFirstFail: {fileID: 0}
-  m_murraySecondFail: {fileID: 0}
-  m_rotationFirstFail: {fileID: 0}
-  m_rotationSecondFail: {fileID: 0}
-  m_swordRoomEnd: {fileID: 0}
-  m_intro: {fileID: 0}
+  m_murrayHalfSolve: {fileID: 11400000, guid: 5a2fcd3746bbbe543a5eb1bfa72bbd3a, type: 2}
+  m_murrayFullSolve: {fileID: 11400000, guid: 02b7daa07727ba9459fdff08db92b363, type: 2}
+  m_murrayFirstFail: {fileID: 11400000, guid: 6bd8016ce2139044f8924085bc3e9c5b, type: 2}
+  m_murraySecondFail: {fileID: 11400000, guid: f6044fb1879c4d94fafae008aceed558, type: 2}
+  m_rotationFirstFail: {fileID: 11400000, guid: 04efc8c309adefa40a9a1f59294a9cb8, type: 2}
+  m_rotationSecondFail: {fileID: 11400000, guid: 94644a15a79648548bcf83fd70dcea57, type: 2}
+  m_swordRoomEnd: {fileID: 11400000, guid: 418ab4cfc6a835548b72a1d5e84521a6, type: 2}
+  m_intro: {fileID: 11400000, guid: 4721c2aeef8a4b845bfb993677d1f4b5, type: 2}
   m_playerDeath: {fileID: 0}
-  m_cinematicDialogue: []
+  m_cinematicDialogue:
+  - {fileID: 11400000, guid: 804e7f7a7e7fedd4a9c5b4c76f135d9c, type: 2}
+  - {fileID: 11400000, guid: 3f848c0ac6d933a44a794b09ee973152, type: 2}
+  - {fileID: 11400000, guid: 52abd24a45127064091ca31b692ade4e, type: 2}
   m_stopInteractions: 0
 --- !u!114 &7384736391290127244
 MonoBehaviour:

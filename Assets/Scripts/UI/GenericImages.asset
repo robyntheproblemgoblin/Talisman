@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e999bbe32c78664448e4cb9a724909ff, type: 3}
   m_Name: GenericImages
   m_EditorClassIdentifier: 
-  m_spriteAsset: 
-  m_menuNavigation: 0
-  m_menuSelect: 0
-  m_menuBack: 0
-  m_movement: 0
-  m_camera: 0
-  m_jump: 0
-  m_interactOne: 0
-  m_interactTwo: 0
-  m_attack: 0
-  m_block: 0
-  m_heal: 0
-  m_pause: 0
+  m_spriteAsset: Generic
+  m_menuNavigation: 20
+  m_menuSelect: 40
+  m_menuBack: 48
+  m_movement: 10
+  m_camera: 21
+  m_jump: 40
+  m_interactOne: 49
+  m_interactTwo: 48
+  m_attack: 45
+  m_block: 37
+  m_heal: 25
+  m_pause: 68
   m_sprint: 0
   m_controlsDisplay: {fileID: 0}
