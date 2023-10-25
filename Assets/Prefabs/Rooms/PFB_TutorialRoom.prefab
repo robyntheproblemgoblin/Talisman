@@ -746,8 +746,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 8843243286599680231}
     m_Modifications:
     - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
-      propertyPath: m_tutorialText
-      value: Press X to Interact
+      propertyPath: m_tutorialText.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[0]
+      value: 'Press '
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[1]
+      value: '/ '
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[2]
+      value: to Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[3]
+      value: 'Press '
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.data[1]
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4685308145854060695, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_RootOrder
