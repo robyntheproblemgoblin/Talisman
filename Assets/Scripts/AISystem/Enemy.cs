@@ -36,6 +36,8 @@ namespace AISystem
         int m_playerMask;
         Vector3 m_startPosition;
         Quaternion m_startRotation;
+
+        SkinnedMeshRenderer m_mesh;
         #endregion
 
         void Start()

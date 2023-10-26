@@ -29,7 +29,7 @@ namespace AISystem.Systems
         public bool m_isInterrupted = false;
         public bool m_isHit = false;
         public Vector2 m_hitDirection;
-        public CapsuleCollider m_swordCollider;                
+        public CapsuleCollider m_swordCollider;        
 
         public AIMovement(MovementSettings settings, [CanBeNull] Animator animator, IBeing attachedBeing, IManager manager, RootMotionSync rootMotionSync, CapsuleCollider swordCollider)
         {
