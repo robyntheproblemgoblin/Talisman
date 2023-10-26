@@ -171,7 +171,7 @@ MonoBehaviour:
     - rid: 1235179561357148174
       type: {class: Interrupt, ns: AISystem.Behaviours, asm: Assembly-CSharp}
       data:
-        m_duration: 0.25
+        m_duration: 0.125
     - rid: 1235179561357148175
       type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
       data:
@@ -197,7 +197,7 @@ MonoBehaviour:
     - rid: 1235179561357148180
       type: {class: Wait, ns: AISystem.Behaviours, asm: Assembly-CSharp}
       data:
-        m_duration: 0.25
+        m_duration: 0.125
     - rid: 1235179561357148181
       type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
       data:
@@ -233,4 +233,4 @@ MonoBehaviour:
     - rid: 8272514889055469589
       type: {class: HitReaction, ns: AISystem.Behaviours, asm: Assembly-CSharp}
       data:
-        m_duration: 0.25
+        m_duration: 0.125
