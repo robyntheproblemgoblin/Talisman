@@ -43,7 +43,10 @@ namespace AISystem.Pathing
             if(nearestT != 0f)
             {
                 UnityEngine.Debug.Log("Error " + nearestT + " and the state of Path is "  + m_isNewPath);
-            }
+            else
+{
+UnityEngine.Debug.Log(m_isNewPath);
+}
         }
 
 
