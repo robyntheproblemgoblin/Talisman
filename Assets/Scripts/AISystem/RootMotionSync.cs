@@ -1,3 +1,4 @@
+using AISystem.Systems;
 using UnityEngine;
 
 namespace AISystem
@@ -13,6 +14,8 @@ namespace AISystem
         Vector3 m_yLevel;
         bool m_warpEnabled = true;
         bool m_isDead = false;
+
+        public AIMovement m_movement;
 
         void Awake()
         {
@@ -49,13 +52,14 @@ namespace AISystem
                 deltaMove.y = 0f;
 
                 Quaternion deltaRotation = m_animator.deltaRotation;
-
+                
                 if (m_applyRotationWarp && m_warpEnabled)
-                {
-                    float turn = deltaRotation.eulerAngles.y;
-                    deltaRotation *= Quaternion.Euler(0f, m_angle * .05f, 0f);
+                {                    
+                    deltaRotation *= Quaternion.Euler(0f, m_angle * 0.05f, 0f);
                 }
 
+                m_movement.DebugAngle();
+                //Debug.Log(deltaRotation + " is the calculated roation"); 
                 m_transform.position += deltaMove;
                 m_transform.rotation *= deltaRotation;
             }

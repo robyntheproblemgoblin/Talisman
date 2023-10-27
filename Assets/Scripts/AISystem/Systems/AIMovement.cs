@@ -20,7 +20,7 @@ namespace AISystem.Systems
         public Path m_currentPath;
 
         bool m_movementEnabled;
-        float m_speed = 0;       
+        float m_speed = 0;        
 
         public bool m_atDestination { get; private set; } = true;
 
@@ -39,6 +39,7 @@ namespace AISystem.Systems
             m_aiManager = manager;
             m_rootMotionSync = rootMotionSync;
             m_swordCollider = swordCollider;
+            m_rootMotionSync.m_movement = this;            
         }
 
         public void EnableMovement()
@@ -90,7 +91,7 @@ namespace AISystem.Systems
                 if (m_currentPath.m_isEmpty == false && m_animator != null)
                 {
                     float sqrmag = Vector3.SqrMagnitude(m_attachedBeing.m_position - (Vector3)m_currentPath.m_destination);
-                    m_atDestination = sqrmag <= m_arrivalThreshold * m_arrivalThreshold;                    
+                    m_atDestination = sqrmag <= m_arrivalThreshold * m_arrivalThreshold;
 
                     if (!m_atDestination)
                     {
@@ -100,19 +101,24 @@ namespace AISystem.Systems
                     else
                     {
                         m_speed = 0;
-                        m_animator.SetFloat("ForwardsBackwards", m_speed); 
+                        m_animator.SetFloat("ForwardsBackwards", m_speed);
                         m_rootMotionSync.SetTurnWarp(0);
                         m_animator.SetFloat("Sideways", 0);
                     }
-                }                
+                }      
 
-                await UniTask.Yield();
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
             }
+        }
+
+        public void DebugAngle()
+        {
+            m_currentPath.DebugIssues(m_attachedBeing.m_position, m_settings.m_distance);
         }
 
         void UpdateSideWays()
         {
-            m_currentPath.GetRelativePoint(m_attachedBeing.m_position, 0.1f, out float3 predictPos, out float3 predictTan);
+            m_currentPath.GetRelativePoint(m_attachedBeing.m_position, m_settings.m_distance, out float3 predictPos, out float3 predictTan);
             m_rootMotionSync.SetYPos(predictPos.y);            
 
             float angle = Vector3.SignedAngle(m_attachedBeing.m_forward, predictTan, Vector3.up);

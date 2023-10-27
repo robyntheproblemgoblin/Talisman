@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using AISystem;
 using AISystem.Contracts;
 using Cysharp.Threading.Tasks;
+using System;
 
 public class PlayerController : MonoBehaviour, IBeing
 {
@@ -13,6 +14,8 @@ public class PlayerController : MonoBehaviour, IBeing
 
     public GameManager m_game;
     public FPControls m_inputControl;
+
+    public Enemy m_enemy;
     #region Movement Fields
     public CameraControls m_camera;
     [Header("Camera and Movement"), Space(5)]
@@ -127,6 +130,7 @@ public class PlayerController : MonoBehaviour, IBeing
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
         //m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_inputControl.Player_Map.Interact.performed += Interact;
+       // m_inputControl.Player_Map.Interact.performed += EnemyStart;
 
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
         m_inputControl.Player_Map.BlockParry.canceled += StopBlockParry;
@@ -141,6 +145,11 @@ public class PlayerController : MonoBehaviour, IBeing
         m_game.m_menuManager.UpdateMana();
 
         m_game.m_aiManager.RegisterBeing(this);
+    }
+
+    private void EnemyStart(InputAction.CallbackContext obj)
+    {
+        m_enemy.SetStatue(false);
     }
 
     private void PauseGame(InputAction.CallbackContext obj)

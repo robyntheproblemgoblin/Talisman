@@ -97,6 +97,7 @@ namespace AISystem
 
         public void ResetToPosition()
         {
+            m_swordCollider.enabled = false;
             transform.SetPositionAndRotation(m_startPosition, m_startRotation);
             m_animator.rootPosition = m_startPosition;            
             m_animator.Rebind();
