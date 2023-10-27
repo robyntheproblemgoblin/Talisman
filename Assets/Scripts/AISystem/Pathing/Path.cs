@@ -61,12 +61,14 @@ UnityEngine.Debug.Log(m_isNewPath);
                 position = m_destination;
                 tangent = m_heading;
                 m_isNewPath = false;
+UnityEngine.Debug.Log("Target distance is greater than spline length?");
             }
             else
             {
                 float t = targetDist / m_length;
                 m_pathSpline.Evaluate(t, out position, out tangent, out float3 up);
                 m_isNewPath = true;
+UnityEngine.Debug.Log("Path Revaluated");
             }
         }
     }
