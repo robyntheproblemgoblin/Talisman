@@ -535,8 +535,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1277138067012987812}
     m_Modifications:
     - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_spriteFirst
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_tutorialText.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_controlSprites.Array.size
@@ -544,7 +548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_tutorialText.Array.data[0]
-      value: 'Press '
+      value: ' to Jump'
       objectReference: {fileID: 0}
     - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_tutorialText.Array.data[1]
