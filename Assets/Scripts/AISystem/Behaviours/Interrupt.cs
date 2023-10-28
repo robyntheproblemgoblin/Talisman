@@ -17,7 +17,7 @@ namespace AISystem.Behaviours
             m_animator = m_input.m_go.GetComponentInChildren<Animator>();
             m_input.m_aIMovement.m_swordCollider.enabled = false;
             m_input.m_aIMovement.SetWarp(false); 
-            m_animator.SetFloat("ForwardsBackwards", -0.1f);
+            m_animator.SetFloat("ForwardsBackwards", -0.3f);
             m_animator.SetFloat("Sideways", 0);
             m_animator.SetTrigger("Interrupt");
             m_input.m_aIMovement.m_isInterrupted = false;
