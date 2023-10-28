@@ -297,7 +297,14 @@ public class MenuManager : MonoBehaviour
         m_pauseMenu.SetActive(state == GameState.PAUSE);
         m_optionsMenu.SetActive(state == GameState.OPTIONS);
         m_deathScreen.SetActive(state == GameState.DEATH);
-        m_subtitles.gameObject.SetActive(state == GameState.CINEMATIC || state == GameState.GAME);
+        if (state == GameState.CINEMATIC || state == GameState.GAME)
+        {
+            m_subtitles.gameObject.SetActive(true);
+        }
+        else
+        {
+            m_subtitles.gameObject.SetActive(false);
+        }
     }
     void TitleScreen()
     {
@@ -330,8 +337,8 @@ public class MenuManager : MonoBehaviour
     }
     void Options()
     {
-        /*   m_game.UpdateGameState(GameState.OPTIONS);
-           m_eventSystem.SetSelectedGameObject(m_camSensitivityButton.gameObject);*/
+           m_game.UpdateGameState(GameState.OPTIONS);
+           m_eventSystem.SetSelectedGameObject(m_camSensitivityButton.gameObject);
     }
 
     void ShowControllerImages()

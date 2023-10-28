@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_cameraSensitivity = 10;
     Vector3 m_moveDirection = Vector3.zero;
     float m_gravity = 9.81f;
+    public float m_gravityMultiplier = 1f;
     public float m_walkSpeed = 5;
     public float m_runSpeed = 8;
     bool m_canMove = true;
@@ -130,7 +131,7 @@ public class PlayerController : MonoBehaviour, IBeing
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
         //m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_inputControl.Player_Map.Interact.performed += Interact;
-       // m_inputControl.Player_Map.Interact.performed += EnemyStart;
+        //m_inputControl.Player_Map.Interact.performed += EnemyStart;        
 
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
         m_inputControl.Player_Map.BlockParry.canceled += StopBlockParry;
@@ -150,6 +151,7 @@ public class PlayerController : MonoBehaviour, IBeing
     private void EnemyStart(InputAction.CallbackContext obj)
     {
         m_enemy.SetStatue(false);
+        m_skinnedMeshRenderer.enabled = (true);
     }
 
     private void PauseGame(InputAction.CallbackContext obj)
@@ -238,7 +240,7 @@ public class PlayerController : MonoBehaviour, IBeing
 
         if (!m_characterController.isGrounded)
         {
-            m_moveDirection.y -= m_gravity * Time.deltaTime;
+            m_moveDirection.y -= (m_gravity * m_gravityMultiplier) * Time.deltaTime;
         }
 
         UpdateLeanAnimation(speedX, speedY);

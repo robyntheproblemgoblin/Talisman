@@ -107,13 +107,13 @@ namespace AISystem.Systems
                     }
                 }      
 
-                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+                await UniTask.Yield();
             }
         }
 
-        public void DebugAngle()
+        public float DebugAngle()
         {
-            m_currentPath.DebugIssues(m_attachedBeing.m_position, m_settings.m_distance);
+            return m_currentPath.DebugIssues(m_attachedBeing.m_position, m_settings.m_distance);
         }
 
         void UpdateSideWays()
@@ -123,7 +123,7 @@ namespace AISystem.Systems
 
             float angle = Vector3.SignedAngle(m_attachedBeing.m_forward, predictTan, Vector3.up);
 
-            if (Vector3.Angle(m_attachedBeing.m_forward, predictTan) <= 1)
+            if (Vector3.Angle(m_attachedBeing.m_forward, predictTan) <= 1f)
             {
                 m_rootMotionSync.SetTurnWarp(0);
                 m_animator.SetFloat("Sideways", 0);

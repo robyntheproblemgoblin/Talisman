@@ -157,13 +157,13 @@ namespace AISystem
         protected void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.gameObject.layer == m_playerMask && !m_intelligience.IsStatue())
-            {
-                Vector3 direction = -collision.GetContact(0).normal;
+            {                
+                Vector3 direction = collision.GetContact(0).normal;
+                Debug.Log(collision.GetContact(0).separation);
                 Vector2 angle = new Vector2(direction.x, direction.z);
                 TakeHit(m_playerController.m_meleeDamage, angle);
             }
         }
-
     }
 
 }

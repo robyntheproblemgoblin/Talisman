@@ -153,7 +153,6 @@ public class AudioManager : MonoBehaviour
             index++;
             if (index >= reference.m_sequence.Count)
             {
-            Debug.Log(index);
                 m_playLines = false;
                 StopInteractions(m_dialogueInstance).Forget();
             }

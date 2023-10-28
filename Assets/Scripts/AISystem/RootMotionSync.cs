@@ -56,12 +56,11 @@ namespace AISystem
                 if (m_applyRotationWarp && m_warpEnabled)
                 {                    
                     deltaRotation *= Quaternion.Euler(0f, m_angle * 0.05f, 0f);
-                }
-
-                m_movement.DebugAngle();
-                //Debug.Log(deltaRotation + " is the calculated roation"); 
-                m_transform.position += deltaMove;
-                m_transform.rotation *= deltaRotation;
+                }           
+                
+                //Debug.Log(m_movement.DebugAngle()); 
+                    m_transform.position += deltaMove;
+                    m_transform.rotation *= deltaRotation;                
             }
         }
     }
