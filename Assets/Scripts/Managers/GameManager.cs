@@ -47,15 +47,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.TITLE);        
+        UpdateGameState(GameState.MENU);        
     }
 
     void GameStateChanged(GameState state)
     {
         switch (state)
         {
-            case GameState.TITLE:
-                TitleScreen();
+            case GameState.MENU:
+                MainMenu();
                 break;
             case GameState.GAME:
 
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         m_gameState = newState;
         switch (newState)
         {
-            case GameState.TITLE:
+            case GameState.CONTROLS:
                 break;
             case GameState.MENU:
                 break;
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(m_gameState);
     }
 
-    void TitleScreen()
+    void MainMenu()
     {
         Time.timeScale = 0;
     }
@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
 
     public void FirstCinematic()
     {
+        m_player.m_healParticles.gameObject.SetActive(true);
         m_player.m_skinnedMeshRenderer.enabled = true;
         m_audioManager.PlayCinematic().Forget();
         UpdateGameState(GameState.CINEMATIC);
@@ -210,7 +211,7 @@ public class GameManager : MonoBehaviour
 
 public enum GameState
 {
-    TITLE,
+    CONTROLS,
     MENU,
     GAME,
     CINEMATIC,

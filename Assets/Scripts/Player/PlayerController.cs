@@ -55,26 +55,9 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_maxMana;
     public float m_startMana;
     public float m_manaHealCost;
-    public float m_currentMana;
-    #endregion
-
-    #region Mana Attack Fields
-    LeftHandState m_talismanState;
-    ChargingState m_charging;
-    FiringState m_firing;
+    public float m_currentMana;    
+    LeftHandState m_talismanState;    
     IdleState m_idle;
-
-    /*   [Space(10)]
-       [Header("Mana Attacks")]
-       [Space(5)]
-       public ParticleSystem m_fireMana;
-       public ParticleSystem m_projectileMana;
-       public GameObject projectile;
-       public float m_flameDamage = 0.1f;
-       public float m_flameCost = 1;
-       public float m_minProjectileCost = 1;
-       public float m_projectileManaCost = 1;
-       public float m_projectileDamage = 1;*/
     public Transform m_talisman;
     #endregion
 
@@ -119,20 +102,14 @@ public class PlayerController : MonoBehaviour, IBeing
         m_animator = GetComponentInChildren<Animator>();
         m_animator.rootRotation = transform.rotation;
         m_idle = new IdleState(m_animator, m_healParticles);
-        /*m_charging = new ChargingState(m_animator, m_projectileMana, this);
-        m_firing = new FiringState(m_animator, m_projectileMana, m_talisman);*/
         m_healing = new HealingState(m_animator, m_healParticles, this);
         m_talismanState = m_idle;
 
         m_inputControl.Player_Map.Heal.performed += StartHealing;
         m_inputControl.Player_Map.Heal.canceled += StopHealing;
-        /*m_inputControl.Player_Map.ManaAttack.performed += StartCharging;
-        m_inputControl.Player_Map.ManaAttack.canceled += StartFiring;*/
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
-        //m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_inputControl.Player_Map.Interact.performed += Interact;
-        //m_inputControl.Player_Map.Interact.performed += EnemyStart;        
-
+        
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
         m_inputControl.Player_Map.BlockParry.canceled += StopBlockParry;
 
@@ -171,7 +148,7 @@ public class PlayerController : MonoBehaviour, IBeing
     {
         switch (state)
         {
-            case GameState.TITLE:
+            case GameState.CONTROLS:
                 m_inputControl.UI.Enable();
                 break;
             case GameState.MENU:
@@ -257,6 +234,11 @@ public class PlayerController : MonoBehaviour, IBeing
         m_talismanState.Update();
         UpdateInteracts();
     }
+
+    public void ChangeSensitivity(float change)
+    {
+        m_cameraSensitivity = change;
+    }
     #endregion
 
     #region Animation Methods
@@ -309,12 +291,20 @@ public class PlayerController : MonoBehaviour, IBeing
 
     private void StartHealing(InputAction.CallbackContext obj)
     {
+        if (m_skinnedMeshRenderer.enabled == false)
+        {
+            return;
+        }
         m_talismanState.StopState();
         m_talismanState = m_healing;
         m_talismanState.StartState(0);
     }
     private void StopHealing(InputAction.CallbackContext obj)
     {
+        if (m_skinnedMeshRenderer.enabled == false)
+        {
+            return;
+        }
         m_talismanState.StopState();
         m_talismanState = m_idle;
         m_talismanState.StartState(0);
@@ -371,51 +361,16 @@ public class PlayerController : MonoBehaviour, IBeing
         m_game.m_menuManager.UpdateMana();
     }
 
-    #endregion
-
-    #region Mana Attack Methods
-    /* void StartCharging(InputAction.CallbackContext t)
-     {
-         m_talismanState.StopState();
-         m_talismanState = m_charging;
-         m_talismanState.StartState(0);
-     }
-
-     void StartFiring(InputAction.CallbackContext t)
-     {
-         m_talismanState.StopState();
-         m_talismanState = m_firing;
-         m_talismanState.StartState(m_charging.m_chargeTime * m_projectileDamage);
-     }
-
-     public void StartIdle()
-     {
-         m_talismanState.StopState();
-         m_talismanState = m_idle;
-         m_talismanState.StartState(0);
-     }
-
-     void SwapStyle(InputAction.CallbackContext t)
-     {
-         m_charging.m_isProjectile = !m_charging.m_isProjectile;
-         m_firing.m_isProjectile = !m_firing.m_isProjectile;
-         if (m_charging.m_isProjectile)
-         {
-             m_charging.m_particles = m_projectileMana;
-             m_firing.m_particles = m_projectileMana;
-         }
-         else
-         {
-             m_charging.m_particles = m_fireMana;
-             m_firing.m_particles = m_fireMana;
-         }
-     }*/
-    #endregion
+    #endregion    
 
     #region Melee Attack Methods
 
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
+        if (m_skinnedMeshRenderer.enabled == false)
+        {
+            return;
+        }
         if (m_canAttack)
         {
             m_canAttack = false;
@@ -455,11 +410,19 @@ public class PlayerController : MonoBehaviour, IBeing
     #region Block Parry Methods
     private void BlockParry(InputAction.CallbackContext obj)
     {
+        if(m_skinnedMeshRenderer.enabled == false)
+        {
+            return;
+        }
         m_isBlocking = true;
         m_animator.SetTrigger("Block");
     }
     private void StopBlockParry(InputAction.CallbackContext obj)
     {
+        if (m_skinnedMeshRenderer.enabled == false)
+        {
+            return;
+        }
         StopBlock();
     }
 
