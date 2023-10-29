@@ -53,7 +53,11 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings:
+  - '/ '
+  - ' Interact'
+  m_interactSprites: 0600000007000000
   m_interact:
     Guid:
       Data1: -286562979

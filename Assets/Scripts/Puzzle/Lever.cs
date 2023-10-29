@@ -61,6 +61,8 @@ public class Lever : Puzzle
     {
         if (m_canBeInteracted)
         {
+            GameManager.Instance.m_audioManager.PlayOneShot(m_interact, transform.position);
+
             if (!m_isOn)
             {
                 m_canBeInteracted = false;

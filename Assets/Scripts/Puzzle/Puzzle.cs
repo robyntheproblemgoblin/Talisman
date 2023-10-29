@@ -30,7 +30,10 @@ public class Puzzle : MonoBehaviour
     [SerializeField]
     protected bool m_rewindMana;
     protected bool m_canInteract = true;
-    public string m_interactMessage = "Interact";
+
+    public bool m_spritesFirst = true;
+    public List<string> m_interactStrings = new List<string>();
+    public List<ControlSprites> m_interactSprites = new List<ControlSprites>();
 
     public FMODUnity.EventReference m_interact;
 

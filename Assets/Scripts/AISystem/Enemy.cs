@@ -46,10 +46,13 @@ namespace AISystem
             m_aiManager.RegisterBeing(this);
 
             m_animator ??= GetComponentInChildren<Animator>();
+            m_mesh = GetComponentInChildren<SkinnedMeshRenderer>();
+            m_mesh.materials[0].SetFloat("_EmissiveFreq", 0);
+            m_mesh.materials[1].SetFloat("_ArmorFade", 0);
 
             List<IOptic> optics = CreateOptics();
             AIKnowledge aIKnowledge = new AIKnowledge();
-            AIMovement aIMovement = new AIMovement(AISettings.MovementSettings, m_animator, this, m_aiManager, m_rootMotionSync, m_swordCollider);
+            AIMovement aIMovement = new AIMovement(AISettings.MovementSettings, m_animator, this, m_aiManager, m_rootMotionSync, m_swordCollider, m_mesh);
             BehaviourManager behaviourManager = new BehaviourManager(UnpackBehaviourTree(AISettings.BehaviourTree, new BehaviourInput()
             {
                 m_aIKnowledge = aIKnowledge,
@@ -103,6 +106,8 @@ namespace AISystem
             m_animator.Rebind();
             m_animator.Update(0);
             m_animator.enabled = false;
+            m_mesh.materials[0].SetFloat("_EmissiveFreq", 0);
+            m_mesh.materials[1].SetFloat("_ArmorFade", 0);
             m_intelligience.SetStatue(true);
         }
 
@@ -126,6 +131,7 @@ namespace AISystem
             m_playerController.HitReticle();
             m_swordCollider.enabled = false;
             m_currentHP -= damage;
+            m_mesh.materials[1].SetFloat("_ArmorFade", m_currentHP/m_startingHP);
             bool isDead = m_currentHP <= 0;
             if (isDead)
             {
@@ -158,7 +164,7 @@ namespace AISystem
         {
             if (collision.collider.gameObject.layer == m_playerMask && !m_intelligience.IsStatue())
             {                
-                Vector3 direction = collision.GetContact(0).normal;                
+                Vector3 direction = -collision.GetContact(0).normal;                
                 Vector2 angle = new Vector2(direction.x, direction.z);
                 TakeHit(m_playerController.m_meleeDamage, angle);
             }

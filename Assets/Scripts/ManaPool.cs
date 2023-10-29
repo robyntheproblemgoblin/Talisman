@@ -8,7 +8,9 @@ public class ManaPool : MonoBehaviour
     float m_intensity;
     public float m_lightDimSpeed = 1f;
 
-    public string m_interactMessage = "<sprite=Reticle> Interact";
+    public bool m_spritesFirst;
+    public List<string> m_interactStrings = new List<string>();
+    public List<ControlSprites> m_interactSprites = new List<ControlSprites>();
     public bool m_isEnd;
     bool m_isActive = true;
     bool m_isFirst = true;
@@ -28,7 +30,7 @@ public class ManaPool : MonoBehaviour
         {
             m_light.intensity += step;
         }
-        else if (m_isActive && m_light.intensity >= 0)
+        else if (!m_isActive && m_light.intensity >= 0)
         {
             m_light.intensity -= step;
         }

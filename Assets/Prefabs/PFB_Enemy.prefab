@@ -168,6 +168,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CHR_Enemy_Melee_Animations
       objectReference: {fileID: 0}
+    - target: {fileID: 1124246116544480037, guid: 842e4b29a90147d42a078f22e0e6e44b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 54e7d44946cdb4541b5251ed8fa3e2ea, type: 2}
+    - target: {fileID: 1124246116544480037, guid: 842e4b29a90147d42a078f22e0e6e44b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 837da3bfdf131dd4f96c6e7c6a87b83f, type: 2}
     - target: {fileID: 5519667220147004682, guid: 842e4b29a90147d42a078f22e0e6e44b, type: 3}
       propertyPath: m_Layer
       value: 8

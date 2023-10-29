@@ -1274,6 +1274,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8905676315366799388}
     m_Modifications:
+    - target: {fileID: 75124921798298821, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_isMurrayCircle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 571277236461019048, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_RootOrder
       value: 26
@@ -1323,17 +1327,33 @@ PrefabInstance:
       value: SM_PuzzleLeverRoom Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2143194097576820002, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_isMurrayCircle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143194097576820002, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_outputLeftObject
       value: 
       objectReference: {fileID: 406601650305159510}
+    - target: {fileID: 3321918330096788526, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_isMurrayCircle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3321918330096788526, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_outputLeftObject
       value: 
       objectReference: {fileID: 7697121906538847208}
     - target: {fileID: 4363616519171097674, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_isMurrayCircle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363616519171097674, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_outputLeftObject
       value: 
       objectReference: {fileID: 3967417363219180068}
+    - target: {fileID: 4571358690035741490, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_isMurrayCircle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4571358690035741490, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_outputLeftObject
       value: 
@@ -1343,13 +1363,25 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5519183885531950953, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_isMurrayCircle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519183885531950953, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_outputLeftObject
       value: 
       objectReference: {fileID: 4982725505929121628}
     - target: {fileID: 6968969748087054055, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_isMurrayCircle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968969748087054055, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
       propertyPath: m_outputLeftObject
       value: 
       objectReference: {fileID: 5631836671193129095}
+    - target: {fileID: 7044706928079297559, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
+      propertyPath: m_isMurrayCircle
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2102ad9bd24838c4cabd4b3cd4bd9f9d, type: 3}
 --- !u!114 &1948561981935979090 stripped
@@ -2133,7 +2165,7 @@ PrefabInstance:
     - target: {fileID: 6697499504926895559, guid: 57a9e42ffa30f064bb80257fbd6114e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cd99683f8e3e201478f9832919a41744, type: 2}
+      objectReference: {fileID: 2100000, guid: 6d76b26b126a2d946b2129f571d77ca3, type: 2}
     - target: {fileID: 8984096836976009120, guid: 57a9e42ffa30f064bb80257fbd6114e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
