@@ -1919,6 +1919,34 @@ PrefabInstance:
       propertyPath: m_light
       value: 
       objectReference: {fileID: 552977634593741669}
+    - target: {fileID: 6529808554580052971, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_spritesFirst
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529808554580052971, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_interactSprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529808554580052971, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_interactStrings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529808554580052971, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_interactSprites.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529808554580052971, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_interactSprites.Array.data[1]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529808554580052971, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_interactStrings.Array.data[0]
+      value: '/ '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529808554580052971, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_interactStrings.Array.data[1]
+      value: Place Sword
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
 --- !u!4 &3597830452395744783 stripped
