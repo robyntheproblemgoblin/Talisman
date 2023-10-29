@@ -74,8 +74,8 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        m_master.setVolume(m_masterVolume);        
-        m_music.setVolume(m_musicVolume);        
+        m_master.setVolume(m_masterVolume);
+        m_music.setVolume(m_musicVolume);
         m_dialogue.setVolume(m_dialogueVolume);
         m_sFX.setVolume(m_sFXVolume);
     }
@@ -153,18 +153,15 @@ public class AudioManager : MonoBehaviour
 
             m_game.m_menuManager.SetSubtitle(reference.m_sequence[index].m_subtitle);
             index++;
-            if (index >= reference.m_sequence.Count)
+            while (current != FMOD.Studio.PLAYBACK_STATE.STOPPED)
+            {
+                m_dialogueInstance.getPlaybackState(out current);
+                await UniTask.Yield();
+            }
+            if (index > reference.m_sequence.Count - 1)
             {
                 m_playLines = false;
                 StopInteractions(m_dialogueInstance).Forget();
-            }
-            else
-            {
-                while (current != FMOD.Studio.PLAYBACK_STATE.STOPPED)
-                {
-                    m_dialogueInstance.getPlaybackState(out current);
-                    await UniTask.Yield();
-                }
             }
         }
         m_nextCinematic = false;
