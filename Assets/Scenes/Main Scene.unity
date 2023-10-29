@@ -47483,6 +47483,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2053235415 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6263151574975306867, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+  m_PrefabInstance: {fileID: 495561488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2087160781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4254742806289531893, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
@@ -47881,8 +47886,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 92241558}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_moveToCinematicSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_cinematicPoints.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_cinematicTriggers.Array.size
@@ -47890,6 +47899,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_cinematicPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 2053235415}
+    - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_cinematicPoints.Array.data[1]
       value: 
       objectReference: {fileID: 2087160781}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
