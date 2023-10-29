@@ -10932,6 +10932,7 @@ MonoBehaviour:
   m_talismanFadeWhite: 1
   m_talismanFadeBlack: 1
   m_talismanFadeClear: 1
+  m_moveToCinematicSpeed: 1
   m_respawnPoint: {fileID: 0}
   m_respawnHealth: 30
   m_respawnMana: 30
@@ -10947,10 +10948,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424300d9a47c76e478c00b2eff9db8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicVolume: 0.5
-  SFXVolume: 0.5
-  DialogueVolume: 0.5
-  MasterVolume: 1
+  m_musicVolume: 0.5
+  m_sFXVolume: 0.5
+  m_dialogueVolume: 0.5
+  m_masterVolume: 1
   m_menuMusic:
     Guid:
       Data1: 1079122602
