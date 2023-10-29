@@ -283,6 +283,11 @@ public class AudioManager : MonoBehaviour
         else if (m_cinematics == 1)
         {
             PlayDialogue(m_teleport);
+            while (m_nextCinematic)
+            {
+                await UniTask.Yield();
+            }
+            m_game.m_player.FinishCinematic();
         }
         else if (m_cinematics == 2)
         {

@@ -485,7 +485,7 @@ public class PlayerController : MonoBehaviour, IBeing
             }
             else if (interactable != null)
             {
-                m_game.FirstCinematic();
+                m_game.FirstCinematic().Forget();
             }
             else if (manaPool != null)
             {

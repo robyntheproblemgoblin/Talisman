@@ -12222,6 +12222,10 @@ PrefabInstance:
       value: -0.39903387
       objectReference: {fileID: 0}
     - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_attackTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_flameDamage
       value: 5
       objectReference: {fileID: 0}
@@ -12784,6 +12788,10 @@ PrefabInstance:
     - target: {fileID: 131620335479255227, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.21602733
+      objectReference: {fileID: 0}
+    - target: {fileID: 135879148457690776, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 190529121652985772, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13559,6 +13567,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4229393180081515242, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
       propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254742806289531893, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254742806289531893, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9990001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254742806289531893, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -25.10479
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254742806289531893, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254742806289531893, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254742806289531893, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4262101111165271546, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
@@ -14455,6 +14487,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7640668144278292964, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
       propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664745236838970877, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7737007666990966334, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
@@ -34640,7 +34676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 873802937488174098, guid: 31ecfbbcf96200c41bff6894658ca8b4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7731344162451681701, guid: 31ecfbbcf96200c41bff6894658ca8b4, type: 3}
       propertyPath: m_RootOrder
@@ -47483,6 +47519,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2053235415 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6263151574975306867, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+  m_PrefabInstance: {fileID: 495561488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2087160781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4254742806289531893, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
@@ -47881,8 +47922,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 92241558}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_moveToCinematicSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_cinematicPoints.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_cinematicTriggers.Array.size
@@ -47890,6 +47935,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_cinematicPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 2053235415}
+    - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_cinematicPoints.Array.data[1]
       value: 
       objectReference: {fileID: 2087160781}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
@@ -47941,32 +47990,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
-      propertyPath: m_menuMusic.Path
-      value: event:/Music/Music
-      objectReference: {fileID: 0}
-    - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_dialogues.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_menuClips.Array.size
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
-      propertyPath: m_menuMusic.Guid.Data1
-      value: 1079122602
-      objectReference: {fileID: 0}
-    - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
-      propertyPath: m_menuMusic.Guid.Data2
-      value: 1226601145
-      objectReference: {fileID: 0}
-    - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
-      propertyPath: m_menuMusic.Guid.Data3
-      value: 21221278
-      objectReference: {fileID: 0}
-    - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
-      propertyPath: m_menuMusic.Guid.Data4
-      value: 305690239
       objectReference: {fileID: 0}
     - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_dialogues.Array.data[0]
