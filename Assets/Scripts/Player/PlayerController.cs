@@ -86,6 +86,11 @@ public class PlayerController : MonoBehaviour, IBeing
     public bool m_stopInteracts = false;
     #endregion
 
+    #region SFX
+    [Space(10), Header("Sound Effects"), Space(5)]
+    public FMODUnity.EventReference m_weaponHit;
+    #endregion
+
     #region Unity Methods
     private void Awake()
     {
@@ -183,6 +188,7 @@ public class PlayerController : MonoBehaviour, IBeing
             Enemy e = hit.gameObject.GetComponentInParent<Enemy>();
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {
+                m_game.m_audioManager.PlayOneShot(m_weaponHit, hit.ClosestPoint(transform.position));
                 e.m_swordCollider.enabled = false;
                 TakeDamage(e.m_damage);
             }
