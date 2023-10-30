@@ -997,18 +997,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4744273483968472071}
     m_Modifications:
-    - target: {fileID: 1659204239206607576, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_Intensity
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1659204239206607576, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_Shadows.m_Type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1659204239206607576, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_Shadows.m_Strength
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 1910163346137811108, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
       propertyPath: m_Name
       value: PFB_Talisman_Roof_Light
@@ -1023,7 +1011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3027509344994182793, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.31
+      value: 7.199
       objectReference: {fileID: 0}
     - target: {fileID: 3027509344994182793, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1056,42 +1044,6 @@ PrefabInstance:
     - target: {fileID: 3027509344994182793, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3731354971803948156, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 3950328712416974137, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_Color.b
-      value: 0.2763439
-      objectReference: {fileID: 0}
-    - target: {fileID: 3950328712416974137, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_Color.g
-      value: 0.4201191
-      objectReference: {fileID: 0}
-    - target: {fileID: 3950328712416974137, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_Color.r
-      value: 0.509434
-      objectReference: {fileID: 0}
-    - target: {fileID: 3950328712416974137, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_Intensity
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5404386590753556829, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.42999983
-      objectReference: {fileID: 0}
-    - target: {fileID: 5404386590753556829, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.8038808
-      objectReference: {fileID: 0}
-    - target: {fileID: 5404386590753556829, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.59479046
-      objectReference: {fileID: 0}
-    - target: {fileID: 5404386590753556829, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 72.995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9ab8c5f2b70fd4c8711eb373236e10, type: 3}
