@@ -141,14 +141,37 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOn:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOff:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowFail:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_bridge: {fileID: 0}
   m_speed: 0.25
   m_rewindSpeed: 0.25
@@ -158,6 +181,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1 &537947467216032246 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 508907569071286709, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -182,14 +209,37 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOn:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOff:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowFail:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_bridge: {fileID: 0}
   m_speed: 0.25
   m_rewindSpeed: 0.25
@@ -199,6 +249,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 1
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1 &1647263244465088491 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1638023641090088872, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -223,14 +277,37 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOn:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOff:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowFail:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_bridge: {fileID: 0}
   m_speed: 9999999
   m_rewindSpeed: 9999999
@@ -240,6 +317,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1 &2419812875942761600 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6776850780972913469, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -264,14 +345,37 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOn:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOff:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowFail:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_bridge: {fileID: 0}
   m_speed: 9999999
   m_rewindSpeed: 9999999
@@ -281,6 +385,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1 &6271281446938890229 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2923049617929947210, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -305,14 +413,37 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOn:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOff:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowFail:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_bridge: {fileID: 0}
   m_speed: 0.25
   m_rewindSpeed: 0.25
@@ -322,6 +453,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1 &7382802671976580060 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1867912983539876961, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -346,14 +481,37 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOn:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOff:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowFail:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_bridge: {fileID: 0}
   m_speed: 0.25
   m_rewindSpeed: 0.25
@@ -363,6 +521,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 1
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1 &7935959577113099821 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7945789911998957166, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -387,14 +549,37 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOn:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOff:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowFail:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_bridge: {fileID: 0}
   m_speed: 9999999
   m_rewindSpeed: 9999999
@@ -404,6 +589,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1 &8262157875505726704 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -950760676235871053, guid: 2b5700f0230ac6c40bc1169a271c2862, type: 3}
@@ -428,14 +617,37 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOn:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOff:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowFail:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_bridge: {fileID: 0}
   m_speed: 9999999
   m_rewindSpeed: 9999999
@@ -445,3 +657,7 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0

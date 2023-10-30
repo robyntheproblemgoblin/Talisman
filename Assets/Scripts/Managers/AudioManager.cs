@@ -336,7 +336,7 @@ public class AudioManager : MonoBehaviour
 
     public void OnMenuSelect()
     {
-        PlayOneShot(m_selectedButton, m_game.m_player.gameObject.transform.position);
+      //  PlayOneShot(m_selectedButton, m_game.m_player.gameObject.transform.position);
     }
 
     public void OnMenuSlider()
