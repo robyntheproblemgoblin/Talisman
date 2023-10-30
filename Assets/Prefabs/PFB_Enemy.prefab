@@ -83,6 +83,42 @@ MonoBehaviour:
   m_activator: {fileID: 0}
   m_damage: 5
   m_swordCollider: {fileID: 6859884962832234199}
+  m_stoneAwake:
+    Guid:
+      Data1: -1836169347
+      Data2: 1165261460
+      Data3: -820142976
+      Data4: 496131837
+    Path: event:/Player/SFX_Player_Footstep_Ground_01
+  m_armourAwake:
+    Guid:
+      Data1: -1836169347
+      Data2: 1165261460
+      Data3: -820142976
+      Data4: 496131837
+    Path: event:/Player/SFX_Player_Footstep_Ground_01
+  m_gruntsAwake: []
+  m_takeDamageSound:
+    Guid:
+      Data1: -1836169347
+      Data2: 1165261460
+      Data3: -820142976
+      Data4: 496131837
+    Path: event:/Player/SFX_Player_Footstep_Ground_01
+  m_deathSound:
+    Guid:
+      Data1: -1836169347
+      Data2: 1165261460
+      Data3: -820142976
+      Data4: 496131837
+    Path: event:/Player/SFX_Player_Footstep_Ground_01
+  m_playerHitEnemySound:
+    Guid:
+      Data1: -194228582
+      Data2: 1254212910
+      Data3: 1934779526
+      Data4: -274065503
+    Path: event:/Player/SFX_Player_Footstep_Stone_01
 --- !u!195 &4667414372420083824
 NavMeshAgent:
   m_ObjectHideFlags: 0
