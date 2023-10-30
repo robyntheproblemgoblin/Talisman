@@ -15,6 +15,7 @@ namespace Behaviours
             base.BeginNode();
             m_animator = m_input.m_go.GetComponentInChildren<Animator>();
             m_animator.SetTrigger(m_attack.m_attackHandle);
+            GameManager.Instance.m_audioManager.PlayOneShot(m_attack.m_audioReference, m_animator.gameObject.transform.position);
             m_input.m_aIMovement.m_swordCollider.enabled = true;
             m_startTime = Time.time;
 

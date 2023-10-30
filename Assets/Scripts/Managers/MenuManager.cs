@@ -127,7 +127,7 @@ public class MenuManager : MonoBehaviour
         m_falseQuit.onClick.AddListener(delegate () { QuitGame(); });
 
         //Main Menu Setup
-        m_newGame.onClick.AddListener(delegate () { StartGame(); });
+        m_newGame.onClick.AddListener(delegate () { StartGame(); });                
         m_menuOptions.onClick.AddListener(delegate () { Options(); });
         m_controlsMain.onClick.AddListener(delegate () { ControlScreen(); });
         m_credits.onClick.AddListener(delegate () { Credits(); });
@@ -553,6 +553,7 @@ public class MenuManager : MonoBehaviour
         m_health.value = m_player.m_currentHealth;
         if (m_health.value <= 0)
         {
+            m_game.m_audioManager.PlayOneShot(m_game.m_player.m_deathSound, m_game.m_player.gameObject.transform.position);
             m_game.UpdateGameState(GameState.DEATH);
         }
     }
@@ -576,6 +577,7 @@ public class MenuManager : MonoBehaviour
 
     void SetDeathScreen()
     {
+
         m_respawnButton.gameObject.SetActive(true);
         m_deathQuit.gameObject.SetActive(true);
         m_eventSystem.SetSelectedGameObject(m_respawnButton.gameObject);

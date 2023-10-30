@@ -9,5 +9,6 @@ namespace AISystem.Data
         public float m_attackDistance;
         public float m_attackDuration;
         public bool m_disableRootMotion;
+        public FMODUnity.EventReference m_audioReference;
     }
 }

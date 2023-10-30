@@ -414,6 +414,7 @@ public class RotateCircularMana : Puzzle
                 {
                     if (m_outputLeftObject != null)
                     {
+                        GameManager.Instance.m_audioManager.PlayOneShot(m_outputLeftObject.m_manaFlowOn, m_outputLeftObject.gameObject.transform.position);
                         m_outputLeftObject.m_updateMana = true;
                     }
                 }
@@ -422,18 +423,24 @@ public class RotateCircularMana : Puzzle
             {
                 if (m_outputLeftObject != null && (m_outputLeftObject.m_input == Positions.ONE || m_outputLeftObject.m_output == Positions.ONE))
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_outputLeftObject.m_manaFlowOn, m_outputLeftObject.gameObject.transform.position);
                     m_outputLeftObject.m_updateMana = true;
                 }
                 else
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowFail, transform.position);
+
                     //Activate futz graphic
                 }
                 if (m_outputRightObject != null && (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE))
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_outputRightObject.m_manaFlowOn, m_outputRightObject.gameObject.transform.position);
                     m_outputRightObject.m_updateMana = true;
                 }
                 else
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowFail, transform.position);
+
                     //Activate futz graphic                    
                 }
             }
@@ -444,10 +451,13 @@ public class RotateCircularMana : Puzzle
             {
                 if (m_outputLeftObject != null && (m_outputLeftObject.m_input == Positions.ONE || m_outputLeftObject.m_output == Positions.ONE))
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_outputLeftObject.m_manaFlowOn, m_outputLeftObject.gameObject.transform.position);
                     m_outputLeftObject.m_updateMana = true;
                 }
                 else
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowFail, transform.position);
+
                     //Activate futz graphic
                 }
             }
@@ -455,10 +465,13 @@ public class RotateCircularMana : Puzzle
             {
                 if (m_outputRightObject != null && (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE))
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_outputRightObject.m_manaFlowOn, m_outputRightObject.gameObject.transform.position);
                     m_outputRightObject.m_updateMana = true;
                 }
                 else
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowFail, transform.position);
+
                     //Activate futz graphic                    
                 }
             }
@@ -469,10 +482,13 @@ public class RotateCircularMana : Puzzle
             {
                 if (m_outputRightObject != null && (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE))
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_outputRightObject.m_manaFlowOn, m_outputRightObject.gameObject.transform.position);
                     m_outputRightObject.m_updateMana = true;
                 }
                 else
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowFail, transform.position);
+
                     //Activate futz graphic                    
                 }
             }
@@ -480,10 +496,13 @@ public class RotateCircularMana : Puzzle
             {
                 if (m_outputLeftObject != null && (m_outputLeftObject.m_input == Positions.ONE || m_outputLeftObject.m_output == Positions.ONE))
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_outputLeftObject.m_manaFlowOn, m_outputLeftObject.gameObject.transform.position);
                     m_outputLeftObject.m_updateMana = true;
                 }
                 else
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowFail, transform.position);
+
                     //Activate futz graphic                    
                 }
             }
@@ -504,6 +523,7 @@ public class RotateCircularMana : Puzzle
                     }
                     else
                     {
+                        GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
                         m_rewindMana = true;
                         m_updateMana = true;
                     }
@@ -513,6 +533,7 @@ public class RotateCircularMana : Puzzle
                     if (m_outputLeftObject != null && m_outputLeftObject.m_manaValue <= 0 &&
                         m_outputRightObject != null && m_outputRightObject.m_manaValue <= 0)
                     {
+                        GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
                         m_rewindMana = true;
                         m_updateMana = true;
                     }
@@ -539,6 +560,7 @@ public class RotateCircularMana : Puzzle
                     }
                     else
                     {
+                        GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
                         m_rewindMana = true;
                         m_updateMana = true;
                     }
@@ -551,6 +573,7 @@ public class RotateCircularMana : Puzzle
                     }
                     else
                     {
+                        GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
                         m_rewindMana = true;
                         m_updateMana = true;
                     }
@@ -566,6 +589,7 @@ public class RotateCircularMana : Puzzle
                     }
                     else
                     {
+                        GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
                         m_rewindMana = true;
                         m_updateMana = true;
                     }
@@ -578,6 +602,7 @@ public class RotateCircularMana : Puzzle
                     }
                     else
                     {
+                        GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
                         m_rewindMana = true;
                         m_updateMana = true;
                     }
