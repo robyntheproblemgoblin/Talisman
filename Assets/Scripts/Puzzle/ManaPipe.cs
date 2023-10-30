@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks.Triggers;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class ManaPipe : Puzzle
     public Puzzle m_outputLeftObject;
     public Puzzle m_outputRightObject;
 
-    bool m_twoOutputs = false;    
+    bool m_twoOutputs = false;
 
     public ManaChannel m_channel;
     public ManaDirection m_direction;
@@ -41,7 +42,7 @@ public class ManaPipe : Puzzle
         if (m_outputLeftObject != null && m_outputRightObject != null)
         {
             m_twoOutputs = true;
-        }       
+        }
 
         if (m_channel == ManaChannel.ONE)
         {
@@ -146,11 +147,11 @@ public class ManaPipe : Puzzle
                     m_pipe.material.SetFloat(m_shader, math.remap(1, 0, 0, -1, m_manaValue));
                 }
 
-                if(m_murrayPuzzleOut)
+                if (m_murrayPuzzleOut)
                 {
                     GameManager.Instance.m_audioManager.PlayMurrayPuzzleRoom();
                 }
-                else if(m_rotationPuzzleOut)
+                else if (m_rotationPuzzleOut)
                 {
                     GameManager.Instance.m_audioManager.PlayRoationPuzzleRoom();
 
@@ -167,17 +168,20 @@ public class ManaPipe : Puzzle
             if (m_outputLeftObject.m_input == Positions.ONE || m_outputLeftObject.m_output == Positions.ONE)
             {
                 m_outputLeftObject.m_updateMana = true;
+                GameManager.Instance.m_audioManager.PlayOneShot(m_outputLeftObject.m_manaFlowOn, m_outputLeftObject.gameObject.transform.position);
             }
         }
         if (m_outputRightObject != null)
         {
             if (m_outputRightObject.m_input == Positions.ONE || m_outputRightObject.m_output == Positions.ONE)
             {
+                GameManager.Instance.m_audioManager.PlayOneShot(m_outputRightObject.m_manaFlowOn, m_outputRightObject.gameObject.transform.position);
                 m_outputRightObject.m_updateMana = true;
             }
         }
         else
         {
+            GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowFail, transform.position);
             // Activate futz graphic
         }
     }
@@ -210,6 +214,7 @@ public class ManaPipe : Puzzle
                 {
                     m_rewindMana = true;
                     m_updateMana = true;
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
                 }
                 else
                 {
@@ -229,12 +234,14 @@ public class ManaPipe : Puzzle
             }
             else
             {
+                GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
                 m_rewindMana = true;
                 m_updateMana = true;
             }
         }
         else
         {
+            GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
             m_rewindMana = true;
             m_updateMana = true;
         }

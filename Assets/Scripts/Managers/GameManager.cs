@@ -183,6 +183,7 @@ public class GameManager : MonoBehaviour
         m_player.m_animator.SetTrigger("SwordCinematic");
         m_audioManager.PlayCinematic().Forget();
 
+
         while (m_menuManager.m_fadeBlack.color.a >= 0)
         {
             b = new Color(1, 1, 1, m_menuManager.m_fadeBlack.color.a - Time.deltaTime * m_talismanFadeClear);

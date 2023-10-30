@@ -10,6 +10,8 @@ public class Bridge : MonoBehaviour
     MeshRenderer m_mesh;
     float m_alpha;
     public GameObject m_colliders;
+    public FMODUnity.EventReference m_appearing;
+    public FMODUnity.EventReference m_disappearing;
 
     private void Start()
     {
@@ -31,9 +33,17 @@ public class Bridge : MonoBehaviour
         {
             if (p.m_unlocked == false)
             {
+                if (m_alpha == 1f)
+                {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_disappearing, gameObject.transform.position);
+                }
                 SetBridgeState(false);
                 return;
             }
+        }
+        if (m_alpha == 0f)
+        {
+            GameManager.Instance.m_audioManager.PlayOneShot(m_appearing, gameObject.transform.position);
         }
         SetBridgeState(true);
     }

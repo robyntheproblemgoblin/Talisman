@@ -5,6 +5,7 @@ using AISystem;
 using AISystem.Contracts;
 using Cysharp.Threading.Tasks;
 using System;
+using FMODUnity;
 
 public class PlayerController : MonoBehaviour, IBeing
 {
@@ -84,6 +85,21 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_interactionDistance;
     [HideInInspector]
     public bool m_stopInteracts = false;
+    #endregion
+
+
+
+    #region SFX
+    [Space(10), Header("Sound Effects"), Space(5)]
+    public FMODUnity.EventReference m_groundedSFX;
+    bool m_jumped = false;
+    public FMODUnity.EventReference m_weaponHit;
+    public List<FMODUnity.EventReference> m_playerGrunts;
+    public FMODUnity.EventReference m_healingSound;
+    FMOD.Studio.EventInstance m_healingInstance;
+    public FMODUnity.EventReference m_attackSwing;
+    public FMODUnity.EventReference m_blockedSound;
+    public FMODUnity.EventReference m_deathSound;
     #endregion
 
     #region Unity Methods
@@ -183,11 +199,13 @@ public class PlayerController : MonoBehaviour, IBeing
             Enemy e = hit.gameObject.GetComponentInParent<Enemy>();
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {
+                m_game.m_audioManager.PlayOneShot(m_weaponHit, hit.ClosestPoint(transform.position));
                 e.m_swordCollider.enabled = false;
                 TakeDamage(e.m_damage);
             }
             else if (e != null && HitAlready(e.gameObject.name) == false && m_isBlocking)
             {
+                m_game.m_audioManager.PlayOneShot(m_blockedSound, gameObject.transform.position);
                 StopBlock();
                 e.m_swordCollider.enabled = false;
                 e.Interrupt();
@@ -205,6 +223,7 @@ public class PlayerController : MonoBehaviour, IBeing
         float speedY = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * move.x : 0;
         float yDirection = m_moveDirection.y;
         m_moveDirection = (forward * speedX) + (right * speedY);
+        bool wasJumping = m_characterController.isGrounded;
 
         if (m_inputControl.Player_Map.Jump.IsPressed() && m_characterController.isGrounded)
         {
@@ -217,7 +236,12 @@ public class PlayerController : MonoBehaviour, IBeing
 
         if (!m_characterController.isGrounded)
         {
-            m_moveDirection.y -= (m_gravity * m_gravityMultiplier) * Time.deltaTime;
+            m_moveDirection.y -= (m_gravity * m_gravityMultiplier) * Time.deltaTime;            
+        }
+
+        if(m_characterController.isGrounded && wasJumping)
+        {
+            m_game.m_audioManager.PlayOneShot(m_groundedSFX, transform.position - Vector3.down);            
         }
 
         UpdateLeanAnimation(speedX, speedY);
@@ -255,7 +279,7 @@ public class PlayerController : MonoBehaviour, IBeing
     #region Health Methods
     public void TakeDamage(float damage)
     {
-        m_currentHealth -= damage;
+        m_currentHealth -= damage;        
         m_game.m_menuManager.UpdateHealth();
     }
 
@@ -296,6 +320,10 @@ public class PlayerController : MonoBehaviour, IBeing
             return;
         }
         m_talismanState.StopState();
+        m_healingInstance = RuntimeManager.CreateInstance(m_healingSound);
+        RuntimeManager.AttachInstanceToGameObject(m_healingInstance, m_game.m_player.gameObject.transform);
+        m_healingInstance.start();
+        m_healingInstance.release();
         m_talismanState = m_healing;
         m_talismanState.StartState(0);
     }
@@ -306,6 +334,7 @@ public class PlayerController : MonoBehaviour, IBeing
             return;
         }
         m_talismanState.StopState();
+        m_healingInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         m_talismanState = m_idle;
         m_talismanState.StartState(0);
     }
@@ -377,6 +406,7 @@ public class PlayerController : MonoBehaviour, IBeing
             m_swordCollider.enabled = true;
             ResetAttack().Forget();
             m_animator.SetTrigger("Attack" + m_currentAttack);
+            m_game.m_audioManager.PlayOneShot(m_attackSwing, m_position);
             m_currentAttack++;
             if (m_currentAttack == 4)
             {
@@ -481,6 +511,8 @@ public class PlayerController : MonoBehaviour, IBeing
             ManaPool manaPool = hit.transform.gameObject.GetComponentInParent<ManaPool>();
             if (puzzle != null)
             {
+                int random = UnityEngine.Random.Range(0, m_playerGrunts.Count - 1);
+                m_game.m_audioManager.PlayOneShot(m_playerGrunts[random], gameObject.transform.position);
                 puzzle.RotatePuzzle();
             }
             else if (interactable != null)
