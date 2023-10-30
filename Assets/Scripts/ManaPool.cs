@@ -8,6 +8,10 @@ public class ManaPool : MonoBehaviour
     public Light m_light;
     float m_intensity;
     public float m_lightDimSpeed = 1f;
+    public float m_waterDimSpeed = 1f;
+    float m_emissiveMax;
+    float m_currentEmissive;
+    public MeshRenderer m_waterMesh;
 
     public bool m_spritesFirst;
     public List<string> m_interactStrings = new List<string>();
@@ -26,6 +30,8 @@ public class ManaPool : MonoBehaviour
     private void Start()
     {
         m_intensity = m_light.intensity;
+        m_emissiveMax = m_waterMesh.material.GetFloat("_EmissivStrength");
+        m_currentEmissive = m_emissiveMax;
         if(!m_isEnd)
         {
             m_loopInstance = RuntimeManager.CreateInstance(m_loopSound);
@@ -37,14 +43,24 @@ public class ManaPool : MonoBehaviour
 
     void Update()
     {
-        float step = m_lightDimSpeed * Time.deltaTime;
+        float lightStep = m_lightDimSpeed * Time.deltaTime;
+        float waterStep = m_waterDimSpeed * Time.deltaTime;
         if(m_isActive && m_light.intensity <= m_intensity)
         {
-            m_light.intensity += step;
+            m_light.intensity += lightStep;
         }
         else if (!m_isActive && m_light.intensity >= 0)
         {
-            m_light.intensity -= step;
+            m_light.intensity -= lightStep;
+        }
+        
+        if (m_isActive && m_waterMesh.material.GetFloat("_EmissivStrength") <= m_emissiveMax)
+        {
+            m_waterMesh.material.SetFloat("_EmissiveStrength", m_currentEmissive += waterStep);
+        }
+        else if(!m_isActive && m_waterMesh.material.GetFloat("_EmissivStrength") >= 0)
+        {
+            m_waterMesh.material.SetFloat("_EmissiveStrength", m_currentEmissive -= waterStep);
         }
     }
 
