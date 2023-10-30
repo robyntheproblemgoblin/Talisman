@@ -1919,6 +1919,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_Altar
       objectReference: {fileID: 0}
+    - target: {fileID: 4532536383192096268, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2258698a4a27c8145bb0c4b2e5744785, type: 2}
+    - target: {fileID: 4532536383192096268, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 380b479cee0e3f94892b1269effe4cc4, type: 2}
+    - target: {fileID: 4532536383192096268, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 380b479cee0e3f94892b1269effe4cc4, type: 2}
+    - target: {fileID: 4532536383192096268, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 380b479cee0e3f94892b1269effe4cc4, type: 2}
+    - target: {fileID: 4532536383192096268, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ab4c256e8bce8a438dd29a4b04efc3e, type: 2}
     - target: {fileID: 6529808554580052971, guid: 984045b9bdf12f74fbafdb27e748c1ae, type: 3}
       propertyPath: m_isEnd
       value: 1
@@ -2035,6 +2055,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_Banner_01
       objectReference: {fileID: 0}
+    - target: {fileID: 3815406483897128644, guid: 49038b2bf3511704f8f2968962e633c1, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2258698a4a27c8145bb0c4b2e5744785, type: 2}
     - target: {fileID: 5039874695228567585, guid: 49038b2bf3511704f8f2968962e633c1, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -2531,6 +2555,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_Banner_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3815406483897128644, guid: 49038b2bf3511704f8f2968962e633c1, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2258698a4a27c8145bb0c4b2e5744785, type: 2}
     - target: {fileID: 5039874695228567585, guid: 49038b2bf3511704f8f2968962e633c1, type: 3}
       propertyPath: m_RootOrder
       value: 16
