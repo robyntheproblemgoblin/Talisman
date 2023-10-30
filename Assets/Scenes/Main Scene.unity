@@ -14,14 +14,14 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.3529281, g: 0.5785045, b: 0.7264151, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
-  m_AmbientEquatorColor: {r: 0.1294945, g: 0.20625669, b: 0.2830189, a: 1}
+  m_AmbientSkyColor: {r: 0.41233534, g: 0.75745803, b: 0.7735849, a: 1}
+  m_AmbientEquatorColor: {r: 0.12726949, g: 0.3411011, b: 0.49056602, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0.048633743, b: 0.122641504, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
@@ -315,11 +315,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &140712277 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 1859683892467397277, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
-  m_PrefabInstance: {fileID: 3831862568501436957}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &161459808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47615,7 +47610,7 @@ PrefabInstance:
     - target: {fileID: 1639449157016440609, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
       propertyPath: m_light
       value: 
-      objectReference: {fileID: 140712277}
+      objectReference: {fileID: 0}
     - target: {fileID: 1639449157016440609, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
       propertyPath: m_inDoor
       value: 
