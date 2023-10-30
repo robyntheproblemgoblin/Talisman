@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_manaAmount: 30
-  m_light: {fileID: 5166593629595311091}
+  m_light: {fileID: 0}
   m_lightDimSpeed: 1
   m_spritesFirst: 1
   m_interactStrings:
@@ -218,20 +218,6 @@ MonoBehaviour:
   m_interactSprites: 0600000007000000
   m_isEnd: 0
   m_doorList: []
-  m_loopSound:
-    Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
-  m_interactSound:
-    Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
 --- !u!1001 &293075249470979267
 PrefabInstance:
   m_ObjectHideFlags: 0

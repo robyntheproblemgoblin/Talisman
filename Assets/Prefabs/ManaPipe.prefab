@@ -133,50 +133,16 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_spritesFirst: 1
-  m_interactStrings: []
-  m_interactSprites: 
-  m_interact:
-    Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
-  m_manaFlowOn:
-    Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
-  m_manaFlowOff:
-    Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
-  m_manaFlowFail:
-    Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
+  m_interactMessage: Interact
   m_bridge: {fileID: 0}
   m_speed: 1
   m_rewindSpeed: 1
   m_outputLeftObject: {fileID: 0}
   m_outputRightObject: {fileID: 0}
+  m_black: {fileID: 0}
+  m_white: {fileID: 0}
   m_channel: 0
   m_direction: 0
-  m_murrayPuzzleOut: 0
-  m_rotationPuzzleOut: 0
-  m_offColour: {r: 0, g: 0, b: 0, a: 0}
-  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
-  m_emission: 0
-  m_isMurrayCircle: 0
 --- !u!4 &2037118866631186103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2eef288b95fd9e48a338706c5fda86a, type: 3}

@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 77fcadd22a313db45b7d7095df0de4f9, type: 2}
     - target: {fileID: 919132149155446097, guid: 4620c7a92baf2bb4f8fedaa576bffce6, type: 3}
       propertyPath: m_Name
-      value: PuzzleCircleThreePipe
+      value: PuzzleCircle
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4620c7a92baf2bb4f8fedaa576bffce6, type: 3}
       propertyPath: m_Layer
@@ -208,44 +208,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_unlocked: 0
-  m_doors: []
+  m_door: {fileID: 0}
   m_updateMana: 0
   m_manaValue: 0
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_spritesFirst: 1
-  m_interactStrings: []
-  m_interactSprites: 
-  m_interact:
-    Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
-  m_manaFlowOn:
-    Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
-  m_manaFlowOff:
-    Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
-  m_manaFlowFail:
-    Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
-  m_bridge: {fileID: 0}
   m_isThreeWay: 0
   m_twoInputs: 0
   m_isLeftBent: 0
