@@ -12225,32 +12225,156 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_weaponHit.Path
+      value: event:/TempSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_deathSound.Path
+      value: event:/TempSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_attackSwing.Path
+      value: event:/TempSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_groundedSFX.Path
-      value: event:/Environment/SFX_Environment_Fire_Igniting
+      value: event:/TempSFX
       objectReference: {fileID: 0}
     - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_projectileDamage
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_blockedSound.Path
+      value: event:/TempSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_healingSound.Path
+      value: event:/TempSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_interactionDistance
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_weaponHit.Guid.Data1
+      value: 1359669497
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_weaponHit.Guid.Data2
+      value: 1296283916
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_weaponHit.Guid.Data3
+      value: 1178622085
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_weaponHit.Guid.Data4
+      value: -636398506
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_deathSound.Guid.Data1
+      value: 1359669497
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_deathSound.Guid.Data2
+      value: 1296283916
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_deathSound.Guid.Data3
+      value: 1178622085
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_deathSound.Guid.Data4
+      value: -636398506
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_attackSwing.Guid.Data1
+      value: 1359669497
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_attackSwing.Guid.Data2
+      value: 1296283916
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_attackSwing.Guid.Data3
+      value: 1178622085
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_attackSwing.Guid.Data4
+      value: -636398506
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_groundedSFX.Guid.Data1
-      value: -1277305656
+      value: 1359669497
       objectReference: {fileID: 0}
     - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_groundedSFX.Guid.Data2
-      value: 1084898644
+      value: 1296283916
       objectReference: {fileID: 0}
     - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_groundedSFX.Guid.Data3
-      value: -1631452531
+      value: 1178622085
       objectReference: {fileID: 0}
     - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_groundedSFX.Guid.Data4
-      value: 470947506
+      value: -636398506
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_blockedSound.Guid.Data1
+      value: 1359669497
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_blockedSound.Guid.Data2
+      value: 1296283916
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_blockedSound.Guid.Data3
+      value: 1178622085
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_blockedSound.Guid.Data4
+      value: -636398506
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_healingSound.Guid.Data1
+      value: 1359669497
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_healingSound.Guid.Data2
+      value: 1296283916
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_healingSound.Guid.Data3
+      value: 1178622085
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_healingSound.Guid.Data4
+      value: -636398506
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_playerGrunts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_playerGrunts.Array.data[0].Path
+      value: event:/TempSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_playerGrunts.Array.data[0].Guid.Data1
+      value: 1359669497
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_playerGrunts.Array.data[0].Guid.Data2
+      value: 1296283916
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_playerGrunts.Array.data[0].Guid.Data3
+      value: 1178622085
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030178515731363422, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
+      propertyPath: m_playerGrunts.Array.data[0].Guid.Data4
+      value: -636398506
       objectReference: {fileID: 0}
     - target: {fileID: 4048210942266416568, guid: 71953d5618182c146aff20f2fd606adf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -48054,10 +48178,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1990950167}
     - target: {fileID: 1639449157016440609, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
-      propertyPath: m_light
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1639449157016440609, guid: e4ba81b041bacb44fb2bd3547bb95437, type: 3}
       propertyPath: m_inDoor
       value: 
       objectReference: {fileID: 0}
@@ -49050,5 +49170,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7694664718049478914, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+    - {fileID: 8428628354628689244, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+    - {fileID: 4347728625119671674, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+    - {fileID: 3013935328708006389, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+    - {fileID: 24538718029907284, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
