@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,10 +18,21 @@ public class ManaPool : MonoBehaviour
 
     public List<Door> m_doorList = new List<Door>();
 
+    public FMODUnity.EventReference m_loopSound;
+    public FMODUnity.EventReference m_interactSound;
+    FMOD.Studio.EventInstance m_loopInstance;
+
 
     private void Start()
     {
         m_intensity = m_light.intensity;
+        if(!m_isEnd)
+        {
+            m_loopInstance = RuntimeManager.CreateInstance(m_loopSound);
+            RuntimeManager.AttachInstanceToGameObject(m_loopInstance, gameObject.transform);
+            m_loopInstance.start();
+            m_loopInstance.release();
+        }
     }
 
     void Update()
@@ -50,6 +62,7 @@ public class ManaPool : MonoBehaviour
         else if (m_isActive)
         {
             m_isActive = false;
+            GameManager.Instance.m_audioManager.PlayOneShot(m_interactSound, transform.position);
             pc.AddMana(m_manaAmount);
             if(m_isFirst)
             {

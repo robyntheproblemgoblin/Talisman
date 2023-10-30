@@ -130,6 +130,27 @@ MonoBehaviour:
       Data3: -108848218
       Data4: -1670031446
     Path: event:/Puzzle/SFX_Puzzle_Lever_01
+  m_manaFlowOn:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowOff:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_manaFlowFail:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_bridge: {fileID: 0}
   m_isOn: 0
   m_onAngle: {x: 35.25, y: 90, z: 0}

@@ -38,6 +38,14 @@ namespace AISystem
         Quaternion m_startRotation;
 
         SkinnedMeshRenderer m_mesh;
+
+        public FMODUnity.EventReference m_stoneAwake;
+        public FMODUnity.EventReference m_armourAwake;
+        public List<FMODUnity.EventReference> m_gruntsAwake;
+        public FMODUnity.EventReference m_takeDamageSound;
+        public FMODUnity.EventReference m_deathSound;
+        public FMODUnity.EventReference m_playerHitEnemySound;
+
         #endregion
 
         void Start()
@@ -72,7 +80,9 @@ namespace AISystem
            
             m_animator.enabled = false;
 
-            m_intelligience.SetStatue(true);
+            int grunt = UnityEngine.Random.Range(0, m_gruntsAwake.Count - 1);
+
+            m_intelligience.SetStatue(true, m_stoneAwake, m_armourAwake, m_gruntsAwake[grunt]);
             m_swordCollider.enabled = false;
         }
 
@@ -108,7 +118,7 @@ namespace AISystem
             m_animator.enabled = false;
             m_mesh.materials[0].SetFloat("_EmissiveFreq", 0);
             m_mesh.materials[1].SetFloat("_ArmorFade", 0);
-            m_intelligience.SetStatue(true);
+            m_intelligience.SetStatue(true, m_stoneAwake, m_armourAwake, m_gruntsAwake[0]);
         }
 
         public bool IsStatue()
@@ -118,7 +128,8 @@ namespace AISystem
 
         public void SetStatue(bool state)
         {
-            m_intelligience.SetStatue(state);
+            int grunt = UnityEngine.Random.Range(0, m_gruntsAwake.Count - 1);
+            m_intelligience.SetStatue(state, m_stoneAwake, m_armourAwake, m_gruntsAwake[grunt]);
         }
 
         public void Interrupt()
@@ -132,6 +143,7 @@ namespace AISystem
             m_swordCollider.enabled = false;
             m_currentHP -= damage;
             m_mesh.materials[1].SetFloat("_ArmorFade", m_currentHP/m_startingHP);
+            GameManager.Instance.m_audioManager.PlayOneShot(m_takeDamageSound, gameObject.transform.position);
             bool isDead = m_currentHP <= 0;
             if (isDead)
             {
@@ -152,6 +164,7 @@ namespace AISystem
             m_animator.SetTrigger("Die");
             m_rootMotionSync.SetDead();
             gameObject.GetComponent<Collider>().enabled = false;
+            GameManager.Instance.m_audioManager.PlayOneShot(m_deathSound, gameObject.transform.position);
             float time = Time.time;
             while (Time.time < time + 3)
             {
@@ -164,6 +177,7 @@ namespace AISystem
         {
             if (collision.collider.gameObject.layer == m_playerMask && !m_intelligience.IsStatue())
             {                
+                GameManager.Instance.m_audioManager.PlayOneShot(m_playerHitEnemySound, collision.gameObject.transform.position);
                 Vector3 direction = -collision.GetContact(0).normal;                
                 Vector2 angle = new Vector2(direction.x, direction.z);
                 TakeHit(m_playerController.m_meleeDamage, angle);

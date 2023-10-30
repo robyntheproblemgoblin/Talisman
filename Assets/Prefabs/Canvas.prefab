@@ -2480,6 +2480,7 @@ GameObject:
   - component: {fileID: 957244276265584563}
   - component: {fileID: 3700192230063788773}
   - component: {fileID: 6528843275141030689}
+  - component: {fileID: 4347728625119671674}
   m_Layer: 5
   m_Name: Controls Button
   m_TagString: Untagged
@@ -2590,6 +2591,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4347728625119671674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094383622509463405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ca2173cafb3a847b30a33f15c19a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2132438018161171904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,6 +2819,7 @@ GameObject:
   - component: {fileID: 6968535050044777707}
   - component: {fileID: 4747627722730964511}
   - component: {fileID: 5367326840436496010}
+  - component: {fileID: 3013935328708006389}
   m_Layer: 5
   m_Name: Menu Options Button
   m_TagString: Untagged
@@ -2916,6 +2930,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3013935328708006389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2284140024978608593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ca2173cafb3a847b30a33f15c19a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2335130809180484316
 GameObject:
   m_ObjectHideFlags: 0
@@ -3004,6 +3030,7 @@ GameObject:
   - component: {fileID: 8639578059147273007}
   - component: {fileID: 7064296858398546850}
   - component: {fileID: 6408217582561603033}
+  - component: {fileID: 7694664718049478914}
   m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
@@ -3114,6 +3141,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7694664718049478914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371763423767852661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ca2173cafb3a847b30a33f15c19a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2446716226876106477
 GameObject:
   m_ObjectHideFlags: 0
@@ -7006,6 +7045,7 @@ GameObject:
   - component: {fileID: 8131764218146488757}
   - component: {fileID: 7195115529585084297}
   - component: {fileID: 6058666133096251553}
+  - component: {fileID: 8428628354628689244}
   m_Layer: 5
   m_Name: Credits Button
   m_TagString: Untagged
@@ -7116,6 +7156,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8428628354628689244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5348649669693584141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ca2173cafb3a847b30a33f15c19a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5411610559838102636
 GameObject:
   m_ObjectHideFlags: 0
@@ -7990,6 +8042,7 @@ GameObject:
   - component: {fileID: 872402692861432040}
   - component: {fileID: 6504017947893747516}
   - component: {fileID: 8329856550697621549}
+  - component: {fileID: 24538718029907284}
   m_Layer: 5
   m_Name: New Game Button
   m_TagString: Untagged
@@ -8100,6 +8153,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &24538718029907284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979369961273355040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ca2173cafb3a847b30a33f15c19a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6020737008094960695
 GameObject:
   m_ObjectHideFlags: 0
@@ -10959,6 +11024,55 @@ MonoBehaviour:
       Data3: 21221278
       Data4: 305690239
     Path: event:/Music/Music
+  m_talisman:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_gameOver:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_navigatingMenu:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_selectedButton:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_menuBack:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_sliderSound:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_startGame:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_murrayHalfSolve: {fileID: 11400000, guid: 5a2fcd3746bbbe543a5eb1bfa72bbd3a, type: 2}
   m_murrayFullSolve: {fileID: 11400000, guid: 02b7daa07727ba9459fdff08db92b363, type: 2}
   m_murrayFirstFail: {fileID: 11400000, guid: 6bd8016ce2139044f8924085bc3e9c5b, type: 2}
