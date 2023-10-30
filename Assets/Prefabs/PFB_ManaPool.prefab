@@ -211,6 +211,8 @@ MonoBehaviour:
   m_manaAmount: 30
   m_light: {fileID: 5166593629595311091}
   m_lightDimSpeed: 1
+  m_waterDimSpeed: 1
+  m_waterMesh: {fileID: 1143426256599324221}
   m_spritesFirst: 1
   m_interactStrings:
   - '/ '
@@ -395,6 +397,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a319c082c83d34e4185649989df3ab37, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc74dd3300734f49ab463ad078f668f, type: 3}
+--- !u!23 &1143426256599324221 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5447461305351361134, guid: abc74dd3300734f49ab463ad078f668f, type: 3}
+  m_PrefabInstance: {fileID: 4303469624897158063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4337608211462937668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: abc74dd3300734f49ab463ad078f668f, type: 3}

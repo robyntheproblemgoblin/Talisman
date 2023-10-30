@@ -39,9 +39,7 @@ public class MenuManager : MonoBehaviour
     public GameObject m_optionsMenu;
     public GameObject m_controls;
     public GameObject m_deathScreen;
-    // TEMPORARY
-    public GameObject m_falseEnd;
-    public Button m_falseQuit;
+    public GameObject m_creditsScreen;    
     #endregion
 
     #region Main Menu Fields
@@ -109,6 +107,7 @@ public class MenuManager : MonoBehaviour
     #endregion
 
     //Credits
+    public Button m_creditsBack;
 
     GameManager m_game;
     public PlayerController m_player;
@@ -124,7 +123,6 @@ public class MenuManager : MonoBehaviour
         m_currentImages = m_keyboardImages;
 
         m_game.OnGameStateChanged += OnGameStateChanged;
-        m_falseQuit.onClick.AddListener(delegate () { QuitGame(); });
 
         //Main Menu Setup
         m_newGame.onClick.AddListener(delegate () { StartGame(); });                
@@ -138,6 +136,7 @@ public class MenuManager : MonoBehaviour
         m_mana.maxValue = m_player.m_maxMana;
 
         //Cinematic Setup
+        m_creditsBack.onClick.AddListener(delegate () { MainMenu(); });
 
         //Pause Menu Setup
         m_resume.onClick.AddListener(delegate () { Resume(); });
@@ -281,6 +280,7 @@ public class MenuManager : MonoBehaviour
         m_optionsMenu.SetActive(state == GameState.OPTIONS);
         m_controls.SetActive(state == GameState.CONTROLS);
         m_deathScreen.SetActive(state == GameState.DEATH);
+        m_creditsScreen.SetActive(state == GameState.CREDITS);
         if (state == GameState.CINEMATIC || state == GameState.GAME)
         {
             m_subtitles.gameObject.SetActive(true);
@@ -342,7 +342,7 @@ public class MenuManager : MonoBehaviour
     {
         m_game.UpdateGameState(GameState.CONTROLS);
         m_eventSystem.SetSelectedGameObject(m_controlsBackButton.gameObject);
-        m_controlsImage = m_currentImages.m_controlsDisplay;
+        m_controlsImage.sprite = m_currentImages.m_controlsDisplay;
     }
 
 
@@ -369,9 +369,7 @@ public class MenuManager : MonoBehaviour
                 break;
             case GameState.PAUSE:
                 Resume();
-                break;
-            case GameState.CINEMATIC:
-                break;
+                break;          
             default:
                 break;
         }
@@ -379,8 +377,8 @@ public class MenuManager : MonoBehaviour
 
     void Credits()
     {
-        GameManager.Instance.m_menuManager.m_falseEnd.SetActive(true);
-        GameManager.Instance.m_menuManager.m_eventSystem.SetSelectedGameObject(GameManager.Instance.m_menuManager.m_falseQuit.gameObject);
+        GameManager.Instance.m_menuManager.m_creditsScreen.SetActive(true);
+        GameManager.Instance.m_menuManager.m_eventSystem.SetSelectedGameObject(GameManager.Instance.m_menuManager.m_creditsBack.gameObject);
         GameManager.Instance.m_player.m_inputControl.Player_Map.Disable();
         GameManager.Instance.m_player.m_inputControl.UI.Enable();
         Cursor.lockState = CursorLockMode.Confined;
@@ -577,7 +575,6 @@ public class MenuManager : MonoBehaviour
 
     void SetDeathScreen()
     {
-
         m_respawnButton.gameObject.SetActive(true);
         m_deathQuit.gameObject.SetActive(true);
         m_eventSystem.SetSelectedGameObject(m_respawnButton.gameObject);
@@ -589,7 +586,14 @@ public class MenuManager : MonoBehaviour
         m_respawnButton.gameObject.SetActive(false);
         m_deathQuit.gameObject.SetActive(false);
         m_deathImage.color = new Color(0, 0, 0, 0);
-        m_game.Respawn();
+        if (m_game.m_gameState == GameState.CINEMATIC)
+        {
+
+        }
+        else
+        {
+            m_game.Respawn();
+        }
     }
 
     void ShowSubtitles(bool show)

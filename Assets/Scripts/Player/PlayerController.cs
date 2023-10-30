@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour, IBeing
     #region SFX
     [Space(10), Header("Sound Effects"), Space(5)]
     public FMODUnity.EventReference m_groundedSFX;
-    bool m_jumped = false;
     public FMODUnity.EventReference m_weaponHit;
     public List<FMODUnity.EventReference> m_playerGrunts;
     public FMODUnity.EventReference m_healingSound;
@@ -107,6 +106,8 @@ public class PlayerController : MonoBehaviour, IBeing
     {
         m_inputControl = new FPControls();
         m_game = GameManager.Instance;
+        Transform t = gameObject.transform;
+        m_game.m_initialSpawn = t;
         m_skinnedMeshRenderer.enabled = false;
     }
     void Start()
