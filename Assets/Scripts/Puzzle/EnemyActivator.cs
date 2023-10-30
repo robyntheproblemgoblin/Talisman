@@ -18,6 +18,7 @@ public class EnemyActivator : Puzzle
     {
         if (m_updateMana && m_enemy != null && m_enemy.IsStatue())
         {
+            GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOn, transform.position);
             m_updateMana = false;
             m_enemy.SetStatue(false);
         }        
