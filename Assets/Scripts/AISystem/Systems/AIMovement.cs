@@ -155,17 +155,20 @@ namespace AISystem.Systems
             }
         }
 
-        public async UniTask AwakenStatue()
+        public async UniTask AwakenStatue(FMODUnity.EventReference stoneAwake, FMODUnity.EventReference armour, FMODUnity.EventReference grunt)
         {
             m_animator.enabled = true;
             float alpha = 0;
-            while(alpha < 1f)
+            GameManager.Instance.m_audioManager.PlayOneShot(grunt, m_mesh.gameObject.transform.position);
+            while (alpha < 1f)
             {
                 alpha += Time.deltaTime * m_armourSpeed;
                 m_mesh.materials[0].SetFloat("_EmissiveFreq", alpha);
                 m_mesh.materials[1].SetFloat("_ArmorFade", alpha);
                 await UniTask.Yield();
             }
+            GameManager.Instance.m_audioManager.PlayOneShot(stoneAwake, m_mesh.gameObject.transform.position);
+            GameManager.Instance.m_audioManager.PlayOneShot(armour, m_mesh.gameObject.transform.position);
             m_mesh.materials[0].SetFloat("_EmissiveFreq", 1);
             m_mesh.materials[1].SetFloat("_ArmorFade", 1);
         }
