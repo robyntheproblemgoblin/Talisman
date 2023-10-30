@@ -342,7 +342,7 @@ public class MenuManager : MonoBehaviour
     {
         m_game.UpdateGameState(GameState.CONTROLS);
         m_eventSystem.SetSelectedGameObject(m_controlsBackButton.gameObject);
-        m_controlsImage = m_currentImages.m_controlsDisplay;
+        m_controlsImage.sprite = m_currentImages.m_controlsDisplay;
     }
 
 
