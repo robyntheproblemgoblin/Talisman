@@ -117,12 +117,11 @@ Transform:
   - {fileID: 4007817553114344698}
   - {fileID: 3510873215862680846}
   - {fileID: 852016792}
-  - {fileID: 2108391971455084413}
-  - {fileID: 719152963589266504}
   - {fileID: 730893753256056721}
   - {fileID: 4134339232707164465}
   - {fileID: 6017226183529366274}
   - {fileID: 2158235020738722042}
+  - {fileID: 5784442425164140698}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -160,123 +159,8 @@ Transform:
   - {fileID: 8972075071827908133}
   - {fileID: 1824349700058633944}
   m_Father: {fileID: 8905676315366799388}
-  m_RootOrder: 39
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6936737589928958092
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 719152963589266504}
-  - component: {fileID: 2638390811261569681}
-  - component: {fileID: 1570752053765040710}
-  m_Layer: 0
-  m_Name: Point Light (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &719152963589266504
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6936737589928958092}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.79, y: 2.28, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8905676315366799388}
-  m_RootOrder: 38
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &2638390811261569681
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6936737589928958092}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 2
-  m_Shape: 0
-  m_Color: {r: 0.84104663, g: 0.92531544, b: 0.9433962, a: 1}
-  m_Intensity: 10.6
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!114 &1570752053765040710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6936737589928958092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &6986704180283465884
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +194,7 @@ Transform:
   - {fileID: 1404200328925317944}
   - {fileID: 5110316172121597350}
   m_Father: {fileID: 8905676315366799388}
-  m_RootOrder: 40
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7841032672277159981
 GameObject:
@@ -346,121 +230,6 @@ Transform:
   m_Father: {fileID: 4134339232707164465}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8336899806557763245
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2108391971455084413}
-  - component: {fileID: 3384951328421648544}
-  - component: {fileID: 98598675787080672}
-  m_Layer: 0
-  m_Name: Point Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2108391971455084413
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8336899806557763245}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.45, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8905676315366799388}
-  m_RootOrder: 37
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!108 &3384951328421648544
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8336899806557763245}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 2
-  m_Shape: 0
-  m_Color: {r: 0.6156863, g: 0.8235295, b: 0.9960785, a: 1}
-  m_Intensity: 11.89
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!114 &98598675787080672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8336899806557763245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &8902605585769670878
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +584,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -832,6 +603,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1001 &535115161311920453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1292,7 +1067,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -1309,6 +1086,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &634161481433845267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2eef288b95fd9e48a338706c5fda86a, type: 3}
@@ -1621,7 +1402,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -1638,6 +1421,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1001 &1350045798229255384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1810,7 +1597,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -1827,6 +1616,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1001 &1886178532744875370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1928,7 +1721,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -1945,6 +1740,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &2136874583473826433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2eef288b95fd9e48a338706c5fda86a, type: 3}
@@ -2117,7 +1916,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -2134,6 +1935,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &1931172331602032047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2eef288b95fd9e48a338706c5fda86a, type: 3}
@@ -2337,6 +2142,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d338b9ab3f10a004fa8dce40eb0d6e37, type: 2}
+    - target: {fileID: -6962565133059001204, guid: 57a9e42ffa30f064bb80257fbd6114e4, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77d41cf436f824f46a81bfccce5fbc0e, type: 2}
     - target: {fileID: -6911759731061837208, guid: 57a9e42ffa30f064bb80257fbd6114e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2344,11 +2153,11 @@ PrefabInstance:
     - target: {fileID: -6897023265546023351, guid: 57a9e42ffa30f064bb80257fbd6114e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 77d41cf436f824f46a81bfccce5fbc0e, type: 2}
+      objectReference: {fileID: 2100000, guid: d338b9ab3f10a004fa8dce40eb0d6e37, type: 2}
     - target: {fileID: -6897023265546023351, guid: 57a9e42ffa30f064bb80257fbd6114e4, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: d338b9ab3f10a004fa8dce40eb0d6e37, type: 2}
+      objectReference: {fileID: 2100000, guid: 77d41cf436f824f46a81bfccce5fbc0e, type: 2}
     - target: {fileID: -6129730353853549351, guid: 57a9e42ffa30f064bb80257fbd6114e4, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -2448,7 +2257,11 @@ PrefabInstance:
     - target: {fileID: 6697499504926895559, guid: 57a9e42ffa30f064bb80257fbd6114e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6d76b26b126a2d946b2129f571d77ca3, type: 2}
+      objectReference: {fileID: 2100000, guid: 2258698a4a27c8145bb0c4b2e5744785, type: 2}
+    - target: {fileID: 7199249566628563505, guid: 57a9e42ffa30f064bb80257fbd6114e4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d38169f56be5d934a8fe0cbca28ac10c, type: 2}
     - target: {fileID: 8984096836976009120, guid: 57a9e42ffa30f064bb80257fbd6114e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2789,7 +2602,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -2806,6 +2621,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &3010681605453023034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5949f2979fd37d442b14b8fa03f27302, type: 3}
@@ -3200,7 +3019,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7419081004510016908, guid: 34ebc92a5339e664583e9596dd3f0902, type: 3}
       propertyPath: m_RootOrder
-      value: 41
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 7419081004510016908, guid: 34ebc92a5339e664583e9596dd3f0902, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3427,7 +3246,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -3444,6 +3265,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &4589156003902509622 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2eef288b95fd9e48a338706c5fda86a, type: 3}
@@ -3763,7 +3588,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -3780,6 +3607,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 1
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1001 &5012143039366747007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4230,7 +4061,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -4247,6 +4080,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &5388834884975292734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5949f2979fd37d442b14b8fa03f27302, type: 3}
@@ -4567,7 +4404,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -4584,6 +4423,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 1
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1001 &6468939797927077083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4685,7 +4528,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -4702,6 +4547,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &6795073143119135536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2eef288b95fd9e48a338706c5fda86a, type: 3}
@@ -4808,7 +4657,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -4825,6 +4676,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 1
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &6541024230749202132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f117615d31cf77c44b16c2ca709205a9, type: 3}
@@ -5095,7 +4950,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -5112,6 +4969,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1001 &7199045544973678230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5353,7 +5214,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -5370,6 +5233,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1001 &7418232553193283506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5476,7 +5343,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -5493,6 +5362,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 1
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1001 &7508423205266103888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5594,7 +5467,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -5611,6 +5486,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &8050745509177129403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2eef288b95fd9e48a338706c5fda86a, type: 3}
@@ -6022,7 +5901,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -6039,6 +5920,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &7555282459308757687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2eef288b95fd9e48a338706c5fda86a, type: 3}
@@ -6150,7 +6035,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -6167,6 +6054,10 @@ MonoBehaviour:
   m_direction: 1
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 0
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!1001 &8380184837637166308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6501,7 +6392,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -6518,6 +6411,72 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 1
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
+--- !u!1001 &8810633000230737427
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8905676315366799388}
+    m_Modifications:
+    - target: {fileID: 1910163346137811108, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_Name
+      value: PFB_Puzzle_Roof_Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_RootOrder
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+--- !u!4 &5784442425164140698 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3027509344994182793, guid: 84805a12f9c000e4abf14c11af2f76be, type: 3}
+  m_PrefabInstance: {fileID: 8810633000230737427}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8832763267195720833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6589,7 +6548,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7419081004510016908, guid: 34ebc92a5339e664583e9596dd3f0902, type: 3}
       propertyPath: m_RootOrder
-      value: 42
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7419081004510016908, guid: 34ebc92a5339e664583e9596dd3f0902, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6754,7 +6713,9 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings: []
+  m_interactSprites: 
   m_interact:
     Guid:
       Data1: 0
@@ -6771,6 +6732,10 @@ MonoBehaviour:
   m_direction: 0
   m_murrayPuzzleOut: 0
   m_rotationPuzzleOut: 1
+  m_offColour: {r: 0, g: 0, b: 0, a: 0}
+  m_manaColour: {r: 0, g: 0, b: 0, a: 0}
+  m_emission: 0
+  m_isMurrayCircle: 0
 --- !u!4 &8972360953079318993 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f134d10f4b796547a01ca2c43be4342, type: 3}
