@@ -23,29 +23,23 @@ public class MenuManager : MonoBehaviour
     public ControllerImages m_pSImages;
     public ControllerImages m_nintendoImages;
     public ControllerImages m_genericImages;
-    ControllerImages m_currentImages;    
+    ControllerImages m_currentImages;
     bool m_tutorialSpriteFirst = false;
-    string m_currentMessage = "";
     List<string> m_currentTutorialStrings = new List<String>();
     List<ControlSprites> m_currentTutorialSprites = new List<ControlSprites>();
+    bool m_interactSpriteFirst = false;
+    List<string> m_currentInteractStrings = new List<string>();
+    List<ControlSprites> m_currentInteractSprites = new List<ControlSprites>();
 
     #region UI Category Objects
-    //public GameObject m_title;
     public GameObject m_mainMenu;
     public GameObject m_hud;
     public GameObject m_cinematics;
     public GameObject m_pauseMenu;
     public GameObject m_optionsMenu;
+    public GameObject m_controls;
     public GameObject m_deathScreen;
-    // TEMPORARY
-    public GameObject m_falseEnd;
-    public Button m_falseQuit;
-    #endregion
-
-    #region Title Screen Fields
-    //[Space(5), Header("Title Screen"), Space(5)]
-    //public Button m_startButton;
-    //public Camera m_titleCamera;
+    public GameObject m_creditsScreen;    
     #endregion
 
     #region Main Menu Fields
@@ -53,7 +47,7 @@ public class MenuManager : MonoBehaviour
     public Button m_newGame;
     public Button m_menuOptions;
     public Button m_credits;
-    public Button m_bonusArt;
+    public Button m_controlsMain;
     public Button m_quit;
     #endregion
 
@@ -90,22 +84,19 @@ public class MenuManager : MonoBehaviour
 
     #region Option Fields
     [Header("Options"), Space(5)]
-    public Button m_camSensitivityButton;
     public Slider m_camSensitivitySlider;
-    public Button m_subtitlesButton;
-    public Slider m_subtitlesSlider;
-    public Button m_vibrationButton;
-    public Slider m_vibrationSlider;
-    public Button m_masterVolumeButton;
+    public Toggle m_subtitlesToggle;
     public Slider m_masterVolumeSlider;
-    public Button m_musicVolumeButton;
     public Slider m_musicVolumeSlider;
-    public Button m_sfxButton;
     public Slider m_sfxSlider;
-    public Button m_dialogueButton;
     public Slider m_dialogueSlider;
-    public Button m_defaults;
     public Button m_optionsBack;
+    #endregion
+
+    #region Controller Screen Fields
+    [Space(5), Header("Controller Screen"), Space(5)]
+    public Button m_controlsBackButton;
+    public Image m_controlsImage;
     #endregion
 
     #region Death Fields
@@ -116,6 +107,7 @@ public class MenuManager : MonoBehaviour
     #endregion
 
     //Credits
+    public Button m_creditsBack;
 
     GameManager m_game;
     public PlayerController m_player;
@@ -131,14 +123,11 @@ public class MenuManager : MonoBehaviour
         m_currentImages = m_keyboardImages;
 
         m_game.OnGameStateChanged += OnGameStateChanged;
-        m_falseQuit.onClick.AddListener(delegate () { QuitGame(); });
-
-        //Title Screen Setup
-        //m_startButton.onClick.AddListener(delegate () { MainMenu(); });
 
         //Main Menu Setup
-        m_newGame.onClick.AddListener(delegate () { StartGame(); });
+        m_newGame.onClick.AddListener(delegate () { StartGame(); });                
         m_menuOptions.onClick.AddListener(delegate () { Options(); });
+        m_controlsMain.onClick.AddListener(delegate () { ControlScreen(); });
         m_credits.onClick.AddListener(delegate () { Credits(); });
         m_quit.onClick.AddListener(delegate () { QuitGame(); });
 
@@ -147,37 +136,37 @@ public class MenuManager : MonoBehaviour
         m_mana.maxValue = m_player.m_maxMana;
 
         //Cinematic Setup
+        m_creditsBack.onClick.AddListener(delegate () { MainMenu(); });
 
         //Pause Menu Setup
         m_resume.onClick.AddListener(delegate () { Resume(); });
         m_pauseOptions.onClick.AddListener(delegate () { Options(); });
-        m_controllerImage.onClick.AddListener(delegate () { ShowControllerImages(); });
+        m_controllerImage.onClick.AddListener(delegate () { ControlScreen(); });
         m_quitMenu.onClick.AddListener(delegate () { TitleScreen(); });
 
-        //Options Setup
-        m_camSensitivityButton.onClick.AddListener(delegate () { });
+        //Options Setup        
+        m_camSensitivitySlider.onValueChanged.AddListener(m_player.ChangeSensitivity);
         m_camSensitivitySlider.SetValueWithoutNotify(m_player.m_cameraSensitivity);
-        m_subtitlesButton.onClick.AddListener(delegate () { });
-        m_subtitlesSlider.SetValueWithoutNotify(1);
-        m_vibrationButton.onClick.AddListener(delegate () { });
-        m_vibrationSlider.SetValueWithoutNotify(1);
-        m_masterVolumeButton.onClick.AddListener(delegate () { });
-        m_masterVolumeSlider.SetValueWithoutNotify(100);
-        m_musicVolumeButton.onClick.AddListener(delegate () { });
-        m_musicVolumeSlider.SetValueWithoutNotify(100);
-        m_sfxButton.onClick.AddListener(delegate () { });
-        m_sfxSlider.SetValueWithoutNotify(100);
-        m_dialogueButton.onClick.AddListener(delegate () { });
-        m_dialogueSlider.SetValueWithoutNotify(100);
-        m_defaults.onClick.AddListener(delegate () { });
-        m_optionsBack.onClick.AddListener(delegate () { });
+        m_subtitlesToggle.onValueChanged.AddListener(ShowSubtitles);
+        m_subtitlesToggle.SetIsOnWithoutNotify(m_showSubtitle);
+        m_masterVolumeSlider.onValueChanged.AddListener(m_game.m_audioManager.MasterVolumeLevel);
+        m_masterVolumeSlider.SetValueWithoutNotify(1);
+        m_musicVolumeSlider.onValueChanged.AddListener(m_game.m_audioManager.MusicVolumeLevel);
+        m_musicVolumeSlider.SetValueWithoutNotify(0.5f);
+        m_sfxSlider.onValueChanged.AddListener(m_game.m_audioManager.SFXVolumeLevel);
+        m_sfxSlider.SetValueWithoutNotify(0.5f);
+        m_dialogueSlider.onValueChanged.AddListener(m_game.m_audioManager.DialogueVolumeLevel);
+        m_dialogueSlider.SetValueWithoutNotify(0.5f);
+        m_optionsBack.onClick.AddListener(delegate () { OptionsBack(); });
+
+        //Controls Screen Setup
+        m_controlsBackButton.onClick.AddListener(delegate () { MainMenu(); });
 
         //Death Setup
         m_respawnButton.onClick.AddListener(delegate () { Respawn(); });
         m_respawnButton.gameObject.SetActive(false);
         m_deathQuit.onClick.AddListener(delegate () { QuitGame(); });
         m_deathQuit.gameObject.SetActive(false);
-
     }
 
     public void InputDeviceChanged(InputEventPtr eventPtr, InputDevice device)
@@ -249,15 +238,9 @@ public class MenuManager : MonoBehaviour
         {
             SetTutorial(m_currentTutorialStrings, m_currentTutorialSprites, m_tutorialSpriteFirst);
         }
-        UpdateInteract();
-    }
-
-    void UpdateInteract()
-    {
         if (m_interactText.enabled)
-        {             
-            string interact = (SpriteToString(ControlSprites.INTERACT_ONE) + "/" + SpriteToString(ControlSprites.INTERACT_TWO) + " " + m_currentMessage);                        
-            m_interactText.text = interact;
+        {
+            SetInteractMessage(m_currentInteractStrings, m_currentInteractSprites, m_interactSpriteFirst);
         }
     }
 
@@ -266,8 +249,8 @@ public class MenuManager : MonoBehaviour
         UpdateUI(state);
         switch (state)
         {
-            case GameState.TITLE:
-                MainMenu();
+            case GameState.CONTROLS:
+                ControlScreen();
                 break;
             case GameState.MENU:
                 MainMenu();
@@ -290,13 +273,14 @@ public class MenuManager : MonoBehaviour
 
     void UpdateUI(GameState state)
     {
-        //m_title.SetActive(state == GameState.TITLE);
-        m_mainMenu.SetActive(state == GameState.MENU || state == GameState.TITLE);
+        m_mainMenu.SetActive(state == GameState.MENU);
         m_hud.SetActive(state == GameState.GAME);
         m_cinematics.SetActive(state == GameState.CINEMATIC);
         m_pauseMenu.SetActive(state == GameState.PAUSE);
         m_optionsMenu.SetActive(state == GameState.OPTIONS);
+        m_controls.SetActive(state == GameState.CONTROLS);
         m_deathScreen.SetActive(state == GameState.DEATH);
+        m_creditsScreen.SetActive(state == GameState.CREDITS);
         if (state == GameState.CINEMATIC || state == GameState.GAME)
         {
             m_subtitles.gameObject.SetActive(true);
@@ -325,6 +309,7 @@ public class MenuManager : MonoBehaviour
     void Resume()
     {
         m_game.UpdateGameState(GameState.GAME);
+        m_game.m_audioManager.m_dialogueInstance.setPaused(false);
         Cursor.lockState = CursorLockMode.Locked;
     }
     void QuitGame()
@@ -337,18 +322,35 @@ public class MenuManager : MonoBehaviour
     }
     void Options()
     {
-           m_game.UpdateGameState(GameState.OPTIONS);
-           m_eventSystem.SetSelectedGameObject(m_camSensitivityButton.gameObject);
+        m_game.UpdateGameState(GameState.OPTIONS);
+        m_eventSystem.SetSelectedGameObject(m_camSensitivitySlider.gameObject);
     }
 
-    void ShowControllerImages()
+    void OptionsBack()
     {
-
+        if (m_game.m_lastState == GameState.PAUSE)
+        {
+            Pause();
+        }
+        else if (m_game.m_lastState == GameState.MENU)
+        {
+            MainMenu();
+        }
     }
+
+    void ControlScreen()
+    {
+        m_game.UpdateGameState(GameState.CONTROLS);
+        m_eventSystem.SetSelectedGameObject(m_controlsBackButton.gameObject);
+        m_controlsImage.sprite = m_currentImages.m_controlsDisplay;
+    }
+
 
     void Pause()
     {
+        m_game.UpdateGameState(GameState.PAUSE);
         m_eventSystem.SetSelectedGameObject(m_resume.gameObject);
+        m_game.m_audioManager.m_dialogueInstance.setPaused(true);
         Cursor.lockState = CursorLockMode.Confined;
     }
     public void Cancel(InputAction.CallbackContext obj)
@@ -367,9 +369,7 @@ public class MenuManager : MonoBehaviour
                 break;
             case GameState.PAUSE:
                 Resume();
-                break;
-            case GameState.CINEMATIC:
-                break;
+                break;          
             default:
                 break;
         }
@@ -377,7 +377,11 @@ public class MenuManager : MonoBehaviour
 
     void Credits()
     {
-
+        GameManager.Instance.m_menuManager.m_creditsScreen.SetActive(true);
+        GameManager.Instance.m_menuManager.m_eventSystem.SetSelectedGameObject(GameManager.Instance.m_menuManager.m_creditsBack.gameObject);
+        GameManager.Instance.m_player.m_inputControl.Player_Map.Disable();
+        GameManager.Instance.m_player.m_inputControl.UI.Enable();
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void SetTutorial(List<string> text, List<ControlSprites> sprites, bool spriteFirst)
@@ -413,6 +417,40 @@ public class MenuManager : MonoBehaviour
             }
         }
         m_tutorial.text = message;
+    }
+    public void SetInteractMessage(List<string> text, List<ControlSprites> sprites, bool spriteFirst)
+    {
+        m_currentInteractStrings = text;
+        m_currentInteractSprites = sprites;
+        m_interactSpriteFirst = spriteFirst;
+        string message = "";
+        int index = 0;
+        if (spriteFirst)
+        {
+            while (index < sprites.Count)
+            {
+                message += SpriteToString(sprites[index]);
+                if (index < text.Count)
+                {
+                    message += text[index];
+                }
+                index++;
+            }
+        }
+        else
+        {
+            while (index < text.Count)
+            {
+                message += text[index];
+                if (index < sprites.Count)
+                {
+                    message += SpriteToString(sprites[index]);
+                }
+                index++;
+            }
+        }
+        m_interactText.enabled = true;
+        m_interactText.text = message;
     }
 
     string SpriteToString(ControlSprites cs)
@@ -475,28 +513,32 @@ public class MenuManager : MonoBehaviour
         if (m_interactText.enabled)
             return;
         else
-        {            
-            string interact = (SpriteToString(ControlSprites.INTERACT_ONE) + "/" + SpriteToString(ControlSprites.INTERACT_TWO) + " ");
+        {
+            List<string> strings = new List<string>();
+            List<ControlSprites> sprites = new List<ControlSprites>();
+            bool spriteFirst = false;
             Puzzle puzzle = hit.transform.gameObject.GetComponentInParent<Puzzle>();
             if (puzzle != null)
             {
-                interact += puzzle.m_interactMessage;
-                m_currentMessage = puzzle.m_interactMessage;
+                spriteFirst = puzzle.m_spritesFirst;
+                strings = puzzle.m_interactStrings;
+                sprites = puzzle.m_interactSprites;
             }
             Interactable interactable = hit.transform.gameObject.GetComponentInParent<Interactable>();
             if (interactable != null)
             {
-                interact += interactable.m_interactMessage;
-                m_currentMessage = interactable.m_interactMessage;
+                spriteFirst = interactable.m_spritesFirst;
+                strings = interactable.m_interactStrings;
+                sprites = interactable.m_interactSprites;
             }
             ManaPool manaPool = hit.transform.gameObject.GetComponent<ManaPool>();
             if (manaPool != null)
             {
-                interact += manaPool.m_interactMessage;
-                m_currentMessage = manaPool.m_interactMessage;
+                spriteFirst = manaPool.m_spritesFirst;
+                strings = manaPool.m_interactStrings;
+                sprites = manaPool.m_interactSprites;
             }
-            m_interactText.enabled = true;
-            m_interactText.text = interact;
+            SetInteractMessage(strings, sprites, spriteFirst);
         }
     }
     public void StopInteract()
@@ -509,6 +551,7 @@ public class MenuManager : MonoBehaviour
         m_health.value = m_player.m_currentHealth;
         if (m_health.value <= 0)
         {
+            m_game.m_audioManager.PlayOneShot(m_game.m_player.m_deathSound, m_game.m_player.gameObject.transform.position);
             m_game.UpdateGameState(GameState.DEATH);
         }
     }
@@ -543,11 +586,27 @@ public class MenuManager : MonoBehaviour
         m_respawnButton.gameObject.SetActive(false);
         m_deathQuit.gameObject.SetActive(false);
         m_deathImage.color = new Color(0, 0, 0, 0);
-        m_game.Respawn();
+        if (m_game.m_gameState == GameState.CINEMATIC)
+        {
+
+        }
+        else
+        {
+            m_game.Respawn();
+        }
+    }
+
+    void ShowSubtitles(bool show)
+    {
+        m_showSubtitle = show;
     }
 
     public void SetSubtitle(string subtitile)
     {
+        if (!m_showSubtitle)
+        {
+            return;
+        }
         if (!m_subtitles.gameObject.activeSelf)
         {
             m_subtitles.gameObject.SetActive(true);

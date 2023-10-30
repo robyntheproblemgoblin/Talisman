@@ -45,7 +45,6 @@ public class TutorialRotateMana : Puzzle
 
         m_degrees = 90;
         base.Start();
-        //DELETE Sort THIS
         List<Material> materials = new List<Material>();
         materials.Add(m_one.material);
 
@@ -99,7 +98,7 @@ public class TutorialRotateMana : Puzzle
         {
             m_tutOutput--;
         }
-        if(m_tutInput == TutPositions.ONE || m_tutOutput == TutPositions.ONE)
+        if (m_tutInput == TutPositions.ONE || m_tutOutput == TutPositions.ONE)
         {
             m_input = Positions.ONE;
             m_output = Positions.ONE;
@@ -200,10 +199,12 @@ public class TutorialRotateMana : Puzzle
         {
             if (m_outputObject != null && (m_outputObject.m_input == Positions.ONE || m_outputObject.m_output == Positions.ONE))
             {
+                GameManager.Instance.m_audioManager.PlayOneShot(m_outputObject.m_manaFlowOn, m_outputObject.gameObject.transform.position);
                 m_outputObject.m_updateMana = true;
             }
             else
             {
+                GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowFail, transform.position);
                 //Activate futz graphic
             }
         }
@@ -211,10 +212,12 @@ public class TutorialRotateMana : Puzzle
         {
             if (m_outputObject != null && (m_outputObject.m_input == Positions.ONE || m_outputObject.m_output == Positions.ONE))
             {
+                GameManager.Instance.m_audioManager.PlayOneShot(m_outputObject.m_manaFlowOn, m_outputObject.gameObject.transform.position);
                 m_outputObject.m_updateMana = true;
             }
             else
             {
+                GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowFail, transform.position);
                 //Activate futz graphic                    
             }
         }
@@ -232,6 +235,7 @@ public class TutorialRotateMana : Puzzle
                 }
                 else
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
                     m_rewindMana = true;
                     m_updateMana = true;
                 }
@@ -244,6 +248,7 @@ public class TutorialRotateMana : Puzzle
                 }
                 else
                 {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, transform.position);
                     m_rewindMana = true;
                     m_updateMana = true;
                 }

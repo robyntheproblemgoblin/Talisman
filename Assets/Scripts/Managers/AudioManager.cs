@@ -3,22 +3,35 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using FMODUnity;
 using System;
+using UnityEngine.Timeline;
+using UnityEngine.Events;
 
 public class AudioManager : MonoBehaviour
 {
     GameManager m_game;
 
-    FMOD.Studio.Bus Music;
-    FMOD.Studio.Bus SFX;
-    FMOD.Studio.Bus Dialogue;
-    FMOD.Studio.Bus Master;
-    public float MusicVolume = 0.5f;
-    public float SFXVolume = 0.5f;
-    public float DialogueVolume = 0.5f;
-    public float MasterVolume = 1f;
+    FMOD.Studio.Bus m_music;
+    FMOD.Studio.Bus m_sFX;
+    FMOD.Studio.Bus m_dialogue;
+    FMOD.Studio.Bus m_master;
+    public float m_musicVolume = 0.5f;
+    public float m_sFXVolume = 0.5f;
+    public float m_dialogueVolume = 0.5f;
+    public float m_masterVolume = 1f;
 
     [Header("FMOD Music Event References")]
-    public FMODUnity.EventReference m_menuMusic;    
+    public FMODUnity.EventReference m_menuMusic;
+
+    [Space(5), Header("FMOD SFX Event References")]
+    public FMODUnity.EventReference m_talisman;
+    public FMODUnity.EventReference m_gameOver;
+
+    [Space(5), Header("UI SFX")]
+    public FMODUnity.EventReference m_navigatingMenu;
+    public FMODUnity.EventReference m_selectedButton;
+    public FMODUnity.EventReference m_menuBack;
+    public FMODUnity.EventReference m_sliderSound;
+    public FMODUnity.EventReference m_startGame;
 
     [Space(5), Header("Murray Puzzle Dialogue References")]
     public Dialogue m_murrayHalfSolve;
@@ -27,17 +40,18 @@ public class AudioManager : MonoBehaviour
     public Dialogue m_murraySecondFail;
     int m_murraySolveInstances = 0;
     int m_murrayFailInstances = 0;
-    
-    [Space(5), Header("Rotation Puzzle Dialogue References")]    
+
+    [Space(5), Header("Rotation Puzzle Dialogue References")]
     public Dialogue m_rotationFirstFail;
-    public Dialogue m_rotationSecondFail;    
+    public Dialogue m_rotationSecondFail;
     int m_rotationFailInstances = 0;
 
     [Space(5), Header("Sword Room")]
     public Dialogue m_swordRoomEnd;
 
-    FMOD.Studio.EventInstance m_dialogueInstance;
-    FMOD.Studio.EventInstance m_menuMusicInstance;    
+    public FMOD.Studio.EventInstance m_dialogueInstance;
+    public FMOD.Studio.EventInstance m_menuMusicInstance;
+    public FMOD.Studio.EventInstance m_talismanInstance;
 
     [Header("Dialogue Sections")]
     public Dialogue m_intro;
@@ -55,47 +69,50 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        Music = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
-        SFX = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
-        Master = FMODUnity.RuntimeManager.GetBus("bus:/Master");
-        Dialogue = FMODUnity.RuntimeManager.GetBus("bus:/Master/Dialogue");
+        m_music = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
+        m_sFX = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
+        m_master = FMODUnity.RuntimeManager.GetBus("bus:/Master");
+        m_dialogue = FMODUnity.RuntimeManager.GetBus("bus:/Master/Dialogue");
     }
 
     void Start()
     {
         m_game = GameManager.Instance;
         m_game.m_audioManager = this;
-        
-        m_menuMusicInstance= FMODUnity.RuntimeManager.CreateInstance(m_menuMusic);
-        StartFmodLoop(m_menuMusicInstance);        
+
+        m_menuMusicInstance = FMODUnity.RuntimeManager.CreateInstance(m_menuMusic);
+        StartFmodLoop(m_menuMusicInstance);
     }
 
-    void Update()
+    private void Update()
     {
-        Music.setVolume(MusicVolume);
-        SFX.setVolume(SFXVolume);
-        Master.setVolume(MasterVolume);
-        Dialogue.setVolume(DialogueVolume);       
+        m_master.setVolume(m_masterVolume);
+        m_music.setVolume(m_musicVolume);
+        m_dialogue.setVolume(m_dialogueVolume);
+        m_sFX.setVolume(m_sFXVolume);
     }
 
     public void MasterVolumeLevel(float newMasterVolume)
     {
-        MasterVolume = newMasterVolume;
+        PlayOneShot(m_sliderSound, m_game.m_player.gameObject.transform.position);
+        m_masterVolume = newMasterVolume;
     }
 
     public void MusicVolumeLevel(float newMusicVolume)
     {
-        MusicVolume = newMusicVolume;
+        PlayOneShot(m_sliderSound, m_game.m_player.gameObject.transform.position);
+        m_musicVolume = newMusicVolume;
     }
 
     public void SFXVolumeLevel(float newSFXVolume)
     {
-        SFXVolume = newSFXVolume;
-
+        PlayOneShot(m_sliderSound, m_game.m_player.gameObject.transform.position);
+        m_sFXVolume = newSFXVolume;
     }
     public void DialogueVolumeLevel(float newDialogueVolume)
     {
-        SFXVolume = newDialogueVolume;
+        PlayOneShot(m_sliderSound, m_game.m_player.gameObject.transform.position);
+        m_dialogueVolume = newDialogueVolume;
     }
 
     public void PlayOneShot(EventReference fmodEvent, Vector3 pos)
@@ -103,12 +120,12 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(fmodEvent, pos);
     }
 
-    void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
+    public void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
     {
         eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
-    void StartFmodLoop(FMOD.Studio.EventInstance eventInstance)
+    public void StartFmodLoop(FMOD.Studio.EventInstance eventInstance)
     {
         eventInstance.start();
     }
@@ -151,18 +168,15 @@ public class AudioManager : MonoBehaviour
 
             m_game.m_menuManager.SetSubtitle(reference.m_sequence[index].m_subtitle);
             index++;
-            if (index >= reference.m_sequence.Count)
+            while (current != FMOD.Studio.PLAYBACK_STATE.STOPPED)
+            {
+                m_dialogueInstance.getPlaybackState(out current);
+                await UniTask.Yield();
+            }
+            if (index > reference.m_sequence.Count - 1)
             {
                 m_playLines = false;
                 StopInteractions(m_dialogueInstance).Forget();
-            }
-            else
-            {
-                while (current != FMOD.Studio.PLAYBACK_STATE.STOPPED)
-                {
-                    m_dialogueInstance.getPlaybackState(out current);
-                    await UniTask.Yield();
-                }                
             }
         }
         m_nextCinematic = false;
@@ -189,6 +203,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayTalismanLoop()
+    {
+        m_talismanInstance = RuntimeManager.CreateInstance(m_talisman);
+        RuntimeManager.AttachInstanceToGameObject(m_talismanInstance, m_game.m_player.gameObject.transform);
+        m_talismanInstance.start();
+    }
+
+    public void GameOver()
+    {
+        PlayOneShot(m_gameOver, m_game.m_player.gameObject.transform.position);
+    }
+
     async UniTask StopInteractions(FMOD.Studio.EventInstance instance)
     {
         FMOD.Studio.PLAYBACK_STATE current;
@@ -205,6 +231,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayIntroDialogue()
     {
+        PlayOneShot(m_startGame, m_game.m_player.gameObject.transform.position);
         PlayDialogue(m_intro);
     }
 
@@ -268,32 +295,57 @@ public class AudioManager : MonoBehaviour
     public async UniTask PlayCinematic()
     {
         m_nextCinematic = true;
-        if(m_cinematics > 2)
+        if (m_cinematics > 2)
         {
             return;
         }
-        else if(m_cinematics == 0)
+        else if (m_cinematics == 0)
         {
             PlayDialogue(m_talismanGrab);
-            while(m_nextCinematic)
+            while (m_nextCinematic)
             {
                 await UniTask.Yield();
             }
             m_game.SecondCinematic().Forget();
         }
-        else if(m_cinematics == 1)
+        else if (m_cinematics == 1)
         {
             PlayDialogue(m_teleport);
+            while (m_nextCinematic)
+            {
+                await UniTask.Yield();
+            }
+            m_game.m_player.FinishCinematic();
         }
-        else if(m_cinematics == 2)
+        else if (m_cinematics == 2)
         {
             PlayDialogue(m_ending);
             while (m_nextCinematic)
             {
                 await UniTask.Yield();
             }
-            m_game.LastCinematic();
+            m_game.EndGame();
         }
         m_cinematics++;
+    }
+
+    public void OnMenuNavigation()
+    {
+        PlayOneShot(m_navigatingMenu, m_game.m_player.gameObject.transform.position);
+    }
+
+    public void OnMenuSelect()
+    {
+      //  PlayOneShot(m_selectedButton, m_game.m_player.gameObject.transform.position);
+    }
+
+    public void OnMenuSlider()
+    {
+        PlayOneShot(m_sliderSound, m_game.m_player.gameObject.transform.position);
+    }
+
+    public void OnMenuBack()
+    {
+        PlayOneShot(m_menuBack, m_game.m_player.gameObject.transform.position);
     }    
 }

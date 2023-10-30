@@ -5,6 +5,7 @@ using AISystem;
 using AISystem.Contracts;
 using Cysharp.Threading.Tasks;
 using System;
+using FMODUnity;
 
 public class PlayerController : MonoBehaviour, IBeing
 {
@@ -55,26 +56,9 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_maxMana;
     public float m_startMana;
     public float m_manaHealCost;
-    public float m_currentMana;
-    #endregion
-
-    #region Mana Attack Fields
-    LeftHandState m_talismanState;
-    ChargingState m_charging;
-    FiringState m_firing;
+    public float m_currentMana;    
+    LeftHandState m_talismanState;    
     IdleState m_idle;
-
-    /*   [Space(10)]
-       [Header("Mana Attacks")]
-       [Space(5)]
-       public ParticleSystem m_fireMana;
-       public ParticleSystem m_projectileMana;
-       public GameObject projectile;
-       public float m_flameDamage = 0.1f;
-       public float m_flameCost = 1;
-       public float m_minProjectileCost = 1;
-       public float m_projectileManaCost = 1;
-       public float m_projectileDamage = 1;*/
     public Transform m_talisman;
     #endregion
 
@@ -103,11 +87,27 @@ public class PlayerController : MonoBehaviour, IBeing
     public bool m_stopInteracts = false;
     #endregion
 
+
+
+    #region SFX
+    [Space(10), Header("Sound Effects"), Space(5)]
+    public FMODUnity.EventReference m_groundedSFX;
+    public FMODUnity.EventReference m_weaponHit;
+    public List<FMODUnity.EventReference> m_playerGrunts;
+    public FMODUnity.EventReference m_healingSound;
+    FMOD.Studio.EventInstance m_healingInstance;
+    public FMODUnity.EventReference m_attackSwing;
+    public FMODUnity.EventReference m_blockedSound;
+    public FMODUnity.EventReference m_deathSound;
+    #endregion
+
     #region Unity Methods
     private void Awake()
     {
         m_inputControl = new FPControls();
         m_game = GameManager.Instance;
+        Transform t = gameObject.transform;
+        m_game.m_initialSpawn = t;
         m_skinnedMeshRenderer.enabled = false;
     }
     void Start()
@@ -119,20 +119,14 @@ public class PlayerController : MonoBehaviour, IBeing
         m_animator = GetComponentInChildren<Animator>();
         m_animator.rootRotation = transform.rotation;
         m_idle = new IdleState(m_animator, m_healParticles);
-        /*m_charging = new ChargingState(m_animator, m_projectileMana, this);
-        m_firing = new FiringState(m_animator, m_projectileMana, m_talisman);*/
         m_healing = new HealingState(m_animator, m_healParticles, this);
         m_talismanState = m_idle;
 
         m_inputControl.Player_Map.Heal.performed += StartHealing;
         m_inputControl.Player_Map.Heal.canceled += StopHealing;
-        /*m_inputControl.Player_Map.ManaAttack.performed += StartCharging;
-        m_inputControl.Player_Map.ManaAttack.canceled += StartFiring;*/
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
-        //m_inputControl.Player_Map.SwapManaStyle.performed += SwapStyle;
         m_inputControl.Player_Map.Interact.performed += Interact;
-        //m_inputControl.Player_Map.Interact.performed += EnemyStart;        
-
+        
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
         m_inputControl.Player_Map.BlockParry.canceled += StopBlockParry;
 
@@ -171,7 +165,7 @@ public class PlayerController : MonoBehaviour, IBeing
     {
         switch (state)
         {
-            case GameState.TITLE:
+            case GameState.CONTROLS:
                 m_inputControl.UI.Enable();
                 break;
             case GameState.MENU:
@@ -206,11 +200,13 @@ public class PlayerController : MonoBehaviour, IBeing
             Enemy e = hit.gameObject.GetComponentInParent<Enemy>();
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {
+                m_game.m_audioManager.PlayOneShot(m_weaponHit, hit.ClosestPoint(transform.position));
                 e.m_swordCollider.enabled = false;
                 TakeDamage(e.m_damage);
             }
             else if (e != null && HitAlready(e.gameObject.name) == false && m_isBlocking)
             {
+                m_game.m_audioManager.PlayOneShot(m_blockedSound, gameObject.transform.position);
                 StopBlock();
                 e.m_swordCollider.enabled = false;
                 e.Interrupt();
@@ -228,6 +224,7 @@ public class PlayerController : MonoBehaviour, IBeing
         float speedY = m_canMove ? (isRunning ? m_runSpeed : m_walkSpeed) * move.x : 0;
         float yDirection = m_moveDirection.y;
         m_moveDirection = (forward * speedX) + (right * speedY);
+        bool wasJumping = m_characterController.isGrounded;
 
         if (m_inputControl.Player_Map.Jump.IsPressed() && m_characterController.isGrounded)
         {
@@ -240,7 +237,12 @@ public class PlayerController : MonoBehaviour, IBeing
 
         if (!m_characterController.isGrounded)
         {
-            m_moveDirection.y -= (m_gravity * m_gravityMultiplier) * Time.deltaTime;
+            m_moveDirection.y -= (m_gravity * m_gravityMultiplier) * Time.deltaTime;            
+        }
+
+        if(m_characterController.isGrounded && wasJumping)
+        {
+            m_game.m_audioManager.PlayOneShot(m_groundedSFX, transform.position - Vector3.down);            
         }
 
         UpdateLeanAnimation(speedX, speedY);
@@ -256,6 +258,11 @@ public class PlayerController : MonoBehaviour, IBeing
     {
         m_talismanState.Update();
         UpdateInteracts();
+    }
+
+    public void ChangeSensitivity(float change)
+    {
+        m_cameraSensitivity = change;
     }
     #endregion
 
@@ -273,7 +280,7 @@ public class PlayerController : MonoBehaviour, IBeing
     #region Health Methods
     public void TakeDamage(float damage)
     {
-        m_currentHealth -= damage;
+        m_currentHealth -= damage;        
         m_game.m_menuManager.UpdateHealth();
     }
 
@@ -309,13 +316,26 @@ public class PlayerController : MonoBehaviour, IBeing
 
     private void StartHealing(InputAction.CallbackContext obj)
     {
+        if (m_skinnedMeshRenderer.enabled == false)
+        {
+            return;
+        }
         m_talismanState.StopState();
+        m_healingInstance = RuntimeManager.CreateInstance(m_healingSound);
+        RuntimeManager.AttachInstanceToGameObject(m_healingInstance, m_game.m_player.gameObject.transform);
+        m_healingInstance.start();
+        m_healingInstance.release();
         m_talismanState = m_healing;
         m_talismanState.StartState(0);
     }
     private void StopHealing(InputAction.CallbackContext obj)
     {
+        if (m_skinnedMeshRenderer.enabled == false)
+        {
+            return;
+        }
         m_talismanState.StopState();
+        m_healingInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         m_talismanState = m_idle;
         m_talismanState.StartState(0);
     }
@@ -371,57 +391,23 @@ public class PlayerController : MonoBehaviour, IBeing
         m_game.m_menuManager.UpdateMana();
     }
 
-    #endregion
-
-    #region Mana Attack Methods
-    /* void StartCharging(InputAction.CallbackContext t)
-     {
-         m_talismanState.StopState();
-         m_talismanState = m_charging;
-         m_talismanState.StartState(0);
-     }
-
-     void StartFiring(InputAction.CallbackContext t)
-     {
-         m_talismanState.StopState();
-         m_talismanState = m_firing;
-         m_talismanState.StartState(m_charging.m_chargeTime * m_projectileDamage);
-     }
-
-     public void StartIdle()
-     {
-         m_talismanState.StopState();
-         m_talismanState = m_idle;
-         m_talismanState.StartState(0);
-     }
-
-     void SwapStyle(InputAction.CallbackContext t)
-     {
-         m_charging.m_isProjectile = !m_charging.m_isProjectile;
-         m_firing.m_isProjectile = !m_firing.m_isProjectile;
-         if (m_charging.m_isProjectile)
-         {
-             m_charging.m_particles = m_projectileMana;
-             m_firing.m_particles = m_projectileMana;
-         }
-         else
-         {
-             m_charging.m_particles = m_fireMana;
-             m_firing.m_particles = m_fireMana;
-         }
-     }*/
-    #endregion
+    #endregion    
 
     #region Melee Attack Methods
 
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
+        if (m_skinnedMeshRenderer.enabled == false)
+        {
+            return;
+        }
         if (m_canAttack)
         {
             m_canAttack = false;
             m_swordCollider.enabled = true;
             ResetAttack().Forget();
             m_animator.SetTrigger("Attack" + m_currentAttack);
+            m_game.m_audioManager.PlayOneShot(m_attackSwing, m_position);
             m_currentAttack++;
             if (m_currentAttack == 4)
             {
@@ -455,11 +441,19 @@ public class PlayerController : MonoBehaviour, IBeing
     #region Block Parry Methods
     private void BlockParry(InputAction.CallbackContext obj)
     {
+        if(m_skinnedMeshRenderer.enabled == false)
+        {
+            return;
+        }
         m_isBlocking = true;
         m_animator.SetTrigger("Block");
     }
     private void StopBlockParry(InputAction.CallbackContext obj)
     {
+        if (m_skinnedMeshRenderer.enabled == false)
+        {
+            return;
+        }
         StopBlock();
     }
 
@@ -518,11 +512,13 @@ public class PlayerController : MonoBehaviour, IBeing
             ManaPool manaPool = hit.transform.gameObject.GetComponentInParent<ManaPool>();
             if (puzzle != null)
             {
+                int random = UnityEngine.Random.Range(0, m_playerGrunts.Count - 1);
+                m_game.m_audioManager.PlayOneShot(m_playerGrunts[random], gameObject.transform.position);
                 puzzle.RotatePuzzle();
             }
             else if (interactable != null)
             {
-                m_game.FirstCinematic();
+                m_game.FirstCinematic().Forget();
             }
             else if (manaPool != null)
             {

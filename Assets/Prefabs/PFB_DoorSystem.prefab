@@ -253,6 +253,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.95, y: 3.35, z: 1.55}
   m_Center: {x: 0, y: 1.675, z: 0}
+--- !u!208 &8559743716964018530
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5227818096828802590}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.48100004, y: 1.7170001, z: 0.841}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.7170001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!114 &1054390236143505773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,22 +287,20 @@ MonoBehaviour:
   m_unlockedPos: {fileID: 715582039900866866}
   m_speed: 0.35
   m_outputPuzzles: []
---- !u!208 &8559743716964018530
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5227818096828802590}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.48100004, y: 1.7170001, z: 0.841}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.7170001, z: 0}
-  m_TimeToStationary: 0.5
+  m_openSound:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_closeSound:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
 --- !u!1001 &5927608707403196869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -379,6 +393,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.95, y: 3.35, z: 1.55}
   m_Center: {x: 0, y: 1.675, z: 0}
+--- !u!208 &6381453291040230711
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6810130274946028692}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.48100004, y: 1.7170001, z: 0.841}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.7170001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!114 &6328293690845330771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,19 +427,17 @@ MonoBehaviour:
   m_unlockedPos: {fileID: 4452367487286165400}
   m_speed: 0.35
   m_outputPuzzles: []
---- !u!208 &6381453291040230711
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6810130274946028692}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.48100004, y: 1.7170001, z: 0.841}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.7170001, z: 0}
-  m_TimeToStationary: 0.5
+  m_openSound:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
+  m_closeSound:
+    Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX

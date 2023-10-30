@@ -9,6 +9,14 @@ public class Drawbridge : MonoBehaviour
     [HideInInspector]
     public bool m_draw;
     public float m_speed = 10f;
+    public FMODUnity.EventReference m_raisingAudio;
+
+    public void DrawBridge()       
+    {
+        m_draw = true;
+        GameManager.Instance.m_audioManager.PlayOneShot(m_raisingAudio, gameObject.transform.position);
+    }
+
 
     private void Update()
     {
