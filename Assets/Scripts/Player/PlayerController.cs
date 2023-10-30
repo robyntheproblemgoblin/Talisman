@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour, IBeing
     #region SFX
     [Space(10), Header("Sound Effects"), Space(5)]
     public FMODUnity.EventReference m_groundedSFX;
+    bool m_jumped = false;
     public FMODUnity.EventReference m_weaponHit;
     public List<FMODUnity.EventReference> m_playerGrunts;
     public FMODUnity.EventReference m_healingSound;

@@ -20,5 +20,5 @@ public class ControllerImages : ScriptableObject
     public int m_heal;
     public int m_pause;
     public int m_sprint;
-    public Sprite m_controlsDisplay; 
+    public Image m_controlsDisplay; 
 }
