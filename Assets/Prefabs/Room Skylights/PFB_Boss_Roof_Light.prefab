@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 44f0e1148a89f04429afae5cfd984542, type: 2}
+  - {fileID: 2100000, guid: 2b9839cf0445c5a45b62021efb4ff104, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,7 +124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760028242039856861}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.23, z: 0}
+  m_LocalPosition: {x: 0, y: -1.212, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -142,9 +142,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.8385922, b: 0.5801887, a: 1}
-  m_Intensity: 0.92
-  m_Range: 2.28
+  m_Color: {r: 0.990566, g: 0.37081176, b: 0.2943663, a: 1}
+  m_Intensity: 6.9
+  m_Range: 1.7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3027509344994182793}
   m_Layer: 0
-  m_Name: PFB_Puzzle_Roof_Light
+  m_Name: PFB_Boss_Roof_Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,14 +273,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2983802373779695830}
-  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.43, z: 0}
+  m_LocalRotation: {x: 0.7508768, y: 0.00000005255677, z: 0.00000005255515, w: 0.6604423}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3027509344994182793}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 97.33301, y: 0, z: 0}
 --- !u!108 &1659204239206607576
 Light:
   m_ObjectHideFlags: 0
@@ -292,11 +292,11 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.9811321, g: 0.7887403, b: 0.5322179, a: 1}
-  m_Intensity: 127.8
-  m_Range: 16.29
-  m_SpotAngle: 114.58578
-  m_InnerSpotAngle: 66.09527
+  m_Color: {r: 1, g: 0.20769599, b: 0, a: 1}
+  m_Intensity: 105.45
+  m_Range: 51.6
+  m_SpotAngle: 95.23443
+  m_InnerSpotAngle: 43.97944
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
