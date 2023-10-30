@@ -106,6 +106,8 @@ public class PlayerController : MonoBehaviour, IBeing
     {
         m_inputControl = new FPControls();
         m_game = GameManager.Instance;
+        Transform t = gameObject.transform;
+        m_game.m_initialSpawn = t;
         m_skinnedMeshRenderer.enabled = false;
     }
     void Start()

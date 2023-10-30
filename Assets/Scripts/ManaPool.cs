@@ -29,11 +29,11 @@ public class ManaPool : MonoBehaviour
 
     private void Start()
     {
-        m_intensity = m_light.intensity;
-        m_emissiveMax = m_waterMesh.material.GetFloat("_EmissivStrength");
-        m_currentEmissive = m_emissiveMax;
+        m_intensity = m_light.intensity;        
         if(!m_isEnd)
         {
+        m_emissiveMax = m_waterMesh.material.GetFloat("_EmissivStrength");
+        m_currentEmissive = m_emissiveMax;
             m_loopInstance = RuntimeManager.CreateInstance(m_loopSound);
             RuntimeManager.AttachInstanceToGameObject(m_loopInstance, gameObject.transform);
             m_loopInstance.start();
@@ -44,7 +44,6 @@ public class ManaPool : MonoBehaviour
     void Update()
     {
         float lightStep = m_lightDimSpeed * Time.deltaTime;
-        float waterStep = m_waterDimSpeed * Time.deltaTime;
         if(m_isActive && m_light.intensity <= m_intensity)
         {
             m_light.intensity += lightStep;
@@ -53,7 +52,10 @@ public class ManaPool : MonoBehaviour
         {
             m_light.intensity -= lightStep;
         }
-        
+        if (!m_isEnd)
+        {
+        float waterStep = m_waterDimSpeed * Time.deltaTime;
+            
         if (m_isActive && m_waterMesh.material.GetFloat("_EmissivStrength") <= m_emissiveMax)
         {
             m_waterMesh.material.SetFloat("_EmissiveStrength", m_currentEmissive += waterStep);
@@ -62,18 +64,14 @@ public class ManaPool : MonoBehaviour
         {
             m_waterMesh.material.SetFloat("_EmissiveStrength", m_currentEmissive -= waterStep);
         }
+        }
     }
 
     public void Interact(PlayerController pc)
     {
         if (m_isEnd)
         {
-            GameManager.Instance.m_menuManager.m_falseEnd.SetActive(true);
-            GameManager.Instance.m_menuManager.m_eventSystem.SetSelectedGameObject(GameManager.Instance.m_menuManager.m_falseQuit.gameObject);
-            GameManager.Instance.m_player.m_inputControl.Player_Map.Disable();
-            GameManager.Instance.m_player.m_inputControl.UI.Enable();
-            Cursor.lockState = CursorLockMode.Confined;
-            return;
+            GameManager.Instance.LastCinematic();
         }
         else if (m_isActive)
         {

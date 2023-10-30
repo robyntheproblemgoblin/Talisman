@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public Transform m_respawnPoint;
+    [HideInInspector]
+    public Transform m_initialSpawn;
     public float m_respawnHealth;
     public float m_respawnMana;
 
@@ -198,7 +200,13 @@ public class GameManager : MonoBehaviour
 
     public void LastCinematic()
     {
+        m_player.m_animator.SetTrigger("AltarCinematic");
+        m_audioManager.PlayCinematic().Forget();
+    }
 
+    public async UniTask EndGame()
+    {
+        m_menuManager.FadeDeathScreen().Forget();
     }
 
     void DeathMenuStart()
