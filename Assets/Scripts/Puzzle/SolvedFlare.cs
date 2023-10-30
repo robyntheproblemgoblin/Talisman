@@ -7,6 +7,7 @@ public class SolvedFlare : Puzzle
     [Space(5), Header("Connected Objects"), Space(5)]
     public Puzzle m_outputObject;
     public bool m_murayPuzzle;
+    public Light m_light;
 
     bool m_isSolved = false;
     private void Update()
@@ -16,7 +17,10 @@ public class SolvedFlare : Puzzle
             m_unlocked = true;
             m_isSolved = true;
             m_flare.Play();
-            foreach(Door door in m_doors)
+            m_light.gameObject.SetActive(true);
+            GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOn, gameObject.transform.position);
+            GameManager.Instance.m_audioManager.PlayOneShot(m_manaFlowOff, gameObject.transform.position);
+            foreach (Door door in m_doors)
             {
                 door.CheckState();
             }

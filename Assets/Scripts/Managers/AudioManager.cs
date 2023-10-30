@@ -22,6 +22,17 @@ public class AudioManager : MonoBehaviour
     [Header("FMOD Music Event References")]
     public FMODUnity.EventReference m_menuMusic;
 
+    [Space(5), Header("FMOD SFX Event References")]
+    public FMODUnity.EventReference m_talisman;
+    public FMODUnity.EventReference m_gameOver;
+
+    [Space(5), Header("UI SFX")]
+    public FMODUnity.EventReference m_navigatingMenu;
+    public FMODUnity.EventReference m_selectedButton;
+    public FMODUnity.EventReference m_menuBack;
+    public FMODUnity.EventReference m_sliderSound;
+    public FMODUnity.EventReference m_startGame;
+
     [Space(5), Header("Murray Puzzle Dialogue References")]
     public Dialogue m_murrayHalfSolve;
     public Dialogue m_murrayFullSolve;
@@ -40,6 +51,7 @@ public class AudioManager : MonoBehaviour
 
     public FMOD.Studio.EventInstance m_dialogueInstance;
     public FMOD.Studio.EventInstance m_menuMusicInstance;
+    public FMOD.Studio.EventInstance m_talismanInstance;
 
     [Header("Dialogue Sections")]
     public Dialogue m_intro;
@@ -80,23 +92,26 @@ public class AudioManager : MonoBehaviour
         m_sFX.setVolume(m_sFXVolume);
     }
 
-
     public void MasterVolumeLevel(float newMasterVolume)
     {
+        PlayOneShot(m_sliderSound, m_game.m_player.gameObject.transform.position);
         m_masterVolume = newMasterVolume;
     }
 
     public void MusicVolumeLevel(float newMusicVolume)
     {
+        PlayOneShot(m_sliderSound, m_game.m_player.gameObject.transform.position);
         m_musicVolume = newMusicVolume;
     }
 
     public void SFXVolumeLevel(float newSFXVolume)
     {
+        PlayOneShot(m_sliderSound, m_game.m_player.gameObject.transform.position);
         m_sFXVolume = newSFXVolume;
     }
     public void DialogueVolumeLevel(float newDialogueVolume)
     {
+        PlayOneShot(m_sliderSound, m_game.m_player.gameObject.transform.position);
         m_dialogueVolume = newDialogueVolume;
     }
 
@@ -105,12 +120,12 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(fmodEvent, pos);
     }
 
-    void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
+    public void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
     {
         eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
-    void StartFmodLoop(FMOD.Studio.EventInstance eventInstance)
+    public void StartFmodLoop(FMOD.Studio.EventInstance eventInstance)
     {
         eventInstance.start();
     }
@@ -188,6 +203,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayTalismanLoop()
+    {
+        m_talismanInstance = RuntimeManager.CreateInstance(m_talisman);
+        RuntimeManager.AttachInstanceToGameObject(m_talismanInstance, m_game.m_player.gameObject.transform);
+        m_talismanInstance.start();
+    }
+
+    public void GameOver()
+    {
+        PlayOneShot(m_gameOver, m_game.m_player.gameObject.transform.position);
+    }
+
     async UniTask StopInteractions(FMOD.Studio.EventInstance instance)
     {
         FMOD.Studio.PLAYBACK_STATE current;
@@ -204,6 +231,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayIntroDialogue()
     {
+        PlayOneShot(m_startGame, m_game.m_player.gameObject.transform.position);
         PlayDialogue(m_intro);
     }
 
@@ -300,4 +328,24 @@ public class AudioManager : MonoBehaviour
         }
         m_cinematics++;
     }
+
+    public void OnMenuNavigation()
+    {
+        PlayOneShot(m_navigatingMenu, m_game.m_player.gameObject.transform.position);
+    }
+
+    public void OnMenuSelect()
+    {
+        PlayOneShot(m_selectedButton, m_game.m_player.gameObject.transform.position);
+    }
+
+    public void OnMenuSlider()
+    {
+        PlayOneShot(m_sliderSound, m_game.m_player.gameObject.transform.position);
+    }
+
+    public void OnMenuBack()
+    {
+        PlayOneShot(m_menuBack, m_game.m_player.gameObject.transform.position);
+    }    
 }

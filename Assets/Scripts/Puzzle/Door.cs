@@ -11,6 +11,9 @@ public class Door : MonoBehaviour
     public List<Puzzle> m_outputPuzzles;
     bool m_manaContinue = true;
 
+    public FMODUnity.EventReference m_openSound;
+    public FMODUnity.EventReference m_closeSound;
+
     private void Start()
     {
         foreach(Puzzle puzzle in m_puzzleList)
@@ -25,10 +28,15 @@ public class Door : MonoBehaviour
         {
             if (p.m_unlocked == false)
             {
+                if(m_unlocked == true)
+                {
+                    GameManager.Instance.m_audioManager.PlayOneShot(m_closeSound, gameObject.transform.position);
+                }
                 m_unlocked = false;
                 return;
             }
         }
+        GameManager.Instance.m_audioManager.PlayOneShot(m_openSound, gameObject.transform.position);
         m_unlocked = true;
         if(m_outputPuzzles.Count > 0 && m_manaContinue)
         {
@@ -55,11 +63,13 @@ public class Door : MonoBehaviour
 
     public void CloseDoor()
     {
+        GameManager.Instance.m_audioManager.PlayOneShot(m_closeSound, gameObject.transform.position);
         m_unlocked = false;
     }
 
     public void OpenDoor()
     {
+        GameManager.Instance.m_audioManager.PlayOneShot(m_openSound, gameObject.transform.position);
         m_unlocked = true;
     }
 }
