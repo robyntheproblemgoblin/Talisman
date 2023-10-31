@@ -377,11 +377,8 @@ public class MenuManager : MonoBehaviour
 
     void Credits()
     {
-        GameManager.Instance.m_menuManager.m_creditsScreen.SetActive(true);
-        GameManager.Instance.m_menuManager.m_eventSystem.SetSelectedGameObject(GameManager.Instance.m_menuManager.m_creditsBack.gameObject);
-        GameManager.Instance.m_player.m_inputControl.Player_Map.Disable();
-        GameManager.Instance.m_player.m_inputControl.UI.Enable();
-        Cursor.lockState = CursorLockMode.Confined;
+        m_game.UpdateGameState(GameState.CREDITS);
+        m_eventSystem.SetSelectedGameObject(m_creditsBack.gameObject);       
     }
 
     public void SetTutorial(List<string> text, List<ControlSprites> sprites, bool spriteFirst)
@@ -563,6 +560,7 @@ public class MenuManager : MonoBehaviour
 
     public async UniTask FadeDeathScreen()
     {
+        m_deathImage.color = Color.clear;
         float alpha = 0;
         while (alpha < 1)
         {
@@ -570,12 +568,21 @@ public class MenuManager : MonoBehaviour
             alpha += Time.deltaTime * m_deathFade;
             await UniTask.Yield();
         }
+        m_deathImage.color = Color.black;
         SetDeathScreen();
     }
 
     void SetDeathScreen()
     {
         m_respawnButton.gameObject.SetActive(true);
+        if (m_game.m_lastState == GameState.CINEMATIC)
+        {
+            m_respawnButton.GetComponentInChildren<TextMeshProUGUI>().text = "Restart";
+        }
+        else
+        {
+            m_respawnButton.GetComponentInChildren<TextMeshProUGUI>().text = "Respawn";
+        }
         m_deathQuit.gameObject.SetActive(true);
         m_eventSystem.SetSelectedGameObject(m_respawnButton.gameObject);
     }
@@ -586,9 +593,9 @@ public class MenuManager : MonoBehaviour
         m_respawnButton.gameObject.SetActive(false);
         m_deathQuit.gameObject.SetActive(false);
         m_deathImage.color = new Color(0, 0, 0, 0);
-        if (m_game.m_gameState == GameState.CINEMATIC)
+        if (m_game.m_lastState == GameState.CINEMATIC)
         {
-
+            QuitGame();
         }
         else
         {
