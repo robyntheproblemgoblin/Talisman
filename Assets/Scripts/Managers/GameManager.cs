@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using AISystem.Systems;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -138,17 +139,18 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.CINEMATIC);
         m_player.m_skinnedMeshRenderer.enabled = true;
         m_player.m_healParticles.gameObject.SetActive(true);
-        //while(m_player.gameObject.transform.position != m_cinematicPoints[0].position &&
-        //    m_player.gameObject.transform.rotation != m_cinematicPoints[0].rotation)
-        //{
-        //    float step = m_moveToCinematicSpeed * Time.deltaTime;
-        //    Vector3 nextPos = Vector3.Lerp(m_player.gameObject.transform.position, m_cinematicPoints[0].position, step);
-        //    Quaternion nextRot = Quaternion.Lerp(m_player.gameObject.transform.rotation, m_cinematicPoints[0].rotation, step);
-        //    m_player.gameObject.transform.position = nextPos;
-        //    m_player.gameObject.transform.rotation.Set(nextRot.x, nextRot.y, nextRot.z, nextRot.w);
-        //    await UniTask.Yield();
-        //}
-        m_player.m_animator.SetTrigger("TalismanCinematic");
+        Vector3 rotation = new Vector3(0, m_cinematicPoints[0].rotation.eulerAngles.y, 0);
+       while (m_player.gameObject.transform.position != m_cinematicPoints[0].position &&
+           m_player.gameObject.transform.rotation.eulerAngles != rotation)
+       {
+           float step = m_moveToCinematicSpeed * Time.deltaTime;
+           Vector3 nextPos = Vector3.MoveTowards(m_player.gameObject.transform.position, m_cinematicPoints[0].position, step);
+           Vector3 nextRot = Vector3.RotateTowards(m_player.gameObject.transform.forward, m_cinematicPoints[0].rotation.eulerAngles, step, step);
+           m_player.gameObject.transform.position = nextPos;
+            m_player.m_camera.MoveCamera(nextRot, m_player.m_cameraSensitivity);
+            await UniTask.Yield();
+        }    
+    m_player.m_animator.SetTrigger("TalismanCinematic");
         m_audioManager.PlayCinematic().Forget();
     }
 
@@ -200,12 +202,14 @@ public class GameManager : MonoBehaviour
 
     public void LastCinematic()
     {
+        UpdateGameState(GameState.CINEMATIC);
         m_player.m_animator.SetTrigger("AltarCinematic");
         m_audioManager.PlayCinematic().Forget();
     }
 
     public async UniTask EndGame()
     {
+        UpdateGameState(GameState.DEATH);
         m_menuManager.FadeDeathScreen().Forget();
     }
 
