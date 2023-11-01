@@ -29,7 +29,7 @@ namespace AISystem
             return m_aiMovement.m_isStatue;
         }
 
-        public void SetStatue(bool state)
+        public void SetStatue(bool state, FMODUnity.EventReference stoneAwake, FMODUnity.EventReference armour, FMODUnity.EventReference grunt)
         {
             m_aiMovement.m_isStatue = state;
             if(state)
@@ -38,7 +38,7 @@ namespace AISystem
             }
             else
             {
-                m_aiMovement.AwakenStatue();
+                m_aiMovement.AwakenStatue(stoneAwake, armour, grunt).Forget();
                 EnableIntelligience();
             }
         }

@@ -20,9 +20,12 @@ public class GameManager : MonoBehaviour
     public float m_talismanFadeWhite = 1f;
     public float m_talismanFadeBlack = 1f;
     public float m_talismanFadeClear = 1f;
+    public float m_moveToCinematicSpeed = 1f;
 
     [HideInInspector]
     public Transform m_respawnPoint;
+    [HideInInspector]
+    public Transform m_initialSpawn;
     public float m_respawnHealth;
     public float m_respawnMana;
 
@@ -130,12 +133,23 @@ public class GameManager : MonoBehaviour
         m_respawnPoint = transform;
     }
 
-    public void FirstCinematic()
+    public async UniTask FirstCinematic()
     {
-        m_player.m_healParticles.gameObject.SetActive(true);
-        m_player.m_skinnedMeshRenderer.enabled = true;
-        m_audioManager.PlayCinematic().Forget();
         UpdateGameState(GameState.CINEMATIC);
+        m_player.m_skinnedMeshRenderer.enabled = true;
+        m_player.m_healParticles.gameObject.SetActive(true);
+        //while(m_player.gameObject.transform.position != m_cinematicPoints[0].position &&
+        //    m_player.gameObject.transform.rotation != m_cinematicPoints[0].rotation)
+        //{
+        //    float step = m_moveToCinematicSpeed * Time.deltaTime;
+        //    Vector3 nextPos = Vector3.Lerp(m_player.gameObject.transform.position, m_cinematicPoints[0].position, step);
+        //    Quaternion nextRot = Quaternion.Lerp(m_player.gameObject.transform.rotation, m_cinematicPoints[0].rotation, step);
+        //    m_player.gameObject.transform.position = nextPos;
+        //    m_player.gameObject.transform.rotation.Set(nextRot.x, nextRot.y, nextRot.z, nextRot.w);
+        //    await UniTask.Yield();
+        //}
+        m_player.m_animator.SetTrigger("TalismanCinematic");
+        m_audioManager.PlayCinematic().Forget();
     }
 
     public async UniTask SecondCinematic()
@@ -155,9 +169,9 @@ public class GameManager : MonoBehaviour
         m_menuManager.m_fadeBlack.gameObject.SetActive(true);
         m_menuManager.m_fadeBlack.color = b;
 
-        m_respawnPoint = m_cinematicPoints[0];
-        m_player.transform.position = m_cinematicPoints[0].position;
-        m_player.m_camera.SetRotation(m_cinematicPoints[0].rotation.eulerAngles);
+        m_respawnPoint = m_cinematicPoints[1];
+        m_player.transform.position = m_cinematicPoints[1].position;
+        m_player.m_camera.SetRotation(m_cinematicPoints[1].rotation.eulerAngles);
 
         while (m_menuManager.m_fadeWhite.color.a >= 0)
         {
@@ -168,8 +182,9 @@ public class GameManager : MonoBehaviour
         f = new Color(1, 1, 1, 0);
         m_menuManager.m_fadeWhite.color = f;
 
-        m_player.m_animator.SetTrigger("Cinematic");
+        m_player.m_animator.SetTrigger("SwordCinematic");
         m_audioManager.PlayCinematic().Forget();
+
 
         while (m_menuManager.m_fadeBlack.color.a >= 0)
         {
@@ -185,7 +200,13 @@ public class GameManager : MonoBehaviour
 
     public void LastCinematic()
     {
+        m_player.m_animator.SetTrigger("AltarCinematic");
+        m_audioManager.PlayCinematic().Forget();
+    }
 
+    public async UniTask EndGame()
+    {
+        m_menuManager.FadeDeathScreen().Forget();
     }
 
     void DeathMenuStart()

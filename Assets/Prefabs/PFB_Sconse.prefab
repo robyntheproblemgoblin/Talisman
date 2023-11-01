@@ -162,8 +162,117 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2528246521297451180, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_light
+      value: 
+      objectReference: {fileID: 283844623465534273}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_interact.Path
+      value: event:/TempSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowOn.Path
+      value: event:/TempSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowOff.Path
+      value: event:/TempSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowFail.Path
+      value: event:/TempSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_interact.Guid.Data1
+      value: 1359669497
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_interact.Guid.Data2
+      value: 1296283916
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_interact.Guid.Data3
+      value: 1178622085
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_interact.Guid.Data4
+      value: -636398506
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowOn.Guid.Data1
+      value: 1359669497
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowOn.Guid.Data2
+      value: 1296283916
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowOn.Guid.Data3
+      value: 1178622085
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowOn.Guid.Data4
+      value: -636398506
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowOff.Guid.Data1
+      value: 1359669497
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowOff.Guid.Data2
+      value: 1296283916
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowOff.Guid.Data3
+      value: 1178622085
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowOff.Guid.Data4
+      value: -636398506
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowFail.Guid.Data1
+      value: 1359669497
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowFail.Guid.Data2
+      value: 1296283916
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowFail.Guid.Data3
+      value: 1178622085
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591010014168429065, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_manaFlowFail.Guid.Data4
+      value: -636398506
+      objectReference: {fileID: 0}
+    - target: {fileID: 8754634387116636748, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8754634387116636748, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 0.5223369
+      objectReference: {fileID: 0}
+    - target: {fileID: 8754634387116636748, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 0.43254495
+      objectReference: {fileID: 0}
+    - target: {fileID: 8754634387116636748, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: -0.7348939
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+--- !u!108 &283844623465534273 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 8754634387116636748, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
+  m_PrefabInstance: {fileID: 8831240806268463373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8752862364806304981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 285617159566704088, guid: 043d6aeea26867c4a8de95b865bd3988, type: 3}
