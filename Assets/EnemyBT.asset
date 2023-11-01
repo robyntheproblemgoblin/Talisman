@@ -171,7 +171,7 @@ MonoBehaviour:
     - rid: 1235179561357148174
       type: {class: Interrupt, ns: AISystem.Behaviours, asm: Assembly-CSharp}
       data:
-        m_duration: 1
+        m_duration: 0.25
     - rid: 1235179561357148175
       type: {class: SequenceNode, ns: AISystem.Behaviours.StandardNodes, asm: Assembly-CSharp}
       data:
@@ -233,4 +233,4 @@ MonoBehaviour:
     - rid: 8272514889055469589
       type: {class: HitReaction, ns: AISystem.Behaviours, asm: Assembly-CSharp}
       data:
-        m_duration: 1
+        m_duration: 0.25

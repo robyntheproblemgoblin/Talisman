@@ -325,12 +325,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_manaAmount: 30
-  m_respawnPosition: {fileID: 3194824145702045523}
-  m_inDoor: {fileID: 0}
-  m_outDoor: {fileID: 0}
   m_light: {fileID: 0}
-  m_interactMessage: Interact
-  m_isFalseEnd: 0
+  m_lightDimSpeed: 1
+  m_spritesFirst: 1
+  m_interactStrings:
+  - '/ '
+  - ' Interact'
+  m_interactSprites: 0600000007000000
+  m_isEnd: 0
+  m_doorList: []
 --- !u!1001 &293075249470979267
 PrefabInstance:
   m_ObjectHideFlags: 0

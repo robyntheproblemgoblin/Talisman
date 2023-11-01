@@ -20,6 +20,11 @@ public class ManaPipe : Puzzle
     public bool m_murrayPuzzleOut;
     public bool m_rotationPuzzleOut;
 
+    public Color m_offColour;
+    public Color m_manaColour;
+    public float m_emission;
+    public bool m_isMurrayCircle = false;
+
     MeshRenderer m_pipe;
 
     private new void Start()
@@ -55,6 +60,12 @@ public class ManaPipe : Puzzle
             m_shader = "_ManaChannel4";
         }
 
+        if (m_isMurrayCircle)
+        {
+            m_pipe.material.SetColor("_Mana_Colour", m_manaColour);
+            m_pipe.material.SetColor("_BaseColour", m_offColour);
+        }
+        m_pipe.material.SetFloat("_Emission", m_emission);
     }
 
     private void Update()

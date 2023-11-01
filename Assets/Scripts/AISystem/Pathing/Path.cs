@@ -1,4 +1,6 @@
-﻿using Unity.Mathematics;
+﻿using System.Drawing;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine.Splines;
 
 namespace AISystem.Pathing
@@ -28,8 +30,14 @@ namespace AISystem.Pathing
             m_pathSpline = null,
         };
 
+        public float DebugIssues(float3 point, float distance)
+        {
+            SplineUtility.GetNearestPoint(m_pathSpline, point, out float3 nearest, out float nearestT);
 
-        public void GetRelativePoint(float3 point, float distance, out float3 position, out float3 tangent)
+            return nearestT;            
+        }
+
+            public void GetRelativePoint(float3 point, float distance, out float3 position, out float3 tangent)
         {
             SplineUtility.GetNearestPoint(m_pathSpline, point, out float3 nearest, out float nearestT);
             float agentDist = nearestT * m_length;
@@ -38,12 +46,12 @@ namespace AISystem.Pathing
             if (targetDist >= m_length)
             {
                 position = m_destination;
-                tangent = m_heading;
+                tangent = m_heading;               
             }
             else
             {
                 float t = targetDist / m_length;
-                m_pathSpline.Evaluate(t, out position, out tangent, out float3 up);
+                m_pathSpline.Evaluate(t, out position, out tangent, out float3 up);                          
             }
         }
     }

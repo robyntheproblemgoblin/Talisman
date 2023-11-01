@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ManaPool : MonoBehaviour
@@ -7,9 +8,15 @@ public class ManaPool : MonoBehaviour
     float m_intensity;
     public float m_lightDimSpeed = 1f;
 
-    public string m_interactMessage = "<sprite=Reticle> Interact";
+    public bool m_spritesFirst;
+    public List<string> m_interactStrings = new List<string>();
+    public List<ControlSprites> m_interactSprites = new List<ControlSprites>();
     public bool m_isEnd;
     bool m_isActive = true;
+    bool m_isFirst = true;
+
+    public List<Door> m_doorList = new List<Door>();
+
 
     private void Start()
     {
@@ -19,11 +26,11 @@ public class ManaPool : MonoBehaviour
     void Update()
     {
         float step = m_lightDimSpeed * Time.deltaTime;
-        if(m_isActive && m_light.intensity != m_intensity)
+        if(m_isActive && m_light.intensity <= m_intensity)
         {
             m_light.intensity += step;
         }
-        else if (m_isActive && m_light.intensity != 0)
+        else if (!m_isActive && m_light.intensity >= 0)
         {
             m_light.intensity -= step;
         }
@@ -44,6 +51,14 @@ public class ManaPool : MonoBehaviour
         {
             m_isActive = false;
             pc.AddMana(m_manaAmount);
+            if(m_isFirst)
+            {
+                m_isFirst = false;
+                foreach(Door door in m_doorList)
+                {
+                    door.OpenDoor();
+                }
+            }
         }
     }
 

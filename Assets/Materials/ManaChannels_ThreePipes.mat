@@ -53,6 +53,7 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 10
+    - _Emision: 5
     - _ManaChannel1: -1
     - _ManaChannel2: 1
     - _ManaChannel3: -1
@@ -66,5 +67,9 @@ Material:
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
-    m_Colors: []
+    m_Colors:
+    - _BaseColour: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 0}
+    - _Color_1: {r: 0, g: 0, b: 0, a: 0}
+    - _Mana_Colour: {r: 0.15686275, g: 0.3647059, b: 0.7647059, a: 1}
   m_BuildTextureStacks: []

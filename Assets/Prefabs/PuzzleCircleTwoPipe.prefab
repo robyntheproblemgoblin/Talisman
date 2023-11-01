@@ -230,7 +230,18 @@ MonoBehaviour:
   m_input: 0
   m_output: 0
   m_rewindMana: 0
-  m_interactMessage: Interact
+  m_spritesFirst: 1
+  m_interactStrings:
+  - '/ '
+  - ' Interact'
+  m_interactSprites: 0600000007000000
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 1
   m_rewindSpeed: 1

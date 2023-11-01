@@ -36,6 +36,8 @@ namespace AISystem
         int m_playerMask;
         Vector3 m_startPosition;
         Quaternion m_startRotation;
+
+        SkinnedMeshRenderer m_mesh;
         #endregion
 
         void Start()
@@ -95,6 +97,7 @@ namespace AISystem
 
         public void ResetToPosition()
         {
+            m_swordCollider.enabled = false;
             transform.SetPositionAndRotation(m_startPosition, m_startRotation);
             m_animator.rootPosition = m_startPosition;            
             m_animator.Rebind();
@@ -121,6 +124,7 @@ namespace AISystem
         public bool TakeHit(float damage, Vector2 angle)
         {
             m_playerController.HitReticle();
+            m_swordCollider.enabled = false;
             m_currentHP -= damage;
             bool isDead = m_currentHP <= 0;
             if (isDead)
@@ -153,13 +157,12 @@ namespace AISystem
         protected void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.gameObject.layer == m_playerMask && !m_intelligience.IsStatue())
-            {
-                Vector3 direction = -collision.GetContact(0).normal;
+            {                
+                Vector3 direction = -collision.GetContact(0).normal;                
                 Vector2 angle = new Vector2(direction.x, direction.z);
                 TakeHit(m_playerController.m_meleeDamage, angle);
             }
         }
-
     }
 
 }

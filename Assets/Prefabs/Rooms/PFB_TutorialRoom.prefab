@@ -467,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2977689302902301402, guid: 5475c2ffde14cb844a730de8b8cce4a8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.361313
+      value: -18.394844
       objectReference: {fileID: 0}
     - target: {fileID: 2977689302902301402, guid: 5475c2ffde14cb844a730de8b8cce4a8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -746,8 +746,40 @@ PrefabInstance:
     m_TransformParent: {fileID: 8843243286599680231}
     m_Modifications:
     - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
-      propertyPath: m_tutorialText
-      value: Press X to Interact
+      propertyPath: m_spriteFirst
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[0]
+      value: '/ '
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[1]
+      value: to Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[2]
+      value: to Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[3]
+      value: 'Press '
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.data[1]
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4685308145854060695, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_RootOrder
@@ -755,7 +787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4685308145854060695, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4685308145854060695, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_LocalScale.y
@@ -763,7 +795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4685308145854060695, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4685308145854060695, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_LocalPosition.x
@@ -775,7 +807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4685308145854060695, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.54
+      value: -13.5
       objectReference: {fileID: 0}
     - target: {fileID: 4685308145854060695, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_LocalRotation.w

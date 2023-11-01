@@ -123,6 +123,13 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 1
   m_rewindSpeed: 1
@@ -162,6 +169,13 @@ MonoBehaviour:
   m_output: 0
   m_rewindMana: 0
   m_interactMessage: Interact
+  m_interact:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   m_bridge: {fileID: 0}
   m_speed: 1
   m_rewindSpeed: 1
@@ -184,6 +198,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
       propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
@@ -226,14 +248,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c246c2654f7b3b7419597a7d18bba07e, type: 2}
+      objectReference: {fileID: 2100000, guid: 4ab4c256e8bce8a438dd29a4b04efc3e, type: 2}
     - target: {fileID: -7511558181221131132, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 78d8ebdfeafd27545b0d5a287815ac13, type: 2}
+      objectReference: {fileID: 2100000, guid: a319c082c83d34e4185649989df3ab37, type: 2}
     - target: {fileID: -6759130981171045336, guid: 602703f1781604c4c9e33e1afc771ac7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

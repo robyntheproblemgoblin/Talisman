@@ -6,6 +6,7 @@ public class SolvedFlare : Puzzle
 
     [Space(5), Header("Connected Objects"), Space(5)]
     public Puzzle m_outputObject;
+    public bool m_murayPuzzle;
 
     bool m_isSolved = false;
     private void Update()
@@ -26,6 +27,10 @@ public class SolvedFlare : Puzzle
             if(m_outputObject != null)
             {
                 m_outputObject.m_updateMana = true;
+            }
+            if (m_murayPuzzle)
+            {
+                GameManager.Instance.m_audioManager.PlayMurrayPuzzleDialogue();
             }
         }
     }

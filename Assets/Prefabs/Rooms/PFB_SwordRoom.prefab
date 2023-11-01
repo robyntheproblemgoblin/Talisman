@@ -2119,6 +2119,34 @@ PrefabInstance:
       propertyPath: m_secondText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_spriteFirst
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[0]
+      value: ' to Heal'
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[1]
+      value: ' to Heal'
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.data[1]
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4685308145854060695, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_RootOrder
       value: 50
@@ -3236,7 +3264,7 @@ PrefabInstance:
     - target: {fileID: 1135818524463137477, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_tutorial
       value: 
-      objectReference: {fileID: 6551448885960011769}
+      objectReference: {fileID: 0}
     - target: {fileID: 1135818524463137477, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_isLastSwordInRoom
       value: 1
@@ -4574,26 +4602,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5183439550522520681}
     m_Modifications:
-    - target: {fileID: 1944597507353507202, guid: b3d5f1f342960ff48b4b9f1e7ebdbd2e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2e3a9c2d994c03c4d9cf32d4d97101bd, type: 2}
-    - target: {fileID: 3811335277592836196, guid: b3d5f1f342960ff48b4b9f1e7ebdbd2e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2e3a9c2d994c03c4d9cf32d4d97101bd, type: 2}
-    - target: {fileID: 5961338193841020301, guid: b3d5f1f342960ff48b4b9f1e7ebdbd2e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2e3a9c2d994c03c4d9cf32d4d97101bd, type: 2}
     - target: {fileID: 7063158060680345226, guid: b3d5f1f342960ff48b4b9f1e7ebdbd2e, type: 3}
       propertyPath: m_Name
       value: PFB_Roots
       objectReference: {fileID: 0}
-    - target: {fileID: 7925774182833526121, guid: b3d5f1f342960ff48b4b9f1e7ebdbd2e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2e3a9c2d994c03c4d9cf32d4d97101bd, type: 2}
     - target: {fileID: 8192647075866848829, guid: b3d5f1f342960ff48b4b9f1e7ebdbd2e, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -4638,14 +4650,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8702548306502824160, guid: b3d5f1f342960ff48b4b9f1e7ebdbd2e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2e3a9c2d994c03c4d9cf32d4d97101bd, type: 2}
-    - target: {fileID: 8827006616395129774, guid: b3d5f1f342960ff48b4b9f1e7ebdbd2e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2e3a9c2d994c03c4d9cf32d4d97101bd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3d5f1f342960ff48b4b9f1e7ebdbd2e, type: 3}
 --- !u!4 &4418838160976662162 stripped
@@ -5597,8 +5601,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6551448885960011769}
     - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_spriteFirst
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_tutorialText
       value: Right Trigger to Melee Attack. <br> Right Bumper to Block
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[0]
+      value: ' to Attack <br>'
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_tutorialText.Array.data[1]
+      value: ' to Block'
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -3755576265204603034, guid: 771d12b716366174daa50ac11f88f422, type: 3}
+      propertyPath: m_controlSprites.Array.data[1]
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4685308145854060695, guid: 771d12b716366174daa50ac11f88f422, type: 3}
       propertyPath: m_RootOrder
