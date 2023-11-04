@@ -252,7 +252,7 @@ MonoBehaviour:
   m_health: 30
   m_currentHealth: 0
   m_healRate: 5
-  m_healParticles: {fileID: 0}
+  m_healParticles: {fileID: 571604481877483942}
   m_maxMana: 30
   m_startMana: 30
   m_manaHealCost: 5
@@ -442,6 +442,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf51e260a15342540af6be152c2402c4, type: 3}
+--- !u!198 &571604481877483942 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 668448244706634291, guid: bf51e260a15342540af6be152c2402c4, type: 3}
+  m_PrefabInstance: {fileID: 1056218479808269205}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7949427747964470309
 PrefabInstance:
   m_ObjectHideFlags: 0
