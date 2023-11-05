@@ -319,12 +319,13 @@ public class AudioManager : MonoBehaviour
         }
         else if (m_cinematics == 2)
         {
+
             PlayDialogue(m_ending);
             while (m_nextCinematic)
             {
                 await UniTask.Yield();
             }
-            m_game.EndGame();
+            m_game.EndGame().Forget();
         }
         m_cinematics++;
     }

@@ -29,11 +29,11 @@ public class ManaPool : MonoBehaviour
 
     private void Start()
     {
-        m_intensity = m_light.intensity;        
-        if(!m_isEnd)
+        m_intensity = m_light.intensity;
+        if (!m_isEnd)
         {
-        m_emissiveMax = m_waterMesh.material.GetFloat("_EmissivStrength");
-        m_currentEmissive = m_emissiveMax;
+            m_emissiveMax = m_waterMesh.material.GetFloat("_EmissiveStrength");
+            m_currentEmissive = m_emissiveMax;
             m_loopInstance = RuntimeManager.CreateInstance(m_loopSound);
             RuntimeManager.AttachInstanceToGameObject(m_loopInstance, gameObject.transform);
             m_loopInstance.start();
@@ -44,7 +44,7 @@ public class ManaPool : MonoBehaviour
     void Update()
     {
         float lightStep = m_lightDimSpeed * Time.deltaTime;
-        if(m_isActive && m_light.intensity <= m_intensity)
+        if (m_isActive && m_light.intensity <= m_intensity)
         {
             m_light.intensity += lightStep;
         }
@@ -54,16 +54,16 @@ public class ManaPool : MonoBehaviour
         }
         if (!m_isEnd)
         {
-        float waterStep = m_waterDimSpeed * Time.deltaTime;
-            
-        if (m_isActive && m_waterMesh.material.GetFloat("_EmissivStrength") <= m_emissiveMax)
-        {
-            m_waterMesh.material.SetFloat("_EmissiveStrength", m_currentEmissive += waterStep);
-        }
-        else if(!m_isActive && m_waterMesh.material.GetFloat("_EmissivStrength") >= 0)
-        {
-            m_waterMesh.material.SetFloat("_EmissiveStrength", m_currentEmissive -= waterStep);
-        }
+            float waterStep = m_waterDimSpeed * Time.deltaTime;
+
+            if (m_isActive && m_waterMesh.material.GetFloat("_EmissiveStrength") <= m_emissiveMax)
+            {
+                m_waterMesh.material.SetFloat("_EmissiveStrength", m_currentEmissive += waterStep);
+            }
+            else if (!m_isActive && m_waterMesh.material.GetFloat("_EmissiveStrength") >= 0)
+            {
+                m_waterMesh.material.SetFloat("_EmissiveStrength", m_currentEmissive -= waterStep);
+            }
         }
     }
 
@@ -78,10 +78,10 @@ public class ManaPool : MonoBehaviour
             m_isActive = false;
             GameManager.Instance.m_audioManager.PlayOneShot(m_interactSound, transform.position);
             pc.AddMana(m_manaAmount);
-            if(m_isFirst)
+            if (m_isFirst)
             {
                 m_isFirst = false;
-                foreach(Door door in m_doorList)
+                foreach (Door door in m_doorList)
                 {
                     door.OpenDoor();
                 }
@@ -94,7 +94,6 @@ public class ManaPool : MonoBehaviour
     public void ResetPool()
     {
         m_isActive = true;        
-        m_light.intensity = m_intensity;
     }
 
     public bool IsActive()
