@@ -87,8 +87,6 @@ public class PlayerController : MonoBehaviour, IBeing
     public bool m_stopInteracts = false;
     #endregion
 
-
-
     #region SFX
     [Space(10), Header("Sound Effects"), Space(5)]
     public FMODUnity.EventReference m_groundedSFX;
