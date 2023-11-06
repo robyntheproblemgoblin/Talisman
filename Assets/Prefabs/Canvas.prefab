@@ -8694,8 +8694,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 4982358579024987427}
   m_HandleRect: {fileID: 2388030526189514561}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 50
+  m_MaxValue: 250
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
@@ -9473,6 +9473,7 @@ MonoBehaviour:
   m_teleport: {fileID: 11400000, guid: 3f848c0ac6d933a44a794b09ee973152, type: 2}
   m_ending: {fileID: 11400000, guid: 52abd24a45127064091ca31b692ade4e, type: 2}
   m_stopInteractions: 0
+  m_allPuzzlesSolved: {fileID: 0}
 --- !u!114 &7384736391290127244
 MonoBehaviour:
   m_ObjectHideFlags: 0
