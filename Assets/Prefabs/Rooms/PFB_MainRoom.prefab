@@ -3513,46 +3513,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3831862568432814445}
     m_Modifications:
-    - target: {fileID: 4165244751987967888, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165244751987967888, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4165244751987967888, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5166593629595311091, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_Range
-      value: 3.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 5166593629595311091, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_Color.g
-      value: 0.9073501
-      objectReference: {fileID: 0}
-    - target: {fileID: 5166593629595311091, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_Color.r
-      value: 0.4575472
-      objectReference: {fileID: 0}
-    - target: {fileID: 5166593629595311091, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_Intensity
-      value: 19.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 5166593629595311091, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_SpotAngle
-      value: 157.16602
-      objectReference: {fileID: 0}
-    - target: {fileID: 5166593629595311091, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_InnerSpotAngle
-      value: 111.64764
-      objectReference: {fileID: 0}
-    - target: {fileID: 5166593629595311091, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_Shadows.m_Type
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7600936027668321668, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
       propertyPath: m_Name
       value: PFB_ManaPool
@@ -3602,14 +3562,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8294408997398256937, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_light
-      value: 
-      objectReference: {fileID: 2479437013056375291}
-    - target: {fileID: 8294408997398256937, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-      propertyPath: m_doorList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8294408997398256937, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
       propertyPath: m_doorList.Array.data[0]
       value: 
       objectReference: {fileID: 1606360548225102728}
@@ -3630,11 +3582,6 @@ PrefabInstance:
 --- !u!4 &1088948762085007712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7694239962112258920, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
-  m_PrefabInstance: {fileID: 7339696807347048968}
-  m_PrefabAsset: {fileID: 0}
---- !u!108 &2479437013056375291 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 5166593629595311091, guid: b2f218ab365a3b24e9c36dfbf7066fc7, type: 3}
   m_PrefabInstance: {fileID: 7339696807347048968}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8088102095362445376
