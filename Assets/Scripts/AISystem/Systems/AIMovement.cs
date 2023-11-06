@@ -134,7 +134,7 @@ namespace AISystem.Systems
             if (Vector3.Angle(m_attachedBeing.m_forward, predictTan) <= 1f)
             {
                 m_rootMotionSync.SetTurnWarp(0);
-                m_animator.SetFloat("Sideways", 0);
+                m_animator.SetFloat("Sideways", 0);                
             }
             else
             {
