@@ -116,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{6ca1185f-6daa-47b9-b16b-d5b542eb0a7d}">
 		<relationship name="effects">
 			<destination>{0558ba2c-4d53-4493-9327-cf5018d40c38}</destination>
+			<destination>{be89e046-6c43-4b44-b5bc-5003196eebb6}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{d635e5ec-a37f-4ac5-8d55-8b9db1457f33}" />
@@ -130,24 +131,23 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{f682e7e2-ffe8-4d25-9702-fa43c15b52f1}">
 		<relationship name="effects">
-			<destination>{f6aee861-bcf1-4ce8-95cc-2affe7860660}</destination>
 			<destination>{de650578-68f8-4570-b378-5dc2e8b14da7}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e626d687-8036-4b80-a031-191dea4c652c}" />
 	<object class="MixerBusFader" id="{0558ba2c-4d53-4493-9327-cf5018d40c38}" />
-	<object class="SpatialiserEffect" id="{f6aee861-bcf1-4ce8-95cc-2affe7860660}">
+	<object class="SpatialiserEffect" id="{be89e046-6c43-4b44-b5bc-5003196eebb6}">
 		<property name="extentMode">
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<property name="minimumExtent">
-			<value>40</value>
+			<value>54</value>
 		</property>
 		<property name="userLFELevel">
-			<value>-30</value>
+			<value>-14</value>
 		</property>
 		<property name="LFEUpmixEnabled">
 			<value>true</value>

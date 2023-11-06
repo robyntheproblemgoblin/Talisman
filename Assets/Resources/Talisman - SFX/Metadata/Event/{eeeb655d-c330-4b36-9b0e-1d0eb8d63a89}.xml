@@ -127,6 +127,7 @@
 	<object class="MixerBusEffectChain" id="{539e80a4-5573-4e7f-a35e-0c26d02f5376}">
 		<relationship name="effects">
 			<destination>{b59c5eb7-a276-4df7-b5b8-2171488453a5}</destination>
+			<destination>{3864e74e-6088-4037-985f-c87b72ba35b5}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{563deeb8-c53f-42d8-894d-99870864497c}" />
@@ -172,12 +173,28 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{32fefc6b-76bb-44f6-a82e-8646fb57bbd6}">
 		<relationship name="effects">
-			<destination>{b95b91f9-bbcf-4f51-ac50-0179cf21c674}</destination>
 			<destination>{83f804b7-3d3b-43a6-ab7c-61bef1de4261}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{92625af6-a919-494e-9171-96768727ef0e}" />
 	<object class="MixerBusFader" id="{b59c5eb7-a276-4df7-b5b8-2171488453a5}" />
+	<object class="SpatialiserEffect" id="{3864e74e-6088-4037-985f-c87b72ba35b5}">
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>1.20000005</value>
+		</property>
+		<property name="minimumExtent">
+			<value>10</value>
+		</property>
+		<property name="userLFELevel">
+			<value>-30</value>
+		</property>
+		<property name="LFEUpmixEnabled">
+			<value>true</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{e479985b-6afb-4f40-93e1-fe9e7b31f643}">
 		<property name="position">
 			<value>0</value>
@@ -214,23 +231,6 @@
 		</property>
 		<property name="value">
 			<value>0</value>
-		</property>
-	</object>
-	<object class="SpatialiserEffect" id="{b95b91f9-bbcf-4f51-ac50-0179cf21c674}">
-		<property name="extentMode">
-			<value>1</value>
-		</property>
-		<property name="soundSize">
-			<value>1.20000005</value>
-		</property>
-		<property name="minimumExtent">
-			<value>10</value>
-		</property>
-		<property name="userLFELevel">
-			<value>-30</value>
-		</property>
-		<property name="LFEUpmixEnabled">
-			<value>true</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{83f804b7-3d3b-43a6-ab7c-61bef1de4261}" />
