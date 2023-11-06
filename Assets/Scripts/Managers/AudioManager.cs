@@ -67,6 +67,22 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]
     public bool m_stopInteractions = false;
 
+
+    bool isBothSolved;
+    public Dialogue m_allPuzzlesSolved;
+    public void MainRoom(Dialogue dialogue)
+    {
+        if (!isBothSolved)
+        {
+            PlayDialogue(dialogue);
+            isBothSolved = true;
+        }
+        else
+        {
+            PlayDialogue(m_allPuzzlesSolved);
+        }
+    }
+
     private void Awake()
     {
         m_music = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
