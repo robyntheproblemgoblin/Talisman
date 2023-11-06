@@ -4,6 +4,7 @@ using UnityEngine;
 using AISystem.Data;
 using AISystem.Sensors;
 using AISystem.Systems;
+using UnityEngine.Splines;
 
 namespace AISystem
 {
@@ -27,6 +28,25 @@ namespace AISystem
         public bool IsStatue()
         {
             return m_aiMovement.m_isStatue;
+        }
+        public bool IsAtDestination()
+        {
+            return m_aiMovement.m_atDestination;
+        }
+
+        public bool CanMove()
+        {
+            return m_aiMovement.CanMove();
+        }
+
+        public bool CanSeePlayer()
+        {
+            return m_aiKnowledge.CanSeePlayer();
+        }
+
+        public Spline GetPath()
+        {
+            return m_aiMovement.m_currentPath.m_pathSpline;
         }
 
         public void SetStatue(bool state, FMODUnity.EventReference stoneAwake, FMODUnity.EventReference armour, FMODUnity.EventReference grunt)

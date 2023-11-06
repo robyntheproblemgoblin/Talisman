@@ -44,6 +44,10 @@ namespace AISystem
             m_transform.position = pos;
         }
 
+        bool isFirst = true;
+        Quaternion debug;
+        Quaternion zero = new Quaternion(0,0,0,1);  
+
         void OnAnimatorMove()
         {
             if (!m_isDead)
@@ -52,15 +56,21 @@ namespace AISystem
                 deltaMove.y = 0f;
 
                 Quaternion deltaRotation = m_animator.deltaRotation;
-                
+
                 if (m_applyRotationWarp && m_warpEnabled)
-                {                    
+                {
                     deltaRotation *= Quaternion.Euler(0f, m_angle * 0.05f, 0f);
-                }           
+                }                
+
                 
-                //Debug.Log(m_movement.DebugAngle()); 
-                    m_transform.position += deltaMove;
-                    m_transform.rotation *= deltaRotation;                
+                if(debug == Quaternion.Inverse(deltaRotation) && debug != zero)
+                {
+                    Debug.Log("Issue is here");                     
+                }
+                    debug = deltaRotation;
+
+                m_transform.position += deltaMove;
+                m_transform.rotation *= deltaRotation;
             }
         }
     }

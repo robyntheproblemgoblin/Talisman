@@ -34,10 +34,10 @@ namespace AISystem.Pathing
         {
             SplineUtility.GetNearestPoint(m_pathSpline, point, out float3 nearest, out float nearestT);
 
-            return nearestT;            
+            return nearestT;
         }
 
-            public void GetRelativePoint(float3 point, float distance, out float3 position, out float3 tangent)
+        public void GetRelativePoint(float3 point, float distance, out float3 position, out float3 tangent)
         {
             SplineUtility.GetNearestPoint(m_pathSpline, point, out float3 nearest, out float nearestT);
             float agentDist = nearestT * m_length;
@@ -46,12 +46,12 @@ namespace AISystem.Pathing
             if (targetDist >= m_length)
             {
                 position = m_destination;
-                tangent = m_heading;               
+                tangent = m_heading;
             }
             else
             {
-                float t = targetDist / m_length;
-                m_pathSpline.Evaluate(t, out position, out tangent, out float3 up);                          
+                float t = targetDist / m_length;                
+                m_pathSpline.Evaluate(t, out position, out tangent, out float3 up);
             }
         }
     }

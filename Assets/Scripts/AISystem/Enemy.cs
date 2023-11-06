@@ -6,7 +6,9 @@ using AISystem.Sensors;
 using AISystem.Systems;
 using AISystem.Contracts;
 using Cysharp.Threading.Tasks;
-using System;
+using System.Collections;
+using UnityEditor;
+using UnityEngine.Splines;
 
 namespace AISystem
 {
@@ -46,6 +48,8 @@ namespace AISystem
         public FMODUnity.EventReference m_deathSound;
         public FMODUnity.EventReference m_playerHitEnemySound;
 
+        public bool m_showDebug;
+        public float m_maxDebugDistance;
         #endregion
 
         void Start()
@@ -182,6 +186,50 @@ namespace AISystem
                 Vector2 angle = new Vector2(direction.x, direction.z);
                 TakeHit(m_playerController.m_meleeDamage, angle);
             }
+        }
+
+        public void OnDrawGizmos()
+        {            
+            if(!Application.isPlaying)
+            {
+                return; 
+            }
+
+            if (m_showDebug)
+            {
+                SceneView sceneView = SceneView.lastActiveSceneView;
+                if(sceneView != null)
+                {
+                    float distanceToCamera = Vector3.Distance(transform.position, sceneView.camera.transform.position);
+                    if(distanceToCamera <= m_maxDebugDistance)
+                    {
+                        GUIStyle style_AIInfo = new GUIStyle();
+                        style_AIInfo.normal.textColor = Color.white;
+                        string AIInfo = "Is Statue: " + m_intelligience.IsStatue() + "\nIs At Destination: " + m_intelligience.IsAtDestination() +
+                            "\nMovement Enabled: " + m_intelligience.CanMove() + "\nCan See Player: " + m_intelligience.CanSeePlayer();
+                        Handles.Label(transform.position + Vector3.up * 3f, AIInfo, style_AIInfo);        
+                    }
+                }
+            }
+
+            if(!m_intelligience.IsAtDestination())
+            {                
+                BezierKnot[] positions =  m_intelligience.GetPath().ToArray();
+                for(int i = 0; i < positions.Length; i++)
+                {
+                    if(i == 0)
+                    {
+                        Debug.DrawLine(transform.position, positions[0].Position, Color.red);
+                    }
+                    else
+                    {
+                        Debug.DrawLine(positions[i-1].Position, positions[i].Position, Color.red);
+                    }
+                }
+                Debug.DrawLine(transform.position, m_animator.deltaPosition + transform.position, Color.cyan);
+                Debug.DrawLine(transform.position, (transform.rotation * Vector3.forward) + transform.position, Color.magenta);
+            }
+
         }
     }
 

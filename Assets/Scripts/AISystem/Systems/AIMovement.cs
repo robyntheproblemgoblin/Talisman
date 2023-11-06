@@ -53,6 +53,11 @@ namespace AISystem.Systems
 
         public void DisableMovement() => m_movementEnabled = false;        
 
+        public bool CanMove()
+        {
+            return m_movementEnabled;
+        }
+
         public void Stop()
         {
             m_speed = 0;
