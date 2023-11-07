@@ -16,6 +16,19 @@ MonoBehaviour:
   hdPluginSubTargetMaterialVersions:
     m_Keys: []
     m_Values: 
+--- !u!114 &-7542885832138683454
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -24,20 +37,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_SwordGlowBarrier
-  m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords:
-  - EFFECT_BUMP
-  - _ALPHABLEND_ON
-  - _FADING_ON
-  m_InvalidKeywords:
-  - _DISABLE_SSR_TRANSPARENT
-  - _NORMALMAP_TANGENT_SPACE
+  m_Shader: {fileID: -6465566751694194690, guid: 5a7b4473889f6084fbab4af4f350bc44, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
@@ -77,8 +84,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 0.45, y: 1}
-        m_Offset: {x: 1.1566, y: 0}
+        m_Scale: {x: 0.36, y: 1}
+        m_Offset: {x: 0.9, y: 0.16}
     - _EmissiveColorMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -96,9 +103,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 73a4981d8ea256340897fd9ae7c36d40, type: 3}
-        m_Scale: {x: 0.45, y: 1}
-        m_Offset: {x: 1.1566, y: 0}
+        m_Texture: {fileID: 2800000, guid: 18d68c301c9bab749bf20e3bbb17e6cd, type: 3}
+        m_Scale: {x: 0.36, y: 1}
+        m_Offset: {x: 0.9, y: 0.16}
     - _MaskMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -117,6 +124,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SubsurfaceMaskMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SwordEffectTexture:
+        m_Texture: {fileID: 2800000, guid: 18d68c301c9bab749bf20e3bbb17e6cd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TangentMap:
@@ -163,9 +174,11 @@ Material:
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
+    - _AmountOffset: 1
     - _Anisotropy: 0
     - _BlendMode: 0
     - _BlendOp: 0
+    - _Brightness: 11
     - _BumpScale: 1
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
@@ -185,7 +198,7 @@ Material:
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 0
-    - _DistortionBlend: 0.04
+    - _DistortionBlend: 0.068
     - _DistortionEnabled: 1
     - _DistortionStrength: 1
     - _DistortionStrengthScaled: 0.1
@@ -219,9 +232,11 @@ Material:
     - _LightingEnabled: 0
     - _LinkDetailsWithBase: 1
     - _MaterialID: 1
+    - _MaxClamp: 2
     - _Metallic: 0
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
+    - _MinClamp: 0
     - _Mode: 2
     - _NormalMapSpace: 0
     - _NormalScale: 1
@@ -231,6 +246,8 @@ Material:
     - _PPDMinSamples: 5
     - _PPDPrimitiveLength: 1
     - _PPDPrimitiveWidth: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _RayTracing: 0
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
@@ -244,7 +261,9 @@ Material:
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
+    - _Speed: 5
     - _SrcBlend: 5
+    - _StartWave: 0
     - _StencilRef: 0
     - _StencilRefDepth: 8
     - _StencilRefGBuffer: 10
@@ -259,6 +278,7 @@ Material:
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
+    - _TimeReset: 56.323406
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -282,6 +302,7 @@ Material:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 8, g: 8, b: 8, a: 1}
     - _ColorAddSubDiff: {r: -1, g: 1, b: 0, a: 0}
+    - _Colour: {r: 23.968628, g: 23.968628, b: 23.968628, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 4.337683, g: 4.337683, b: 4.337683, a: 1}
@@ -289,11 +310,14 @@ Material:
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 1, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _Tiling: {r: 0.9, g: 0.47, b: 0, a: 0}
     - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
+    - _Vector2: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
