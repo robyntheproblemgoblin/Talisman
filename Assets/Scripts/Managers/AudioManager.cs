@@ -341,7 +341,7 @@ public class AudioManager : MonoBehaviour
             {
                 await UniTask.Yield();
             }
-            m_game.EndGame().Forget();
+            m_game.EndGame();
         }
         m_cinematics++;
     }
