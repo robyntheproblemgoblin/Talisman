@@ -119,11 +119,6 @@ namespace AISystem.Systems
             }
         }
 
-        public float DebugAngle()
-        {
-            return m_currentPath.DebugIssues(m_attachedBeing.m_position, m_settings.m_distance);
-        }
-
         void UpdateSideWays()
         {
             m_currentPath.GetRelativePoint(m_attachedBeing.m_position, m_settings.m_distance, out float3 predictPos, out float3 predictTan);
@@ -140,7 +135,7 @@ namespace AISystem.Systems
             {
                 m_rootMotionSync.SetTurnWarp(angle);
                 m_animator.SetFloat("Sideways", angle * Mathf.Deg2Rad);
-            }
+            }            
         }
 
         void UpdateForwardBackwards()

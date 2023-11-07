@@ -5,7 +5,7 @@ public class DoorOpener : MonoBehaviour
 {    
     public DoorCloser m_doorCloser;
     GameManager m_game;
-    bool m_hasPassed;
+    bool m_hasPassed = false;
     public Checkpoint m_checkpoint;
 
     private void Start()

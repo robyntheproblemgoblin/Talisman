@@ -16,7 +16,7 @@ public class MenuManager : MonoBehaviour
 {
     public event Action<ControllerType> OnControllerChanged;
     public ControllerType m_currentController;
-    InputDevice m_lastDevice;
+    InputDevice m_lastDevice = null;
 
     public ControllerImages m_keyboardImages;
     public ControllerImages m_xBoxImages;

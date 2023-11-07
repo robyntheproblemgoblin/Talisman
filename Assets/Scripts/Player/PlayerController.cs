@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour, IBeing
     }
 
     void FixedUpdate()
-    {
+    {       
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
         Vector2 move = m_inputControl.Player_Map.Movement.ReadValue<Vector2>().normalized;

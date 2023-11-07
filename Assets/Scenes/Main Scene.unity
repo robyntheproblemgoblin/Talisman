@@ -34732,6 +34732,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6263151574975306867, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263151574975306867, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.288
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263151574975306867, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263151574975306867, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263151574975306867, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263151574975306867, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263151574975306867, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8339174799465395534, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
       propertyPath: m_Name
       value: PFB_TalismanRoom
@@ -47502,6 +47530,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+--- !u!4 &1431290306 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 21838888042440991, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+  m_PrefabInstance: {fileID: 1431290305}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1461189211
 GameObject:
   m_ObjectHideFlags: 0
@@ -48553,11 +48586,15 @@ PrefabInstance:
       objectReference: {fileID: 92241558}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_moveToCinematicSpeed
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_rotateToCinematicSpeed
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_cinematicPoints.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_cinematicTriggers.Array.size
@@ -48571,6 +48608,10 @@ PrefabInstance:
       propertyPath: m_cinematicPoints.Array.data[1]
       value: 
       objectReference: {fileID: 2087160781}
+    - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_cinematicPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1431290306}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_cinematicTriggers.Array.data[0]
       value: 
