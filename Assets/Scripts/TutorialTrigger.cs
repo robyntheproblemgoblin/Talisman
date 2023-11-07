@@ -8,7 +8,7 @@ public class TutorialTrigger : MonoBehaviour
     public List<ControlSprites> m_controlSprites;
     public bool m_spriteFirst;
     public TutorialTrigger m_secondText;
-    public EnemyActivator m_enemy;
+    public List<EnemyActivator> m_enemies;
 
     private void Start()
     {
@@ -21,9 +21,12 @@ public class TutorialTrigger : MonoBehaviour
         if (player != null)
         {
             m_manager.SetTutorial(m_tutorialText, m_controlSprites, m_spriteFirst);
-            if (m_enemy != null && !m_enemy.m_updateMana)
+            for(int i = 0; i < m_enemies.Count; i++)
             {
-                m_enemy.m_updateMana = true;
+                if (!m_enemies[i].m_updateMana)
+                {
+                    m_enemies[i].m_updateMana = true;
+                }
             }
         }
     }

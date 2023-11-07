@@ -188,7 +188,7 @@ namespace AISystem
             }
         }
 
-        public void OnDrawGizmos()
+       /* public void OnDrawGizmos()
         {            
             if(!Application.isPlaying)
             {
@@ -230,7 +230,7 @@ namespace AISystem
                 Debug.DrawLine(transform.position, (transform.rotation * Vector3.forward) + transform.position, Color.magenta);
             }
 
-        }
+        }*/
     }
 
 }
