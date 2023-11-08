@@ -17,16 +17,6 @@ public class SwordBlockVFXOffset : MonoBehaviour
         timeResetCount = 0f;
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown("g"))
-        {
-            resetTime();
-        }
-    }
-
-
-
 
 
     public void resetTime()

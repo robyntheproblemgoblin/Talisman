@@ -116,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{1006a0cf-d2d5-4820-af43-1ad1be6ae649}">
 		<relationship name="effects">
 			<destination>{63ee1f1f-fc51-4dec-bd0e-7fb0455cf66d}</destination>
+			<destination>{1f8001db-eb68-4210-ba47-49f722968971}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7160822d-aebf-47ed-93af-7b7b91da9c21}" />
@@ -130,13 +131,12 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{93c92c4a-d707-464e-8806-d0f4fbc4f834}">
 		<relationship name="effects">
-			<destination>{77c35829-7a41-4f22-a60e-ba395f43eeaa}</destination>
 			<destination>{faacdf28-1e0d-4ea8-8671-c77e57fc8643}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{8a8455e3-a8f8-42a7-94eb-72eb20afc172}" />
 	<object class="MixerBusFader" id="{63ee1f1f-fc51-4dec-bd0e-7fb0455cf66d}" />
-	<object class="SpatialiserEffect" id="{77c35829-7a41-4f22-a60e-ba395f43eeaa}">
+	<object class="SpatialiserEffect" id="{1f8001db-eb68-4210-ba47-49f722968971}">
 		<property name="extentMode">
 			<value>1</value>
 		</property>
@@ -144,10 +144,10 @@
 			<value>1</value>
 		</property>
 		<property name="minimumExtent">
-			<value>10</value>
+			<value>50</value>
 		</property>
 		<property name="userLFELevel">
-			<value>-28</value>
+			<value>-14.5</value>
 		</property>
 		<property name="LFEUpmixEnabled">
 			<value>true</value>

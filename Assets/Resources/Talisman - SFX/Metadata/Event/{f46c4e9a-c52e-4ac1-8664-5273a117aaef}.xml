@@ -5,7 +5,7 @@
 			<value>SFX_Player_Footstep_Stone_01</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{5b8a9588-d32c-4791-a9e1-b02f4b990c70}</destination>
@@ -217,7 +217,6 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{801e0c38-dfd8-492d-9b5b-b2d5cc8a7634}">
 		<relationship name="effects">
-			<destination>{fa155ef0-d63d-4230-a840-9337fb792ccb}</destination>
 			<destination>{8234e9d9-e05b-4891-8be5-ec1c0f3c4e95}</destination>
 		</relationship>
 	</object>
@@ -259,17 +258,6 @@
 		</property>
 		<property name="value">
 			<value>0</value>
-		</property>
-	</object>
-	<object class="SpatialiserEffect" id="{fa155ef0-d63d-4230-a840-9337fb792ccb}">
-		<property name="extentMode">
-			<value>1</value>
-		</property>
-		<property name="soundSize">
-			<value>0.100000001</value>
-		</property>
-		<property name="userLFELevel">
-			<value>-80</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{8234e9d9-e05b-4891-8be5-ec1c0f3c4e95}" />
