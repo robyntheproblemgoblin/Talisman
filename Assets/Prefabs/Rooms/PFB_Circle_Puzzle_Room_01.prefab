@@ -214,6 +214,7 @@ Transform:
   - {fileID: 156160036934525396}
   - {fileID: 3035528776194112586}
   - {fileID: 4006189007438718506}
+  - {fileID: 339248367314636994}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -590,6 +591,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2143613357128466571, guid: 08ef434e19f154a47972745d08fb80cb, type: 3}
   m_PrefabInstance: {fileID: 67170282039870652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &203427373221128430
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8905676315366799388}
+    m_Modifications:
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_RootOrder
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.058498
+      objectReference: {fileID: 0}
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.685
+      objectReference: {fileID: 0}
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.043997854
+      objectReference: {fileID: 0}
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071079
+      objectReference: {fileID: 0}
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 886463108438874489, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+      propertyPath: m_Name
+      value: GodRaysLightRoofPuzzleRooms
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+--- !u!4 &339248367314636994 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461610756371396652, guid: 65c75924f258f6d4395780d5c6590fcb, type: 3}
+  m_PrefabInstance: {fileID: 203427373221128430}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &297201316617189987
 PrefabInstance:

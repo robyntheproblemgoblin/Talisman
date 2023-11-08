@@ -576,6 +576,10 @@ PrefabInstance:
       value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: -5384222347871298425, guid: 9e319751cf1f6e049b90c45c80b16147, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5384222347871298425, guid: 9e319751cf1f6e049b90c45c80b16147, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8a1a5316d203cbc4fb209435c5f02fba, type: 2}

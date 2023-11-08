@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4823,7 +4823,6 @@ GameObject:
   - component: {fileID: 285617159566704088}
   - component: {fileID: 285617159566704090}
   - component: {fileID: 285617159566704091}
-  - component: {fileID: 6591010014168429065}
   m_Layer: 0
   m_Name: SconceFlame
   m_TagString: Untagged
@@ -4866,7 +4865,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9628,61 +9627,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &6591010014168429065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285617159566704089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7df5f87c349d41d4c9f0dba2296d65cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_unlocked: 0
-  m_doors: []
-  m_updateMana: 0
-  m_manaValue: 0
-  m_input: 0
-  m_output: 0
-  m_rewindMana: 0
-  m_spritesFirst: 1
-  m_interactStrings: []
-  m_interactSprites: 
-  m_interact:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  m_manaFlowOn:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  m_manaFlowOff:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  m_manaFlowFail:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  m_bridge: {fileID: 0}
-  m_flare: {fileID: 285617159566704090}
-  m_outputObject: {fileID: 0}
-  m_murayPuzzle: 0
-  m_light: {fileID: 0}
 --- !u!1 &285617159871049345
 GameObject:
   m_ObjectHideFlags: 0
@@ -9733,7 +9677,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14545,7 +14489,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

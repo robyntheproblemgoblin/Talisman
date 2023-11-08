@@ -172,14 +172,15 @@ namespace AISystem
 
         protected async UniTask Die()
         {            
+            if (m_deathParticle != null)
+            {
+                //m_deathParticle.gameObject.transform.position = new Vector3(0, 0.406f, 1.43f);
+                m_deathParticle.Play();
+            }
             m_swordCollider.enabled = false;
             m_activator.EnemyDead();
             m_animator.SetTrigger("Die");
             m_rootMotionSync.SetDead();
-            if (m_deathParticle != null)
-            {
-                m_deathParticle.Play();
-            }
             gameObject.GetComponent<Collider>().enabled = false;
             GameManager.Instance.m_audioManager.PlayOneShot(m_deathSound, gameObject.transform.position);
             float time = Time.time;
