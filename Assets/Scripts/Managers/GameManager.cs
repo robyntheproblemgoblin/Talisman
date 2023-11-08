@@ -249,6 +249,7 @@ public class GameManager : MonoBehaviour
             await UniTask.Yield();
         }
         m_player.m_animator.SetTrigger("AltarCinematic");
+        m_player.m_overlayCamera.enabled = false;
         m_audioManager.PlayCinematic().Forget();
     }
 
@@ -256,6 +257,7 @@ public class GameManager : MonoBehaviour
     {
         UpdateGameState(GameState.DEATH);
         m_player.m_stopUpdate = false;
+        m_player.m_overlayCamera.enabled = true;
         m_menuManager.FadeDeathScreen().Forget();
     }
 

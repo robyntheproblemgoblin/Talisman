@@ -221,6 +221,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fad9e7b5beb842e4b891c40a787d043a, type: 3}
+--- !u!198 &4042671549347248799 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3101640468314070219, guid: fad9e7b5beb842e4b891c40a787d043a, type: 3}
+  m_PrefabInstance: {fileID: 1373960486625584724}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6872682407027824087 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5508436655390192515, guid: fad9e7b5beb842e4b891c40a787d043a, type: 3}
@@ -288,6 +293,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6711757956839765099, guid: 42ebc2e681f77d24ab3314f0a429d914, type: 3}
   m_PrefabInstance: {fileID: 3901033868930881185}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &7712332928179593933 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6711757956839765100, guid: 42ebc2e681f77d24ab3314f0a429d914, type: 3}
+  m_PrefabInstance: {fileID: 3901033868930881185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4006020639099346886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -345,6 +355,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fad9e7b5beb842e4b891c40a787d043a, type: 3}
+--- !u!198 &2058992862605886221 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3101640468314070219, guid: fad9e7b5beb842e4b891c40a787d043a, type: 3}
+  m_PrefabInstance: {fileID: 4006020639099346886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8928909078573591621 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5508436655390192515, guid: fad9e7b5beb842e4b891c40a787d043a, type: 3}
@@ -476,6 +491,10 @@ MonoBehaviour:
   m_unlockedPos: {fileID: 715582039900866866}
   m_speed: 0.35
   m_outputPuzzles: []
+  m_doorParticles:
+  - {fileID: 7712332928179593933}
+  - {fileID: 2058992862605886221}
+  - {fileID: 4042671549347248799}
   m_openSound:
     Guid:
       Data1: 1359669497
@@ -616,6 +635,7 @@ MonoBehaviour:
   m_unlockedPos: {fileID: 4452367487286165400}
   m_speed: 0.35
   m_outputPuzzles: []
+  m_doorParticles: []
   m_openSound:
     Guid:
       Data1: 1359669497

@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7862634622314121234
 Transform:
@@ -94,6 +94,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bd4f8b854e80e764fa5673011f3eb2dc, type: 3}
       propertyPath: m_Name
       value: SM_Plane_Dirt_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bd4f8b854e80e764fa5673011f3eb2dc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd4f8b854e80e764fa5673011f3eb2dc, type: 3}

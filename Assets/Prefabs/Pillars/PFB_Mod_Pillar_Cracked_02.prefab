@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2530551642651728474
 Transform:
@@ -99,9 +99,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a319c082c83d34e4185649989df3ab37, type: 2}
+    - target: {fileID: 650096386684057076, guid: 77fdb607492b9c642be455a0051fff47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 77fdb607492b9c642be455a0051fff47, type: 3}
       propertyPath: m_Name
       value: SM_Mod_Pillar_Cracked_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77fdb607492b9c642be455a0051fff47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77fdb607492b9c642be455a0051fff47, type: 3}

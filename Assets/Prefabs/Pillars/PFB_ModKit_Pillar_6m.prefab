@@ -164,6 +164,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_PillarTop (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7127414016108951321, guid: e98dd7f67869efd4895b65c91ff2ea0b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e98dd7f67869efd4895b65c91ff2ea0b, type: 3}
 --- !u!4 &4280579865604252595 stripped
@@ -295,6 +299,14 @@ PrefabInstance:
     - target: {fileID: 2165524481516588739, guid: e98dd7f67869efd4895b65c91ff2ea0b, type: 3}
       propertyPath: m_Name
       value: PFB_PillarTop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2165524481516588739, guid: e98dd7f67869efd4895b65c91ff2ea0b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127414016108951321, guid: e98dd7f67869efd4895b65c91ff2ea0b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7611780342246026659, guid: e98dd7f67869efd4895b65c91ff2ea0b, type: 3}
       propertyPath: m_LocalPosition.y

@@ -18,8 +18,9 @@ public class PlayerController : MonoBehaviour, IBeing
 
     public Enemy m_enemy;
     #region Movement Fields
-    public CameraControls m_camera;
     [Header("Camera and Movement"), Space(5)]
+    public CameraControls m_camera;
+    public Camera m_overlayCamera;
     public float m_cameraSensitivity = 10;
     Vector3 m_moveDirection = Vector3.zero;
     float m_gravity = 9.81f;

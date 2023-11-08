@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6722430801189320531
 Transform:
@@ -94,6 +94,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c04ef73ec1cba1644811532519d98515, type: 3}
       propertyPath: m_Name
       value: SM_SwordPodium_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c04ef73ec1cba1644811532519d98515, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04ef73ec1cba1644811532519d98515, type: 3}

@@ -10,6 +10,8 @@ public class Door : MonoBehaviour
     public float m_speed;
     public List<Puzzle> m_outputPuzzles;
     bool m_manaContinue = true;
+    
+    public List<ParticleSystem> m_doorParticles;
 
     public FMODUnity.EventReference m_openSound;
     public FMODUnity.EventReference m_closeSound;
@@ -38,6 +40,10 @@ public class Door : MonoBehaviour
         }
         GameManager.Instance.m_audioManager.PlayOneShot(m_openSound, gameObject.transform.position);
         m_unlocked = true;
+        foreach(ParticleSystem p in m_doorParticles)
+        {
+            p.Play();
+        }
         if(m_outputPuzzles.Count > 0 && m_manaContinue)
         {
             m_manaContinue = false;

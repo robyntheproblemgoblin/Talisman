@@ -51,7 +51,7 @@ public class TutorialTrigger : MonoBehaviour
                 m_secondText.m_enemies.Add(enemy);
             }
         }
-        //m_manager.ClearTutorial();
+        m_manager.ClearTutorial();
         Destroy(this);
     }
 }
