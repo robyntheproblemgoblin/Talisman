@@ -31,6 +31,9 @@
 		<relationship name="timeline">
 			<destination>{04b75cac-4580-4e92-9244-c01469d11fa5}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{1cf1cac2-de04-40b2-be16-4310cbfac025}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{17b0abb6-f01a-4051-9db2-b0d3def93fb7}">
 		<relationship name="masterBus">
@@ -168,6 +171,7 @@
 	<object class="MixerBusEffectChain" id="{ec3e90cf-03bd-4b67-b54a-f3b472e89040}">
 		<relationship name="effects">
 			<destination>{ddc09ad5-3ec2-42f1-ad69-ad0a8bd1bd65}</destination>
+			<destination>{1fe15f13-b6bf-461a-84c1-f7ac7b91638c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b86613f4-f406-4bf5-83ab-c9b3fb435c78}" />
@@ -205,7 +209,6 @@
 	<object class="MixerBusEffectChain" id="{8561a411-a44b-43d4-a7cc-880c9f3e2a45}">
 		<relationship name="effects">
 			<destination>{f55a594f-a89d-409d-ae92-0ca48de80287}</destination>
-			<destination>{12cf1e58-03b6-4756-8fef-860bb0a21a42}</destination>
 			<destination>{b3fa9400-9a6a-437a-a0cb-5aa368b1e6d2}</destination>
 		</relationship>
 	</object>
@@ -222,6 +225,20 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{ddc09ad5-3ec2-42f1-ad69-ad0a8bd1bd65}" />
+	<object class="SpatialiserEffect" id="{1fe15f13-b6bf-461a-84c1-f7ac7b91638c}">
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>0.100000001</value>
+		</property>
+		<property name="userLFELevel">
+			<value>-30</value>
+		</property>
+		<property name="LFEUpmixEnabled">
+			<value>true</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{3a317eca-81ed-422c-bdbb-8564a15cd360}">
 		<property name="position">
 			<value>0</value>
@@ -266,20 +283,6 @@
 		</property>
 		<property name="crossoverSlope">
 			<value>2</value>
-		</property>
-	</object>
-	<object class="SpatialiserEffect" id="{12cf1e58-03b6-4756-8fef-860bb0a21a42}">
-		<property name="extentMode">
-			<value>1</value>
-		</property>
-		<property name="soundSize">
-			<value>0.100000001</value>
-		</property>
-		<property name="userLFELevel">
-			<value>-30</value>
-		</property>
-		<property name="LFEUpmixEnabled">
-			<value>true</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{b3fa9400-9a6a-437a-a0cb-5aa368b1e6d2}" />
