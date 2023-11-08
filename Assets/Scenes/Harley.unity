@@ -846,6 +846,14 @@ PrefabInstance:
       propertyPath: m_playerSources.Array.data[1]
       value: 
       objectReference: {fileID: 594101151}
+    - target: {fileID: 2226352341160939477, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226352341160939477, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6401465964559973944, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_player
       value: 
@@ -854,6 +862,14 @@ PrefabInstance:
       propertyPath: m_eventSystem
       value: 
       objectReference: {fileID: 1779547179}
+    - target: {fileID: 6630454619161422149, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630454619161422149, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8225780667573492055, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1158,6 +1174,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 518708712749156518, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 518708712749156518, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.013
+      objectReference: {fileID: 0}
+    - target: {fileID: 518708712816711248, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.4299998
+      objectReference: {fileID: 0}
     - target: {fileID: 3007494644531125958, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1228,7 +1256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7066435293357956659, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_startingHP
-      value: 1e+18
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7066435293357956659, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_maxDebugDistance
