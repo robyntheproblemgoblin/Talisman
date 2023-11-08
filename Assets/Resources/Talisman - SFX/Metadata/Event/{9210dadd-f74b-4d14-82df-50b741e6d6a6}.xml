@@ -171,6 +171,7 @@
 	<object class="MixerBusEffectChain" id="{4160c3f2-cd42-4b29-933f-6b3b10868f3b}">
 		<relationship name="effects">
 			<destination>{8808c277-2ba7-4067-b7f5-2a7f6e2474fe}</destination>
+			<destination>{a47b95c3-82be-443f-bbf8-1198583aeeb7}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{392a9380-fad7-4b02-9019-5605f20899b2}" />
@@ -207,7 +208,6 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{b32aef90-84eb-4cb9-ada3-abd3314c23a1}">
 		<relationship name="effects">
-			<destination>{13093829-bf3b-403f-828a-e30165dc5829}</destination>
 			<destination>{ecc6b07c-0f99-40ec-839c-2195a079ae3e}</destination>
 		</relationship>
 	</object>
@@ -224,6 +224,23 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{8808c277-2ba7-4067-b7f5-2a7f6e2474fe}" />
+	<object class="SpatialiserEffect" id="{a47b95c3-82be-443f-bbf8-1198583aeeb7}">
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>0.400000006</value>
+		</property>
+		<property name="minimumExtent">
+			<value>20</value>
+		</property>
+		<property name="userLFELevel">
+			<value>-14</value>
+		</property>
+		<property name="LFEUpmixEnabled">
+			<value>true</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{86714517-400c-47ca-b985-ec0f42ab2020}">
 		<property name="position">
 			<value>0</value>
@@ -260,23 +277,6 @@
 		</property>
 		<property name="value">
 			<value>1</value>
-		</property>
-	</object>
-	<object class="SpatialiserEffect" id="{13093829-bf3b-403f-828a-e30165dc5829}">
-		<property name="extentMode">
-			<value>1</value>
-		</property>
-		<property name="soundSize">
-			<value>0.349999994</value>
-		</property>
-		<property name="minimumExtent">
-			<value>10</value>
-		</property>
-		<property name="userLFELevel">
-			<value>-30</value>
-		</property>
-		<property name="LFEUpmixEnabled">
-			<value>true</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{ecc6b07c-0f99-40ec-839c-2195a079ae3e}" />
