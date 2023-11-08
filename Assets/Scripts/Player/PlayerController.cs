@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour, IBeing
         m_inputControl.Player_Map.Heal.canceled += StopHealing;
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
         m_inputControl.Player_Map.Interact.performed += Interact;
-        m_inputControl.Player_Map.Interact.performed += EnemyStart;
+        //m_inputControl.Player_Map.Interact.performed += EnemyStart;
 
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
         m_inputControl.Player_Map.BlockParry.canceled += StopBlockParry;
