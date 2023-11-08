@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
     public async UniTask FirstCinematic()
     {
         UpdateGameState(GameState.CINEMATIC);
-        //Vector3 rotation = new Vector3(0, m_cinematicPoints[0].rotation.eulerAngles.y, 0);
+        m_player.m_stopUpdate = true;
         bool rot = false;
         bool pos = false;
         while (!rot || !pos)
@@ -173,6 +173,7 @@ public class GameManager : MonoBehaviour
 
     public async UniTask SecondCinematic()
     {
+        m_player.m_stopUpdate = false;
         m_menuManager.m_fadeWhite.gameObject.SetActive(true);
         Color w;
         Color f;
@@ -220,6 +221,7 @@ public class GameManager : MonoBehaviour
     public async UniTask LastCinematic()
     {
         UpdateGameState(GameState.CINEMATIC);
+        m_player.m_stopUpdate = true;
         bool rot = false;
         bool pos = false;
         while (!rot || !pos)
@@ -253,6 +255,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         UpdateGameState(GameState.DEATH);
+        m_player.m_stopUpdate = false;
         m_menuManager.FadeDeathScreen().Forget();
     }
 

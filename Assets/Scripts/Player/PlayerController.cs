@@ -85,6 +85,8 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_interactionDistance;
     [HideInInspector]
     public bool m_stopInteracts = false;
+    [HideInInspector]
+    public bool m_stopUpdate = false;
     #endregion
 
     #region SFX
@@ -214,7 +216,11 @@ public class PlayerController : MonoBehaviour, IBeing
     }
 
     void FixedUpdate()
-    {       
+    {     
+        if(m_stopUpdate)
+        {
+            return;
+        }
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
         Vector2 move = m_inputControl.Player_Map.Movement.ReadValue<Vector2>().normalized;
