@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour, IBeing
     #region Block Parry Fields
     public bool m_isBlocking = false;
     public ParticleSystem m_blockAttackParticle;
+    Material m_swordBlockMaterial;
     #endregion
 
     #region Interaction Fields
@@ -131,6 +132,7 @@ public class PlayerController : MonoBehaviour, IBeing
 
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
         m_inputControl.Player_Map.BlockParry.canceled += StopBlockParry;
+        m_swordBlockMaterial = m_blockAttackParticle.gameObject.GetComponent<ParticleSystemRenderer>().material;
 
         m_inputControl.UI.Cancel.started += m_game.m_menuManager.Cancel;
         m_inputControl.Player_Map.Pause.started += PauseGame;
@@ -203,7 +205,7 @@ public class PlayerController : MonoBehaviour, IBeing
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {
                 m_game.m_audioManager.PlayOneShot(m_weaponHit, hit.ClosestPoint(transform.position));
-                m_game.m_menuManager.DamageVignette();
+                m_game.m_menuManager.DamageVignette().Forget();
                 e.m_swordCollider.enabled = false;
                 TakeDamage(e.m_damage);
             }
@@ -212,6 +214,7 @@ public class PlayerController : MonoBehaviour, IBeing
                 m_game.m_audioManager.PlayOneShot(m_blockedSound, gameObject.transform.position);
                 if (m_blockAttackParticle != null)
                 {
+                    m_swordBlockMaterial.SetFloat("_TimeReset", Time.time);
                     m_blockAttackParticle.Play();
                 }
                 StopBlock();
@@ -408,7 +411,7 @@ public class PlayerController : MonoBehaviour, IBeing
 
     private void MeleeAttack(InputAction.CallbackContext obj)
     {
-        if (m_skinnedMeshRenderer.enabled == false)
+        if (m_skinnedMeshRenderer.enabled == false || m_isBlocking)
         {
             return;
         }

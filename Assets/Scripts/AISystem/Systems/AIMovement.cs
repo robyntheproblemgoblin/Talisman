@@ -163,13 +163,13 @@ namespace AISystem.Systems
             while (alpha < 1f)
             {
                 alpha += Time.deltaTime * m_armourSpeed;
-                m_mesh.materials[0].SetFloat("_EmissiveFreq", alpha);
+                m_mesh.materials[0].SetFloat("_Manual", alpha);
                 m_mesh.materials[1].SetFloat("_ArmorFade", alpha);
                 await UniTask.Yield();
             }
             GameManager.Instance.m_audioManager.PlayOneShot(stoneAwake, m_mesh.gameObject.transform.position);
             GameManager.Instance.m_audioManager.PlayOneShot(armour, m_mesh.gameObject.transform.position);
-            m_mesh.materials[0].SetFloat("_EmissiveFreq", 1);
+            m_mesh.materials[0].SetFloat("_Manual", 1);
             m_mesh.materials[1].SetFloat("_ArmorFade", 1);
         }
 

@@ -42,10 +42,20 @@ public class TutorialTrigger : MonoBehaviour
     public void SecondTutorial()
     {
         m_secondText.gameObject.SetActive(true);
+        foreach(EnemyActivator ea in m_enemies)
+        {
+            ea.m_tutorial = m_secondText;
+            EnemyActivator enemy = ea.m_puzzle as EnemyActivator;
+            if(enemy !=  null)
+            {
+                m_secondText.m_enemies.Add(enemy);
+            }
+        }
         //m_manager.ClearTutorial();
         Destroy(this);
     }
 }
+
 public enum ControlSprites
 {
     MENU_NAV,

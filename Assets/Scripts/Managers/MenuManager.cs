@@ -604,6 +604,9 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
+            var zero = m_damageVignette.color;
+            zero.a = 0;
+            m_damageVignette.color = zero;
             m_game.Respawn();
         }
     }
@@ -672,6 +675,7 @@ public class MenuManager : MonoBehaviour
             await UniTask.Yield();
         }
         alpha = m_damageAlphaMax;
+        while(alpha > 0)
         {
             float downStep = m_damageDownSpeed * Time.deltaTime;
             alpha -= downStep;
