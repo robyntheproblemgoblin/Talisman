@@ -835,6 +835,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 594101151}
     - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_dialogueVolume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_playerSources.Array.data[0]
       value: 
       objectReference: {fileID: 594101151}
@@ -1162,6 +1166,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeEnemyPodium
       objectReference: {fileID: 0}
+    - target: {fileID: 5642426279287908154, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642426279287908154, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642426279287908154, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5956392025064630591, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1207,8 +1223,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7066435293357956659, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+      propertyPath: m_showDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066435293357956659, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
       propertyPath: m_startingHP
       value: 1e+18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066435293357956659, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}
+      propertyPath: m_maxDebugDistance
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7261f83cbf595e64eac6e4e2725567c4, type: 3}

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using FMODUnity;
 using System.Collections.Generic;
 using UnityEngine;
@@ -71,7 +72,7 @@ public class ManaPool : MonoBehaviour
     {
         if (m_isEnd)
         {
-            GameManager.Instance.LastCinematic();
+            GameManager.Instance.LastCinematic().Forget();
         }
         else if (m_isActive)
         {

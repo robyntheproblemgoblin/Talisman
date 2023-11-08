@@ -16,7 +16,7 @@ public class MenuManager : MonoBehaviour
 {
     public event Action<ControllerType> OnControllerChanged;
     public ControllerType m_currentController;
-    InputDevice m_lastDevice;
+    InputDevice m_lastDevice = null;
 
     public ControllerImages m_keyboardImages;
     public ControllerImages m_xBoxImages;
@@ -64,6 +64,11 @@ public class MenuManager : MonoBehaviour
     bool m_showSubtitle = true;
     public Image m_reticleHit;
     public float m_reticleHitTime = 0.5f;
+    public Image m_damageVignette;
+    public float m_damageAlphaMax = 70;
+    public float m_damageUpSpeed;
+    public float m_damageWaitSpeed;
+    public float m_damageDownSpeed;
     #endregion
 
     #region Cinematic Fields
@@ -133,7 +138,7 @@ public class MenuManager : MonoBehaviour
 
         //HUD Setup
         m_health.maxValue = m_player.m_health;
-        m_mana.maxValue = m_player.m_maxMana;
+        m_mana.maxValue = m_player.m_maxMana;        
 
         //Cinematic Setup
         m_creditsBack.onClick.AddListener(delegate () { MainMenu(); });
@@ -648,8 +653,37 @@ public class MenuManager : MonoBehaviour
             m_reticleHit.enabled = false;
         }
     }
-
-
+    public async UniTask DamageVignette()
+    {
+        float alpha = 0;       
+        while(alpha <= m_damageAlphaMax)
+        {
+            float upStep = m_damageUpSpeed * Time.deltaTime;
+            alpha += upStep;
+            var temp = m_damageVignette.color;
+            temp.a = alpha;
+            m_damageVignette.color = temp;
+            await UniTask.Yield();
+        }
+        float wait = m_damageWaitSpeed;
+        while (wait >= 0)
+        {
+            wait -= Time.deltaTime;
+            await UniTask.Yield();
+        }
+        alpha = m_damageAlphaMax;
+        {
+            float downStep = m_damageDownSpeed * Time.deltaTime;
+            alpha -= downStep;
+            var temp = m_damageVignette.color;
+            temp.a = alpha;
+            m_damageVignette.color = temp;
+            await UniTask.Yield();
+        }
+        var zero = m_damageVignette.color;
+        zero.a = 0;
+        m_damageVignette.color = zero;
+    }
 }
 
 public enum ControllerType

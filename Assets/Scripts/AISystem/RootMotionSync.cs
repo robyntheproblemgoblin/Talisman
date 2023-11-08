@@ -11,7 +11,6 @@ namespace AISystem
         Animator m_animator;
 
         float m_angle;
-        Vector3 m_yLevel;
         bool m_warpEnabled = true;
         bool m_isDead = false;
 
@@ -52,15 +51,14 @@ namespace AISystem
                 deltaMove.y = 0f;
 
                 Quaternion deltaRotation = m_animator.deltaRotation;
-                
+
                 if (m_applyRotationWarp && m_warpEnabled)
-                {                    
+                {
                     deltaRotation *= Quaternion.Euler(0f, m_angle * 0.05f, 0f);
-                }           
-                
-                //Debug.Log(m_movement.DebugAngle()); 
-                    m_transform.position += deltaMove;
-                    m_transform.rotation *= deltaRotation;                
+                }  
+
+                m_transform.position += deltaMove;
+                m_transform.rotation *= deltaRotation;
             }
         }
     }

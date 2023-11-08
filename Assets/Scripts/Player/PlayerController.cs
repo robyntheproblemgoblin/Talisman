@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour, IBeing
     [HideInInspector]
     public float m_currentHealth;
     public float m_healRate;
-    public ParticleSystem m_healParticles;
+    public ParticleSystem m_healParticles;    
     HealingState m_healing;
     Dictionary<string, float> m_enemiesHaveHit = new Dictionary<string, float>();
     #endregion
@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_maxMana;
     public float m_startMana;
     public float m_manaHealCost;
-    public float m_currentMana;    
-    LeftHandState m_talismanState;    
+    public float m_currentMana;
+    LeftHandState m_talismanState;
     IdleState m_idle;
     public Transform m_talisman;
     #endregion
@@ -71,11 +71,12 @@ public class PlayerController : MonoBehaviour, IBeing
     int m_currentAttack = 1;
     public bool m_canAttack = true;
     public float m_attackTime;
+    public ParticleSystem m_attackParticle;
     #endregion
 
     #region Block Parry Fields
     public bool m_isBlocking = false;
-
+    public ParticleSystem m_blockAttackParticle;
     #endregion
 
     #region Interaction Fields
@@ -85,6 +86,8 @@ public class PlayerController : MonoBehaviour, IBeing
     public float m_interactionDistance;
     [HideInInspector]
     public bool m_stopInteracts = false;
+    [HideInInspector]
+    public bool m_stopUpdate = false;
     #endregion
 
     #region SFX
@@ -124,7 +127,8 @@ public class PlayerController : MonoBehaviour, IBeing
         m_inputControl.Player_Map.Heal.canceled += StopHealing;
         m_inputControl.Player_Map.MeleeAttack.performed += MeleeAttack;
         m_inputControl.Player_Map.Interact.performed += Interact;
-        
+        //m_inputControl.Player_Map.Interact.performed += EnemyStart;
+
         m_inputControl.Player_Map.BlockParry.performed += BlockParry;
         m_inputControl.Player_Map.BlockParry.canceled += StopBlockParry;
 
@@ -199,12 +203,17 @@ public class PlayerController : MonoBehaviour, IBeing
             if (e != null && HitAlready(e.gameObject.name) == false && !m_isBlocking)
             {
                 m_game.m_audioManager.PlayOneShot(m_weaponHit, hit.ClosestPoint(transform.position));
+                m_game.m_menuManager.DamageVignette();
                 e.m_swordCollider.enabled = false;
                 TakeDamage(e.m_damage);
             }
             else if (e != null && HitAlready(e.gameObject.name) == false && m_isBlocking)
             {
                 m_game.m_audioManager.PlayOneShot(m_blockedSound, gameObject.transform.position);
+                if (m_blockAttackParticle != null)
+                {
+                    m_blockAttackParticle.Play();
+                }
                 StopBlock();
                 e.m_swordCollider.enabled = false;
                 e.Interrupt();
@@ -214,6 +223,10 @@ public class PlayerController : MonoBehaviour, IBeing
 
     void FixedUpdate()
     {
+        if (m_stopUpdate)
+        {
+            return;
+        }
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
         Vector2 move = m_inputControl.Player_Map.Movement.ReadValue<Vector2>().normalized;
@@ -235,12 +248,12 @@ public class PlayerController : MonoBehaviour, IBeing
 
         if (!m_characterController.isGrounded)
         {
-            m_moveDirection.y -= (m_gravity * m_gravityMultiplier) * Time.deltaTime;            
+            m_moveDirection.y -= (m_gravity * m_gravityMultiplier) * Time.deltaTime;
         }
 
-        if(m_characterController.isGrounded && wasJumping)
+        if (m_characterController.isGrounded && wasJumping)
         {
-            m_game.m_audioManager.PlayOneShot(m_groundedSFX, transform.position - Vector3.down);            
+            m_game.m_audioManager.PlayOneShot(m_groundedSFX, transform.position - Vector3.down);
         }
 
         UpdateLeanAnimation(speedX, speedY);
@@ -278,7 +291,7 @@ public class PlayerController : MonoBehaviour, IBeing
     #region Health Methods
     public void TakeDamage(float damage)
     {
-        m_currentHealth -= damage;        
+        m_currentHealth -= damage;
         m_game.m_menuManager.UpdateHealth();
     }
 
@@ -405,6 +418,10 @@ public class PlayerController : MonoBehaviour, IBeing
             m_swordCollider.enabled = true;
             ResetAttack().Forget();
             m_animator.SetTrigger("Attack" + m_currentAttack);
+            if (m_attackParticle != null)
+            {
+                m_attackParticle.Play();
+            }
             m_game.m_audioManager.PlayOneShot(m_attackSwing, m_position);
             m_currentAttack++;
             if (m_currentAttack == 4)
@@ -439,7 +456,7 @@ public class PlayerController : MonoBehaviour, IBeing
     #region Block Parry Methods
     private void BlockParry(InputAction.CallbackContext obj)
     {
-        if(m_skinnedMeshRenderer.enabled == false)
+        if (m_skinnedMeshRenderer.enabled == false)
         {
             return;
         }
@@ -470,7 +487,7 @@ public class PlayerController : MonoBehaviour, IBeing
     private void UpdateInteracts()
     {
         if (m_stopInteracts)
-        {            
+        {
             return;
         }
         Ray camRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));

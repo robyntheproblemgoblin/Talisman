@@ -53,6 +53,11 @@ namespace AISystem.Systems
 
         public void DisableMovement() => m_movementEnabled = false;        
 
+        public bool CanMove()
+        {
+            return m_movementEnabled;
+        }
+
         public void Stop()
         {
             m_speed = 0;
@@ -114,11 +119,6 @@ namespace AISystem.Systems
             }
         }
 
-        public float DebugAngle()
-        {
-            return m_currentPath.DebugIssues(m_attachedBeing.m_position, m_settings.m_distance);
-        }
-
         void UpdateSideWays()
         {
             m_currentPath.GetRelativePoint(m_attachedBeing.m_position, m_settings.m_distance, out float3 predictPos, out float3 predictTan);
@@ -129,13 +129,13 @@ namespace AISystem.Systems
             if (Vector3.Angle(m_attachedBeing.m_forward, predictTan) <= 1f)
             {
                 m_rootMotionSync.SetTurnWarp(0);
-                m_animator.SetFloat("Sideways", 0);
+                m_animator.SetFloat("Sideways", 0);                
             }
             else
             {
                 m_rootMotionSync.SetTurnWarp(angle);
                 m_animator.SetFloat("Sideways", angle * Mathf.Deg2Rad);
-            }
+            }            
         }
 
         void UpdateForwardBackwards()

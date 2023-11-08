@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public float m_talismanFadeBlack = 1f;
     public float m_talismanFadeClear = 1f;
     public float m_moveToCinematicSpeed = 1f;
+    public float m_rotateToCinematicSpeed = 1f;
 
     [HideInInspector]
     public Transform m_respawnPoint;
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.MENU);        
+        UpdateGameState(GameState.MENU);
     }
 
     void GameStateChanged(GameState state)
@@ -137,25 +138,42 @@ public class GameManager : MonoBehaviour
     public async UniTask FirstCinematic()
     {
         UpdateGameState(GameState.CINEMATIC);
+        m_player.m_stopUpdate = true;
+        bool rot = false;
+        bool pos = false;
+        while (!rot || !pos)
+        {
+            float moveStep = m_moveToCinematicSpeed * Time.deltaTime;
+            float rotateStep = m_rotateToCinematicSpeed * Time.deltaTime;
+            if (m_player.gameObject.transform.position != m_cinematicPoints[0].position)
+            {
+                Vector3 nextPos = Vector3.MoveTowards(m_player.gameObject.transform.position, m_cinematicPoints[0].position, moveStep);
+                m_player.gameObject.transform.position = nextPos;
+            }
+            else
+            {
+                pos = true;
+            }
+            if (m_player.gameObject.transform.rotation.eulerAngles != m_cinematicPoints[0].rotation.eulerAngles)
+            {
+                Quaternion nextRot = Quaternion.RotateTowards(m_player.gameObject.transform.rotation, m_cinematicPoints[0].rotation, rotateStep);
+                m_player.m_camera.SetRotation(nextRot.eulerAngles);
+            }
+            else
+            {
+                rot = true;
+            }
+            await UniTask.Yield();
+        }
         m_player.m_skinnedMeshRenderer.enabled = true;
         m_player.m_healParticles.gameObject.SetActive(true);
-        Vector3 rotation = new Vector3(0, m_cinematicPoints[0].rotation.eulerAngles.y, 0);
-       while (m_player.gameObject.transform.position != m_cinematicPoints[0].position &&
-           m_player.gameObject.transform.rotation.eulerAngles != rotation)
-       {
-           float step = m_moveToCinematicSpeed * Time.deltaTime;
-           Vector3 nextPos = Vector3.MoveTowards(m_player.gameObject.transform.position, m_cinematicPoints[0].position, step);
-           Vector3 nextRot = Vector3.RotateTowards(m_player.gameObject.transform.forward, m_cinematicPoints[0].rotation.eulerAngles, step, step);
-           m_player.gameObject.transform.position = nextPos;
-            m_player.m_camera.MoveCamera(nextRot, m_player.m_cameraSensitivity);
-            await UniTask.Yield();
-        }    
-    m_player.m_animator.SetTrigger("TalismanCinematic");
+        m_player.m_animator.SetTrigger("TalismanCinematic");
         m_audioManager.PlayCinematic().Forget();
     }
 
     public async UniTask SecondCinematic()
     {
+        m_player.m_stopUpdate = false;
         m_menuManager.m_fadeWhite.gameObject.SetActive(true);
         Color w;
         Color f;
@@ -200,16 +218,44 @@ public class GameManager : MonoBehaviour
         m_menuManager.m_fadeBlack.gameObject.SetActive(false);
     }
 
-    public void LastCinematic()
+    public async UniTask LastCinematic()
     {
         UpdateGameState(GameState.CINEMATIC);
+        m_player.m_stopUpdate = true;
+        bool rot = false;
+        bool pos = false;
+        while (!rot || !pos)
+        {
+            float moveStep = m_moveToCinematicSpeed * Time.deltaTime;
+            float rotateStep = m_rotateToCinematicSpeed * Time.deltaTime;
+            if (m_player.gameObject.transform.position != m_cinematicPoints[2].position)
+            {
+                Vector3 nextPos = Vector3.MoveTowards(m_player.gameObject.transform.position, m_cinematicPoints[2].position, moveStep);
+                m_player.gameObject.transform.position = nextPos;
+            }
+            else
+            {
+                pos = true;
+            }
+            if (m_player.gameObject.transform.rotation.eulerAngles != m_cinematicPoints[2].rotation.eulerAngles)
+            {
+                Quaternion nextRot = Quaternion.RotateTowards(m_player.gameObject.transform.rotation, m_cinematicPoints[2].rotation, rotateStep);
+                m_player.m_camera.SetRotation(nextRot.eulerAngles);
+            }
+            else
+            {
+                rot = true;
+            }
+            await UniTask.Yield();
+        }
         m_player.m_animator.SetTrigger("AltarCinematic");
         m_audioManager.PlayCinematic().Forget();
     }
 
-    public async UniTask EndGame()
+    public void EndGame()
     {
         UpdateGameState(GameState.DEATH);
+        m_player.m_stopUpdate = false;
         m_menuManager.FadeDeathScreen().Forget();
     }
 

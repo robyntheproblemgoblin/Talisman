@@ -43,5 +43,10 @@ namespace AISystem.Systems
             beingKnowledge = default;
             return false;
         }
+
+        public bool CanSeePlayer()
+        {
+            return m_recentlySeen.Count > 0;
+        }
     }
 }

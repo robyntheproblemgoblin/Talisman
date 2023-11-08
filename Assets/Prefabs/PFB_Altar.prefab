@@ -51,9 +51,27 @@ MonoBehaviour:
   m_manaAmount: 0
   m_light: {fileID: 0}
   m_lightDimSpeed: 1
-  m_interactMessage: Present Sword
+  m_waterDimSpeed: 1
+  m_waterMesh: {fileID: 0}
+  m_spritesFirst: 0
+  m_interactStrings: []
+  m_interactSprites: 
   m_isEnd: 0
   m_doorList: []
+  m_loopSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  m_interactSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!65 &3402074933406007662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65,8 +83,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.306395, y: 1.0072918, z: 1}
-  m_Center: {x: 0.041053712, y: 1.545651, z: 0}
+  m_Size: {x: 2.85, y: 2.5, z: 1.4}
+  m_Center: {x: 0.041053712, y: 1.25, z: 0}
 --- !u!1001 &684358066503211555
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,7 +6,9 @@ using AISystem.Sensors;
 using AISystem.Systems;
 using AISystem.Contracts;
 using Cysharp.Threading.Tasks;
-using System;
+using System.Collections;
+using UnityEditor;
+using UnityEngine.Splines;
 
 namespace AISystem
 {
@@ -28,7 +30,7 @@ namespace AISystem
 
         #region  Game Fields
         [SerializeField] float m_startingHP;
-        public float m_currentHP;        
+        public float m_currentHP;
         public EnemyActivator m_activator;
         public float m_damage;
         public CapsuleCollider m_swordCollider;
@@ -46,6 +48,14 @@ namespace AISystem
         public FMODUnity.EventReference m_deathSound;
         public FMODUnity.EventReference m_playerHitEnemySound;
 
+        public bool m_showDebug;
+        public float m_maxDebugDistance;
+
+        public ParticleSystem m_activationParticle;
+        public ParticleSystem m_isDamagedParticle;
+        public ParticleSystem m_deathParticle;
+        public float m_deathTime = 3f;
+        public ParticleSystem m_swordTrailParticle;
         #endregion
 
         void Start()
@@ -77,7 +87,7 @@ namespace AISystem
 
             m_startPosition = transform.position;
             m_startRotation = transform.rotation;
-           
+
             m_animator.enabled = false;
 
             int grunt = UnityEngine.Random.Range(0, m_gruntsAwake.Count - 1);
@@ -112,7 +122,7 @@ namespace AISystem
         {
             m_swordCollider.enabled = false;
             transform.SetPositionAndRotation(m_startPosition, m_startRotation);
-            m_animator.rootPosition = m_startPosition;            
+            m_animator.rootPosition = m_startPosition;
             m_animator.Rebind();
             m_animator.Update(0);
             m_animator.enabled = false;
@@ -130,6 +140,10 @@ namespace AISystem
         {
             int grunt = UnityEngine.Random.Range(0, m_gruntsAwake.Count - 1);
             m_intelligience.SetStatue(state, m_stoneAwake, m_armourAwake, m_gruntsAwake[grunt]);
+            if (m_activationParticle != null)
+            { 
+                m_activationParticle.Play(); 
+            }
         }
 
         public void Interrupt()
@@ -142,7 +156,7 @@ namespace AISystem
             m_playerController.HitReticle();
             m_swordCollider.enabled = false;
             m_currentHP -= damage;
-            m_mesh.materials[1].SetFloat("_ArmorFade", m_currentHP/m_startingHP);
+            m_mesh.materials[1].SetFloat("_ArmorFade", m_currentHP / m_startingHP);
             GameManager.Instance.m_audioManager.PlayOneShot(m_takeDamageSound, gameObject.transform.position);
             bool isDead = m_currentHP <= 0;
             if (isDead)
@@ -157,16 +171,19 @@ namespace AISystem
         }
 
         protected async UniTask Die()
-        {
-            //Setup what is happening on die
+        {            
             m_swordCollider.enabled = false;
             m_activator.EnemyDead();
             m_animator.SetTrigger("Die");
             m_rootMotionSync.SetDead();
+            if (m_deathParticle != null)
+            {
+                m_deathParticle.Play();
+            }
             gameObject.GetComponent<Collider>().enabled = false;
             GameManager.Instance.m_audioManager.PlayOneShot(m_deathSound, gameObject.transform.position);
             float time = Time.time;
-            while (Time.time < time + 3)
+            while (Time.time < time + m_deathTime)
             {
                 await UniTask.Yield();
             }
@@ -176,13 +193,62 @@ namespace AISystem
         protected void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.gameObject.layer == m_playerMask && !m_intelligience.IsStatue())
-            {                
+            {
                 GameManager.Instance.m_audioManager.PlayOneShot(m_playerHitEnemySound, collision.gameObject.transform.position);
-                Vector3 direction = -collision.GetContact(0).normal;                
+                Vector3 direction = -collision.GetContact(0).normal;
                 Vector2 angle = new Vector2(direction.x, direction.z);
                 TakeHit(m_playerController.m_meleeDamage, angle);
+                if (m_isDamagedParticle != null)
+                {
+                    m_deathParticle.gameObject.transform.SetPositionAndRotation(collision.GetContact(0).point, Quaternion.Euler(collision.GetContact(0).normal));                 
+                    m_isDamagedParticle.Play();
+                }
             }
         }
+
+        /* public void OnDrawGizmos()
+         {            
+             if(!Application.isPlaying)
+             {
+                 return; 
+             }
+
+             if (m_showDebug)
+             {
+                 SceneView sceneView = SceneView.lastActiveSceneView;
+                 if(sceneView != null)
+                 {
+                     float distanceToCamera = Vector3.Distance(transform.position, sceneView.camera.transform.position);
+                     if(distanceToCamera <= m_maxDebugDistance)
+                     {
+                         GUIStyle style_AIInfo = new GUIStyle();
+                         style_AIInfo.normal.textColor = Color.white;
+                         string AIInfo = "Is Statue: " + m_intelligience.IsStatue() + "\nIs At Destination: " + m_intelligience.IsAtDestination() +
+                             "\nMovement Enabled: " + m_intelligience.CanMove() + "\nCan See Player: " + m_intelligience.CanSeePlayer();
+                         Handles.Label(transform.position + Vector3.up * 3f, AIInfo, style_AIInfo);        
+                     }
+                 }
+             }
+
+             if(!m_intelligience.IsAtDestination())
+             {                
+                 BezierKnot[] positions =  m_intelligience.GetPath().ToArray();
+                 for(int i = 0; i < positions.Length; i++)
+                 {
+                     if(i == 0)
+                     {
+                         Debug.DrawLine(transform.position, positions[0].Position, Color.red);
+                     }
+                     else
+                     {
+                         Debug.DrawLine(positions[i-1].Position, positions[i].Position, Color.red);
+                     }
+                 }
+                 Debug.DrawLine(transform.position, m_animator.deltaPosition + transform.position, Color.cyan);
+                 Debug.DrawLine(transform.position, (transform.rotation * Vector3.forward) + transform.position, Color.magenta);
+             }
+
+         }*/
     }
 
 }

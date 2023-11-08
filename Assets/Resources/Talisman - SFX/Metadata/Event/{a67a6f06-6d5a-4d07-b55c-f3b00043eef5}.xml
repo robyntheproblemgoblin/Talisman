@@ -41,6 +41,8 @@
 		<relationship name="modules">
 			<destination>{64b83b11-3a88-4426-af0b-9f0c99fc457e}</destination>
 			<destination>{12dd5fe0-03ac-4b81-81a9-b133eecbc313}</destination>
+			<destination>{6616f5e5-01d9-430b-9b49-0f65745fb6be}</destination>
+			<destination>{cfddf853-2d4c-42e6-ab3f-6b62e3a441fb}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{5a10f9fd-8cdd-4bf8-83e0-6992af297a9f}</destination>
@@ -63,6 +65,8 @@
 		<relationship name="modules">
 			<destination>{64b83b11-3a88-4426-af0b-9f0c99fc457e}</destination>
 			<destination>{12dd5fe0-03ac-4b81-81a9-b133eecbc313}</destination>
+			<destination>{6616f5e5-01d9-430b-9b49-0f65745fb6be}</destination>
+			<destination>{cfddf853-2d4c-42e6-ab3f-6b62e3a441fb}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{5a10f9fd-8cdd-4bf8-83e0-6992af297a9f}">
@@ -78,7 +82,7 @@
 	</object>
 	<object class="SingleSound" id="{64b83b11-3a88-4426-af0b-9f0c99fc457e}">
 		<property name="start">
-			<value>2.8666249999999991</value>
+			<value>3.1666250000000002</value>
 		</property>
 		<property name="length">
 			<value>0.22167487684729004</value>
@@ -86,11 +90,33 @@
 	</object>
 	<object class="SingleSound" id="{12dd5fe0-03ac-4b81-81a9-b133eecbc313}">
 		<property name="length">
-			<value>2.866625</value>
+			<value>1.4000000000000001</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{1d1c1822-74bc-4972-acd3-9c74cc187863}</destination>
 		</relationship>
+	</object>
+	<object class="SingleSound" id="{6616f5e5-01d9-430b-9b49-0f65745fb6be}">
+		<property name="start">
+			<value>2.0500000000000003</value>
+		</property>
+		<property name="length">
+			<value>1.1166250000000029</value>
+		</property>
+		<property name="timelockedOffset">
+			<value>1.75</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{1d1c1822-74bc-4972-acd3-9c74cc187863}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{cfddf853-2d4c-42e6-ab3f-6b62e3a441fb}">
+		<property name="start">
+			<value>1.4000000000000001</value>
+		</property>
+		<property name="length">
+			<value>0.64999999999999991</value>
+		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{b2ac8296-6f64-4e18-b07e-4fa98e7e39cf}">
 		<relationship name="effects">
