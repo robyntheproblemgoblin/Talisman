@@ -15,7 +15,7 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
@@ -50,6 +50,7 @@ Material:
     - _Depth: 0
     - _DstBlend: 10
     - _EmissivStrength: 3.45
+    - _EmissiveStrength: 0
     - _Float: -0.002
     - _Float_1: 100.02
     - _Float_2: 1.1

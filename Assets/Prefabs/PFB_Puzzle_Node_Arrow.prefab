@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.019068
       objectReference: {fileID: 0}
+    - target: {fileID: 2161580829691768714, guid: 5d011aabeeb9c4247bc893cc53cf66cc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7504552537254627472, guid: 5d011aabeeb9c4247bc893cc53cf66cc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -218,15 +222,40 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_PuzzleCircleHandle
       objectReference: {fileID: 0}
+    - target: {fileID: 3937375323788115938, guid: 94547e5aff22e254ebc11c16a1a3447a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937375323788115938, guid: 94547e5aff22e254ebc11c16a1a3447a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420133178962783606, guid: 94547e5aff22e254ebc11c16a1a3447a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420133178962783606, guid: 94547e5aff22e254ebc11c16a1a3447a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7627858412629392001, guid: 94547e5aff22e254ebc11c16a1a3447a, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289374701789023882, guid: 94547e5aff22e254ebc11c16a1a3447a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289374701789023882, guid: 94547e5aff22e254ebc11c16a1a3447a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8857837237375373510, guid: 94547e5aff22e254ebc11c16a1a3447a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3976642675741115702, guid: 94547e5aff22e254ebc11c16a1a3447a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 94547e5aff22e254ebc11c16a1a3447a, type: 3}
 --- !u!4 &8540290671076486174 stripped
 Transform:
