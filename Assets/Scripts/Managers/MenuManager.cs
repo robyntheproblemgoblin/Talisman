@@ -109,6 +109,7 @@ public class MenuManager : MonoBehaviour
     public Button m_respawnButton;
     public Button m_deathQuit;
     public float m_deathFade = 0.33f;
+    public float m_endFade = 0.33f;
     #endregion
 
     //Credits
@@ -132,8 +133,6 @@ public class MenuManager : MonoBehaviour
         //Main Menu Setup
         m_newGame.onClick.AddListener(delegate () { StartGame(); });                
         m_menuOptions.onClick.AddListener(delegate () { Options(); });
-        m_controlsMain.onClick.AddListener(delegate () { ControlScreen(); });
-        m_credits.onClick.AddListener(delegate () { Credits(); });
         m_quit.onClick.AddListener(delegate () { QuitGame(); });
 
         //HUD Setup
@@ -141,7 +140,7 @@ public class MenuManager : MonoBehaviour
         m_mana.maxValue = m_player.m_maxMana;        
 
         //Cinematic Setup
-        m_creditsBack.onClick.AddListener(delegate () { MainMenu(); });
+        m_creditsBack.onClick.AddListener(delegate () { Options(); });
 
         //Pause Menu Setup
         m_resume.onClick.AddListener(delegate () { Resume(); });
@@ -162,10 +161,12 @@ public class MenuManager : MonoBehaviour
         m_sfxSlider.SetValueWithoutNotify(0.5f);
         m_dialogueSlider.onValueChanged.AddListener(m_game.m_audioManager.DialogueVolumeLevel);
         m_dialogueSlider.SetValueWithoutNotify(0.5f);
+        m_controlsMain.onClick.AddListener(delegate () { ControlScreen(); });
+        m_credits.onClick.AddListener(delegate () { Credits(); });
         m_optionsBack.onClick.AddListener(delegate () { OptionsBack(); });
 
         //Controls Screen Setup
-        m_controlsBackButton.onClick.AddListener(delegate () { MainMenu(); });
+        m_controlsBackButton.onClick.AddListener(delegate () { Options(); });
 
         //Death Setup
         m_respawnButton.onClick.AddListener(delegate () { Respawn(); });
@@ -247,6 +248,7 @@ public class MenuManager : MonoBehaviour
         {
             SetInteractMessage(m_currentInteractStrings, m_currentInteractSprites, m_interactSpriteFirst);
         }
+        m_controlsImage.sprite = m_currentImages.m_controlsDisplay;
     }
 
     void OnGameStateChanged(GameState state)
@@ -333,11 +335,11 @@ public class MenuManager : MonoBehaviour
 
     void OptionsBack()
     {
-        if (m_game.m_lastState == GameState.PAUSE)
+        if (m_game.m_controlsLastState == GameState.PAUSE)
         {
             Pause();
         }
-        else if (m_game.m_lastState == GameState.MENU)
+        else if (m_game.m_controlsLastState == GameState.MENU)
         {
             MainMenu();
         }
@@ -388,6 +390,10 @@ public class MenuManager : MonoBehaviour
 
     public void SetTutorial(List<string> text, List<ControlSprites> sprites, bool spriteFirst)
     {
+        if(text.Count == 0 && sprites.Count == 0)
+        {
+            return;
+        }
         m_currentTutorialStrings = text;
         m_currentTutorialSprites = sprites;
         m_tutorialSpriteFirst = spriteFirst;
@@ -422,6 +428,10 @@ public class MenuManager : MonoBehaviour
     }
     public void SetInteractMessage(List<string> text, List<ControlSprites> sprites, bool spriteFirst)
     {
+        if (text.Count == 0 && sprites.Count == 0)
+        {
+            return;
+        }
         m_currentInteractStrings = text;
         m_currentInteractSprites = sprites;
         m_interactSpriteFirst = spriteFirst;
@@ -554,6 +564,7 @@ public class MenuManager : MonoBehaviour
         if (m_health.value <= 0)
         {
             m_game.m_audioManager.PlayOneShot(m_game.m_player.m_deathSound, m_game.m_player.gameObject.transform.position);
+            m_game.m_isEnd = false;
             m_game.UpdateGameState(GameState.DEATH);
         }
     }
@@ -563,14 +574,14 @@ public class MenuManager : MonoBehaviour
         m_mana.value = m_player.m_currentMana;
     }
 
-    public async UniTask FadeDeathScreen()
-    {
+    public async UniTask FadeDeathScreen(bool isEnd)
+    {        
         m_deathImage.color = Color.clear;
         float alpha = 0;
         while (alpha < 1)
         {
             m_deathImage.color = new Color(0, 0, 0, alpha);
-            alpha += Time.deltaTime * m_deathFade;
+            alpha += Time.deltaTime * (isEnd ? m_endFade:m_deathFade);
             await UniTask.Yield();
         }
         m_deathImage.color = Color.black;
@@ -580,7 +591,7 @@ public class MenuManager : MonoBehaviour
     void SetDeathScreen()
     {
         m_respawnButton.gameObject.SetActive(true);
-        if (m_game.m_lastState == GameState.CINEMATIC)
+        if (m_game.m_gameState == GameState.CINEMATIC)
         {
             m_respawnButton.GetComponentInChildren<TextMeshProUGUI>().text = "Restart";
         }
@@ -598,9 +609,9 @@ public class MenuManager : MonoBehaviour
         m_respawnButton.gameObject.SetActive(false);
         m_deathQuit.gameObject.SetActive(false);
         m_deathImage.color = new Color(0, 0, 0, 0);
-        if (m_game.m_lastState == GameState.CINEMATIC)
+        if (m_game.m_gameState == GameState.CINEMATIC)
         {
-            QuitGame();
+            TitleScreen();
         }
         else
         {

@@ -271,11 +271,11 @@ MonoBehaviour:
   m_stopUpdate: 0
   m_groundedSFX:
     Guid:
-      Data1: -1966174705
-      Data2: 1089832867
-      Data3: -800204390
-      Data4: -1580615453
-    Path: event:/SFX/Player/SFX_Player_Jump_Landing_01
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_weaponHit:
     Guid:
       Data1: 756573327
@@ -283,7 +283,13 @@ MonoBehaviour:
       Data3: -1660358753
       Data4: 806415626
     Path: event:/SFX/Player/SFX_Player_Sword_Hit_Enemy_01
-  m_playerGrunts: []
+  m_playerGrunts:
+  - Guid:
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
   m_healingSound:
     Guid:
       Data1: 1316388848
@@ -307,11 +313,11 @@ MonoBehaviour:
     Path: event:/SFX/Player/SFX_Player_Block_Successful_01
   m_deathSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1359669497
+      Data2: 1296283916
+      Data3: 1178622085
+      Data4: -636398506
+    Path: event:/TempSFX
 --- !u!136 &3691719635896632933
 CapsuleCollider:
   m_ObjectHideFlags: 0

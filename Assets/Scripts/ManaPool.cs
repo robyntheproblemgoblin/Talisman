@@ -9,12 +9,9 @@ public class ManaPool : MonoBehaviour
     public Light m_light;
     float m_intensity;
     public float m_lightDimSpeed = 1f;
-    public float m_waterDimSpeed = 1f;
-    public float m_particleDimSpeed = 1f;
+    public float m_waterDimSpeed = 1f;    
     float m_emissiveMax;
     float m_currentEmissive;
-    float m_maxParticleAlpha;
-    float m_currentParticleAlpha;
     public MeshRenderer m_waterMesh;
     public ParticleSystem m_manaRing;
     
@@ -39,9 +36,7 @@ public class ManaPool : MonoBehaviour
         if (!m_isEnd)
         {
             m_emissiveMax = m_waterMesh.material.GetFloat("_EmissiveStrength");
-            m_currentEmissive = m_emissiveMax;
-            m_maxParticleAlpha = m_manaRing.startColor.a;
-            m_currentParticleAlpha = m_maxParticleAlpha;
+            m_currentEmissive = m_emissiveMax;            
             m_loopInstance = RuntimeManager.CreateInstance(m_loopSound);
             RuntimeManager.AttachInstanceToGameObject(m_loopInstance, gameObject.transform);
             m_loopInstance.start();
@@ -63,7 +58,6 @@ public class ManaPool : MonoBehaviour
         if (!m_isEnd)
         {
             float waterStep = m_waterDimSpeed * Time.deltaTime;
-            float particleStep = m_particleDimSpeed * Time.deltaTime;
 
             if (m_isActive && m_waterMesh.material.GetFloat("_EmissiveStrength") <= m_emissiveMax)
             {
@@ -73,17 +67,13 @@ public class ManaPool : MonoBehaviour
             {
                 m_waterMesh.material.SetFloat("_EmissiveStrength", m_currentEmissive -= waterStep);
             }
-            if (m_isActive && m_manaRing.startColor.a <= m_maxParticleAlpha)
+            if (m_isActive && m_manaRing.isStopped)
             {
-                var mana = m_manaRing.startColor;
-                mana.a = m_currentParticleAlpha += particleStep;
-                m_manaRing.startColor = mana;
+                m_manaRing.Play();
             }
-            else if (!m_isActive && m_manaRing.startColor.a >= 0)
+            else if (!m_isActive && m_manaRing.isPlaying)
             {
-                var mana = m_manaRing.startColor;
-                mana.a = m_currentParticleAlpha -= particleStep;
-                m_manaRing.startColor = mana;
+                m_manaRing.Stop();
             }
         }
     }
