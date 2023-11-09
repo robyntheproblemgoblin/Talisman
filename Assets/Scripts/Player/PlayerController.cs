@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour, IBeing
     [HideInInspector]
     public float m_currentHealth;
     public float m_healRate;
-    public ParticleSystem m_healParticles;    
+    public ParticleSystem m_healParticles;
     HealingState m_healing;
     Dictionary<string, float> m_enemiesHaveHit = new Dictionary<string, float>();
     #endregion
@@ -149,7 +149,8 @@ public class PlayerController : MonoBehaviour, IBeing
 
     private void EnemyStart(InputAction.CallbackContext obj)
     {
-        m_enemy.SetStatue(false);
+        if (m_enemy != null)
+            m_enemy.SetStatue(false);
         m_skinnedMeshRenderer.enabled = (true);
     }
 
