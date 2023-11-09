@@ -5025,7 +5025,9 @@ MonoBehaviour:
   m_light: {fileID: 5166593629595311091}
   m_lightDimSpeed: 10
   m_waterDimSpeed: 10
+  m_particleDimSpeed: 1
   m_waterMesh: {fileID: 1143426256599324221}
+  m_manaRing: {fileID: 0}
   m_spritesFirst: 1
   m_interactStrings:
   - '/ '
@@ -5039,18 +5041,18 @@ MonoBehaviour:
   - {fileID: 0}
   m_loopSound:
     Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
+      Data1: 234067196
+      Data2: 1242615783
+      Data3: -2003200883
+      Data4: 1965781961
+    Path: event:/SFX/Environment/SFX_Environment_ManaPool_Ambience_01
   m_interactSound:
     Guid:
-      Data1: 1359669497
-      Data2: 1296283916
-      Data3: 1178622085
-      Data4: -636398506
-    Path: event:/TempSFX
+      Data1: 1273359246
+      Data2: 1241487726
+      Data3: 1724594094
+      Data4: 2059593423
+    Path: event:/SFX/Environment/SFX_Environment_ManaPool_Use_01
 --- !u!1001 &293075249470979267
 PrefabInstance:
   m_ObjectHideFlags: 0
