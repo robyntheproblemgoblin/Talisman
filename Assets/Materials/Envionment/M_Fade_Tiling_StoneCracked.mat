@@ -114,7 +114,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DissolveSpeed: 5
     - _DstBlend: 10
-    - _Emission: 0
+    - _Emission: 2
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -137,10 +137,11 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 1
     m_Colors:
+    - _ArmourColour: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ManaColor: {r: 0, g: 0.7589283, b: 1, a: 1}
+    - _ManaColor: {r: 0.08962262, g: 0.76437306, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1528567697538068870
