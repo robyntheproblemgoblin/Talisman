@@ -22022,6 +22022,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3224103493532131306, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_RootOrder
+      value: 56
+      objectReference: {fileID: 0}
     - target: {fileID: 3230536943308334875, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
@@ -53679,7 +53683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5932957450554956508, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.51
       objectReference: {fileID: 0}
     - target: {fileID: 5932957450554956508, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54366,6 +54370,10 @@ PrefabInstance:
     - target: {fileID: 3064049680735101528, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436779559276587890, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 3505528360788345205, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -74008,6 +74016,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 413717819688880621, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 413717819688880621, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
       propertyPath: m_BounceIntensity
       value: 1
       objectReference: {fileID: 0}
@@ -74057,6 +74069,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 552977634593741669, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
       propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 552977634593741669, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+      propertyPath: m_Shadows.m_Type
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1079315142573001143, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
