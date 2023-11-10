@@ -322,6 +322,7 @@ public class MenuManager : MonoBehaviour
     }
     void QuitGame()
     {
+        m_game.m_audioManager.EndFmodLoop(m_game.m_audioManager.m_menuMusicInstance);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
