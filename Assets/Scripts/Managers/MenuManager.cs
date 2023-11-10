@@ -11,6 +11,7 @@ using UnityEngine.InputSystem.Switch;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks.Triggers;
 
 public class MenuManager : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class MenuManager : MonoBehaviour
     public GameObject m_optionsMenu;
     public GameObject m_controls;
     public GameObject m_deathScreen;
-    public GameObject m_creditsScreen;    
+    public GameObject m_creditsScreen;
     #endregion
 
     #region Main Menu Fields
@@ -118,7 +119,7 @@ public class MenuManager : MonoBehaviour
     GameManager m_game;
     public PlayerController m_player;
     public EventSystem m_eventSystem;
-
+   
     private void Start()
     {
         m_game = GameManager.Instance;
@@ -131,13 +132,13 @@ public class MenuManager : MonoBehaviour
         m_game.OnGameStateChanged += OnGameStateChanged;
 
         //Main Menu Setup
-        m_newGame.onClick.AddListener(delegate () { StartGame(); });                
+        m_newGame.onClick.AddListener(delegate () { StartGame(); });
         m_menuOptions.onClick.AddListener(delegate () { Options(); });
         m_quit.onClick.AddListener(delegate () { QuitGame(); });
 
         //HUD Setup
         m_health.maxValue = m_player.m_health;
-        m_mana.maxValue = m_player.m_maxMana;        
+        m_mana.maxValue = m_player.m_maxMana;
 
         //Cinematic Setup
         m_creditsBack.onClick.AddListener(delegate () { Options(); });
@@ -329,6 +330,14 @@ public class MenuManager : MonoBehaviour
     }
     void Options()
     {
+        if (m_game.m_gameState == GameState.PAUSE)
+        {
+            m_game.m_controlsLastState = GameState.PAUSE;
+        }
+        else if(m_game.m_gameState == GameState.MENU)
+        {
+            m_game.m_controlsLastState = GameState.MENU;
+        }
         m_game.UpdateGameState(GameState.OPTIONS);
         m_eventSystem.SetSelectedGameObject(m_camSensitivitySlider.gameObject);
     }
@@ -376,7 +385,7 @@ public class MenuManager : MonoBehaviour
                 break;
             case GameState.PAUSE:
                 Resume();
-                break;          
+                break;
             default:
                 break;
         }
@@ -385,12 +394,12 @@ public class MenuManager : MonoBehaviour
     void Credits()
     {
         m_game.UpdateGameState(GameState.CREDITS);
-        m_eventSystem.SetSelectedGameObject(m_creditsBack.gameObject);       
+        m_eventSystem.SetSelectedGameObject(m_creditsBack.gameObject);
     }
 
     public void SetTutorial(List<string> text, List<ControlSprites> sprites, bool spriteFirst)
     {
-        if(text.Count == 0 && sprites.Count == 0)
+        if (text.Count == 0 && sprites.Count == 0)
         {
             return;
         }
@@ -575,13 +584,13 @@ public class MenuManager : MonoBehaviour
     }
 
     public async UniTask FadeDeathScreen(bool isEnd)
-    {        
+    {
         m_deathImage.color = Color.clear;
         float alpha = 0;
         while (alpha < 1)
         {
             m_deathImage.color = new Color(0, 0, 0, alpha);
-            alpha += Time.deltaTime * (isEnd ? m_endFade:m_deathFade);
+            alpha += Time.deltaTime * (isEnd ? m_endFade : m_deathFade);
             await UniTask.Yield();
         }
         m_deathImage.color = Color.black;
@@ -591,9 +600,9 @@ public class MenuManager : MonoBehaviour
     void SetDeathScreen()
     {
         m_respawnButton.gameObject.SetActive(true);
-        if (m_game.m_gameState == GameState.CINEMATIC)
+        if (m_game.m_isEnd)
         {
-            m_respawnButton.GetComponentInChildren<TextMeshProUGUI>().text = "Restart";
+            m_respawnButton.GetComponentInChildren<TextMeshProUGUI>().text = "Main Menu";
         }
         else
         {
@@ -609,8 +618,9 @@ public class MenuManager : MonoBehaviour
         m_respawnButton.gameObject.SetActive(false);
         m_deathQuit.gameObject.SetActive(false);
         m_deathImage.color = new Color(0, 0, 0, 0);
-        if (m_game.m_gameState == GameState.CINEMATIC)
+        if (m_game.m_isEnd)
         {
+            m_game.m_isEnd = false;
             TitleScreen();
         }
         else
@@ -669,8 +679,8 @@ public class MenuManager : MonoBehaviour
     }
     public async UniTask DamageVignette()
     {
-        float alpha = 0;       
-        while(alpha <= m_damageAlphaMax)
+        float alpha = 0;
+        while (alpha <= m_damageAlphaMax)
         {
             float upStep = m_damageUpSpeed * Time.deltaTime;
             alpha += upStep;
@@ -686,7 +696,7 @@ public class MenuManager : MonoBehaviour
             await UniTask.Yield();
         }
         alpha = m_damageAlphaMax;
-        while(alpha > 0)
+        while (alpha > 0)
         {
             float downStep = m_damageDownSpeed * Time.deltaTime;
             alpha -= downStep;

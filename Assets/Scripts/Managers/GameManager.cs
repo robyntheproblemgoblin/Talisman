@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private static GameManager m_instance;
     public GameState m_lastState;
     public GameState m_gameState;
-    public GameState m_controlsLastState;
+    public GameState m_controlsLastState = GameState.MENU;
     public event Action<GameState> OnGameStateChanged;
     public PlayerController m_player;
     public MenuManager m_menuManager;
@@ -84,11 +84,7 @@ public class GameManager : MonoBehaviour
     public void UpdateGameState(GameState newState)
     {
         if (newState == m_gameState)
-            return;
-        if(newState == GameState.CONTROLS || newState == GameState.CREDITS)
-        {
-            m_controlsLastState = m_lastState;
-        }
+            return;        
         m_lastState = m_gameState;
         m_gameState = newState;
         switch (newState)
@@ -268,8 +264,11 @@ public class GameManager : MonoBehaviour
 
     void DeathMenuStart()
     {
-        m_player.m_animator.SetTrigger("Die");
-        m_audioManager.PlayDeathDialogue();
+        if (!m_isEnd)
+        {
+            m_player.m_animator.SetTrigger("Die");
+            m_audioManager.PlayDeathDialogue();
+        }
         m_menuManager.FadeDeathScreen(m_isEnd).Forget();
     }
 
