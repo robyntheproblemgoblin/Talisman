@@ -1124,6 +1124,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1277138067012987812}
     m_Modifications:
+    - target: {fileID: 325442253800938868, guid: 3e07bb35d74527543bf6ddbced4edf9a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4907013682160943865, guid: 3e07bb35d74527543bf6ddbced4edf9a, type: 3}
       propertyPath: m_RootOrder
       value: 33
@@ -3263,7 +3267,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1138639006591446585, guid: c54045ce461a16240b13b57561e9933c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.0073602
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1416109800922310844, guid: c54045ce461a16240b13b57561e9933c, type: 3}
       propertyPath: m_Name
