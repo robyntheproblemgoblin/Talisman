@@ -138,7 +138,8 @@ public class AudioManager : MonoBehaviour
 
     public void EndFmodLoop(FMOD.Studio.EventInstance eventInstance)
     {
-        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        eventInstance.release();
+        eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     public void StartFmodLoop(FMOD.Studio.EventInstance eventInstance)

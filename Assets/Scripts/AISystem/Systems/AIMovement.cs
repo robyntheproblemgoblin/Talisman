@@ -163,8 +163,9 @@ namespace AISystem.Systems
             }
             GameManager.Instance.m_audioManager.PlayOneShot(stoneAwake, m_mesh.gameObject.transform.position);
             GameManager.Instance.m_audioManager.PlayOneShot(armour, m_mesh.gameObject.transform.position);
+            Enemy e = m_attachedBeing as Enemy;
             m_mesh.materials[0].SetFloat("_Manual", 1);
-            m_mesh.materials[1].SetFloat("_ArmorFade", 1);
+            m_mesh.materials[1].SetFloat("_ArmorFade", e.m_currentHP / e.m_startingHP);
         }
 
     }

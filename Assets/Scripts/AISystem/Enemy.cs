@@ -29,7 +29,7 @@ namespace AISystem
         #endregion
 
         #region  Game Fields
-        [SerializeField] float m_startingHP;
+        public float m_startingHP;
         public float m_currentHP;
         public EnemyActivator m_activator;
         public float m_damage;
@@ -174,13 +174,14 @@ namespace AISystem
 
         protected async UniTask Die()
         {            
+            m_activator.EnemyDead();
+            m_swordCollider.enabled = false;
             if (m_deathParticle != null)
             {                
                 m_deathParticle.Play();
             }
-            m_swordCollider.enabled = false;
-            m_activator.EnemyDead();
             m_animator.SetTrigger("Die");
+            m_intelligience.SetStatue(true, m_stoneAwake, m_armourAwake, m_gruntsAwake[0]);
             m_rootMotionSync.SetDead();
             gameObject.GetComponent<Collider>().enabled = false;
             GameManager.Instance.m_audioManager.PlayOneShot(m_deathSound, gameObject.transform.position);
