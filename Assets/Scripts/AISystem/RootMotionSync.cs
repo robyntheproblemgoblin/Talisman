@@ -53,9 +53,9 @@ namespace AISystem
                 Quaternion deltaRotation = m_animator.deltaRotation;
 
                 if (m_applyRotationWarp && m_warpEnabled)
-                {
-                    deltaRotation *= Quaternion.Euler(0f, m_angle * 0.05f, 0f);
-                }  
+                {                  
+                    deltaRotation = Quaternion.Euler(0f, m_angle * 0.05f, 0f);                  
+                }               
 
                 m_transform.position += deltaMove;
                 m_transform.rotation *= deltaRotation;
