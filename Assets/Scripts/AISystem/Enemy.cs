@@ -56,6 +56,8 @@ namespace AISystem
         public ParticleSystem m_deathParticle;
         public float m_deathTime = 3f;
         public ParticleSystem m_swordTrailParticle;
+
+        public float m_armourSpeed = 5f;
         #endregion
 
         void Start()
@@ -70,7 +72,7 @@ namespace AISystem
 
             List<IOptic> optics = CreateOptics();
             AIKnowledge aIKnowledge = new AIKnowledge();
-            AIMovement aIMovement = new AIMovement(AISettings.MovementSettings, m_animator, this, m_aiManager, m_rootMotionSync, m_swordCollider, m_mesh);
+            AIMovement aIMovement = new AIMovement(AISettings.MovementSettings, m_animator, this, m_aiManager, m_rootMotionSync, m_swordCollider, m_mesh, m_armourSpeed);
             BehaviourManager behaviourManager = new BehaviourManager(UnpackBehaviourTree(AISettings.BehaviourTree, new BehaviourInput()
             {
                 m_aIKnowledge = aIKnowledge,
@@ -173,8 +175,7 @@ namespace AISystem
         protected async UniTask Die()
         {            
             if (m_deathParticle != null)
-            {
-                //m_deathParticle.gameObject.transform.position = new Vector3(0, 0.406f, 1.43f);
+            {                
                 m_deathParticle.Play();
             }
             m_swordCollider.enabled = false;

@@ -33,7 +33,7 @@ namespace AISystem.Systems
         public CapsuleCollider m_swordCollider;
         public SkinnedMeshRenderer m_mesh;
 
-        public AIMovement(MovementSettings settings, [CanBeNull] Animator animator, IBeing attachedBeing, IManager manager, RootMotionSync rootMotionSync, CapsuleCollider swordCollider, SkinnedMeshRenderer mesh)
+        public AIMovement(MovementSettings settings, [CanBeNull] Animator animator, IBeing attachedBeing, IManager manager, RootMotionSync rootMotionSync, CapsuleCollider swordCollider, SkinnedMeshRenderer mesh, float armourSpeed)
         {
             m_settings = settings;
             m_animator = animator;
@@ -43,6 +43,7 @@ namespace AISystem.Systems
             m_swordCollider = swordCollider;
             m_rootMotionSync.m_movement = this;
             m_mesh = mesh;
+            m_armourSpeed = armourSpeed;    
         }
 
         public void EnableMovement()
