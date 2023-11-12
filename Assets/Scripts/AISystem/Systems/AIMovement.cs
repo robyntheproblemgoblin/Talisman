@@ -20,7 +20,7 @@ namespace AISystem.Systems
         public Path m_currentPath;
 
         bool m_movementEnabled;
-        float m_speed = 0;        
+        float m_speed = 0;
 
         public bool m_atDestination { get; private set; } = true;
 
@@ -33,7 +33,7 @@ namespace AISystem.Systems
         public CapsuleCollider m_swordCollider;
         public SkinnedMeshRenderer m_mesh;
 
-        public AIMovement(MovementSettings settings, [CanBeNull] Animator animator, IBeing attachedBeing, IManager manager, RootMotionSync rootMotionSync, CapsuleCollider swordCollider, SkinnedMeshRenderer mesh)
+        public AIMovement(MovementSettings settings, [CanBeNull] Animator animator, IBeing attachedBeing, IManager manager, RootMotionSync rootMotionSync, CapsuleCollider swordCollider, SkinnedMeshRenderer mesh, float armourSpeed)
         {
             m_settings = settings;
             m_animator = animator;
@@ -43,6 +43,7 @@ namespace AISystem.Systems
             m_swordCollider = swordCollider;
             m_rootMotionSync.m_movement = this;
             m_mesh = mesh;
+            m_armourSpeed = armourSpeed;
         }
 
         public void EnableMovement()
@@ -51,7 +52,7 @@ namespace AISystem.Systems
             MovementLoop().Forget();
         }
 
-        public void DisableMovement() => m_movementEnabled = false;        
+        public void DisableMovement() => m_movementEnabled = false;
 
         public bool CanMove()
         {
@@ -98,9 +99,6 @@ namespace AISystem.Systems
             {
                 if (m_currentPath.m_isEmpty == false && m_animator != null)
                 {
-                    float sqrmag = Vector3.SqrMagnitude(m_attachedBeing.m_position - (Vector3)m_currentPath.m_destination);
-                    m_atDestination = sqrmag <= m_arrivalThreshold * m_arrivalThreshold;
-
                     if (!m_atDestination)
                     {
                         UpdateForwardBackwards();
@@ -113,7 +111,10 @@ namespace AISystem.Systems
                         m_rootMotionSync.SetTurnWarp(0);
                         m_animator.SetFloat("Sideways", 0);
                     }
-                }      
+
+                    float sqrmag = Vector3.SqrMagnitude(m_attachedBeing.m_position - (Vector3)m_currentPath.m_destination);
+                    m_atDestination = sqrmag <= m_arrivalThreshold;
+                }
 
                 await UniTask.Yield();
             }
@@ -122,30 +123,23 @@ namespace AISystem.Systems
         void UpdateSideWays()
         {
             m_currentPath.GetRelativePoint(m_attachedBeing.m_position, m_settings.m_distance, out float3 predictPos, out float3 predictTan);
-            m_rootMotionSync.SetYPos(predictPos.y);            
+            m_rootMotionSync.SetYPos(predictPos.y);
+
+            predictTan.y = 0;
 
             float angle = Vector3.SignedAngle(m_attachedBeing.m_forward, predictTan, Vector3.up);
-
-            if (Vector3.Angle(m_attachedBeing.m_forward, predictTan) <= 1f)
-            {
-                m_rootMotionSync.SetTurnWarp(0);
-                m_animator.SetFloat("Sideways", 0);                
-            }
-            else
-            {
-                m_rootMotionSync.SetTurnWarp(angle);
-                m_animator.SetFloat("Sideways", angle * Mathf.Deg2Rad);
-            }            
+            m_rootMotionSync.SetTurnWarp(angle);
+            m_animator.SetFloat("Sideways", angle * Mathf.Deg2Rad);
         }
 
         void UpdateForwardBackwards()
         {
             float distToDest = Vector3.Distance(m_currentPath.m_destination, m_attachedBeing.m_position);
-            
+
             if (distToDest >= m_arrivalThreshold * m_arrivalThreshold)
-            {   
-                m_speed = Mathf.Lerp(m_speed, m_settings.m_run, Time.deltaTime * m_settings.m_acceleration);                
-                float speed = math.remap(0, m_settings.m_run, 0, 1, m_speed);             
+            {
+                m_speed = Mathf.Lerp(m_speed, m_settings.m_run, Time.deltaTime * m_settings.m_acceleration);
+                float speed = math.remap(0, m_settings.m_run, 0, 1, m_speed);
                 m_animator.SetFloat("ForwardsBackwards", speed);
             }
             else
