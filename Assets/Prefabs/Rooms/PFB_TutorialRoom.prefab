@@ -2800,7 +2800,7 @@ PrefabInstance:
     - target: {fileID: 6638115098513306490, guid: 800f98ed89951ed45aadb4fb5e30cf83, type: 3}
       propertyPath: m_colliders
       value: 
-      objectReference: {fileID: 780913945643216447}
+      objectReference: {fileID: 0}
     - target: {fileID: 6638115098513306490, guid: 800f98ed89951ed45aadb4fb5e30cf83, type: 3}
       propertyPath: m_puzzleList.Array.size
       value: 2
@@ -2827,11 +2827,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 800f98ed89951ed45aadb4fb5e30cf83, type: 3}
---- !u!1 &780913945643216447 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5714477133956323027, guid: 800f98ed89951ed45aadb4fb5e30cf83, type: 3}
-  m_PrefabInstance: {fileID: 5015808998834272492}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8214982391444553583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4006727300910237571, guid: 800f98ed89951ed45aadb4fb5e30cf83, type: 3}
