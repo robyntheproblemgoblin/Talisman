@@ -90,7 +90,10 @@
 	<object class="MixerBusPanner" id="{a32b97d8-723e-4b58-8c02-df996692da6e}" />
 	<object class="SingleSound" id="{04b620e0-dff0-490a-ae05-8bc0959b34ba}">
 		<property name="length">
-			<value>3.9324583333333334</value>
+			<value>3.6824583333333338</value>
+		</property>
+		<property name="timelockedOffset">
+			<value>0.25</value>
 		</property>
 		<property name="volume">
 			<value>-5</value>
@@ -162,14 +165,20 @@
 	<object class="MixerBusPanner" id="{24f32a1f-a7a2-41d3-846f-56bf53eeec2d}" />
 	<object class="MixerBusFader" id="{b9750c75-a53e-4ab4-ad17-62d04d89497a}" />
 	<object class="SpatialiserEffect" id="{51b8323f-16c8-4bda-8bfc-d5c0947e09f1}">
+		<property name="distanceRolloffType">
+			<value>1</value>
+		</property>
+		<property name="maximumDistance">
+			<value>30</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
 		<property name="extentMode">
 			<value>1</value>
 		</property>
-		<property name="soundSize">
-			<value>1.20000005</value>
-		</property>
 		<property name="minimumExtent">
-			<value>56</value>
+			<value>204</value>
 		</property>
 		<property name="userLFELevel">
 			<value>-10</value>
@@ -191,7 +200,7 @@
 	</object>
 	<object class="AutomationPoint" id="{29ea0e6b-8644-424a-a511-45e31444439f}">
 		<property name="position">
-			<value>0.22680412371134023</value>
+			<value>0.22680412371134007</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -199,7 +208,7 @@
 	</object>
 	<object class="AutomationPoint" id="{80bd2ff6-414e-4726-9f2f-1120cfd44b8e}">
 		<property name="position">
-			<value>2.5</value>
+			<value>2.2500000000000009</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -210,7 +219,7 @@
 	</object>
 	<object class="AutomationPoint" id="{53958d5c-26e4-4405-a3d0-9a7a6e8c4b01}">
 		<property name="position">
-			<value>3.9324583333333334</value>
+			<value>3.6824583333333338</value>
 		</property>
 		<property name="value">
 			<value>0</value>

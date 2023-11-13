@@ -266,10 +266,7 @@ public class PlayerController : MonoBehaviour, IBeing
         m_game.m_menuManager.m_currentController == ControllerType.KEYBOARD ? m_cameraSensitivity / 10 : m_cameraSensitivity);
         m_characterController.Move(m_moveDirection * Time.deltaTime);
     }
-    void LateUpdate()
-    {
 
-    }
     void Update()
     {
         m_talismanState.Update();

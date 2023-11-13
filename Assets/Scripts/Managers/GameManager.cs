@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     public void UpdateGameState(GameState newState)
     {
         if (newState == m_gameState)
-            return;        
+            return;
         m_lastState = m_gameState;
         m_gameState = newState;
         switch (newState)
@@ -166,10 +166,20 @@ public class GameManager : MonoBehaviour
             }
             await UniTask.Yield();
         }
-        m_player.m_skinnedMeshRenderer.enabled = true;
-        m_player.m_healParticles.gameObject.SetActive(true);
+        TurnOnPlayer();
         m_player.m_animator.SetTrigger("TalismanCinematic");
         m_audioManager.PlayCinematic().Forget();
+    }
+
+    float meshTime;
+    async UniTask TurnOnPlayer()
+    {
+        meshTime = Time.time;
+        while (Time.time <= meshTime + 0.1f)
+        {
+            await UniTask.Yield();
+        }
+        m_player.m_skinnedMeshRenderer.enabled = true;
     }
 
     public async UniTask SecondCinematic()

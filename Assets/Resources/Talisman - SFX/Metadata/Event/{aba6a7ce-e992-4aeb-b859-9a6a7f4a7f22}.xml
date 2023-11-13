@@ -133,14 +133,14 @@
 		<property name="volume">
 			<value>-10</value>
 		</property>
-		<relationship name="modulators">
-			<destination>{f4816460-c53f-4f8d-9e55-2a2ae8fb9195}</destination>
-		</relationship>
 		<relationship name="audioFile">
 			<destination>{74f0976c-3dff-4e0f-bb80-4e70c84eef2f}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{d45fc094-c297-417b-a15b-93111e4440e8}">
+		<property name="volume">
+			<value>-2</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -201,17 +201,10 @@
 			<destination>{49859d8a-21db-48e8-8f02-775d6c61cb27}</destination>
 		</relationship>
 	</object>
-	<object class="RandomizerModulator" id="{f4816460-c53f-4f8d-9e55-2a2ae8fb9195}">
-		<property name="nameOfPropertyBeingModulated">
-			<value>pitch</value>
-		</property>
-		<property name="amount">
-			<value>4.16666698</value>
-		</property>
-	</object>
 	<object class="MixerBusEffectChain" id="{a9f08c8b-7548-467c-8f51-ce1432502fb6}">
 		<relationship name="effects">
 			<destination>{5d2ec15a-7d41-4bf3-86a0-4da7f41a6d6d}</destination>
+			<destination>{5c833ca4-449d-477a-9597-f976ca32ff5c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{92efc59d-0c65-461a-87fe-2279fd86ee15}" />
@@ -228,11 +221,17 @@
 	</object>
 	<object class="MixerBusFader" id="{f3b864e5-b2b8-4b93-be10-693dd88db478}" />
 	<object class="SpatialiserEffect" id="{d7606aa9-bc61-4e31-b46b-d13b3ceebd1a}">
+		<property name="maximumDistance">
+			<value>10</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
 		<property name="extentMode">
 			<value>1</value>
 		</property>
-		<property name="soundSize">
-			<value>0.100000001</value>
+		<property name="minimumExtent">
+			<value>160</value>
 		</property>
 		<property name="userLFELevel">
 			<value>-30</value>
@@ -280,4 +279,5 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{5d2ec15a-7d41-4bf3-86a0-4da7f41a6d6d}" />
+	<object class="SFXReverbEffect" id="{5c833ca4-449d-477a-9597-f976ca32ff5c}" />
 </objects>
