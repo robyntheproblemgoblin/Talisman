@@ -53753,6 +53753,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 12.998
       objectReference: {fileID: 0}
+    - target: {fileID: 3977648500403006897, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_interactSprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977648500403006897, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_interactStrings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977648500403006897, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_interactSprites.Array.data[0]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977648500403006897, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_interactStrings.Array.data[0]
+      value: ' Interact'
+      objectReference: {fileID: 0}
     - target: {fileID: 4520249883936715578, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -74591,6 +74607,22 @@ PrefabInstance:
     - target: {fileID: 8773820592084997090, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
       propertyPath: m_Name
       value: PFB_BossRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058786174727496132, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+      propertyPath: m_interactSprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058786174727496132, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+      propertyPath: m_interactStrings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058786174727496132, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+      propertyPath: m_interactSprites.Array.data[0]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058786174727496132, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+      propertyPath: m_interactStrings.Array.data[0]
+      value: Place Sword
       objectReference: {fileID: 0}
     - target: {fileID: 9069513298678502991, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
       propertyPath: m_StaticEditorFlags
