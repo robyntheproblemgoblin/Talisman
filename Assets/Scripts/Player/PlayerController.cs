@@ -546,7 +546,7 @@ public class PlayerController : MonoBehaviour, IBeing
 
     public void FinishCinematic()
     {
-        m_swordCollider.gameObject.transform.localPosition = new Vector3(0, 0.001446927f, 0);
+     //   m_swordCollider.gameObject.transform.localPosition = new Vector3(0, 0.001446927f, 0);
         m_game.UpdateGameState(GameState.GAME);
     }
     #endregion

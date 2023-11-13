@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public float m_moveToCinematicSpeed = 1f;
     public float m_rotateToCinematicSpeed = 1f;
 
+    public Collider m_combatTutorial;
+
     [HideInInspector]
     public Transform m_respawnPoint;
     [HideInInspector]

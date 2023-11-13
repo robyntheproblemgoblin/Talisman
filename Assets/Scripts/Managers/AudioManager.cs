@@ -333,6 +333,7 @@ public class AudioManager : MonoBehaviour
                 await UniTask.Yield();
             }
             m_game.m_player.FinishCinematic();
+            m_game.m_combatTutorial.gameObject.SetActive(true);
         }
         else if (m_cinematics == 2)
         {

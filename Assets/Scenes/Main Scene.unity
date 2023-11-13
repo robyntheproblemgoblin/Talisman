@@ -21927,6 +21927,10 @@ PrefabInstance:
       value: 0.28533846
       objectReference: {fileID: 0}
     - target: {fileID: 2793351688379217162, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793351688379217162, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -24208,6 +24212,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8369562117727535019, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8371082194908280922, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8371469867245968205, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
@@ -54301,6 +54309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06c5508d12293944b831232d184f83a, type: 3}
+--- !u!65 &712967162 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 8371082194908280922, guid: 0cf8b83c12e2ee3419b33f445e36bbed, type: 3}
+  m_PrefabInstance: {fileID: 291623527}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &746521724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54571,6 +54584,10 @@ PrefabInstance:
     - target: {fileID: 7062040393445854701, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066169489651030518, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 109
       objectReference: {fileID: 0}
     - target: {fileID: 7922696537717966004, guid: d5166c45cc15432438c2b9f8466850ca, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -77222,6 +77239,10 @@ PrefabInstance:
       propertyPath: m_audioManager
       value: 
       objectReference: {fileID: 92241558}
+    - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_combatTutorial
+      value: 
+      objectReference: {fileID: 712967162}
     - target: {fileID: 424437078005057766, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_moveToCinematicSpeed
       value: 1

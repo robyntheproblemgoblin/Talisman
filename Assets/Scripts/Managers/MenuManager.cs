@@ -300,6 +300,7 @@ public class MenuManager : MonoBehaviour
     }
     void TitleScreen()
     {
+        m_game.m_audioManager.EndFmodLoop(m_game.m_audioManager.m_menuMusicInstance);      
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     void MainMenu()
@@ -322,7 +323,7 @@ public class MenuManager : MonoBehaviour
     }
     void QuitGame()
     {
-        m_game.m_audioManager.EndFmodLoop(m_game.m_audioManager.m_menuMusicInstance);
+        m_game.m_audioManager.EndFmodLoop(m_game.m_audioManager.m_menuMusicInstance);      
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
