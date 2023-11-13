@@ -622,6 +622,7 @@ public class MenuManager : MonoBehaviour
         if (m_game.m_isEnd)
         {
             m_game.m_isEnd = false;
+            m_game.m_audioManager.EndFmodLoop(m_game.m_audioManager.m_menuMusicInstance);
             TitleScreen();
         }
         else
