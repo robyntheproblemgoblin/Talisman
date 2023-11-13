@@ -95,11 +95,20 @@
 		<relationship name="modulators">
 			<destination>{e78f459a-752a-4b48-a182-8b2ac96ae40c}</destination>
 		</relationship>
+		<relationship name="fadeInCurve">
+			<destination>{69859da8-599a-4e11-9b36-c83523c03e29}</destination>
+		</relationship>
+		<relationship name="fadeOutCurve">
+			<destination>{e3a5c1ba-1f60-4dad-b396-f6f28915010a}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{4cbf16e7-bc02-4391-a6d5-c7998b1687dd}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{d2e15bc7-2d85-4f62-bbe8-5d518d8210be}">
+		<property name="volume">
+			<value>8.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -129,22 +138,43 @@
 			<value>4.16666698</value>
 		</property>
 	</object>
+	<object class="FadeCurve" id="{69859da8-599a-4e11-9b36-c83523c03e29}">
+		<relationship name="startPoint">
+			<destination>{f9e9aa3e-9160-4cee-bc46-34427c5fb303}</destination>
+		</relationship>
+		<relationship name="endPoint">
+			<destination>{3df85e58-2099-4ead-92dd-c26fa0a9ff88}</destination>
+		</relationship>
+	</object>
+	<object class="FadeCurve" id="{e3a5c1ba-1f60-4dad-b396-f6f28915010a}">
+		<relationship name="startPoint">
+			<destination>{1874c02f-1beb-4be7-b020-d18dab52b297}</destination>
+		</relationship>
+		<relationship name="endPoint">
+			<destination>{31b83590-b062-4c79-bad5-f9754d402e2b}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{02852226-4f6d-45dc-9617-1f7fd35088a3}">
 		<relationship name="effects">
+			<destination>{cbf12832-2918-4b36-99bf-208e6eb6aa9b}</destination>
 			<destination>{b0fc9071-0566-431e-9046-efe2ff593f25}</destination>
+			<destination>{54e9ea31-4ebd-4224-b9ea-8399cc21b860}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{70bb10a4-41e6-44f1-8d47-81c453b87958}" />
 	<object class="MixerBusFader" id="{4f9a96f1-189f-4657-97ed-32a0a2e8716d}" />
 	<object class="SpatialiserEffect" id="{3605d388-977f-4e52-a9f3-542e720395f9}">
+		<property name="maximumDistance">
+			<value>30</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
 		<property name="extentMode">
 			<value>1</value>
 		</property>
-		<property name="soundSize">
-			<value>3</value>
-		</property>
 		<property name="minimumExtent">
-			<value>30</value>
+			<value>180</value>
 		</property>
 		<property name="userLFELevel">
 			<value>-30</value>
@@ -153,5 +183,65 @@
 			<value>true</value>
 		</property>
 	</object>
+	<object class="AutomationPoint" id="{f9e9aa3e-9160-4cee-bc46-34427c5fb303}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+		<property name="curveShape">
+			<value>-0.2547189</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{3df85e58-2099-4ead-92dd-c26fa0a9ff88}">
+		<property name="position">
+			<value>0.5</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{1874c02f-1beb-4be7-b020-d18dab52b297}">
+		<property name="position">
+			<value>1.4000000000000001</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
+		<property name="curveShape">
+			<value>-0.308251381</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{31b83590-b062-4c79-bad5-f9754d402e2b}">
+		<property name="position">
+			<value>6.8410000000000002</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+	</object>
+	<object class="ThreeEQEffect" id="{cbf12832-2918-4b36-99bf-208e6eb6aa9b}">
+		<property name="lowGain">
+			<value>-6</value>
+		</property>
+		<property name="midGain">
+			<value>-6.5</value>
+		</property>
+		<property name="highGain">
+			<value>-3</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{b0fc9071-0566-431e-9046-efe2ff593f25}" />
+	<object class="SFXReverbEffect" id="{54e9ea31-4ebd-4224-b9ea-8399cc21b860}">
+		<property name="decayTime">
+			<value>2300</value>
+		</property>
+		<property name="lowShelfGain">
+			<value>-24</value>
+		</property>
+		<property name="wetLevel">
+			<value>-8</value>
+		</property>
+	</object>
 </objects>
