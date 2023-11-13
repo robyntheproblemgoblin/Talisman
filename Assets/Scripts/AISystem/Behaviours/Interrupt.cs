@@ -16,7 +16,7 @@ namespace AISystem.Behaviours
             m_startTime = Time.time;
             m_animator = m_input.m_go.GetComponentInChildren<Animator>();
             m_input.m_aIMovement.m_swordCollider.enabled = false;
-            m_input.m_aIMovement.SetWarp(false); 
+            m_input.m_aIMovement.SetWarp(false);
             m_animator.SetFloat("ForwardsBackwards", -0.3f);
             m_animator.SetFloat("Sideways", 0);
             m_animator.SetTrigger("Interrupt");
@@ -28,6 +28,7 @@ namespace AISystem.Behaviours
         {
             if (Time.time < m_startTime + m_duration)
             {
+                m_input.m_aIMovement.m_swordCollider.enabled = false;
                 return NodeState.RUNNING;
             }
 
