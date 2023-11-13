@@ -45804,6 +45804,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6707478577927930979, guid: 87cbc3d71c09e09449ca4a8512e38a75, type: 3}
+      propertyPath: m_puzzle
+      value: 
+      objectReference: {fileID: 1431290307}
     - target: {fileID: 6707606809182735811, guid: 87cbc3d71c09e09449ca4a8512e38a75, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
@@ -48164,6 +48168,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.00000018725349
       objectReference: {fileID: 0}
+    - target: {fileID: 7509312957496290329, guid: 87cbc3d71c09e09449ca4a8512e38a75, type: 3}
+      propertyPath: m_puzzle
+      value: 
+      objectReference: {fileID: 1431290308}
     - target: {fileID: 7512660899876755761, guid: 87cbc3d71c09e09449ca4a8512e38a75, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
@@ -53744,6 +53752,22 @@ PrefabInstance:
     - target: {fileID: 3886879146277349760, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 12.998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977648500403006897, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_interactSprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977648500403006897, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_interactStrings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977648500403006897, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_interactSprites.Array.data[0]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3977648500403006897, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
+      propertyPath: m_interactStrings.Array.data[0]
+      value: ' Interact'
       objectReference: {fileID: 0}
     - target: {fileID: 4520249883936715578, guid: 9d7f0173fd2172a419efe93a90e57649, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -74584,6 +74608,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_BossRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 9058786174727496132, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+      propertyPath: m_interactSprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058786174727496132, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+      propertyPath: m_interactStrings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058786174727496132, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+      propertyPath: m_interactSprites.Array.data[0]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058786174727496132, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+      propertyPath: m_interactStrings.Array.data[0]
+      value: Place Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 9069513298678502991, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -74595,6 +74635,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 21838888042440991, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
   m_PrefabInstance: {fileID: 1431290305}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1431290307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1130331285065181960, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+  m_PrefabInstance: {fileID: 1431290305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df5f87c349d41d4c9f0dba2296d65cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1431290308 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6821992021548277780, guid: 98e8c088c4519c64c8decef04f76f19c, type: 3}
+  m_PrefabInstance: {fileID: 1431290305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df5f87c349d41d4c9f0dba2296d65cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1461189211
 GameObject:
   m_ObjectHideFlags: 0
@@ -77130,7 +77192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2334404241388833058, guid: d06c5508d12293944b831232d184f83a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -86.4
+      value: -84.7
       objectReference: {fileID: 0}
     - target: {fileID: 2334404241388833058, guid: d06c5508d12293944b831232d184f83a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -77481,6 +77543,10 @@ PrefabInstance:
       propertyPath: m_menuSource
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
+      propertyPath: m_playerDeath
+      value: 
+      objectReference: {fileID: 11400000, guid: 894ec167e181ed042a86e345be4ec9b6, type: 2}
     - target: {fileID: 1791306105140475677, guid: 17a9315f91885da4981183cb389f0ef9, type: 3}
       propertyPath: m_allPuzzlesSolved
       value: 

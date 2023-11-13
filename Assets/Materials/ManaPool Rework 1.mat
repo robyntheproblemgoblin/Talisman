@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ManaPool Rework 1
-  m_Shader: {fileID: -6465566751694194690, guid: 635c5eef432a59a4e847a86138881bd0, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 36586fa7d8bc1ee4da0958b551410d9a, type: 3}
   m_ValidKeywords:
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
@@ -46,6 +46,10 @@ Material:
     - _Blend: 0
     - _BlendAmount: 0.472
     - _CastShadows: 0
+    - _CausticDensity: 5
+    - _CausticSoftness: -1
+    - _CausticSpeed: 60
+    - _CausticThiccness: 1.37
     - _Cull: 2
     - _Depth: 0
     - _DstBlend: 10

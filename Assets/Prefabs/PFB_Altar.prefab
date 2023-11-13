@@ -53,6 +53,7 @@ MonoBehaviour:
   m_lightDimSpeed: 1
   m_waterDimSpeed: 1
   m_waterMesh: {fileID: 0}
+  m_manaRing: {fileID: 0}
   m_spritesFirst: 0
   m_interactStrings: []
   m_interactSprites: 
@@ -141,10 +142,6 @@ PrefabInstance:
       value: PFB_Sconse
       objectReference: {fileID: 0}
     - target: {fileID: 8752862363969800079, guid: 34ebc92a5339e664583e9596dd3f0902, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8752862364806304983, guid: 34ebc92a5339e664583e9596dd3f0902, type: 3}
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
@@ -293,10 +290,6 @@ PrefabInstance:
       value: PFB_Sconse (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8752862363969800079, guid: 34ebc92a5339e664583e9596dd3f0902, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8752862364806304983, guid: 34ebc92a5339e664583e9596dd3f0902, type: 3}
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}

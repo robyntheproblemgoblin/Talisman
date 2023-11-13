@@ -89,8 +89,8 @@
 	</object>
 	<object class="MixerBusPanner" id="{215ea0d8-8b64-4a17-8e3c-4b857a28bb26}" />
 	<object class="MultiSound" id="{ba138be2-25d0-464e-8577-c6af0e516960}">
-		<property name="length">
-			<value>1.5510964912280703</value>
+		<property name="startOffset">
+			<value>29.5</value>
 		</property>
 		<property name="playlistMode">
 			<value>1</value>
@@ -111,6 +111,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{8d3a913c-b2b0-4cde-9d2b-514946da339a}">
+		<property name="volume">
+			<value>10</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -172,7 +175,9 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{a838fdb0-f825-4088-b87a-04dfe836e756}">
 		<relationship name="effects">
+			<destination>{9cd9eed3-ef72-44f7-b9b9-2cec667c7c9a}</destination>
 			<destination>{4e3ff354-5521-442d-870a-57df213b8fed}</destination>
+			<destination>{34dbd6bc-2d98-4b3b-9655-0e51b2ab1696}</destination>
 			<destination>{b633e646-1728-45c7-95c4-f7da128e6a08}</destination>
 		</relationship>
 	</object>
@@ -186,12 +191,12 @@
 			<value>0</value>
 		</property>
 		<property name="curveShape">
-			<value>-0.2547189</value>
+			<value>-1.00000048</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{d5eb35d7-06de-498d-aa28-04d3c16c763c}">
 		<property name="position">
-			<value>0.125</value>
+			<value>0.5</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -199,33 +204,49 @@
 	</object>
 	<object class="AutomationPoint" id="{635079de-baa3-40a8-8a87-94c5c51a1289}">
 		<property name="position">
-			<value>1.375</value>
+			<value>0.50000000000000011</value>
 		</property>
 		<property name="value">
 			<value>1</value>
 		</property>
 		<property name="curveShape">
-			<value>0.25471893</value>
+			<value>-0.0503297746</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{5328d224-b200-44e5-8f23-7d3cb1663deb}">
 		<property name="position">
-			<value>1.5510964912280703</value>
+			<value>1</value>
 		</property>
 		<property name="value">
 			<value>0</value>
 		</property>
 	</object>
+	<object class="ThreeEQEffect" id="{9cd9eed3-ef72-44f7-b9b9-2cec667c7c9a}">
+		<property name="midGain">
+			<value>-7.5</value>
+		</property>
+		<property name="highGain">
+			<value>-7.5</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{4e3ff354-5521-442d-870a-57df213b8fed}" />
+	<object class="SFXReverbEffect" id="{34dbd6bc-2d98-4b3b-9655-0e51b2ab1696}">
+		<property name="decayTime">
+			<value>2300</value>
+		</property>
+		<property name="lowShelfGain">
+			<value>-24</value>
+		</property>
+		<property name="wetLevel">
+			<value>-8</value>
+		</property>
+	</object>
 	<object class="SpatialiserEffect" id="{b633e646-1728-45c7-95c4-f7da128e6a08}">
 		<property name="extentMode">
 			<value>1</value>
 		</property>
-		<property name="soundSize">
-			<value>1.20000005</value>
-		</property>
 		<property name="minimumExtent">
-			<value>10</value>
+			<value>186</value>
 		</property>
 		<property name="userLFELevel">
 			<value>-30</value>
